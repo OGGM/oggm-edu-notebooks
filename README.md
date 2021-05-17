@@ -3,6 +3,7 @@
 Educational material about glaciers, powered by [OGGM](https://oggm.org) and [Binder](https://mybinder.org/).
 
 Web: http://edu.oggm.org
+
 Rendered notebooks: https://oggm.org/oggm-edu-notebooks
 
 License: [BSD-3-Clause](https://github.com/OGGM/oggm-edu-notebooks/blob/master/LICENSE.txt)
