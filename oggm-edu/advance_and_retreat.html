@@ -385,13 +385,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:33: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 16:31:43: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:33: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 16:31:43: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:33: oggm.cfg: Multiprocessing: using all available processors (N=8)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 16:31:43: oggm.cfg: Multiprocessing: using all available processors (N=8)
 </pre></div>
 </div>
 </div>
@@ -502,12 +502,12 @@
 <div class="math notranslate nohighlight">
 \[\dot{m}(z) = \text{accumulation}(z) + \text{ablation}(z).\]</div>
 <p>Mass is continuously redistributed in a glacier: accumulated mass at the top of the glacier is transported downglacier. The driving force of this <em>ice flow</em> is gravity. Thus, the mass balance of a region on a glacier depends not only on the mass exchanges induced by accumulation and ablation, but also on the gravity driven transport of ice from the acccumulation area to the ablation area. The <em>ice flow</em> is indicated by the grey arrow in this figure:</p>
-<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_06.png" width="60%"><p>The altitude where <span class="math notranslate nohighlight">\(\dot{m}(z) = 0\)</span> is called the <em>equilibrium line altitude</em>, short ELA. Hence, the ELA is the altitude where accumulation processes and ablation processes balance each other - in theory. However, in reality the ELA does not exactly exist and can only be approximated.
-<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_07.png" width="60%"></p>
-<p><strong>We want to reproduce these processes above in an experiment using OGGM</strong>.</p>
-<p>For this purpose we start with defining a linear mass balance model of the form
-$<span class="math notranslate nohighlight">\(\dot{m}(z) = (z - ELA) \frac{d\dot{m}}{dz},\)</span><span class="math notranslate nohighlight">\(
-with the mass balance gradient \)</span>\frac{d\dot{m}}{dz}$:</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_06.png" width="60%"><p>The altitude where <span class="math notranslate nohighlight">\(\dot{m}(z) = 0\)</span> is called the <em>equilibrium line altitude</em>, short ELA. Hence, the ELA is the altitude where accumulation processes and ablation processes balance each other - in theory. However, in reality the ELA does not exactly exist and can only be approximated.</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_07.png" width="60%"><p><strong>We want to reproduce these processes above in an experiment using OGGM</strong>.</p>
+<p>For this purpose we start with defining a linear mass balance model of the form</p>
+<div class="math notranslate nohighlight">
+\[\dot{m}(z) = (z - ELA) \frac{d\dot{m}}{dz},\]</div>
+<p>with the mass balance gradient <span class="math notranslate nohighlight">\(\frac{d\dot{m}}{dz}\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mass balance gradient with respect to elevation in mm w.e. m^-1 yr^-1</span>
