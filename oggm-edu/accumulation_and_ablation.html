@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accumulation, Ablation, Mass Balance and resulting Ice Flow &#8212; OGGM-Edu notebooks</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glacier advance and retreat" href="advance_and_retreat.html" />
+    <link rel="prev" title="Temperature index models" href="temperature_index_model.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">OGGM-Edu notebooks</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../welcome.html">
+   Welcome to the OGGM Edu Notebooks!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Beginners
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_with_notebooks.html">
+   Getting started with the Jupyter Notebook
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Flowline modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="flowline_model.html">
+   Getting started with flowline models: idealized experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ice_flow_parameters.html">
+   Influence of ice flow parameters on glacier size
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mass_balance_gradients.html">
+   Mass balance gradients (MBG) and their influence on glacier flow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surging_experiment.html">
+   Glacier surging experiments
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Glacier mass balance
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="temperature_index_model.html">
+   Temperature index models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Accumulation, Ablation, Mass Balance and resulting Ice Flow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advance_and_retreat.html">
+   Glacier advance and retreat
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Glaciers as water ressources
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="glacier_water_resources.html">
+   Glaciers as water resources: part 1 (idealized climate)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glacier_water_resources_projections.html">
+   Glaciers as water resources: part 2 (projections)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Graphics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../graphics/ela_changes_response_time.html">
+   ELA changes and response time
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/oggm-edu/accumulation_and_ablation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/OGGM/oggm-edu-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/accumulation_and_ablation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/accumulation_and_ablation.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull?repo=https://github.com/OGGM/oggm-edu-notebooks%26amp%3Bbranch=master%26amp%3Burlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/accumulation_and_ablation.ipynb%3Fautodecode"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.oggm.org/hub/user-redirect/git-pull?repo=https://github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/accumulation_and_ablation.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accumulation-processes">
+   Accumulation processes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ablation-processes">
+   Ablation processes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mass-balance">
+   Mass balance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accumulation-ablation-and-ice-flow-with-oggm">
+   Accumulation, ablation and ice flow with OGGM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-the-scene">
+     Set the scene
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mass-balance-of-a-glacier-in-equilibrium">
+     Mass balance of a glacier in equilibrium
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ice-flux-along-a-glacier-in-equilibrium">
+     Ice flux along a glacier in equilibrium
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#take-home-points">
+   Take home points
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-next">
+   What’s next?
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="accumulation-ablation-mass-balance-and-resulting-ice-flow">
+<h1>Accumulation, Ablation, Mass Balance and resulting Ice Flow<a class="headerlink" href="#accumulation-ablation-mass-balance-and-resulting-ice-flow" title="Permalink to this headline">¶</a></h1>
+<p>Goals of this notebook:</p>
+<ul class="simple">
+<li><p>gain a basic understanding of accumulation, ablation and glacier mass balance</p></li>
+<li><p>understand the link between mass balance and ice flow</p></li>
+<li><p>implement a simple experiment to calculate ice flow on a glacier in equilibrium</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">oggm</span>
+<span class="kn">from</span> <span class="nn">oggm</span> <span class="kn">import</span> <span class="n">cfg</span>
+<span class="kn">import</span> <span class="nn">oggm_edu</span> <span class="k">as</span> <span class="nn">edu</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Plotting libraries and plot style</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Copyright notice: the following sections are heavily based on the book “The Physics of Glaciers” by Cuffey and Paterson, (2010). The glacier images are taken from the <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">open glacier graphics</a> on OGGM-Edu, made by Anne Maussion, <a class="reference external" href="http://atelierlesgrosyeux.com/">Atelier les Gros yeux</a>.</em></p>
+<p>The <strong>mass balance</strong> is the result of several processes that either add mass to the glacier (<strong>accumulation</strong>) or remove mass from the glacier (<strong>ablation</strong>).</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_03.png" width="33%" align="left">
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_04.png" width="33%" align="left">
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_05.png" width="33%" align="left"><div class="section" id="accumulation-processes">
+<h2>Accumulation processes<a class="headerlink" href="#accumulation-processes" title="Permalink to this headline">¶</a></h2>
+<p>Accumulation processes are all processes that add snow or ice to a glacier (surface). The most important accumulation processes are listed below in order of their relative importance:</p>
+<ul>
+<li><p><strong>Solid precipitation</strong> (snowfall)</p>
+<p>Snowfall varies substantially with latitude and altitude, where the primary factors determining snowfall rates are:</p>
+<ul class="simple">
+<li><p><strong>Water vapor content</strong> governed by the <a class="reference external" href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Clapeyron_relation#Applications">Clausius-Clapeyron-relationship</a>: the warmer the air, the more water it can hold and hence the more precipitation can form</p></li>
+<li><p><strong>Stratification</strong> of the atmosphere: a subfreezing layer in the lower atmosphere is required for precipitation to reach the ground in solid form</p></li>
+<li><p><strong>Cooling rate</strong>: high snowfall rates occur where snow is rapidly cooled, e.g. in frontal systems or via orographic lifting</p></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>Redistribution by wind and avalanching</strong></p>
+<p>Accumulation may differ from snowfall due to winds advecting snow over a glacier surface - the interaction between wind and the topography creates regions of snow assimilation and deposition. Furthermore, avalanches may accumulate unusually large amounts of snow in favorable zones. Avalanching is particularly important for mountain glaciers in steep valleys.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Refreezing of meltwater</strong></p>
+<p>Refreezing of meltwater can either occur at the glacier surface or inside the glacier body, where it is commonly called englacial or internal accumulation. Refreezing meltwater does not explicitly contribute to glacier mass balance, but it has to be subtracted from the total melt to assess the net runoff.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Deposition</strong></p>
+<p>Deposition refers to processes directly accumulating water or water vapor to the glacier surface, i.e. freezing rain and resublimation.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="ablation-processes">
+<h2>Ablation processes<a class="headerlink" href="#ablation-processes" title="Permalink to this headline">¶</a></h2>
+<p>Ablation processes are all processes that remove snow or ice from a glacier. The most important ablation processes are listed below in order of their relative importance:</p>
+<ul>
+<li><p><strong>Melt and runoff</strong></p>
+<p>Melt and runoff account for most glacier mass loss and are driven by the net energy imbalance between the atmosphere and the glacier surface. The most important contributors are the net radiation and the turbulent fluxes of sensible and latent heat. Once the temperature of the glacier surface is at the melting point, i.e. the glacier surface was sufficiently heated, melts rates increase in proportion to the net energy flux.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Sublimation</strong></p>
+<p>Sublimation refers to the phase change from solid state to gaseous state, e.g. the direct transition of snow and ice to water vapor. It is the dominant source of mass loss in environments where surface temperatures hardly reach the melting point. Sublimation increases with increasing surface temperature and wind speed and with decreasing humidity, hence, it is strongest in dry and warm environments.
+Melt and sublimation can counteract each other: as sublimation consumes energy and transforms it to latent heat, the energy available for melt decreases.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Calving</strong></p>
+<p>Calving is the separation of ice blocks from a glacier’s margin. Most calving occurs at margins of glaciers that stand or float in water. Calving of glaciers terminating in the ocean, so called <em>tidewater</em> glaciers, accounts for much of the mass loss, e.g. for more than 90% of the ablation from Antarctica and about half of the ablation from Greenland. The process is also significant for mountain glaciers that terminate in deep lakes or the ocean.</p>
+</li>
+</ul>
+<p>This nice graphic from <a class="reference external" href="http://www.antarcticglaciers.org/">antarcticglaciers.org</a> summarizes the different accumulation and ablation processes:</p>
+<br>
+<img src="http://cdn.antarcticglaciers.org/wp-content/uploads/2018/11/glaciers-as-a-system.png" width="60%"></div>
+<div class="section" id="mass-balance">
+<h2>Mass balance<a class="headerlink" href="#mass-balance" title="Permalink to this headline">¶</a></h2>
+<p>The rates of accumulation and ablation processes, summed over the glacier and over time, determine the <em>glacier mass balance</em>: <span class="math notranslate nohighlight">\(\dot{m}\)</span>, the change in total mass of snow and ice,</p>
+<div class="math notranslate nohighlight">
+\[\dot{m} = \text{accumulation} + \text{ablation}.\]</div>
+<p>Mass is continuously redistributed in a glacier: accumulated mass at the top of the glacier is transported downglacier, which is indicated by the black arrow in the figure above. The driving force of this <em>ice flow</em> is gravity. Thus, the mass balance of a region on a glacier depends not only on the mass exchanges induced by accumulation and ablation, but also on the gravity driven transport of ice from the acccumulation area to the ablation area.</p>
+<p>Generally, mass balance and ice flux are linked via the continuity equation, which implies mass conservation,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial H}{\partial t} = \dot{m} - \nabla \cdot \vec{q},\]</div>
+<p>where <span class="math notranslate nohighlight">\(H\)</span> is the ice thickness, <span class="math notranslate nohighlight">\(\dot{m}\)</span> the mass balance and <span class="math notranslate nohighlight">\(\vec{q}\)</span> the ice flux.</p>
+</div>
+<div class="section" id="accumulation-ablation-and-ice-flow-with-oggm">
+<h2>Accumulation, ablation and ice flow with OGGM<a class="headerlink" href="#accumulation-ablation-and-ice-flow-with-oggm" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span><span class="o">.</span><span class="n">initialize_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:24: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:24: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:24: oggm.cfg: Multiprocessing: using all available processors (N=8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, we will essentially illustrate the <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">OGGM-Edu glacier graphics</a> series of images using OGGM.</p>
+<div class="section" id="set-the-scene">
+<h3>Set the scene<a class="headerlink" href="#set-the-scene" title="Permalink to this headline">¶</a></h3>
+<p>In the introduction on the OGGM-Edu <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">website</a>, a cross section of a typical mountain glacier is shown:</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_01.png" width="60%"><p>Such a glacier can be reconstructed in OGGM, as done in the <a class="reference internal" href="flowline_model.html"><span class="doc std std-doc">flowline model notebook</span></a>. First, we define a linear bedrock profile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define horizontal resolution of the model:</span>
+<span class="c1"># nx: number of grid points</span>
+<span class="c1"># map_dx: grid point spacing in meters</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">map_dx</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># define glacier top and bottom altitudes in meters</span>
+<span class="n">top</span> <span class="o">=</span> <span class="mi">3400</span>
+<span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># create a linear bedrock profile from top to bottom</span>
+<span class="n">bed_h</span><span class="p">,</span> <span class="n">surface_h</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">define_linear_bed</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+
+<span class="c1"># calculate the distance from the top to the bottom of the glacier in km</span>
+<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">distance_along_glacier</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To initialize the glacier, we need to specify how wide the glacier is. Here, we will use a wider accumulation area and a narrow ablation area, typical for mountain glaciers. The accumulation area is determined by the following thresholds of its width at the top of the glacier, the width at the <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/#attachment_3396">equilibrium line altitude</a> and the vertical extent downglacier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># glacier width at the top of the accumulation area: m</span>
+<span class="n">ACCW</span> <span class="o">=</span> <span class="mi">1500</span>
+
+<span class="c1"># glacier width at the equilibrium line altitude: m</span>
+<span class="n">ELAW</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># fraction of vertical grid points occupied by accumulation area</span>
+<span class="n">NZ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
+
+<span class="c1"># accumulation area occupies a fraction NZ of the total glacier extent</span>
+<span class="n">acc_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ACCW</span><span class="p">,</span> <span class="n">ELAW</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nx</span> <span class="o">*</span> <span class="n">NZ</span><span class="p">))</span>
+
+<span class="c1"># ablation area occupies a fraction 1 - NZ of the total glacier extent</span>
+<span class="n">abl_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">ELAW</span><span class="p">,</span> <span class="n">nx</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">acc_width</span><span class="p">))</span>
+
+<span class="c1"># glacier widths profile</span>
+<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">acc_width</span><span class="p">,</span> <span class="n">abl_width</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following function provides a 3D-view on the glacier geometry:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_3d</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="n">nx</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/accumulation_and_ablation_34_0.png" src="../_images/accumulation_and_ablation_34_0.png" />
+</div>
+</div>
+<p>The upper part of the glacier linearly decreases in width and the lower part of the glacier has constant width. For the model run, the widths have to be converted to grid point space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model widths</span>
+<span class="n">mwidths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">widths</span> <span class="o">/</span> <span class="n">map_dx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we need to define a glacier bedrock shape - here, we use a <a class="reference external" href="https://docs.oggm.org/en/latest/ice-dynamics.html#rectangular">rectangular bed</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the glacier bed</span>
+<span class="n">init_flowline</span> <span class="o">=</span> <span class="n">oggm</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flowline</span><span class="o">.</span><span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">mwidths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we will need a mass balance model. In our case this will be a simple linear mass balance, defined by the equilibrium line altitude (ELA) and a linear mass balance gradient with respect to elevation (in [mm m<span class="math notranslate nohighlight">\(^{-1}\)</span>]). The equilibrium line altitude is located at the transition between the accumulation and ablation zone:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># equilibrium line altitude: height where the glacier width first hits ELAW</span>
+<span class="n">ela</span> <span class="o">=</span> <span class="n">bed_h</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">widths</span><span class="o">==</span><span class="n">ELAW</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ELA: </span><span class="si">{:.2f}</span><span class="s1"> m&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ela</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELA: 2289.45 m
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mass balance gradient with respect to elevation in mm w.e. m^-1 yr^-1</span>
+<span class="n">mb_grad</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">mb_model</span> <span class="o">=</span> <span class="n">oggm</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">massbalance</span><span class="o">.</span><span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">mb_grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have all the ingredients to run the model, we just have to initialize it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The model requires the initial glacier bed, a mass balance model, and an initial time (the year y0)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">oggm</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flowline</span><span class="o">.</span><span class="n">FluxBasedModel</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">min_dt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cfl_number</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s run the model until our test glacier is in equilibrium.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">()</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">glacier_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">=</span><span class="n">init_flowline</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/accumulation_and_ablation_45_0.png" src="../_images/accumulation_and_ablation_45_0.png" />
+</div>
+</div>
+<p>The glacier surface along the defined flowline is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong>: try to change the glacier geometry parameters <code class="docutils literal notranslate"><span class="pre">ACCW</span></code>, <code class="docutils literal notranslate"><span class="pre">ELAW</span></code> and <code class="docutils literal notranslate"><span class="pre">NZ</span></code>. Do you think a wider/narrower glacier will reach equilibrium faster/slower? Analogously to the <a class="reference internal" href="mass_balance_gradients.html"><span class="doc std std-doc">mass balance gradient notebook</span></a>, check the influence of the mass balance altitude gradient <code class="docutils literal notranslate"><span class="pre">mb_grad</span></code> on the time it takes the glacier to reach equilibrium. To get you started, here is a helper function repeating the commands in this section based on your choice of <code class="docutils literal notranslate"><span class="pre">ACCW</span></code>, <code class="docutils literal notranslate"><span class="pre">ELAW</span></code>, <code class="docutils literal notranslate"><span class="pre">NZ</span></code> and <code class="docutils literal notranslate"><span class="pre">mb_grad</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span> edu.linear_mb_equilibrium
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is how to use it</span>
+<span class="c1"># your_model = edu.linear_mb_equilibrium(bed_h, surface_h, your_accw, your_elaw, your_nz, your_mb_grad, nx, map_dx)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(&#39;Glacier in equilibrium after: {:.0f} years&#39;.format(your_model.yr))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mass-balance-of-a-glacier-in-equilibrium">
+<h3>Mass balance of a glacier in equilibrium<a class="headerlink" href="#mass-balance-of-a-glacier-in-equilibrium" title="Permalink to this headline">¶</a></h3>
+<p>For a glacier to be in equilibrium, we require the specific mass balance (accumulation + ablation) to be zero averaged over a year on the glacier. To check this requirement, we can use the mass balance model to compute the annual mass balance and compute a width weighted average over all altitudes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># annual mass balance: m s^-1 (meters of ice per second)</span>
+<span class="n">annual_mb</span> <span class="o">=</span> <span class="n">mb_model</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+<span class="c1"># mass balance at each altitude at the particular year of the equilibrium surface: m yr^-1 converted to mm w.e. yr^-1</span>
+<span class="n">annual_mb_we</span> <span class="o">=</span> <span class="n">annual_mb</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">SEC_IN_YEAR</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;ice_density&#39;</span><span class="p">]</span>
+<span class="c1"># widths to compute specific glacier mass balance</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">mwidths</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># We are only interested at the MB where there is a glacier: give zero weight elsewhere</span>
+<span class="n">weights</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">thick</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Compute and pront</span>
+<span class="n">weighted_mb_we</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">annual_mb_we</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier specific mass balance (approx): </span><span class="si">{:.1f}</span><span class="s1"> m w.e. yr^-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weighted_mb_we</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glacier specific mass balance (approx): 0.0 m w.e. yr^-1
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the end of the year the total specific mass-balance is zero, but this doesn’t mean that the mass-balance is zero everywhere! A very classic situation looks like the image below: positive mass-balance at the top (more accumulation, less ablation) and negative at the tongue (less accumulation, more ablation).</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_05.png" width="60%" ></div>
+<div class="section" id="ice-flux-along-a-glacier-in-equilibrium">
+<h3>Ice flux along a glacier in equilibrium<a class="headerlink" href="#ice-flux-along-a-glacier-in-equilibrium" title="Permalink to this headline">¶</a></h3>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_06.png" width="60%" ><p>In equilibrium, the ice thickness <span class="math notranslate nohighlight">\(H\)</span> does not change with time and the continuity equation reduces to,</p>
+<div class="math notranslate nohighlight">
+\[\dot{m} = \nabla \vec{q}.\]</div>
+<p>This means that glacier mass balance solely determines ice flux if the glacier is in steady-state. Hence, the ice flux can be computed by vertically integrating the mass balance - in the one-dimensional case, the ice flux is the sum of the mass balance above a certain reference height <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>The ice flux can then by computed by discrete integration of the mass balance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ice flux along the defined flowline: m3 s^-1</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_mb</span> <span class="o">*</span> <span class="n">widths</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dx_meter</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">annual_mb</span><span class="o">**</span><span class="mi">2</span><span class="p">)],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">annual_mb</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;Equilibrium line altitude&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ice flux $q$ (m$^3$ s$^{-1}$)&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along flowline (km)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/accumulation_and_ablation_63_0.png" src="../_images/accumulation_and_ablation_63_0.png" />
+</div>
+</div>
+<p>By construction, the ice flux is maximal at the equilibrium line altitude and zero at the glacier terminus.</p>
+</div>
+</div>
+<div class="section" id="take-home-points">
+<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Accumulation processes are all processes that add snow or ice to a glacier, e.g.</p>
+<ul>
+<li><p>Solid precipitation</p></li>
+<li><p>Redistribution of snow by wind and avalanching</p></li>
+<li><p>Refreezing of meltwater</p></li>
+<li><p>Resublimation and freezing rain</p></li>
+</ul>
+</li>
+<li><p>Ablation processes are all processes that remove snow or ice from a glacier, e.g.</p>
+<ul>
+<li><p>Melt and runoff</p></li>
+<li><p>Sublimation</p></li>
+<li><p>Calving</p></li>
+</ul>
+</li>
+<li><p>Accumulation and ablation rates determine the glacier mass balance, i.e. the change in total mass of snow and ice.</p></li>
+<li><p>Glaciers flow due to gravity</p></li>
+<li><p>Mass conservation implies a link between ice thickness, mass balance and ice flow</p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>K.M. Cuffey and W.S.B. Paterson, (2010), <a class="reference external" href="https://www.elsevier.com/books/the-physics-of-glaciers/cuffey/978-0-12-369461-4">The Physics of Glaciers</a></p></li>
+<li><p><a class="reference external" href="http://AntarcticGlaciers.org">AntarcticGlaciers.org</a>, <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/mass-balance/">glacier mass-balance</a></p></li>
+</ul>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./oggm-edu"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="temperature_index_model.html" title="previous page">Temperature index models</a>
+    <a class='right-next' id="next-link" href="advance_and_retreat.html" title="next page">Glacier advance and retreat</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By OGGM e.V. and OGGM Contributors<br/>
+        
+          <div class="extra_footer">
+            <p>
+These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/blob/master/LICENSE.txt" target="_blank">BSD-3-Clause license</a>.
+<br>
+&copy; Copyright 2014-2021.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-106829797-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

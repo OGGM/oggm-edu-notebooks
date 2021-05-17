@@ -1,0 +1,923 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glacier advance and retreat &#8212; OGGM-Edu notebooks</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glaciers as water resources: part 1 (idealized climate)" href="glacier_water_resources.html" />
+    <link rel="prev" title="Accumulation, Ablation, Mass Balance and resulting Ice Flow" href="accumulation_and_ablation.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">OGGM-Edu notebooks</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../welcome.html">
+   Welcome to the OGGM Edu Notebooks!
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Beginners
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_with_notebooks.html">
+   Getting started with the Jupyter Notebook
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Flowline modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="flowline_model.html">
+   Getting started with flowline models: idealized experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ice_flow_parameters.html">
+   Influence of ice flow parameters on glacier size
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mass_balance_gradients.html">
+   Mass balance gradients (MBG) and their influence on glacier flow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surging_experiment.html">
+   Glacier surging experiments
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Glacier mass balance
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="temperature_index_model.html">
+   Temperature index models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="accumulation_and_ablation.html">
+   Accumulation, Ablation, Mass Balance and resulting Ice Flow
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Glacier advance and retreat
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Glaciers as water ressources
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="glacier_water_resources.html">
+   Glaciers as water resources: part 1 (idealized climate)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glacier_water_resources_projections.html">
+   Glaciers as water resources: part 2 (projections)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Graphics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../graphics/ela_changes_response_time.html">
+   ELA changes and response time
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/oggm-edu/advance_and_retreat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/OGGM/oggm-edu-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/advance_and_retreat.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/advance_and_retreat.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull?repo=https://github.com/OGGM/oggm-edu-notebooks%26amp%3Bbranch=master%26amp%3Burlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/advance_and_retreat.ipynb%3Fautodecode"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://hub.oggm.org/hub/user-redirect/git-pull?repo=https://github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/advance_and_retreat.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simulation-of-glacier-advance-and-retreat-with-oggm">
+   A simulation of glacier advance and retreat with OGGM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialisation-let-s-define-our-glacier">
+     Initialisation: Let’s define our glacier
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mass-balance-and-the-equilibrium-line-altitude">
+       <strong>
+        Mass balance and the equilibrium line altitude
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glacier-in-equilibrium">
+     Glacier in Equilibrium
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advancing-glacier">
+   Advancing Glacier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#retreating-glacier">
+   Retreating glacier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#take-home-points">
+   Take home points
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-next">
+   What’s next?
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="glacier-advance-and-retreat">
+<h1>Glacier advance and retreat<a class="headerlink" href="#glacier-advance-and-retreat" title="Permalink to this headline">¶</a></h1>
+<p>Goals of this notebook:</p>
+<ul class="simple">
+<li><p>understand the concept of the equilibrium line altitude (ELA)</p></li>
+<li><p>understand the influence of glacier mass balance on the ELA</p></li>
+<li><p>be able to explain glacier advance and retreat in response to a change in the ELA</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constants</span>
+<span class="kn">from</span> <span class="nn">oggm</span> <span class="kn">import</span> <span class="n">cfg</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">initialize_minimal</span><span class="p">()</span>
+
+<span class="c1"># OGGM flowline model</span>
+<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">RectangularBedFlowline</span>
+
+<span class="c1"># import oggm-edu helper package</span>
+<span class="kn">import</span> <span class="nn">oggm_edu</span> <span class="k">as</span> <span class="nn">edu</span>
+
+<span class="c1"># Scientific packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># OGGM mass-balance model</span>
+<span class="kn">from</span> <span class="nn">oggm.core.massbalance</span> <span class="kn">import</span> <span class="n">LinearMassBalance</span>
+
+<span class="c1"># There are several numerical implementations in OGGM core. We use the &quot;FluxBasedModel&quot;</span>
+<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">FluxBasedModel</span> <span class="k">as</span> <span class="n">FlowlineModel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:33: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:33: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-17 15:19:33: oggm.cfg: Multiprocessing: using all available processors (N=8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting libraries and plot style</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="a-simulation-of-glacier-advance-and-retreat-with-oggm">
+<h2>A simulation of glacier advance and retreat with OGGM<a class="headerlink" href="#a-simulation-of-glacier-advance-and-retreat-with-oggm" title="Permalink to this headline">¶</a></h2>
+<p>We will first define our idealised glacier, let the glacier grow to an equilibrium state and then model glacier advance and retreat. We represent the different steps as in the <a class="reference external" href="https://edu.oggm.org/en/latest/glacier_basics.html">open glacier graphics from the OGGM-EDU website</a> (made by Anne Maussion, <a class="reference external" href="http://atelierlesgrosyeux.com/">Atelier les Gros yeux</a>).</p>
+<div class="section" id="initialisation-let-s-define-our-glacier">
+<h3>Initialisation: Let’s define our glacier<a class="headerlink" href="#initialisation-let-s-define-our-glacier" title="Permalink to this headline">¶</a></h3>
+<p>First, as always, we define a linear bedrock profile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define horizontal resolution of the model:</span>
+<span class="c1"># nx: number of grid points</span>
+<span class="c1"># map_dx: grid point spacing in meters</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">map_dx</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1"># define glacier top and bottom altitudes in meters</span>
+<span class="n">top</span> <span class="o">=</span> <span class="mi">5000</span> 
+<span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># create a linear bedrock profile from top to bottom</span>
+<span class="n">bed_h</span><span class="p">,</span> <span class="n">surface_h</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">define_linear_bed</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+
+<span class="c1"># calculate the distance from the top to the bottom of the glacier in km</span>
+<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">distance_along_glacier</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Often glaciers are wider in the accumulation area, so we also construct our idealised glacier such that it is wider above the ELA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># glacier width at the top of the accumulation area: m</span>
+<span class="n">ACCW</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># glacier width at the equilibrium line altitude: m</span>
+<span class="n">ELAW</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># fraction of vertical grid points occupied by accumulation area</span>
+<span class="n">NZ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
+
+<span class="c1"># create the widths with a </span>
+<span class="n">widths</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">define_widths_with_trapezoidal_shape_at_top</span><span class="p">(</span><span class="n">topw</span><span class="o">=</span><span class="n">ACCW</span><span class="p">,</span>
+                                                     <span class="n">bottomw</span><span class="o">=</span><span class="n">ELAW</span><span class="p">,</span>
+                                                     <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span>
+                                                     <span class="n">nz</span><span class="o">=</span><span class="n">NZ</span><span class="p">,</span>
+                                                     <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+
+<span class="c1"># plot the idealized glacier </span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_3d</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">subplot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;our constructed glacier in OGGM&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;illustrated typical mountain glacier&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_10_0.png" src="../_images/advance_and_retreat_10_0.png" />
+</div>
+</div>
+<p><strong>Now we have defined the idealized width-elevation profile of our glacier (left plot).</strong>  We now also have to define the shape of our cross-section. OGGM supports three different shapes (rectangular, parabolic and trapezoidal); for our experiment we go with the rectangular one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># describe the widths in &quot;grid points&quot; for the model, based on grid point spacing map_dx</span>
+<span class="n">mwidths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">widths</span> <span class="o">/</span> <span class="n">map_dx</span>
+
+<span class="c1"># define the glacier flowline</span>
+<span class="n">init_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span>
+                                       <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
+                                       <span class="n">widths</span><span class="o">=</span><span class="n">mwidths</span><span class="p">,</span>
+                                       <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also need to define the mass balance distribution over the glacier and let the glacier grow to its initial state. We will explain this in the following:</p>
+<div class="section" id="mass-balance-and-the-equilibrium-line-altitude">
+<h4><strong>Mass balance and the equilibrium line altitude</strong><a class="headerlink" href="#mass-balance-and-the-equilibrium-line-altitude" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>mass balance</strong> is the result of several processes that either add mass to the glacier (<strong>accumulation</strong>) or remove mass from the glacier (<strong>ablation</strong>). You can find more details in the <a class="reference internal" href="accumulation_and_ablation.html"><span class="doc std std-doc">accumulation and ablation notebook</span></a>. As a summary the following glacier graphics illustrate this relationship:</p>
+<ul class="simple">
+<li><p>The left graphic represents a theoretical mass accumulation over the whole glacier depicted by the blue ice volume on top of the grey glacier body.</p></li>
+<li><p>In the graphic in the middle a theoretical mass ablation is marked as red ice volume.</p></li>
+<li><p>The  graphic on the right shows the resulting mass balance with blue and red arrows in combination with the blue and red volume changes on top of the grey glacier body. In the central part of the glacier where the red line lies directly on the grey glacier body ablation and accumulation canceled each other out.</p></li>
+</ul>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_03.png" width="33%" align="left">
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_04.png" width="33%" align="left">
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_05.png" width="33%" align="left">
+<p><em>Source: <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">open glacier graphics</a> on OGGM-Edu, made by Anne Maussion (<a class="reference external" href="http://atelierlesgrosyeux.com/">Atelier les Gros yeux</a>)</em>.</p>
+<p>The rates of accumulation and ablation processes, summed over the glacier and over time, determine the <em>glacier mass balance</em>: <span class="math notranslate nohighlight">\(\dot{m}\)</span>, the change in total mass of snow and ice,</p>
+<div class="math notranslate nohighlight">
+\[\dot{m} = \text{accumulation} + \text{ablation}.\]</div>
+<p>Since accumulation and ablation generally vary with height, also the glacier mass balance is a function of elevation,</p>
+<div class="math notranslate nohighlight">
+\[\dot{m}(z) = \text{accumulation}(z) + \text{ablation}(z).\]</div>
+<p>Mass is continuously redistributed in a glacier: accumulated mass at the top of the glacier is transported downglacier. The driving force of this <em>ice flow</em> is gravity. Thus, the mass balance of a region on a glacier depends not only on the mass exchanges induced by accumulation and ablation, but also on the gravity driven transport of ice from the acccumulation area to the ablation area. The <em>ice flow</em> is indicated by the grey arrow in this figure:</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_06.png" width="60%"><p>The altitude where <span class="math notranslate nohighlight">\(\dot{m}(z) = 0\)</span> is called the <em>equilibrium line altitude</em>, short ELA. Hence, the ELA is the altitude where accumulation processes and ablation processes balance each other - in theory. However, in reality the ELA does not exactly exist and can only be approximated.
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_07.png" width="60%"></p>
+<p><strong>We want to reproduce these processes above in an experiment using OGGM</strong>.</p>
+<p>For this purpose we start with defining a linear mass balance model of the form
+$<span class="math notranslate nohighlight">\(\dot{m}(z) = (z - ELA) \frac{d\dot{m}}{dz},\)</span><span class="math notranslate nohighlight">\(
+with the mass balance gradient \)</span>\frac{d\dot{m}}{dz}$:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mass balance gradient with respect to elevation in mm w.e. m^-1 yr^-1</span>
+<span class="n">mb_grad</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="c1"># equilibrium line altitude: height where the glacier width first hits ELAW</span>
+<span class="n">ela</span> <span class="o">=</span> <span class="n">bed_h</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">widths</span><span class="o">==</span><span class="n">ELAW</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ELA: </span><span class="si">{:.2f}</span><span class="s1"> m&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ela</span><span class="p">))</span>
+
+<span class="c1"># defining the mass balance model</span>
+<span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">mb_grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELA: 3366.83 m
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have all the ingredients to run the model, we just have to initialize it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The model requires the initial glacier bed, a mass balance model, and an initial time (the year y0)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">min_dt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cfl_number</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="glacier-in-equilibrium">
+<h3>Glacier in Equilibrium<a class="headerlink" href="#glacier-in-equilibrium" title="Permalink to this headline">¶</a></h3>
+<p>For a glacier to be in equilibrium, we require the specific mass balance (accumulation + ablation) to be zero averaged over a year on the glacier. A glacier is in equilibrium if the glacier will neither retreat nor advance from one year to the next year if the climate stays constant, i.e. if we don’t change the ELA.</p>
+<p>Let’s run the model until our test glacier is in equilibrium:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we use a linear accumulation and ablation function from the oggm-edu package for the calculation of the net mass balance (= glacier mass distribution without considering ice flow):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the equilibrium surface height of our test glacier in equilibrium</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+
+<span class="c1"># accumulation and ablation balance each other</span>
+<span class="n">acc</span><span class="p">,</span> <span class="n">acc_0</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_accumulation</span><span class="p">(</span><span class="n">mb_grad</span><span class="p">,</span> <span class="n">ela</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">mwidths</span><span class="p">)</span>
+<span class="n">abl</span><span class="p">,</span> <span class="n">abl_0</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_ablation</span><span class="p">(</span><span class="n">mb_grad</span><span class="p">,</span> <span class="n">ela</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">mwidths</span><span class="p">,</span> <span class="n">acc_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we use a linear accumulation and ablation function from the oggm-edu package:</p>
+<p><code class="docutils literal notranslate"><span class="pre">acc_0</span></code> and <code class="docutils literal notranslate"><span class="pre">abl_0</span></code> are the accumulation and the ablation at the ELA, respectively - by construction, they should be equal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mass balance at the ELA: </span><span class="si">{:.2f}</span><span class="s1"> m w.e. yr^-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">acc_0</span> <span class="o">-</span> <span class="n">abl_0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mass balance at the ELA: 0.00 m w.e. yr^-1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can define the glacier surface after accumulation and ablation, respectively, and plot them on the glacier. All the code below is mostly for plotting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># accumulation and ablation surfaces</span>
+<span class="n">acc_sfc</span> <span class="o">=</span> <span class="n">initial</span> <span class="o">+</span> <span class="n">acc</span>
+<span class="n">abl_sfc</span> <span class="o">=</span> <span class="n">initial</span> <span class="o">+</span> <span class="n">abl</span>
+
+<span class="c1"># net mass balance m w.e yr^-1</span>
+<span class="n">mb_we</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">abl</span>
+
+<span class="c1"># theoretical glacier surface without ice flow</span>
+<span class="c1"># corrected to the bed where ice thickness is negative</span>
+<span class="n">mb_sfc</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">correct_to_bed</span><span class="p">(</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span> <span class="o">+</span> <span class="n">mb_we</span><span class="p">)</span>
+
+<span class="c1"># plot the model glacier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># fig, ax = plt.subplots(1, 1, figsize=(16, 9))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">intro_glacier_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="p">[</span><span class="n">mb_sfc</span><span class="p">],</span>
+                       <span class="p">[</span><span class="s1">&#39;theoretical glacier surface of initial glacier</span><span class="se">\n</span><span class="s1">without considering ice flow&#39;</span><span class="p">],</span> <span class="n">ela</span><span class="o">=</span><span class="p">[</span><span class="n">ela</span><span class="p">],</span> <span class="n">plot_ela</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">label_init</span><span class="o">=</span><span class="s1">&#39;initial glacier in equilibrium&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="s1">&#39;05&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_36_0.png" src="../_images/advance_and_retreat_36_0.png" />
+</div>
+</div>
+<p>Although our initial glacier is in equilibrium, it doesn’t mean that the mass-balance is zero everywhere. As visualized above, the net positive mass-balance at the top (more accumulation, less ablation) balances out the net negative mass balance at the tongue (less accumulation, more ablation).</p>
+<p>As explained in the <a class="reference internal" href="accumulation_and_ablation.html"><span class="doc std std-doc">accumulation and ablation notebook</span></a>, the net accumulation at the top implies a flow of ice trough the glacier, which compensates for the melt in the lower areas.</p>
+<p><strong>At equilibrium, a glacier’s net mass-balance is zero but ice is still moving from top to bottom.</strong></p>
+<p>Now we have set the scene to model glacier advance and retreat.</p>
+</div>
+</div>
+<div class="section" id="advancing-glacier">
+<h2>Advancing Glacier<a class="headerlink" href="#advancing-glacier" title="Permalink to this headline">¶</a></h2>
+<p>To simulate a glacier advance, we will use the same glacier as before, but move the ELA downglacier. This is similar to e.g. an abrupt climate cooling over the glacier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of vertical grid points the ELA is shifted downglacier</span>
+<span class="n">downglacier</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1">#PATRICK you can change this to your method, if you want or we leave it like that</span>
+<span class="c1"># run the model until the glacier reaches an equilibrium state </span>
+<span class="c1"># with its decreased ELA</span>
+<span class="n">advance</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_mb_equilibrium</span><span class="p">(</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">surface_h</span><span class="p">,</span> <span class="n">ACCW</span><span class="p">,</span> <span class="n">ELAW</span><span class="p">,</span> <span class="n">NZ</span><span class="p">,</span> <span class="n">mb_grad</span><span class="p">,</span>
+                                    <span class="n">nx</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">downglacier</span><span class="p">,</span>
+                                    <span class="n">advance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># decreased ELA</span>
+<span class="n">ela_adv</span> <span class="o">=</span> <span class="n">advance</span><span class="o">.</span><span class="n">mb_model</span><span class="o">.</span><span class="n">get_ela</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We move the ELA from initially </span><span class="si">{:.0f}</span><span class="s1"> m downward to </span><span class="si">{:.0f}</span><span class="s1"> m&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">ela_adv</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>We move the ELA from initially 3367 m downward to 3116 m
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can again calculate linear accumulation, ablation and mass balance profiles, but using the decreased ELA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># accumulation and ablation balance at the decreased ELA</span>
+<span class="n">acc_adv</span><span class="p">,</span> <span class="n">acc_0_adv</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_accumulation</span><span class="p">(</span><span class="n">mb_grad</span><span class="p">,</span> <span class="n">ela_adv</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">mwidths</span><span class="p">)</span>
+<span class="n">abl_adv</span><span class="p">,</span> <span class="n">abl_0_adv</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_ablation</span><span class="p">(</span><span class="n">mb_grad</span><span class="p">,</span> <span class="n">ela_adv</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">mwidths</span><span class="p">,</span> <span class="n">acc_0_adv</span><span class="p">)</span>
+
+<span class="c1"># net mass balance m w.e yr^-1</span>
+<span class="n">mb_adv</span> <span class="o">=</span> <span class="n">acc_adv</span> <span class="o">+</span> <span class="n">abl_adv</span>
+
+<span class="c1"># theoretical glacier surface without ice flow</span>
+<span class="c1"># corrected to the bed where ice thickness is negative</span>
+<span class="n">mb_sfc_adv</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">correct_to_bed</span><span class="p">(</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span> <span class="o">+</span> <span class="n">mb_adv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next figure shows the glacier after applying the net mass balance of the decreased ELA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the model glacier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># fig, ax = plt.subplots(1, 1, figsize=(16, 9))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">intro_glacier_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="p">[</span><span class="n">mb_sfc_adv</span><span class="p">],</span>
+                       <span class="p">[</span><span class="s1">&#39;theoretical glacier surface due to ELA decrease</span><span class="se">\n</span><span class="s1">without considering ice flow&#39;</span><span class="p">],</span>
+                       <span class="n">ela</span><span class="o">=</span><span class="p">[</span><span class="n">ela</span><span class="p">,</span> <span class="n">ela_adv</span><span class="p">],</span> <span class="n">plot_ela</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">label_init</span><span class="o">=</span><span class="s1">&#39;initial glacier in equilibrium&#39;</span><span class="p">,</span>
+                      <span class="n">labels_ela</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;e.g. colder climate (advance)&#39;</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="s1">&#39;08&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_46_0.png" src="../_images/advance_and_retreat_46_0.png" />
+</div>
+</div>
+<p>More accumulation and/or less ablation leads to a <strong>decrease</strong> of the ELA and therefore to an increase of the accumulation area and a decrease of the ablation area, as shown in the modelled glacier and the illustration.</p>
+<p>The net mass gain due to the accumulation of mass at the top and the resulting increase in ice flow leads to a glacier advance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the glacier surface in equilibrium with the decreased ELA</span>
+<span class="n">advance_s</span> <span class="o">=</span> <span class="n">advance</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+
+<span class="c1"># plot the model glacier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># fig, ax = plt.subplots(1, 1, figsize=(16, 9))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">intro_glacier_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="p">[</span><span class="n">advance_s</span><span class="p">],</span>
+                       <span class="p">[</span><span class="s1">&#39;advanced glacier in equilibrium&#39;</span><span class="p">],</span>
+                       <span class="n">ela</span><span class="o">=</span><span class="p">[</span><span class="n">ela</span><span class="p">,</span> <span class="n">ela_adv</span><span class="p">],</span> <span class="n">plot_ela</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">label_init</span><span class="o">=</span><span class="s1">&#39;initial glacier in equilibrium&#39;</span><span class="p">,</span>
+                      <span class="n">labels_ela</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;e.g. colder climate (advance)&#39;</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="s1">&#39;09&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_48_0.png" src="../_images/advance_and_retreat_48_0.png" />
+</div>
+</div>
+<p>This downslope glacier advance is the result of an increased ice flow <span class="math notranslate nohighlight">\(\vec{q}\)</span>, as indicated by the thick arrow in the illustration on the right.</p>
+</div>
+<div class="section" id="retreating-glacier">
+<h2>Retreating glacier<a class="headerlink" href="#retreating-glacier" title="Permalink to this headline">¶</a></h2>
+<p>To simulate a glacier retreat, we will again use the same glacier, but this time move the ELA upglacier. This is similar to e.g. an abrupt climate warming over the glacier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of vertical grid points the ELA is shifted upglacier</span>
+<span class="c1"># if you want to see the differences better you can increase here the value to e.g. 30</span>
+<span class="n">upglacier</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># run the model until the glacier reaches an equilibrium state with its decreased ELA</span>
+<span class="n">retreat</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_mb_equilibrium</span><span class="p">(</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">surface_h</span><span class="p">,</span> <span class="n">ACCW</span><span class="p">,</span> <span class="n">ELAW</span><span class="p">,</span> <span class="n">NZ</span><span class="p">,</span> <span class="n">mb_grad</span><span class="p">,</span>
+                                    <span class="n">nx</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">upglacier</span><span class="p">,</span> <span class="n">retreat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># decreased ELA</span>
+<span class="n">ela_rtr</span> <span class="o">=</span> <span class="n">retreat</span><span class="o">.</span><span class="n">mb_model</span><span class="o">.</span><span class="n">get_ela</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We move the ELA from initially </span><span class="si">{:.0f}</span><span class="s1"> m upward to </span><span class="si">{:.0f}</span><span class="s1"> m&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">ela_rtr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>We move the ELA from initially 3367 m upward to 3593 m
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can again calculate linear accumulation, ablation and mass balance profiles, but using the increased ELA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># accumulation and ablation balance at the decreased ELA</span>
+<span class="n">acc_rtr</span><span class="p">,</span> <span class="n">acc_0_rtr</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_accumulation</span><span class="p">(</span><span class="n">mb_grad</span><span class="p">,</span> <span class="n">ela_rtr</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">mwidths</span><span class="p">)</span>
+<span class="n">abl_rtr</span><span class="p">,</span> <span class="n">abl_0_rtr</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">linear_ablation</span><span class="p">(</span><span class="n">mb_grad</span><span class="p">,</span> <span class="n">ela_rtr</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span>
+                                         <span class="n">mwidths</span><span class="p">,</span> <span class="n">acc_0_rtr</span><span class="p">)</span>
+<span class="c1"># net mass balance m w.e yr^-1</span>
+<span class="n">mb_rtr</span> <span class="o">=</span> <span class="n">acc_rtr</span> <span class="o">+</span> <span class="n">abl_rtr</span>
+
+<span class="c1"># theoretical glacier surface without ice flow</span>
+<span class="c1"># corrected to the bed where ice thickness is negative</span>
+<span class="n">mb_sfc_rtr</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">correct_to_bed</span><span class="p">(</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span> <span class="o">+</span> <span class="n">mb_rtr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next figure shows the glacier after applying the net mass balance using the increased ELA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the model glacier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">intro_glacier_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="p">[</span><span class="n">mb_sfc_rtr</span><span class="p">],</span>
+                       <span class="p">[</span><span class="s1">&#39;theoretical glacier surface due to ELA increase</span><span class="se">\n</span><span class="s1">without considering ice flow&#39;</span><span class="p">],</span>
+                       <span class="n">ela</span><span class="o">=</span><span class="p">[</span><span class="n">ela</span><span class="p">,</span> <span class="n">ela_rtr</span><span class="p">],</span> <span class="n">plot_ela</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">label_init</span><span class="o">=</span><span class="s1">&#39;initial glacier in equilibrium&#39;</span><span class="p">,</span>
+                      <span class="n">labels_ela</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;e.g. warmer climate (retreat)&#39;</span><span class="p">])</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_57_0.png" src="../_images/advance_and_retreat_57_0.png" />
+</div>
+</div>
+<p>Analogously, less accumulation and/or more ablation leads to an increase in the ELA and thus to an increase of the ablation area.</p>
+<p>The increase in the ablation area leads to a net mass loss compared to the former glacier extent. When our glacier with a higher ELA is in equilibrium, the glacier retreats:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the glacier surface in equilibrium with the decreased ELA</span>
+<span class="n">retreat_s</span> <span class="o">=</span> <span class="n">retreat</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the model glacier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># fig, ax = plt.subplots(1, 1, figsize=(16, 9))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">intro_glacier_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="p">[</span><span class="n">retreat_s</span><span class="p">],</span>
+                       <span class="p">[</span><span class="s1">&#39;retreated glacier in equilibrium&#39;</span><span class="p">],</span>
+                       <span class="n">ela</span><span class="o">=</span><span class="p">[</span><span class="n">ela</span><span class="p">,</span> <span class="n">ela_rtr</span><span class="p">],</span> <span class="n">plot_ela</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">label_init</span><span class="o">=</span><span class="s1">&#39;initial glacier in equilibrium&#39;</span><span class="p">,</span>
+                       <span class="n">labels_ela</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;e.g. warmer climate (retreat)&#39;</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">edu</span><span class="o">.</span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="s1">&#39;11&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_61_0.png" src="../_images/advance_and_retreat_61_0.png" />
+</div>
+</div>
+<p>This upslope glacier retreat is a result of a decreased ice flow <span class="math notranslate nohighlight">\(\vec{q}\)</span>, as indicated by the thin arrow in the right illustration above.</p>
+</div>
+<div class="section" id="take-home-points">
+<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The equilibrium line altitude (ELA) is the altitude on a glacier where accumulation and ablation balance, meaning <span class="math notranslate nohighlight">\(\dot{m}(z) = 0\)</span> at <span class="math notranslate nohighlight">\(z=\)</span> ELA</p></li>
+<li><p>A decrease in the ELA leads to:</p>
+<ol class="simple">
+<li><p>an increase in the accumulation</p></li>
+<li><p>a decrease in the ablation area</p></li>
+<li><p>a net mass gain resulting in an increased ice flux downglacier</p></li>
+<li><p>a glacier advance</p></li>
+</ol>
+</li>
+<li><p>An increase in the ELA leads to:</p>
+<ol class="simple">
+<li><p>a decrease in the accumulation area</p></li>
+<li><p>an increase in the ablation area</p></li>
+<li><p>a net mass loss resulting in a decreased ice flux downglacier</p></li>
+<li><p>a glacier retreat</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./oggm-edu"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="accumulation_and_ablation.html" title="previous page">Accumulation, Ablation, Mass Balance and resulting Ice Flow</a>
+    <a class='right-next' id="next-link" href="glacier_water_resources.html" title="next page">Glaciers as water resources: part 1 (idealized climate)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By OGGM e.V. and OGGM Contributors<br/>
+        
+          <div class="extra_footer">
+            <p>
+These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/blob/master/LICENSE.txt" target="_blank">BSD-3-Clause license</a>.
+<br>
+&copy; Copyright 2014-2021.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-106829797-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
