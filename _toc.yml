@@ -1,0 +1,30 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+- file: welcome
+
+- part: Beginners
+  chapters:
+    - file: oggm-edu/getting_started_with_notebooks
+
+- part: Flowline modeling
+  chapters:
+    - file: oggm-edu/flowline_model
+    - file: oggm-edu/ice_flow_parameters
+    - file: oggm-edu/mass_balance_gradients
+    - file: oggm-edu/surging_experiment
+    
+- part: Glacier mass balance
+  chapters:
+    - file: oggm-edu/temperature_index_model
+    - file: oggm-edu/accumulation_and_ablation
+    - file: oggm-edu/advance_and_retreat
+    
+- part: Glaciers as water ressources
+  chapters:
+    - file: oggm-edu/glacier_water_resources
+    - file: oggm-edu/glacier_water_resources_projections
+    
+- part: Graphics
+  chapters:
+    - file: graphics/ela_changes_response_time

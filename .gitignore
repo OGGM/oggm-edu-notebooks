@@ -1,37 +1,112 @@
+# Mine
+html/index.html
+.idea
+_build/
+.virtual_documents/
+out.*
+RGI60-*
+graphics/edu_plots/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
 *.py[cod]
-__pycache__
+*$py.class
 
-# asv stuff
-.asv/
+# C extensions
+*.so
 
-# PyCharm stuffs
-.idea/
+# Distribution / packaging
+.Python
+env/cd
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/enodo
+.installed.cfg
+*.egg
 
-# coverage stuffs
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
 .coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
 
-# Notebook stuffs
-examples/*checkpoints
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
 .ipynb_checkpoints
 *.nbgrader.log
 
-# Tests stuffs
-oggm/tests/result_images
-result_images
-.pytest_cache
+# pyenv
+.python-version
 
-# Packages
-*.egg
-*.egg-info
-eggs
+# celery beat schedule file
+celerybeat-schedule
 
-# specific
-*.cache
-*.lock
-docs/_build
-docs/_build_html
-docs/generated
-docs/_sources
-docs/_images
-docs/.doctrees
-*/edu_plots/*
+# SageMath parsed files
+*.sage.py
+
+# dotenv
+.env
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+
