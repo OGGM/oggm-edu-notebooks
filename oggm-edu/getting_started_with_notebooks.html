@@ -377,7 +377,7 @@
   <div class="section" id="getting-started-with-the-jupyter-notebook">
 <h1>Getting started with the Jupyter Notebook<a class="headerlink" href="#getting-started-with-the-jupyter-notebook" title="Permalink to this headline">¶</a></h1>
 <p>Welcome to this introduction to <a class="reference external" href="https://jupyter.org/">Jupyter Notebooks</a>! The advantage of notebooks is that they can include explanatory text, code, and plots in the same document.</p>
-<p><strong>This makes of notebooks an ideal playground for explaining and learning new things without having to jump between several documents. Thanks to binder, you can run them in your web browser without requiring to install anything!</strong></p>
+<p><strong>This makes notebooks an ideal playground for explaining and learning new things without having to jump between several documents. Thanks to binder, you can run them in your web browser without requiring to install anything!</strong></p>
 <p>This document itself is a notebook. It is a simple text file with a <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file path ending. If you opened this notebook via an OGGM-Edu Binder link, it is opened in a platform which is called <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>. “JupyterLab” is the development environment allowing you to navigate between notebooks (navigation bar on the left), (re-)start them, and much more. Here, we will focus on the notebooks themselves.</p>
 <div class="section" id="first-steps">
 <h2>First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h2>
@@ -495,13 +495,13 @@
 </div>
 </div>
 </div>
-<p>An advantage of notebooks is that each single cell can be executed separately. That provides an easy way to execute code step by step, one cell after another. It is important to notice that the order in which you execute the cells is the order with which the jupyter notebook calculates and saves variables - the execution order therfore depends on <strong>you</strong>, not on the order of the cells in the document. That means that it makes a difference, whether you execute the cells top down one after another, or whether you mix them (cell 1, then cell 5, then cell 2 etc.).</p>
+<p>An advantage of notebooks is that each single cell can be executed separately. That provides an easy way to execute code step by step, one cell after another. It is important to notice that the order in which you execute the cells is the order with which the jupyter notebook calculates and saves variables - the execution order therfore depends on <strong>you</strong>, not on the order of the cells in the document. That means that it makes a difference, whether you execute the cells top down one after another, or you mix them (cell 1, then cell 5, then cell 2 etc.).</p>
 <p>The numbers on the left of each cell show you your order of execution. When a calculation is running longer, you will see an asterisk in the place of the number. That leads us to the next topic:</p>
 </div>
 <div class="section" id="restart-or-interrupt-the-kernel">
 <h2>Restart or interrupt the kernel<a class="headerlink" href="#restart-or-interrupt-the-kernel" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes calculations last too long and you want to <strong>interrupt</strong> them. You can do this by clicking the “Stop button” in the toolbar.</p>
-<p>The “<strong>kernel</strong>” of a notebook is the actual python interpreter which runs your code. There is one kernel per opened notebook (i.e. the notebooks cannot share data or variable between each other). In certain situations (for example, if you got confused about the order of your cells and variable and want a fresh state), you might want to <strong>retart the kernel</strong>. You can do so (as well as other options such as <strong>clearing the output</strong> of a notebook) in the “Kernel” menu in the top jupyterlab bar.</p>
+<p>The “<strong>kernel</strong>” of a notebook is the actual python interpreter which runs your code. There is one kernel per opened notebook (i.e. the notebooks cannot share data or variables between each other). In certain situations (for example, if you got confused about the order of your cells and variables and want a fresh state), you might want to <strong>retart the kernel</strong>. You can do so (as well as other options such as <strong>clearing the output</strong> of a notebook) in the “Kernel” menu in the top jupyterlab bar.</p>
 </div>
 <div class="section" id="errors-in-a-cell">
 <h2>Errors in a cell<a class="headerlink" href="#errors-in-a-cell" title="Permalink to this headline">¶</a></h2>
@@ -515,7 +515,7 @@
 </div>
 </div>
 </div>
-<p>When a cell ends with an error, don’t panic! Nothing we cannot recover from. First of all, the other cells will still run (unless they depend on the output of the failing cell): i.e., your kernel is still active. I you want to recover from the error, adress the problem (here a capsize issue) and re-run the cell.</p>
+<p>When a cell ends with an error, don’t panic! Nothing we cannot recover from. First of all, the other cells will still run (unless they depend on the output of the failing cell): i.e., your kernel is still active. If you want to recover from the error, adress the problem (here a capsize issue) and re-run the cell.</p>
 </div>
 <div class="section" id="displaying-plots-with-matplotlib">
 <h2>Displaying plots with matplotlib<a class="headerlink" href="#displaying-plots-with-matplotlib" title="Permalink to this headline">¶</a></h2>
@@ -551,7 +551,7 @@
 </div>
 <div class="section" id="interactive-plots-with-bokeh">
 <h2>Interactive plots with Bokeh<a class="headerlink" href="#interactive-plots-with-bokeh" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://bokeh.org">Bokeh</a> is a plottling library made for the web. It uses another syntax than matplotlib and can be used to display interactive plots. In OGGM-Edu, we sometimes prefer to use interactive plots as they allow to explore the data after plotting it. Here is an example:</p>
+<p><a class="reference external" href="http://bokeh.org">Bokeh</a> is a plottling library made for the web. It uses another syntax than matplotlib and can be used to display interactive plots. In OGGM-Edu, we sometimes prefer to use interactive plots as they allow to explore the data after plotting. Here is an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hvplot is a plotting library relying on bokeh</span>
