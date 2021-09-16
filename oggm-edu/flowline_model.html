@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting started with flowline models: idealized experiments &#8212; OGGM-Edu notebooks</title>
+    <title>Getting started with flowline models: idealised glaciers &#8212; OGGM-Edu notebooks</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -45,15 +45,15 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Influence of ice flow parameters on glacier size" href="ice_flow_parameters.html" />
@@ -114,7 +114,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Getting started with flowline models: idealized experiments
+   Getting started with flowline models: idealised glaciers
   </a>
  </li>
  <li class="toctree-l1">
@@ -295,13 +295,23 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basics">
-   Basics
+  <a class="reference internal nav-link" href="#first-steps">
+   First steps
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#glacier-bed">
-     Glacier bed
+    <a class="reference internal nav-link" href="#the-glacier-bed">
+     The glacier bed
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glacier-width">
+     Glacier width
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glacier-flowline-initialisation">
+     Glacier flowline initialisation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -315,6 +325,11 @@
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#starting-over">
+   Starting over
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-first-experiment">
@@ -338,9 +353,12 @@
         
               <div>
                 
-  <div class="section" id="getting-started-with-flowline-models-idealized-experiments">
-<h1>Getting started with flowline models: idealized experiments<a class="headerlink" href="#getting-started-with-flowline-models-idealized-experiments" title="Permalink to this headline">¶</a></h1>
-<p>In this notebook we are going to explore the basic functionalities of OGGM flowline model(s). For this purpose we are going to use simple and “idealized” glaciers models and compute them with simple linear mass balance profiles.</p>
+  <div class="section" id="getting-started-with-flowline-models-idealised-glaciers">
+<h1>Getting started with flowline models: idealised glaciers<a class="headerlink" href="#getting-started-with-flowline-models-idealised-glaciers" title="Permalink to this headline">¶</a></h1>
+<p>OGGM employs what is known as a flowline model to simulate the evolution of glaciers. What this means is that the model represents the glacier as a group of lines along which the ice flows down the mountain. The flowlines connect on to, or branch off, each other forming a system along which the ice flows.</p>
+<p>In the model the flowlines are divided into finite boxes, each containing a part of the ice that makes up the glacier. The size of a box depends on how wide and deep the glacier is at the location. The model then calculates how much ice flows in to the box from boxes above and how much ice that leaves the box and goes into boxes below.</p>
+<p>The goal of this notebook is to further explain the concept of flowlines and how they are used to model glaciers. We will do this by simulating two idealised glaciers.</p>
+<p>We begin by importing the libraries we are going to need:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting libraries and plot style</span>
@@ -350,6 +368,7 @@
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># Scientific packages</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -360,99 +379,135 @@
 
 <span class="c1"># Mass-balance model</span>
 <span class="kn">from</span> <span class="nn">oggm.core.massbalance</span> <span class="kn">import</span> <span class="n">LinearMassBalance</span>
-<span class="c1"># There are several numerical implementations in OGGM core. We use the &quot;FluxBasedModel&quot;</span>
+<span class="c1"># There are several numerical implementations in the OGGM core. </span>
+<span class="c1"># We use the &quot;FluxBasedModel&quot;</span>
 <span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">FluxBasedModel</span> <span class="k">as</span> <span class="n">FlowlineModel</span>
 <span class="c1"># Glacier shape</span>
 <span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">RectangularBedFlowline</span>
-
-<span class="c1"># OGGM Edu helper functions</span>
-<span class="kn">import</span> <span class="nn">oggm_edu</span> <span class="k">as</span> <span class="nn">edu</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-06-08 08:22:01: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:14:14: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-06-08 08:22:01: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:14:14: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-06-08 08:22:01: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:14:14: oggm.cfg: Multiprocessing: using all available processors (N=2)
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
-<p>First we set-up a simple run with a constant linear bedrock:</p>
-<div class="section" id="glacier-bed">
-<h3>Glacier bed<a class="headerlink" href="#glacier-bed" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="first-steps">
+<h2>First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h2>
+<p>In our first experiment we want to create a glacier as simple as possible, this means a flat glacier bed with a constant slope.</p>
+<div class="section" id="the-glacier-bed">
+<h3>The glacier bed<a class="headerlink" href="#the-glacier-bed" title="Permalink to this headline">¶</a></h3>
+<p>First we define some model parameters: the the resolution and spacing between the grid points:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define horizontal resolution of the model:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define horizontal resolution of the model:</span>
 <span class="c1"># nx: number of grid points</span>
-<span class="c1"># map_dx: grid point spacing in meters</span>
 <span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="c1"># map_dx: grid point spacing in meters</span>
 <span class="n">map_dx</span> <span class="o">=</span> <span class="mi">100</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Then we define the altitude at the top and bottom of the glacier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define glacier top and bottom altitudes in meters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define glacier top and bottom altitudes (in meters)</span>
 <span class="n">top</span> <span class="o">=</span> <span class="mi">3400</span>
 <span class="n">bottom</span> <span class="o">=</span> <span class="mi">1400</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>With this information we can create the profile of our glacier bed, or the bedrock. This is simply <code class="docutils literal notranslate"><span class="pre">nx</span></code> linearly spaced altitudes between <code class="docutils literal notranslate"><span class="pre">top</span></code> and <code class="docutils literal notranslate"><span class="pre">bottom</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a linear bedrock profile from top to bottom</span>
-<span class="n">bed_h</span><span class="p">,</span> <span class="n">surface_h</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">define_linear_bed</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We want nx number of linearly spaced altitudes between the top and</span>
+<span class="c1"># bottom altitude.</span>
+<span class="n">bed_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we have any ice and snow in our “glacier” the surface height is simply the same the height of the bed</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surface_h</span> <span class="o">=</span> <span class="n">bed_h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the bed to make sure that it looks like we expect. For this we will also calculate the distance along the glacier, a simple function of the number of grid points and the spacing between them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This gives us an array with the distances from</span>
+<span class="c1"># the top of the glacier.</span>
+<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">*</span> <span class="n">map_dx</span> <span class="o">*</span> <span class="mf">1e-3</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the distance from the top to the bottom of the glacier in km</span>
-<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">distance_along_glacier</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the glacier bedrock profile and the initial glacier surface</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surface_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">plot_xz_bed</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed</span><span class="o">=</span><span class="n">bed_h</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the glacier bedrock profile and the initial glacier</span>
+<span class="c1"># surface.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surface_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier sfc height&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bed height&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Altitude to length of the glacier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/flowline_model_10_0.png" src="../_images/flowline_model_10_0.png" />
+<img alt="../_images/flowline_model_14_0.png" src="../_images/flowline_model_14_0.png" />
 </div>
 </div>
-<p>Now we have to decide how wide our glacier is, and what the <em>shape</em> of its bed is. For a start, we will use a rectangular “u-shaped” bed (see the <a class="reference external" href="http://docs.oggm.org/en/stable/ice-dynamics.html#rectangular">documentation</a>), with a constant width of 300m:</p>
+<p>As we can see, the bedrock is a flat slope with a constant angle between the top and bottom of the glacier.</p>
+</div>
+<div class="section" id="glacier-width">
+<h3>Glacier width<a class="headerlink" href="#glacier-width" title="Permalink to this headline">¶</a></h3>
+<p>The next step is to decide how wide our glacier is and what the <em>shape</em> of the bed is. Since we’re aiming for a simple glacier, we will use a rectangular “u-shaped” bed with a constant width of 300 meters. For more infor on bed shapes see the <a class="reference external" href="http://docs.oggm.org/en/stable/ice-dynamics.html#rectangular">documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_width</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># width in meters</span>
-<span class="c1"># Now describe the widths in &quot;grid points&quot; for the model, based on grid point spacing map_dx</span>
-<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">initial_width</span><span class="o">/</span><span class="n">map_dx</span>
-<span class="c1"># Define our bed</span>
-<span class="n">init_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Width in meters</span>
+<span class="n">initial_width</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1"># Now assign the widths to grid points which the model can use. We have</span>
+<span class="c1"># nx grid points all of which have the value of the initial width</span>
+<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">initial_width</span>
+<span class="c1"># Divide by map_dx to get the widths in &quot;map units&quot;</span>
+<span class="n">widths</span> <span class="o">=</span> <span class="n">widths</span> <span class="o">/</span> <span class="n">map_dx</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The init_flowline variable now contains all geometrical information needed by the model. It can give access to some attributes, which are quite useless for a non-existing glacier:</p>
+</div>
+<div class="section" id="glacier-flowline-initialisation">
+<h3>Glacier flowline initialisation<a class="headerlink" href="#glacier-flowline-initialisation" title="Permalink to this headline">¶</a></h3>
+<p>We can now take our bed and initialise a flowline object which OGGM uses in the simulation of the glacier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier length:&#39;</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier area:&#39;</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">.</span><span class="n">area_km2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier volume:&#39;</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Define our bed</span>
+<span class="n">initial_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
+                                          <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">initial_flowline</span></code> object contains all geometrical information needed by the model. We can access some of the attributes of the flowline. However since the glacier doesn’t exist at the moment, they will be zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier length:&#39;</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier area:&#39;</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">area_km2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier volume:&#39;</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -467,21 +522,28 @@ Glacier volume: 0.0
 </div>
 <div class="section" id="mass-balance">
 <h3>Mass balance<a class="headerlink" href="#mass-balance" title="Permalink to this headline">¶</a></h3>
-<p>Then we will need a mass balance model. In our case this will be a simple linear mass balance, defined by the equilibrium line altitude (ELA) and an altitude gradient (in [mm yr<span class="math notranslate nohighlight">\(^{-1}\)</span> m<span class="math notranslate nohighlight">\(^{-1}\)</span>]):</p>
+<p>For the glacier to grow it needs a mass balance model. The mass balance model is responsible for adding snow and removing ice through melt on the glacier. In our case it will be a simple linear mass balance model, which is defined by the equilibrium line altitude (ELA) and an altitude gradient (in mm yr<span class="math notranslate nohighlight">\(^{-1}\)</span> m<span class="math notranslate nohighlight">\(^{-1}\)</span>). The ELA defines at what altitude the mass balance is zero and the altitude gradient how much the mass balance changes with altitude. <strong>More on this in upcoming notebooks!</strong></p>
+<p>We set the ELA of our glacier to 3000 meters and the altitude gradient to 4 mm yr<span class="math notranslate nohighlight">\(^{-1}\)</span> m<span class="math notranslate nohighlight">\(^{-1}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ELA at 3000m a.s.l., gradient 4 mm yr -1 m-1</span>
-<span class="n">ELA</span> <span class="o">=</span> <span class="mi">3000</span>  <span class="c1"># equilibrium line altitude in meters above sea level</span>
-<span class="n">altgrad</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># altitude gradient in mm/m</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Equilibrium line altitude in meters above sea level</span>
+<span class="n">ELA</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="c1"># Altitude gradient in mm/m</span>
+<span class="n">altgrad</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># Initialise the mass balance model.</span>
 <span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ELA</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">altgrad</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The OGGM mass balance model now computes the mass balance for any given altitude (in units meters of ice per time [m s<span class="math notranslate nohighlight">\(^{-1}\)</span>], which is simpler for the ice dynamics model). Let us compute the <em>annual</em> mass balance along the glacier profile:</p>
+<p>The OGGM mass balance model computes the mass balance for any given altitude.  It uses the unit meters of ice per time (m s<span class="math notranslate nohighlight">\(^{-1}\)</span>), a unit which is simpler to use for the dynamical part of the model.</p>
+<p>Let us compute the <em>annual</em> mass balance along the glacier profile and plot it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annual_mb</span> <span class="o">=</span> <span class="n">mb_model</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">surface_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">SEC_IN_YEAR</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the mass balance along the surface of the glacier.</span>
+<span class="c1"># Since the get_annual_mb return the change per second we multiply with</span>
+<span class="c1"># the number of seconds in a year.</span>
+<span class="n">annual_mb</span> <span class="o">=</span> <span class="n">mb_model</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">surface_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">SEC_IN_YEAR</span>
 </pre></div>
 </div>
 </div>
@@ -496,31 +558,7 @@ Glacier volume: 0.0
 <span class="c1"># Display equilibrium line altitude, where annual mass balance = 0</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">mb_model</span><span class="o">.</span><span class="n">ela_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/flowline_model_20_0.png" src="../_images/flowline_model_20_0.png" />
-</div>
-</div>
-</div>
-<div class="section" id="model-run">
-<h3>Model run<a class="headerlink" href="#model-run" title="Permalink to this headline">¶</a></h3>
-<p>Now that we have all the ingredients to run the model, we just have to initialize it:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The model requires the initial glacier bed, a mass balance model, and an initial time (the year y0)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s first run the model for one year:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">runtime</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">glacier_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">=</span><span class="n">init_flowline</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mass balance profile&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -528,6 +566,58 @@ Glacier volume: 0.0
 <img alt="../_images/flowline_model_25_0.png" src="../_images/flowline_model_25_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="model-run">
+<h3>Model run<a class="headerlink" href="#model-run" title="Permalink to this headline">¶</a></h3>
+<p>Now we have all the ingredients needed to run the model on our glacier. We begin by initialising the <code class="docutils literal notranslate"><span class="pre">FlowlineModel</span></code> object, which requires the initial flowline, the mass balance model and a year (Since our glacier is just starting out, we begin at year 0).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The model requires the initial glacier bed, a mass balance model,</span>
+<span class="c1"># and an initial time (the year y0)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s first run the model for one year:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We want to run the model until year 1. </span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And let’s plot the glacier after one year</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the initial glacier.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
+<span class="c1"># Retreive the new flowline from the model and plot it. Glaciers in OGGM can</span>
+<span class="c1"># have multiple flowlines, but currently we only have one.</span>
+<span class="n">current_flowline</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Plot the new surface height</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">current_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier after </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the equilibrium line altitude</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mb_model</span><span class="o">.</span><span class="n">ela_h</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># Add the bedrock and axes labels:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span>
+         <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Altitude to length of the glacier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/flowline_model_31_0.png" src="../_images/flowline_model_31_0.png" />
+</div>
+</div>
+<p>This doesn’t look much, is there even a glacier growing? We can also take a look at some of statistics of the glacier to get some more details:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Year:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="p">)</span>
@@ -546,21 +636,63 @@ Glacier volume (km3): 0.0010881072026800668
 </div>
 </div>
 </div>
-<p>The modeled ‘glacier’ fills already the whole bed and its length goes up to the ELA (dashed line), but it is extremely thin.</p>
-<p>We can now run the model for 150 years and see how the output looks like:</p>
+<p>From the statistics we can read that the glacier has a length of 4 km and covers an area of 1.2 km<span class="math notranslate nohighlight">\(^2\)</span>. The reason we can’t see it in the plot above is because it is very thin. We can take a look at the thickness by first removing the bed height:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">runtime</span> <span class="o">=</span> <span class="mi">150</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">glacier_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">=</span><span class="n">init_flowline</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the bed height from the surface height and plot it along the glacier</span>
+<span class="c1"># to show the ice thickness.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span>
+         <span class="n">current_flowline</span><span class="o">.</span><span class="n">surface_h</span> <span class="o">-</span> <span class="n">current_flowline</span><span class="o">.</span><span class="n">bed_h</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Ice thickness (m)&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ice thickness to distance of the glacier&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/flowline_model_29_0.png" src="../_images/flowline_model_29_0.png" />
+<img alt="../_images/flowline_model_35_0.png" src="../_images/flowline_model_35_0.png" />
 </div>
 </div>
-<p>Let’s print out a few infos about our glacier:</p>
+<p>Here we can see that there is thin cover of ice from the top of the glacier to 4 km down the glacier. This means that the glacier almost reaches the point where the glacier crosses the ELA (~5 km).</p>
+<p>The glacier will grow considerably in the upcoming years, and the ice thickness should become apparent even in the altitude - distance plot. Let us run the model until year 150 and take a look at the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the model until year 150</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the glacier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the initial glacier.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
+<span class="c1"># Retreive the new flowline from the model and plot it. Glaciers in OGGM can</span>
+<span class="c1"># have multiple flowlines, but currently we only have one.</span>
+<span class="n">current_flowline</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Plot the new surface height</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">current_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier after </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the equilibrium line altitude</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mb_model</span><span class="o">.</span><span class="n">ela_h</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># Add the bedrock and axes labels:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span>
+         <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Altitude to length of the glacier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/flowline_model_39_0.png" src="../_images/flowline_model_39_0.png" />
+</div>
+</div>
+<p>Now we can clearly see the difference between the surface of the glacier and the bedrock/initial surface height. Let’s print the same statistics about the glacier as before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Year:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="p">)</span>
@@ -579,7 +711,8 @@ Glacier volume (km3): 0.23093815108673205
 </div>
 </div>
 </div>
-<p>Note that the model time is now 150 years. Running the model with the same input again, calls the already calculated results but does not execute the method <code class="docutils literal notranslate"><span class="pre">model.run_until</span></code> another time, which safes computational time.</p>
+<p>The glacier length and area has increased by ~20% while the volume has increased by more than 1000%. This is because the glacier has to build enough mass (or ice thickness) before it can begin to flow downhill and increase its length.</p>
+<p>Note that the model time is now at year 150. Running the model with the same input again calls the already calculated results and does not execute the method <code class="docutils literal notranslate"><span class="pre">model.run_until</span></code> again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
@@ -595,17 +728,41 @@ Glacier length (m): 4800.0
 </div>
 </div>
 </div>
-<p>If we want to compute longer, we have to set the desired date. Hereby, the model computes only the additional missing years.</p>
+<p>If we want to simulate the glacier even longer, we have to set the specify the desired year and the model will compute the missing years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">runtime</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">glacier_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">init_flowline</span><span class="o">=</span><span class="n">init_flowline</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the model until year 500.</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the initial glacier.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
+<span class="c1"># Retreive the new flowline from the model and plot it. Glaciers in OGGM can</span>
+<span class="c1"># have multiple flowlines, but currently we only have one.</span>
+<span class="n">current_flowline</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Plot the new surface height</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">current_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier after </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the equilibrium line altitude</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mb_model</span><span class="o">.</span><span class="n">ela_h</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># Add the bedrock and axes labels:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span>
+         <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Altitude to length of the glacier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/flowline_model_35_0.png" src="../_images/flowline_model_35_0.png" />
+<img alt="../_images/flowline_model_46_0.png" src="../_images/flowline_model_46_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -626,8 +783,9 @@ Glacier volume (km3): 0.6205739638755524
 </div>
 </div>
 </div>
-<p>However, it is important to note, that the model will not calculate back in time.
-Once calculated for 500 years, the model will not run again for 450 years and remains at 500 years.  Try running the cell below.  Does the output match what you expected?</p>
+<p>The glaciers has now grown considerably further down our made up mountain, well below the ELA.</p>
+<p>It is important to note that the model will not calculate back in time.
+Once calculated for year 500, the model will not run again for year 450 and will remain at year 500. Try running the cell below.  Does the output match what you expected?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="mi">450</span><span class="p">)</span>
@@ -643,28 +801,32 @@ Glacier length (m): 11500.0
 </div>
 </div>
 </div>
-<p>It might be useful to store some intermediate steps of the evolution of the glacier.  We make a loop so that the model reports to us several times.</p>
+</div>
+</div>
+<div class="section" id="starting-over">
+<h2>Starting over<a class="headerlink" href="#starting-over" title="Permalink to this headline">¶</a></h2>
+<p>It might be useful to store some intermediate steps of the evolution of the glacier for diagnostics. We do this by running the steps we did above in a loop and saving the length and volume in separate arrays. First we have to re-initialise the model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reinitialize the model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reinitialise the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 
-<span class="c1"># Year 0 to 600 in 5 years step</span>
+<span class="c1"># Array with year 0 to 600 in 5 year steps.</span>
 <span class="n">yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">601</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> 
 
-<span class="c1"># Array to fill with data</span>
+<span class="c1"># Arrays in which we store the data.</span>
 <span class="n">nsteps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">yrs</span><span class="p">)</span>
 <span class="n">length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span>
 <span class="n">vol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span>
 
-<span class="c1"># Loop over the years</span>
+<span class="c1"># Loop over the years.</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
     <span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">yr</span><span class="p">)</span>
     <span class="n">length</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">length_m</span>
     <span class="n">vol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span>
 
-<span class="c1"># Store the final results for later use</span>
-<span class="n">simple_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+<span class="c1"># Store the final glacier for later use</span>
+<span class="n">simple_glacier</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -672,20 +834,23 @@ Glacier length (m): 11500.0
 <p>We can now plot the evolution of the glacier length and volume with time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two subplots.</span>
+<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">);</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Length (m)&#39;</span><span class="p">);</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">vol</span><span class="p">);</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Volume (km3)&#39;</span><span class="p">);</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Time evolution of the length and volume&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/flowline_model_42_0.png" src="../_images/flowline_model_42_0.png" />
+<img alt="../_images/flowline_model_53_0.png" src="../_images/flowline_model_53_0.png" />
 </div>
 </div>
-<p>The glacier length is a step function in the first year of simulation because above the equilibrium line altitude (ELA), only accumulation takes places and OGGM currently does not differentiate between ice and snow.
-After that, the glacier’s length remains first constant. This behavior can be explained by the fact that above the ELA, the mass balance is positive, unimportant how large the glacier is. As long as the glacier is not thick enough, no ice remains below the ELA, because the ablation below the ELA is higher than the amount of ice forming the glacier flow.</p>
+<p>The glacier length exhibits a step function in the first year of simulation. This is because above the ELA, only accumulation takes places and OGGM currently does not differentiate between ice and snow. This means that all snow above the ELA from the first winter creates a bump in the length.</p>
+<p>After the first year, the glacier’s length remains at first constant. This behaviour can be explained by the fact that above the ELA, the mass balance is positive, no matter how large the glacier is. In this initial stage, the ice is so thin that any flow bringing ice below the ELA will not be large enough to compensate for the high ablation rate, and any ice melts away.</p>
+<p>When the ice thickness has increased enough for the ice flow surpass the ablation rate below the ELA, the glacier length can begin to increase.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Glacier length from the top to the equilibrium line altitude (&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mb_model</span><span class="o">.</span><span class="n">ela_h</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; m) is: </span><span class="si">{}</span><span class="s1"> m&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">length</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -698,31 +863,31 @@ After that, the glacier’s length remains first constant. This behavior can be 
 </div>
 </div>
 </div>
-<p>After several centuries, the glacier gets in balance with its climate. Its length and volume won’t change anymore, if all physical parameters and the climate stay constant.</p>
-</div>
+<p>After several centuries, the glacier reaches a balance with its climate. This means that its length and volume won’t change anymore, as long as all physical parameters and the climate stay constant.</p>
 </div>
 <div class="section" id="a-first-experiment">
 <h2>A first experiment<a class="headerlink" href="#a-first-experiment" title="Permalink to this headline">¶</a></h2>
-<p>Ok, now we have seen the basics. We will now define a simple experiment, in which we will make the glacier wider at the top (in the accumulation area). This is a common situation for valley glaciers.</p>
+<p>We have now seen how to setup a simple glacier and simulate it for any number of years. Now we will move a little bit closer to reality and define a glacier with changing widths. Like many real glaciers the new glacier will be wider at the top (in the accumulation area) and have a constant width below the ELA.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We copy the widths we defined before</span>
-<span class="n">wider_widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
-<span class="c1"># But we now make our glacier 600 m wide at the top:</span>
-<span class="n">new_width</span> <span class="o">=</span> <span class="mi">600</span> <span class="c1">#meters</span>
-<span class="c1"># Convert the width in meters to width in &quot;grid units&quot;, like before, and rewrite the first few points</span>
-<span class="n">wider_widths</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_width</span><span class="o">/</span><span class="n">map_dx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We simply overwrite the widths we have from earlier.</span>
+<span class="c1"># We now make our glacier 600 m wide at the top</span>
+<span class="n">upper_width</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># Convert the width in meters to width in &quot;grid units&quot;, like before,</span>
+<span class="c1"># and rewrite the first few points</span>
+<span class="n">widths</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="n">upper_width</span> <span class="o">/</span> <span class="n">map_dx</span>
 <span class="c1"># Define our new bed</span>
-<span class="n">wider_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">wider_widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+<span class="n">wide_narrow_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
+                                              <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We will now run our model with the new inital conditions (again for 600 years), and store the output in a new variable for comparison:</p>
+<p>We will now run our model with the new initial conditions (again for 600 years), and store the length and area in separate arrays for comparison:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reinitialize the model with the new input</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">wider_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reinitialise the model with the new input</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">wide_narrow_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 
 <span class="c1"># Array to fill with data</span>
 <span class="n">nsteps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">yrs</span><span class="p">)</span>
@@ -736,44 +901,57 @@ After that, the glacier’s length remains first constant. This behavior can be 
     <span class="n">vol_w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span>
 
 <span class="c1"># Store the final results for later use</span>
-<span class="n">wider_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+<span class="n">wide_narrow_glacier</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Compare the results:</p>
+<p>Plot the simple glacier and the wide-narrow glacier to compare the results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the final result:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simple glacier&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">wider_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wider glacier&#39;</span><span class="p">)</span>
-<span class="c1"># Add the bedrock:</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">plot_xz_bed</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed</span><span class="o">=</span><span class="n">bed_h</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simple glacier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">wide_narrow_glacier</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wide-narrow glacier&#39;</span><span class="p">)</span>
+<span class="c1"># Add the bedrock</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Glacier states after </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/flowline_model_52_0.png" src="../_images/flowline_model_52_0.png" />
+<img alt="../_images/flowline_model_63_0.png" src="../_images/flowline_model_63_0.png" />
 </div>
 </div>
+<div class="alert alert-success">
+    <details><summary><b>The glacier with a wider accumulation area is longer compared to the simple glacier area at year 600. With what you've learned so far in this notebook, can you come up with an explanation to why?</b> <i>Click for a hint</i></summary>
+    With a wider accumulation area the glacier mass above the ELA will increase quicker and the flow of ice to below the ELA will be larger compared to the glacier with a smaller accumulation area.
+    </details>
+</div>
+<p>Below is the evolution of the length and volume with respect to time of the two glaciers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simple glacier&#39;</span><span class="p">);</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wider glacier&#39;</span><span class="p">);</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wide-narrow glacier&#39;</span><span class="p">);</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Length (m)&#39;</span><span class="p">);</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">vol</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simple glacier&#39;</span><span class="p">);</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">vol_w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wider glacier&#39;</span><span class="p">);</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">vol_w</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wide-narrow glacier&#39;</span><span class="p">);</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Volume (km3)&#39;</span><span class="p">);</span>
+<span class="n">f</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Time evolution of the length and volume of the two glaciers&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/flowline_model_53_0.png" src="../_images/flowline_model_53_0.png" />
+<img alt="../_images/flowline_model_65_0.png" src="../_images/flowline_model_65_0.png" />
 </div>
 </div>
 </div>
