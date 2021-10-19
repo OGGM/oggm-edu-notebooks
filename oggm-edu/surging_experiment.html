@@ -144,7 +144,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="accumulation_and_ablation.html">
-   Accumulation, Ablation, Mass Balance and resulting Ice Flow
+   Accumulation, ablation, mass Balance and the resulting ice flow
   </a>
  </li>
  <li class="toctree-l1">
@@ -155,7 +155,7 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
-  Glaciers as water ressources
+  Glaciers as water resources
  </span>
 </p>
 <ul class="nav sidenav_l1">
@@ -358,34 +358,33 @@
 <span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">FluxBasedModel</span> <span class="k">as</span> <span class="n">FlowlineModel</span>
 <span class="c1"># Glacier shape</span>
 <span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">RectangularBedFlowline</span>
-
-<span class="c1"># OGGM Edu helper functions</span>
-<span class="kn">import</span> <span class="nn">oggm_edu</span> <span class="k">as</span> <span class="nn">edu</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:18:12: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 16:58:40: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:18:12: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 16:58:40: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-09-16 14:18:12: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 16:58:40: oggm.cfg: Multiprocessing: using all available processors (N=2)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="basics">
 <h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
-<p>We set-up a simple model with a linear bedrock (see <a class="reference internal" href="flowline_model.html"><span class="doc std std-doc">getting started with flowline models</span></a>) to generate a set-up for our experiment.</p>
+<p>We set up a simple glacier with a linear bedrock (see <a class="reference internal" href="flowline_model.html"><span class="doc std std-doc">getting started with flowline models</span></a>) as a setting for our experiment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the bed rock, linearily decreasing from 3400 m altitude to 1400 m, in 200 steps</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the bed rock, linearily decreasing from 3400 m</span>
+<span class="c1"># altitude to 1400 m, in 200 steps</span>
 <span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">bed_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3400</span><span class="p">,</span> <span class="mi">1400</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
 
-<span class="c1"># At the beginning, there is no glacier so our glacier surface is at the bed altitude</span>
+<span class="c1"># At the beginning, there is no glacier so our glacier surface is</span>
+<span class="c1"># at the bed altitude</span>
 <span class="n">surface_h</span> <span class="o">=</span> <span class="n">bed_h</span>
 
 <span class="c1"># Let&#39;s set the model grid spacing to 100 m </span>
@@ -394,16 +393,18 @@
 <span class="c1"># Calculate the corresponding distance along the glacier (from the top)</span>
 <span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>  <span class="c1"># in km</span>
 
-<span class="c1"># The units of widths is in &quot;grid points&quot;, i.e. 3 grid points = 300 m in our case</span>
+<span class="c1"># The units of widths is in &quot;grid points&quot;, i.e. 3 grid points = 300 m</span>
+<span class="c1"># in our case</span>
 <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="mf">3.</span>
 
 <span class="c1"># Define our bed</span>
-<span class="n">init_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+<span class="n">initial_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
+                                          <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Then we define the equilibrium line altitude (ELA) for the mass balance model:</p>
+<p>Then we define the mass balance model, we set the ELA to 3000 m a.s.l. and the gradient to 4 mm/m:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ELA at 3000m a.s.l., gradient 4 mm m-1</span>
@@ -415,13 +416,26 @@
 <p>Here we calculate a glacier that flows only because of deformation and  without sliding:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define for how many years the glacier should be calculated</span>
-<span class="n">years</span> <span class="o">=</span> <span class="mi">600</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the year until we want to simulate the glacier.</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">1200</span>
 
-<span class="c1"># Initialize the model with the following function </span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">init_model</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span> <span class="n">years</span><span class="p">)</span>
-
-<span class="c1"># Store the outline of the glacier as simple_glacier_h</span>
+<span class="c1"># Initialize the model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate the glacier until</span>
+<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the outline of the glacier as simple_glacier_h</span>
 <span class="n">simple_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
 </pre></div>
 </div>
@@ -431,12 +445,15 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot it!</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deforming glacier&#39;</span><span class="p">)</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">plot_xz_bed</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/surging_experiment_13_0.png" src="../_images/surging_experiment_13_0.png" />
+<img alt="../_images/surging_experiment_15_0.png" src="../_images/surging_experiment_15_0.png" />
 </div>
 </div>
 </div>
@@ -448,42 +465,64 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define parameters:</span>
 <span class="c1"># Default in OGGM: Glen&#39;s creeping parameter</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;glen_a&#39;</span><span class="p">]</span>
+<span class="n">glen_a</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;glen_a&#39;</span><span class="p">]</span>
 
 <span class="c1"># Sliding glaciers (sliding parameter fs is nonzero)</span>
 <span class="n">fs</span> <span class="o">=</span> <span class="mf">5.7e-20</span>
 
-<span class="c1"># Define for how many years the glacier should be calculated</span>
-<span class="n">years</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># Define the year until we want to simulate the glacier.</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">1200</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialise the model. <strong>Note that we pass Glens creeping parameter (<code class="docutils literal notranslate"><span class="pre">glen_a</span></code>) and the sliding parameter (<code class="docutils literal notranslate"><span class="pre">fs</span></code>) this time</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                      <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">init_model</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-
-<span class="c1"># Store the final results for later use</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate the glacier until </span>
+<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the final results for later use</span>
 <span class="n">sliding_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can plot both the glaciers to see if there is any difference</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot both models.</span>
+<span class="c1"># The simple glacier</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deforming glacier&#39;</span><span class="p">)</span>
+<span class="c1"># The sliding glacier</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">sliding_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sliding glacier&#39;</span><span class="p">)</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">plot_xz_bed</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">)</span>
+<span class="c1"># The bed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/surging_experiment_19_0.png" src="../_images/surging_experiment_19_0.png" />
+<img alt="../_images/surging_experiment_25_0.png" src="../_images/surging_experiment_25_0.png" />
 </div>
 </div>
-<p>Now we calculate a surging glacier:</p>
+<p>Now let us simulate a surging glacier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define parameters:</span>
@@ -505,24 +544,28 @@
 </div>
 </div>
 </div>
+<p>For the surging experiment we will have to divide the simulation into different parts. The first step is to generate an array with the years for which we want to bin the simulation. During year with no surging we go in steps of ten while during the surges we take steps of one year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Surging glaciers - model initialisation</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">glen_a</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-
-<span class="c1"># 10 periods of 10 years surging every 100 years</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10 periods of 10 years surging every 100 years</span>
 <span class="n">yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_slow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_surges</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="n">yrs_sliding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_slow</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="n">t_slow</span><span class="o">+</span><span class="n">period_s</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_surges</span><span class="p">):</span>
+    <span class="c1"># Generate 10 one year increments from the last year.</span>
+    <span class="n">yrs_sliding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_slow</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span>
+                            <span class="n">t_slow</span><span class="o">+</span><span class="n">period_s</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Append them to the no surgning years</span>
     <span class="n">yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">yrs_sliding</span><span class="p">)</span>
 
-    <span class="n">yrs_normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_slow</span><span class="o">+</span><span class="n">period_s</span><span class="o">+</span><span class="mi">10</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">t_slow</span><span class="o">+</span><span class="n">period_s</span><span class="o">+</span><span class="mi">10</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># Generate another 100 years in 10 year increments.</span>
+    <span class="n">yrs_normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_slow</span><span class="o">+</span><span class="n">period_s</span><span class="o">+</span><span class="mi">10</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span>
+                           <span class="mi">2</span><span class="o">*</span><span class="n">t_slow</span><span class="o">+</span><span class="n">period_s</span><span class="o">+</span><span class="mi">10</span><span class="o">+</span><span class="n">t_slow</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># Append it to the list.</span>
     <span class="n">yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">yrs_normal</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>If it is still unclear to you which years are “surging years”, have a look into the list “yrs”:</p>
+<p>If it is still unclear to you which years are “surging years”, take look at the array <code class="docutils literal notranslate"><span class="pre">yrs</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yrs</span>
@@ -554,11 +597,54 @@
 </div>
 </div>
 </div>
+<p>Now it is time to set up the surging experiment. Similar to the experiments with the <span class="xref myst">mass balance gradients</span>, we cant simply change the parameters in the middle of the simulation. Instead we have to re-initialise a new model every time we want change any parameters. In this case it means running model <strong>A</strong> for 100 years, then running model <strong>B</strong> for 10 year, then back to model <strong>A</strong> for 100 year and so on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculation of the glacier outline after going through the chosen number of surges</span>
-<span class="n">surging_model</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">surging_glacier</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">fs_surge</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="n">surging_glacier_h_weak</span> <span class="o">=</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Surging glaciers - model initialisation</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                      <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The number of steps</span>
+<span class="n">nsteps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">yrs</span><span class="p">)</span>
+<span class="c1"># Lists for saving indermidate data</span>
+<span class="n">length_surge_weak</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">volume_surge_weak</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">surging_glacier_h_weak</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># We loop for the glacier evolution.</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
+    <span class="c1"># Simulate the glacier until the desired year.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">yr</span><span class="p">)</span>
+    <span class="c1"># Save the states</span>
+    <span class="n">length_surge_weak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
+    <span class="n">volume_surge_weak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
+    
+    <span class="c1"># If we are at the first or last year, we do noting</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">nsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">continue</span>
+    
+    <span class="c1"># Check if the next year is a surging year</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">10</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Save the surface height before surge.</span>
+        <span class="n">surging_glacier_h_weak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">)</span>
+        <span class="c1"># If it is, initialise a &quot;new glacier&quot; based on the </span>
+        <span class="c1"># old shape, but with a new sliding parameter.</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span>
+                              <span class="n">y0</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs_surge</span><span class="p">)</span>
+
+    <span class="c1"># Check if the next year is not a surging year</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="c1"># Save the surface height before surge.</span>
+        <span class="n">surging_glacier_h_weak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">)</span>
+        <span class="c1"># If it is, initialise a &quot;new glacier&quot; based on the </span>
+        <span class="c1"># old shape, but with a new sliding parameter.</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span>
+                              <span class="n">y0</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -571,35 +657,45 @@
 <span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Spacing</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+<span class="c1"># Specify the xticks.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">yrs</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">yrs</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">))</span>
-<span class="c1"># Glacier length</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
-<span class="c1"># Mark surging periods</span>
+<span class="c1"># Plot the glacier length</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_surge_weak</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="c1"># Mark surging periods with orange patches.</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span>  <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">]</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span>
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="c1"># Label and grid.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Length [m]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
-<span class="c1"># Glacier volume</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
-<span class="c1"># Mark surging periods</span>
+<span class="c1"># Plot the glacier volume</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">volume_surge_weak</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="c1"># Mark surging periods with orange patches.</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span>  <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">]</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span>
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="c1"># Ylabel and grid.</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Volume [km³]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="c1"># Define labels and add a legend</span>
-<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">),</span>
-         <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Surging period&#39;</span><span class="p">)]</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span>
+<span class="c1"># Define handles for the legend</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">volume_surge_weak</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">),</span>
+         <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+               <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Surging period&#39;</span><span class="p">)</span>
+        <span class="p">]</span>
+<span class="c1"># Add the legend</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">label</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/surging_experiment_27_0.png" src="../_images/surging_experiment_27_0.png" />
+<img alt="../_images/surging_experiment_36_0.png" src="../_images/surging_experiment_36_0.png" />
 </div>
 </div>
 <p>Now we compare the different calculated glacier:</p>
@@ -609,18 +705,23 @@
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deforming glacier&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">sliding_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sliding glacier&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surging_glacier_h_weak</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">)</span>
+<span class="c1"># Plot the last surface height of the surging glacier.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surging_glacier_h_weak</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the bedrock</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">plot_xz_bed</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/surging_experiment_29_0.png" src="../_images/surging_experiment_29_0.png" />
+<img alt="../_images/surging_experiment_38_0.png" src="../_images/surging_experiment_38_0.png" />
 </div>
 </div>
-<p>We now increase the sliding parameter in order to increase surges:</p>
+<p>We can increase the sliding parameter in order to increase the magnitude of the  surges:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define parameters:</span>
@@ -629,10 +730,51 @@
 <span class="c1"># Sliding parameter in surging periods:</span>
 <span class="n">fs_surge</span> <span class="o">=</span> <span class="mf">5.7e-20</span><span class="o">*</span><span class="mi">50</span>
 
-<span class="c1"># Calculation of the glacier outline</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">glen_a</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-<span class="n">strong_surge_model</span> <span class="o">=</span> <span class="n">edu</span><span class="o">.</span><span class="n">surging_glacier</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">init_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">fs_surge</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="n">surging_glacier_h</span> <span class="o">=</span> <span class="n">strong_surge_model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+<span class="c1"># Initialise the glacier.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                      <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The number of steps</span>
+<span class="n">nsteps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">yrs</span><span class="p">)</span>
+<span class="c1"># Lists for saving indermidate data</span>
+<span class="n">length_surge_strong</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">volume_surge_strong</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">surging_glacier_h_strong</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># We loop for the glacier evolution.</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
+    <span class="c1"># Simulate the glacier until the desired year.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">yr</span><span class="p">)</span>
+    <span class="c1"># Save the states</span>
+    <span class="n">length_surge_strong</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
+    <span class="n">volume_surge_strong</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
+    
+    <span class="c1"># If we are at the first or last year, we do noting</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">nsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">continue</span>
+    
+    <span class="c1"># Check if the next year is a surging year</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">10</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Save the surface height before surge.</span>
+        <span class="n">surging_glacier_h_strong</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">)</span>
+        <span class="c1"># If it is, initialise a &quot;new glacier&quot; based on the </span>
+        <span class="c1"># old shape, but with a new sliding parameter.</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span>
+                              <span class="n">y0</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs_surge</span><span class="p">)</span>
+
+    <span class="c1"># Check if the next year is not a surging year</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="c1"># Save the surface height before surge.</span>
+        <span class="n">surging_glacier_h_strong</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">)</span>
+        <span class="c1"># If it is, initialise a &quot;new glacier&quot; based on the </span>
+        <span class="c1"># old shape, but with a new sliding parameter.</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span>
+                              <span class="n">y0</span><span class="o">=</span><span class="n">yr</span><span class="p">,</span> <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -641,59 +783,86 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="c1"># The simple and sliding glacier.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deforming glacier&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">sliding_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sliding glacier&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surging_glacier_h_weak</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surging_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;High surging glacier&#39;</span><span class="p">)</span>
+<span class="c1"># The weakly surgning glacier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surging_glacier_h_weak</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weak surging glacier&#39;</span><span class="p">)</span>
+<span class="c1"># The more more strongly surging glacier.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">surging_glacier_h_strong</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Strong surging glacier&#39;</span><span class="p">)</span>
 <span class="c1"># Add the bedrock</span>
-<span class="n">edu</span><span class="o">.</span><span class="n">plot_xz_bed</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/surging_experiment_32_0.png" src="../_images/surging_experiment_32_0.png" />
+<img alt="../_images/surging_experiment_42_0.png" src="../_images/surging_experiment_42_0.png" />
 </div>
 </div>
-<p>Compare the different glacier types. How can you explain the differences?</p>
-<p>In the next plot the development of the weakly surging glacier and the strongly surging glacier are shown:</p>
+<div class="alert alert-success">
+            <b>Compare the different glacier types. Can you explain the differences? </b>
+</div><p>In the next plot the development of the weakly surging glacier and the strongly surging glacier are shown:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it in two subplots</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Spacing</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># xlabel</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 <span class="c1"># Glacier length</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">strong_surge_model</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_surge_strong</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_surge_weak</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
 <span class="c1"># Mark surging periods</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">]</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span>
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="c1"># ylabel and grid.</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Length [m]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
 <span class="c1"># Glacier volume</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">strong_surge_model</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">volume_surge_strong</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">volume_surge_weak</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">)</span>
 <span class="c1"># Mark surging periods</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">yr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span>  <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">]</span><span class="o">-</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">period_s</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yrs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">period_s</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span>
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="c1"># ylabel and grid</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Volume [km³]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="c1"># Define labels and add a legend</span>
-<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">strong_surge_model</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Strongly surging glacier&#39;</span><span class="p">),</span> 
-         <span class="n">Line2D</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">surging_model</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">),</span>
-         <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Surging period&#39;</span><span class="p">)]</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span>
+<span class="c1"># Define handles for legend.</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_surge_strong</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Strongly surging glacier&#39;</span><span class="p">),</span> 
+         <span class="n">Line2D</span><span class="p">(</span><span class="n">yrs</span><span class="p">,</span> <span class="n">length_surge_weak</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Weakly surging glacier&#39;</span><span class="p">),</span>
+         <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+               <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Surging period&#39;</span><span class="p">)</span>
+        <span class="p">]</span>
+<span class="c1"># Add legend.</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">label</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/surging_experiment_35_0.png" src="../_images/surging_experiment_35_0.png" />
+<img alt="../_images/surging_experiment_45_0.png" src="../_images/surging_experiment_45_0.png" />
 </div>
 </div>
-</div>
+<div class="alert alert-success">
+    <details>
+        <summary>
+            <b>The response of the volume to a surge seems to be lagging behind the response in length somewhat. Can you come up with an explanation for this?  </b> <i>Click for a hint</i>
+        </summary>
+        At the first stage of a surge, the glacier is very quick to adjust its length. This doesn't really change the volume of the glacier, only stretches it out. However, this also means that more of the glacier area will be in the ablation zone, and the glacier will begin to loose mass.
+    </details>
+</div></div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>¹ Hester Jiskoot: Glacier Surging. In: Vijay P. Singh, Pratap Singh, Umesh K. Haritashya (Hrsg.): Encyclopedia of Snow, Ice and Glaciers. Springer, Dordrecht 2011, S. 415–428, ISBN 978-90-481-2641-5</p>
