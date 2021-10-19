@@ -333,7 +333,7 @@
 </ul>
 <p>In this notebook we are going to explore the basic functionalities of OGGM flowline model(s) and perform a simple surging experiment. For this purpose we are going to use simple and “idealized” glacier models with simple linear mass-balance profiles.</p>
 <p><strong>What is glacier surge?</strong></p>
-<p>A small percentage of glaciers undergo short periods of faster flow. They experience a change in morphology and surface characteristics, which sometimes leads to a marked frontal advance. The speed of the ice increases up to 10 - 1000 times of the normal velocity. Record flows are observed with velocities that exceed 100m per day. Surges happen in decadal cycles and can last for 1 up to 15 years.<a class="reference external" href="#Reference">¹</a></p>
+<p>A small percentage of glaciers undergo short periods of faster flow. They experience a change in morphology and surface characteristics, which sometimes leads to a marked frontal advance. The speed of the ice increases up to 10 - 1000 times of the normal velocity. Record flows are observed with velocities that exceed 100m per day. Surges happen in decadal cycles and can last for 1 up to 15 years.<a class="reference external" href="https://www.springer.com/la/book/9789048126415">(Jiskoot, 2011)</a></p>
 <p>We start with importing all needed modules:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -362,13 +362,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 16:58:40: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 17:13:31: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 16:58:40: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 17:13:31: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 16:58:40: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 17:13:31: oggm.cfg: Multiprocessing: using all available processors (N=2)
 </pre></div>
 </div>
 </div>
@@ -459,7 +459,7 @@
 </div>
 <div class="section" id="surging-glacier-experiment">
 <h2>Surging glacier experiment<a class="headerlink" href="#surging-glacier-experiment" title="Permalink to this headline">¶</a></h2>
-<p>Since surging occurs because of increased basal sliding, a surging period can be represented in the model by increasing the sliding parameter<a class="reference external" href="#Reference">¹</a>, for example by a factor of 10. Typically surging can be assumend to happen cyclically after 100 years of normal sliding and lasts over a period of 10 years.</p>
+<p>Since surging occurs because of increased basal sliding, a surging period can be represented in the model by increasing the sliding parameter<a class="reference external" href="https://www.springer.com/la/book/9789048126415">(Jiskoot, 2011)</a>, for example by a factor of 10. Typically surging can be assumend to happen cyclically after 100 years of normal sliding and lasts over a period of 10 years.</p>
 <p>Let’s model a simple glacier that only slides:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -698,7 +698,7 @@
 <img alt="../_images/surging_experiment_36_0.png" src="../_images/surging_experiment_36_0.png" />
 </div>
 </div>
-<p>Now we compare the different calculated glacier:</p>
+<p>Now we compare the different calculated glaciers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
