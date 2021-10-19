@@ -20,7 +20,7 @@
     - file: oggm-edu/accumulation_and_ablation
     - file: oggm-edu/advance_and_retreat
     
-- part: Glaciers as water ressources
+- part: Glaciers as water resources
   chapters:
     - file: oggm-edu/glacier_water_resources
     - file: oggm-edu/glacier_water_resources_projections
