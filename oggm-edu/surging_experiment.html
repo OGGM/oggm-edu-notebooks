@@ -376,9 +376,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-19 18:07:21: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2021-10-19 18:07:21: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2021-10-19 18:07:21: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-21 08:23:42: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+2021-10-21 08:23:42: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+2021-10-21 08:23:42: oggm.cfg: Multiprocessing: using all available processors (N=2)
 </pre></div>
 </div>
 </div>
@@ -557,7 +557,7 @@
 <p>For the surging experiment we will have to divide the simulation into different parts. The first step is to generate an array with the years for which we want to bin the simulation. During year with no surging we go in steps of ten while during the surges we take steps of one year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10 periods of 10 years surging every 100 years</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10 surging years every 100 years</span>
 <span class="n">yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_slow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_surges</span><span class="p">):</span>
     <span class="c1"># Generate 10 one year increments from the last year.</span>
@@ -607,7 +607,7 @@
 </div>
 </div>
 </div>
-<p>Now it is time to set up the surging experiment. Similar to the experiments with the <a class="reference internal" href="mass_balance_gradients.html"><span class="doc std std-doc">mass balance gradients</span></a>, we cant simply change the parameters in the middle of the simulation. Instead we have to re-initialise a new model every time we want change any parameters. In this case it means running model <strong>A</strong> for 100 years, then running model <strong>B</strong> for 10 year, then back to model <strong>A</strong> for 100 year and so on.</p>
+<p>Now it is time to set up the surging experiment. Similar to the experiments with the <a class="reference internal" href="mass_balance_gradients.html"><span class="doc std std-doc">mass balance gradients</span></a>, we can’t simply change the parameters in the middle of the simulation. Instead we have to re-initialise a new model every time we want change any parameters. In this case it means running model <strong>A</strong> for 100 years, then running model <strong>B</strong> for 10 year, then back to model <strong>A</strong> for 100 year and so on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Surging glaciers - model initialisation</span>
@@ -634,7 +634,7 @@
     <span class="n">length_surge_weak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
     <span class="n">volume_surge_weak</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
     
-    <span class="c1"># If we are at the first or last year, we do noting</span>
+    <span class="c1"># If we are at the first or last year, we do nothing</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">nsteps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">continue</span>
     
