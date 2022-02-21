@@ -10,7 +10,7 @@ parts:
 
   - caption: Flowline modeling
     chapters:
-    - file: oggm-edu/flowline_model
+    - file: oggm-edu/edu_intro
     - file: oggm-edu/ice_flow_parameters
     - file: oggm-edu/mass_balance_gradients
     - file: oggm-edu/surging_experiment
