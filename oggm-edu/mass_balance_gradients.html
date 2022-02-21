@@ -37,13 +37,16 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -127,8 +130,8 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="flowline_model.html">
-   Getting started with flowline models: idealised glaciers
+  <a class="reference internal" href="edu_intro.html">
+   Getting started with OGGM Edu: idealised glaciers
   </a>
  </li>
  <li class="toctree-l1">
@@ -318,18 +321,18 @@
   <a class="reference internal nav-link" href="#changing-the-mass-balance-gradient-mbg">
    Changing the mass balance gradient (MBG)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-complex-mass-balance-profile">
+     Creating a complex mass balance profile
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#equilibrium-state">
    Equilibrium state
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#volume">
-     Volume
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#response-time">
@@ -359,105 +362,38 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="mass-balance-gradients-mbg-and-their-influence-on-glacier-flow">
 <h1>Mass balance gradients (MBG) and their influence on glacier flow<a class="headerlink" href="#mass-balance-gradients-mbg-and-their-influence-on-glacier-flow" title="Permalink to this headline">¶</a></h1>
-<p>In the flowline model notebook we touched briefly on the mass balance gradient of a glacier. This is what we are going to take a closer look at now.
+<p>In the intro notebook we touched briefly on the mass balance gradient of a glacier. This is what we are going to take a closer look at now.
 If the concept of mass balance is completely new to you, have a short read about it <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/">here</a>, up to the paragraph “<em>So what is Glacier Mass Balance?</em>”.
-In this notebook we will set up a few simple runs to further explore what characteristics of glaciers change with different mass balance gradients. We will also take a look at the topics of volume and response time.</p>
+In this notebook we will set up a few simple glaciers to further explore what characteristics of glaciers change with different mass balance gradients. We will also take a look at the topics of volume and response time.</p>
 <p>Goals of this notebook:</p>
 <ul class="simple">
-<li><p>The student will be able to explain the terms: mass balance gradient, equilibrium state and response time.</p></li>
-<li><p>The student will be able to compute different MBGs with OGGM.</p></li>
-<li><p>The student will be able to compute response times for different equilibirum line altitudes.</p></li>
+<li><p>The student will be able to explain the terms:</p>
+<ul>
+<li><p>Mass balance gradient,</p></li>
+<li><p>Equilibrium state</p></li>
+<li><p>Response time.</p></li>
 </ul>
-<p>First, we have to import all needed modules:</p>
+</li>
+</ul>
+<p>First, we have to import the relevant classes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting libraries and plot style</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
-
-<span class="c1"># Scientific packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># Constants</span>
-<span class="kn">from</span> <span class="nn">oggm</span> <span class="kn">import</span> <span class="n">cfg</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">initialize_minimal</span><span class="p">()</span>
-
-<span class="c1"># Mass-balance model</span>
-<span class="kn">from</span> <span class="nn">oggm.core.massbalance</span> <span class="kn">import</span> <span class="n">LinearMassBalance</span>
-<span class="c1"># There are several numerical implementations in OGGM core. We use the &quot;FluxBasedModel&quot;</span>
-<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">FluxBasedModel</span> <span class="k">as</span> <span class="n">FlowlineModel</span>
-<span class="c1"># Glacier shape</span>
-<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">RectangularBedFlowline</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-21 08:23:00: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2021-10-21 08:23:00: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2021-10-21 08:23:00: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">GlacierCollection</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="initialising-the-glacier">
 <h2>Initialising the glacier<a class="headerlink" href="#initialising-the-glacier" title="Permalink to this headline">¶</a></h2>
-<p>We start by setting up a simple model with a linear bedrock (see <a class="reference internal" href="flowline_model.html"><span class="doc std std-doc">getting started with flowline models</span></a>) to generate starting point for our experiment.</p>
+<p>We start by setting up a simple glacier with a linear bedrock (see <a class="reference internal" href="edu_intro.html"><span class="doc std std-doc">Getting started with OGGM Edu </span></a>) to generate a starting point for our experiment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define horizontal resolution of the model:</span>
-<span class="c1"># nx: number of grid points</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="c1"># map_dx: grid point spacing in meters</span>
-<span class="n">map_dx</span> <span class="o">=</span> <span class="mi">100</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define glacier top and bottom altitudes in meters</span>
-<span class="n">top</span> <span class="o">=</span> <span class="mi">3400</span>
-<span class="n">bottom</span> <span class="o">=</span> <span class="mi">1400</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the bed rock, linearily decreasing points from the top altitude</span>
-<span class="c1"># to bottom altitude, in nx steps</span>
-<span class="n">bed_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-
-<span class="c1"># At the begining, there is no glacier so our glacier surface</span>
-<span class="c1"># is at the bed altitude</span>
-<span class="n">surface_h</span> <span class="o">=</span> <span class="n">bed_h</span>
-
-<span class="c1"># Calculate the distance along the glacier (from the top)</span>
-<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">*</span> <span class="n">map_dx</span> <span class="o">*</span> <span class="mf">1e-3</span>
-
-<span class="c1"># Define the glacier width as we did in flowline_model</span>
-<span class="c1"># Width in meters</span>
-<span class="n">initial_width</span> <span class="o">=</span> <span class="mi">300</span>  
-
-<span class="c1"># Now describe the widths in &quot;grid points&quot; for the model, based</span>
-<span class="c1"># on grid point spacing map_dx</span>
-<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">initial_width</span> <span class="o">/</span> <span class="n">map_dx</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>With this done we can initialise the glacier flowline</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define our bed</span>
-<span class="n">initial_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
-                                          <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bed</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">3400</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="c1"># Mass balance</span>
+<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Glacier</span>
+<span class="n">glacier</span> <span class="o">=</span> <span class="n">Glacier</span><span class="p">(</span><span class="n">bed</span><span class="o">=</span><span class="n">bed</span><span class="p">,</span> <span class="n">mass_balance</span><span class="o">=</span><span class="n">mass_balance</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -466,87 +402,62 @@ In this notebook we will set up a few simple runs to further explore what charac
 <div class="section" id="changing-the-mass-balance-gradient-mbg">
 <h2>Changing the mass balance gradient (MBG)<a class="headerlink" href="#changing-the-mass-balance-gradient-mbg" title="Permalink to this headline">¶</a></h2>
 <p>The MBG is defined as the change of the mass balance with altitude <a class="reference external" href="#References">¹</a>. It depends strongly on the climate at the glacier <a class="reference external" href="#References">²</a>.</p>
-<p>Let’s take a look at the effects of the MBG by simulating a few glaciers with different gradients. In the flowline notebook our glacier had a gradient of 4 mm/m so lets add a glacier with a weaker gradient and one with a stronger gradient.</p>
+<p>Let’s take a look at the effects of the MBG by creating a few glaciers with different gradients. In the intro notebook our glacier had a gradient of 4 mm/m so lets add a glacier with a weaker gradient and one with a stronger gradient.</p>
+<p>We will again make use of the <code class="docutils literal notranslate"><span class="pre">GlacierCollection</span></code> to quickly progress and visualise the glaciers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the list of MBGs we want to compare</span>
-<span class="c1"># We will calculate models with the MBGs: 0.3, 4 and 15 mm/m. </span>
-<span class="c1"># These numbers can be found for real glaciers. </span>
-<span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-
-<span class="c1"># We want to run the model until year 300.</span>
-<span class="n">year</span> <span class="o">=</span> <span class="mi">300</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="n">GlacierCollection</span><span class="p">()</span>
+<span class="c1"># Fill the collection. This time we change the attributes on creation.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">glacier</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">attributes_to_change</span><span class="o">=</span>
+                <span class="p">{</span><span class="s1">&#39;gradient&#39;</span><span class="p">:[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">]}</span>
+               <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-complex-mass-balance-profile">
+<h3>Creating a complex mass balance profile<a class="headerlink" href="#creating-a-complex-mass-balance-profile" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to create a more complex mass balance profile.
+This is achieved by passing a list of gradients, and another list with the altitude of the breakpoints between them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add complex mb profile</span>
+<span class="n">complex_mb</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                         <span class="n">breakpoints</span><span class="o">=</span><span class="p">[</span><span class="mi">2700</span><span class="p">,</span> <span class="mi">1800</span><span class="p">])</span>
+<span class="n">glacier_complex_mb</span> <span class="o">=</span> <span class="n">Glacier</span><span class="p">(</span><span class="n">bed</span><span class="o">=</span><span class="n">bed</span><span class="p">,</span> <span class="n">mass_balance</span><span class="o">=</span><span class="n">complex_mb</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lists for storing intermediate steps of the models.</span>
-<span class="n">mb_models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">annual_mb_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># Here the &quot;final&quot; models will be saved</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># Colors for the graphs</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="s1">&#39;C5&#39;</span><span class="p">]</span> 
-<span class="c1"># Set the equilibrium line altitude (ELA)</span>
-<span class="n">ELA</span> <span class="o">=</span> <span class="mi">3000</span>
-
-<span class="k">for</span> <span class="n">gradient</span> <span class="ow">in</span> <span class="n">gradients</span><span class="p">:</span>
-    <span class="c1"># Calculate the mass balance model for each gradient </span>
-    <span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ELA</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">gradient</span><span class="p">)</span>
-    <span class="c1"># Save it in the list</span>
-    <span class="n">mb_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mb_model</span><span class="p">)</span>
-    <span class="c1"># Calculate the annual mass balance along the glacier profile</span>
-    <span class="n">annual_mb</span> <span class="o">=</span> <span class="n">mb_model</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">surface_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">SEC_IN_YEAR</span>
-    <span class="c1"># Save it in the list.</span>
-    <span class="n">annual_mb_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">annual_mb</span><span class="p">)</span>
-    <span class="c1"># The model require the initial glacier bed, a mass balance model,</span>
-    <span class="c1"># and an initial time (the year y0)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-    <span class="c1"># Run the model until year.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-    <span class="c1"># Save the model state.</span>
-    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the new glacier to the collection.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">glacier_complex_mb</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
-<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Plot the annual mass balance</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">ann_mb</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">annual_mb_list</span><span class="p">):</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ann_mb</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
-             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Mass balance, grad = </span><span class="si">{</span><span class="n">gradients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="c1"># Add the ELA, where mass balance = 0</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">ELA</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Equilibrium line altitude&#39;</span><span class="p">)</span>
-<span class="c1"># Add a vertical line for the zero mass balance.</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Annual mass balance (m yr-1)&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
-
-<span class="c1"># Plot the glaciers</span>
-<span class="c1"># Plot the initial conditions first.</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
-<span class="c1"># Get the modelled flowline (model.fls[0]) and plot its new surface</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier after </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years. grad: </span><span class="si">{</span><span class="n">gradients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-             <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-<span class="c1"># Add the ELA:</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">ELA</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Equilibrium line altitude&#39;</span><span class="p">)</span>
-<span class="c1"># Add the bedrock:</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span>
-         <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">);</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Progress collection to the same year.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/mass_balance_gradients_13_0.png" src="../_images/mass_balance_gradients_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_mass_balance</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -560,6 +471,7 @@ In this notebook we will set up a few simple runs to further explore what charac
     <details><summary><b>What do you think: where do we find glaciers with high MBGs?</b> <i>Click for details</i></summary>
 <p>You will find a short explanation in this <a class="reference external" href="http://www.antarcticglaciers.org/modern-glaciers/introduction-glacier-mass-balance/#SECTION_3">paragraph</a> on <a class="reference external" href="http://AntarcticGlaciers.org">AntarcticGlaciers.org</a>.</p>
 </div></div>
+</div>
 <div class="section" id="equilibrium-state">
 <h2>Equilibrium state<a class="headerlink" href="#equilibrium-state" title="Permalink to this headline">¶</a></h2>
 <p>Glaciers change their geometry as a way to adapt to the climate<a class="reference external" href="#References">³</a>. If the accumulation increases, the glacier will grow further down below the ELA to increase the ablation. Similarly, if the temperature rises and the ablation increases, the glacier length will decrease.
@@ -567,9 +479,20 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 <p>With this in mind, we will take a look at how fast our glaciers, with different gradients, reach this state and compare their shapes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we run the models until equilibrium.</span>
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.006</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We reset the collection.</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">GlacierCollection</span><span class="p">()</span>
+<span class="c1"># Fill the collection. This time we change the attributes on creation.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">glacier</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">attributes_to_change</span><span class="o">=</span>
+                <span class="p">{</span><span class="s1">&#39;gradient&#39;</span><span class="p">:[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">]}</span>
+               <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we progress the glaciers to equilibrium.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -577,50 +500,18 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="c1"># Plot the initial conditions first:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
-    <span class="c1"># Get the modelled flowline (model.fls[0]) and plot its new surface</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span> 
-             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier with grad=</span><span class="si">{</span><span class="n">gradients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s1"> in eq. at year </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
-             <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Equilibrium state of glacier models&#39;</span><span class="p">)</span>
-<span class="c1"># Add the bedrock:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_19_0.png" src="../_images/mass_balance_gradients_19_0.png" />
+<img alt="../_images/mass_balance_gradients_20_0.png" src="../_images/mass_balance_gradients_20_0.png" />
 </div>
 </div>
 <p>The different glaciers reach their equilibrium state after a different number of years. What does the figure show us? Which glacier is the thickest and longest? Let’s look at specific numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create lists with different properties of the glacier models</span>
-<span class="n">volume</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">area</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">length</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">year</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-    <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="p">)</span>
-    <span class="n">volume</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
-    <span class="n">length</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
-    <span class="n">area</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">area_km2</span><span class="p">)</span>
-
-<span class="c1"># Create a table with the properties of the glacier models</span>
-<span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gradient&#39;</span><span class="p">:</span> <span class="n">gradients</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span> <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="n">volume</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">:</span> <span class="n">area</span><span class="p">,</span>
-       <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">length</span><span class="p">}</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
-<span class="n">table</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span>
 </pre></div>
 </div>
 </div>
@@ -643,106 +534,119 @@ If the climate remains constant for a long enough time, glaciers will reach an e
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>gradient</th>
-      <th>year</th>
-      <th>volume</th>
-      <th>area</th>
-      <th>length</th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Response time [yrs]</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+      <th>Hemisphere</th>
+      <th>Ice density [kg/m3]</th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>2500</td>
+      <td>8700.0</td>
+      <td>3.48</td>
+      <td>0.376760</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
       <td>0.3</td>
-      <td>985.0</td>
-      <td>0.095133</td>
-      <td>1.20</td>
-      <td>4000.0</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>515</td>
+      <td>12300.0</td>
+      <td>4.92</td>
+      <td>0.931013</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
       <td>4.0</td>
-      <td>365.0</td>
-      <td>0.581300</td>
-      <td>3.21</td>
-      <td>10700.0</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>188</td>
+      <td>13600.0</td>
+      <td>5.44</td>
+      <td>1.380161</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
       <td>15.0</td>
-      <td>305.0</td>
-      <td>0.928945</td>
-      <td>3.84</td>
-      <td>12800.0</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 <p>The glacier with the strongest gradient reaches the equilibrium state first. This is also the largest and longest glacier.</p>
-<div class="section" id="volume">
-<h3>Volume<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h3>
-<p>Let’s take a look at the volume of the glaciers in relation to their gradient:</p>
+</div>
+<div class="section" id="response-time">
+<h2>Response time<a class="headerlink" href="#response-time" title="Permalink to this headline">¶</a></h2>
+<p>The glacier response time is the period of time a glacier needs to adjust its geometry to changes in mass balance caused by climate change and reach a new equilibrium state.
+There are a some different definitions for its calculation, OGGM-Edu use the definition from Oerlemans (see formula below) <a class="reference external" href="#References">⁵</a>.</p>
+<p>A OGGM-Edu glacier has an attribute <code class="docutils literal notranslate"><span class="pre">.response_time</span></code> which is calculated based on difference between the last two equilibrium states in the glacier history.
+So far we’ve only showed you how to progress a glacier to equilibrium, but not how to leave it and reach a second one.
+This will be the first step to getting the response time of a glacier.</p>
+<p>We use the glacier from the start of the notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the volume depending on the gradient</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="s1">&#39;gradient&#39;</span><span class="p">],</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gradient&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;volume [km³]&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_24_0.png" src="../_images/mass_balance_gradients_24_0.png" />
-</div>
-</div>
-<p>The plot above show somewhat of a trend but it is rather coarse. Let’s redo the experiment but with more glaciers. Be patient, the calculation will take a little bit longer.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will calculate models with the MBGs: 1 to 19 with stepsize 2</span>
-<span class="n">gradients</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="c1"># In the following lists the intermediate steps of the models will be saved</span>
-<span class="n">mb_models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">annual_mb_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># here the &quot;final&quot; models will be saved</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">gradient</span> <span class="ow">in</span> <span class="n">gradients</span><span class="p">:</span>
-    <span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ELA</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">gradient</span><span class="p">)</span>
-    <span class="n">mb_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mb_model</span><span class="p">)</span>
-    <span class="c1"># Calculate the annual mass balance along the glacier profile</span>
-    <span class="n">annual_mb</span> <span class="o">=</span> <span class="n">mb_model</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">surface_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">SEC_IN_YEAR</span>
-    <span class="n">annual_mb_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">annual_mb</span><span class="p">)</span>
-    <span class="c1"># The models require the initial glacier bed, a mass balance model,</span>
-    <span class="c1"># and an initial time (the year y0)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-    <span class="c1"># Run the model until equilbrium</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.006</span><span class="p">)</span>
-    <span class="c1"># Save it for later.</span>
-    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then create the table again</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create lists with different properties of the glacier models</span>
-<span class="n">volume</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">area</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">length</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">year</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-    <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="p">)</span>
-    <span class="n">volume</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span>
-    <span class="n">length</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">length_m</span><span class="p">)</span>
-    <span class="n">area</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">area_km2</span><span class="p">)</span>
-
-<span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gradient&#39;</span><span class="p">:</span> <span class="n">gradients</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span> <span class="s1">&#39;volume&#39;</span><span class="p">:</span> <span class="n">volume</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">:</span> <span class="n">area</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">length</span><span class="p">}</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
-<span class="n">table</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the state, everything should be zero/nan here.</span>
+<span class="n">glacier</span>
 </pre></div>
 </div>
 </div>
@@ -765,93 +669,490 @@ If the climate remains constant for a long enough time, glaciers will reach an e
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>gradient</th>
-      <th>year</th>
-      <th>volume</th>
-      <th>area</th>
-      <th>length</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Age</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Length [m]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Area [km2]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Volume [km3]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Response time [yrs]</th>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>First we progress the glacier to equilibrium</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/mass_balance_gradients_28_0.png" src="../_images/mass_balance_gradients_28_0.png" />
+</div>
+</div>
+<p>We can access the stored equilibrium states of a glacier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">eq_states</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{515: 3000}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we want to set up a climate change scenario for the glacier.
+This is easily done with the <code class="docutils literal notranslate"><span class="pre">.add_temperature_bias</span></code> method.
+This method takes a desired temperature bias (<span class="math notranslate nohighlight">\(+/-\)</span>) and a duration, which specifies how long it will take for the glacier to reach the climate state.
+For instance, if we set the bias to 1. and the duration to 50, it will take 50 years for the climate to become 1 degree warmer.</p>
+<p>When a glacier has a climate change scenario the <code class="docutils literal notranslate"><span class="pre">progress_</span></code> methods will internally work a little bit differently, but this is not anything you will notice.</p>
+<p>Since we are purely interested in the response of the glacier, we create a climate change scenario with the duration of 1 year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a climate change scenario</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">add_temperature_bias</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-success">
+    <details><summary><b>
+        How does the ELA respond if we raise the temperature?</b> <i>Click for a hint</i></summary>
+        Raising the temperature will increase the size of the ablation area of the glacier, and thus the ELA will increase.
+        </details>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can then progress the glacier to equilibrium again</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/mass_balance_gradients_35_0.png" src="../_images/mass_balance_gradients_35_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">eq_states</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{515: 3000, 771: 3150.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next step is to calculate the response times for our glaciers. One could think that it is as simple as looking at the years above and do a simple subtraction. However this is not the case! In reality the rate at which a glacier changes is ever decreasing and  a complete equilibrium state is never really achieved. Because of this the response time is considered the time it has taken the glacier to complete most of the adjustment, more specifically all but a factor of <span class="math notranslate nohighlight">\(1/e\)</span>.</p>
+<p>For numerical models like our glaciers it is common to use the <a class="reference external" href="https://www.tandfonline.com/doi/pdf/10.1080/00040851.1997.12003238?needAccess=true">volume response time</a>, from Oerlemans <a class="reference external" href="#References">⁵</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+\tau = t \left(V=V_2 - \frac{V_2 - V_1}{e}\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_1\)</span> and <span class="math notranslate nohighlight">\(V_2\)</span> corresponds to the glacier volume at the initial and new equilibrium state respectively.</p>
+<p>Luckily this is done by our glacier object, so we can just take look at the <code class="docutils literal notranslate"><span class="pre">.response_time</span></code> attribute</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">response_time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>68.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>or just look at the representation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Age</th>
+      <td>771.000000</td>
+    </tr>
+    <tr>
+      <th>Length [m]</th>
+      <td>8900.000000</td>
+    </tr>
+    <tr>
+      <th>Area [km2]</th>
+      <td>3.560000</td>
+    </tr>
+    <tr>
+      <th>Volume [km3]</th>
+      <td>0.587687</td>
+    </tr>
+    <tr>
+      <th>Response time [yrs]</th>
+      <td>68.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now that we have introduced the concept of response time we can apply it and see how the different mass balance gradients affect the response time.
+For this we need a new collection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bed</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">3400</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="c1"># Mass balance</span>
+<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Glacier</span>
+<span class="n">glacier</span> <span class="o">=</span> <span class="n">Glacier</span><span class="p">(</span><span class="n">bed</span><span class="o">=</span><span class="n">bed</span><span class="p">,</span> <span class="n">mass_balance</span><span class="o">=</span><span class="n">mass_balance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="n">GlacierCollection</span><span class="p">()</span>
+<span class="c1"># Fill the collection. This time we change the attributes on creation.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">glacier</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">attributes_to_change</span><span class="o">=</span>
+                <span class="p">{</span><span class="s1">&#39;gradient&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">]}</span>
+               <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Response time [yrs]</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+      <th>Hemisphere</th>
+      <th>Ice density [kg/m3]</th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>1397</td>
+      <td>11100.0</td>
+      <td>4.44</td>
+      <td>0.617579</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
       <td>1</td>
-      <td>805.0</td>
-      <td>0.315322</td>
-      <td>2.37</td>
-      <td>7900.0</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>3</td>
-      <td>440.0</td>
-      <td>0.528378</td>
-      <td>3.09</td>
-      <td>10300.0</td>
+      <td>515</td>
+      <td>12300.0</td>
+      <td>4.92</td>
+      <td>0.931013</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>4</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5</td>
-      <td>320.0</td>
-      <td>0.632110</td>
-      <td>3.33</td>
-      <td>11100.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>7</td>
-      <td>255.0</td>
-      <td>0.707892</td>
-      <td>3.45</td>
-      <td>11500.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>9</td>
-      <td>215.0</td>
-      <td>0.769763</td>
-      <td>3.57</td>
-      <td>11900.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>11</td>
-      <td>190.0</td>
-      <td>0.824555</td>
-      <td>3.66</td>
-      <td>12200.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>13</td>
-      <td>170.0</td>
-      <td>0.871510</td>
-      <td>3.72</td>
-      <td>12400.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
+      <td>188</td>
+      <td>13600.0</td>
+      <td>5.44</td>
+      <td>1.380161</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
       <td>15</td>
-      <td>155.0</td>
-      <td>0.913878</td>
-      <td>3.78</td>
-      <td>12600.0</td>
+      <td>nh</td>
+      <td>900.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We then have to set up a climate change scenario for the glaciers in the collection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same scenario for all the glaciers.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_temperature_bias</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_temperature_bias</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">add_temperature_bias</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Progress to equilibrium again</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Response time [yrs]</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+      <th>Hemisphere</th>
+      <th>Ice density [kg/m3]</th>
     </tr>
     <tr>
-      <th>8</th>
-      <td>17</td>
-      <td>140.0</td>
-      <td>0.950103</td>
-      <td>3.81</td>
-      <td>12700.0</td>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2035</td>
+      <td>8000.0</td>
+      <td>3.20</td>
+      <td>0.378812</td>
+      <td>228.0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3150.0</td>
+      <td>3000</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>19</td>
-      <td>130.0</td>
-      <td>0.985463</td>
-      <td>3.87</td>
-      <td>12900.0</td>
+      <th>1</th>
+      <td>771</td>
+      <td>8900.0</td>
+      <td>3.56</td>
+      <td>0.587687</td>
+      <td>68.0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3150.0</td>
+      <td>3000</td>
+      <td>1.0</td>
+      <td>4</td>
+      <td>nh</td>
+      <td>900.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>289</td>
+      <td>10000.0</td>
+      <td>4.00</td>
+      <td>0.885816</td>
+      <td>25.0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3150.0</td>
+      <td>3000</td>
+      <td>1.0</td>
+      <td>15</td>
+      <td>nh</td>
+      <td>900.0</td>
     </tr>
   </tbody>
 </table>
@@ -859,194 +1160,27 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="s1">&#39;gradient&#39;</span><span class="p">],</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;MBG&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Volume [km³]&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_29_0.png" src="../_images/mass_balance_gradients_29_0.png" />
+<img alt="../_images/mass_balance_gradients_50_0.png" src="../_images/mass_balance_gradients_50_0.png" />
 </div>
 </div>
-<p>This shows us that the volume of a glacier at the equilibrium state strongly depends on the mass balance gradient.</p>
-</div>
-</div>
-<div class="section" id="response-time">
-<h2>Response time<a class="headerlink" href="#response-time" title="Permalink to this headline">¶</a></h2>
-<p>The glacier response time is the period of time a glacier needs to adjust its geometry to changes in mass balance caused by climate change and reach a new equilibrium state. There are a some slightly different definitions for its calculation. In this notebook we will use the definition according to Oerlemans (formula below) <a class="reference external" href="#References">⁵</a>.</p>
-<p>We will now compare the response times of glaciers with different MBGs. Let’s simulate a change in climate by changing the equilibrium line altitude for the three glacier simulated before:</p>
+<p>We can also look at the state history for one of the glaciers</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization of the models used before:</span>
-<span class="n">gradients</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-<span class="c1"># Lists for saving the glacier state</span>
-<span class="n">mb_models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1">#  ... and the models</span>
-<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># equilibrium line altitude (ELA)</span>
-<span class="n">ELA</span> <span class="o">=</span> <span class="mi">3000</span>
-<span class="k">for</span> <span class="n">gradient</span> <span class="ow">in</span> <span class="n">gradients</span><span class="p">:</span>
-    <span class="c1"># Calculate the mass balance model for each gradient </span>
-    <span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ELA</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">gradient</span><span class="p">)</span>
-    <span class="c1"># Add it to the list.</span>
-    <span class="n">mb_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mb_model</span><span class="p">)</span>
-    <span class="c1"># The models require the initial glacier bed, a mass balance model,</span>
-    <span class="c1"># and an initial time (the year y0)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-    <span class="c1"># Run the glacier to a first equilbrium.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.006</span><span class="p">)</span>
-    <span class="c1"># Save it.</span>
-    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We now have the initial equilibrium state of our glaciers. Let’s change the equilibrium line altitude in order to simulate a change in climate. In this case we move it down.</p>
-<div class="alert alert-success">
-    <details><summary><b>
-        What does it mean for the climate by moving the ELA downwards?</b> <i>Click for a hint</i></summary>
-        By lowering the ELA we simulate a cooling of the climate, i.e. a larger part of the glacier experiences a positive annual mass balance.
-        </details>
-</div><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we change the mass balance model, ELA decreases </span>
-<span class="n">new_ELA</span> <span class="o">=</span> <span class="mi">2800</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Then we continue to simulate the glaciers with a the new ELA. To do this, we have to do a bit of a trick since we cant just change the ELA of the old model. Instead we initialise a new model for each glacier, but its flowline is based on the already simulated glaciers that reached equilibrium for the old ELA.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the perturbed mb models</span>
-<span class="n">mb_models_pert</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># Store the perturbed models</span>
-<span class="n">models_pert</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># Loop over the different gradients.</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gradient</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gradients</span><span class="p">):</span>
-    <span class="c1"># Calculate the mass balance model.</span>
-    <span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">new_ELA</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">gradient</span><span class="p">)</span>
-    <span class="c1"># Save it</span>
-    <span class="n">mb_models_pert</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mb_model</span><span class="p">)</span>
-    <span class="c1"># Initialise the new model with the eq. state flowline.</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span>
-                          <span class="n">y0</span><span class="o">=</span><span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yr</span><span class="p">)</span>
-    <span class="c1"># And run it until eq.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.006</span><span class="p">)</span>
-    <span class="c1"># Save it.</span>
-    <span class="n">models_pert</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can take a quick look at the glaciers at the new equilibrium state (also including the old equilibrium state)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="c1"># Plot the initial conditions first:</span>
-<span class="c1"># plt.plot(distance_along_glacier, initial_flowline.surface_h,</span>
-<span class="c1">#          label=&#39;Initial glacier&#39;)</span>
-
-<span class="c1"># Plot the old eq. state.</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
-    <span class="c1"># Get the modelled flowline (model.fls[0]) and plot its surface.</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span> 
-             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Initial eq. state with grad=</span><span class="si">{</span><span class="n">gradients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s1"> at year </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
-             <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="c1"># Plot the new eq. state.</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models_pert</span><span class="p">):</span>
-    <span class="c1"># Get the modelled flowline (model.fls[0]) and plot its surface.</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span> 
-             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;New eq. state with grad=</span><span class="si">{</span><span class="n">gradients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s1"> at year </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
-             <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Equilibrium state of glaciers&#39;</span><span class="p">)</span>
-<span class="c1"># Add the bedrock:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">)</span>
-<span class="c1"># Add the ELA</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">ELA</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial ELA&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">new_ELA</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;New ELA&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;C2&#39;</span><span class="p">)</span>
-<span class="c1"># Labels and legend.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plots the glacier outline for the equilibrium states.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_38_0.png" src="../_images/mass_balance_gradients_38_0.png" />
+<img alt="../_images/mass_balance_gradients_52_0.png" src="../_images/mass_balance_gradients_52_0.png" />
 </div>
 </div>
-<p>The next step is to calculate the response times for our glaciers. One could think that it is as simple as looking at the years above in the plot a do a simple subtraction. Unfortunately this is not the case! In reality the rate at which a glacier changes is ever decreasing and  a complete equilibrium state is never really achieved. Because of this the response time is considered the time it has taken the glacier for most of the adjustment, all but a factor of <span class="math notranslate nohighlight">\(1/e\)</span>.</p>
-<p>For numerical models like our glaciers it is common to use the <a class="reference external" href="https://www.tandfonline.com/doi/pdf/10.1080/00040851.1997.12003238?needAccess=true">volume response time</a>, from Oerlemans <a class="reference external" href="#References">⁵</a>:</p>
-<div class="math notranslate nohighlight">
-\[
-\tau = t \left(V=V_2 - \frac{V_2 - V_1}{e}\right)
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(V_1\)</span> and <span class="math notranslate nohighlight">\(V_2\)</span> corresponds to the glacier volume at the initial and new equilibrium state respectively.</p>
-<p>To compute the response time for our glaciers we will again have to simulate them to the new equilibrium state, but this time also save the intermediate steps. Here we do a little trick: We use the previously computed equilibrium states for the new ELA as a guess for how long we have to simulate the glaciers and then split this up into chunks and then use the <code class="docutils literal notranslate"><span class="pre">run_until(year)</span></code> function.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the response times in a list.</span>
-<span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1"># Loop over the different gradients again.</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gradient</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gradients</span><span class="p">):</span>
-    <span class="c1"># Years, incremental steps of 5.</span>
-    <span class="n">yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">models_pert</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yr</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="c1"># Number of steps we&#39;ll take.</span>
-    <span class="n">nsteps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">yrs</span><span class="p">)</span>
-    <span class="c1"># Save the intermediate steps.</span>
-    <span class="n">lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span>
-    <span class="n">volumes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span>
-    <span class="n">years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span>
-    <span class="c1"># Initialize the glacier model again.</span>
-    <span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">new_ELA</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">gradient</span><span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yr</span><span class="p">)</span>
-    <span class="c1"># Then we loop over the years.</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">yrs</span><span class="p">):</span>
-        <span class="c1"># Run the model until year.</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-        <span class="c1"># Save the states</span>
-        <span class="n">years</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">yr</span>
-        <span class="n">lengths</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">length_m</span>
-        <span class="n">volumes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span>
-        
-    <span class="c1"># The final volume difference is then</span>
-    <span class="n">v2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span>
-    <span class="c1"># This is the e-folding volume difference.</span>
-    <span class="n">v2_diff</span> <span class="o">=</span> <span class="n">v2</span> <span class="o">-</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">volume_km3</span> <span class="o">-</span> <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">volume_km3</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span>
-    <span class="c1"># We want to find the year where the volume is closest to the v2_diff.</span>
-    <span class="c1"># Take the difference</span>
-    <span class="n">all_vol_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">volumes</span> <span class="o">-</span> <span class="n">v2_diff</span><span class="p">)</span>
-    <span class="c1"># Search for the smallest difference and get the index</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">all_vol_diff</span><span class="p">)</span>
-    <span class="c1"># Retreive the year</span>
-    <span class="n">response_time</span> <span class="o">=</span> <span class="n">years</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">-</span> <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yr</span>
-    <span class="c1"># Save it</span>
-    <span class="n">response_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response_time</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>There is quite a lot going on in the cell above, but essentially we are simulating each glacier and saving the intermediate steps in order to find the year when most of the change in volume has occurred. Let’s take a look at the response times (Remember that glaciers the are ordered from weak to strong MBG)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_times</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[320.0, 65.0, 25.0]
-</pre></div>
-</div>
-</div>
-</div>
-<p>The glacier with weakest MBG need the longest time, 320 years, to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a few years, 25, to adjust its shape to the new climate (compare to a real world example: Franz Josef glacier in New Zealand<a class="reference external" href="#References">⁶</a>)<a class="reference external" href="#References">⁷</a>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years</p>
+<p>The glacier with weakest MBG need the longest time to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a around two decades to adjust its shape to the new climate (A real world example: Franz Josef glacier in New Zealand<a class="reference external" href="#References">⁶</a>)<a class="reference external" href="#References">⁷</a>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years</p>
 <div class="alert alert-success">
     <details><summary><b>Why does the MGB change response time of a glacier? What other factors except for the MGB do you think affect the response time of a glacier?</b> <i>Click me for a hint</i></summary>
 The MGB affect the how fast the glacier will flow and in turn how fast the shape and size of the glacier can change. In general, we have to consider that the response time also depends on other features like the glacier-type, size, bed slope and average surface elevation [⁴](#References).

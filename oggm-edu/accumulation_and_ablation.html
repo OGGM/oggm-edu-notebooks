@@ -37,13 +37,16 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -127,8 +130,8 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="flowline_model.html">
-   Getting started with flowline models: idealised glaciers
+  <a class="reference internal" href="edu_intro.html">
+   Getting started with OGGM Edu: idealised glaciers
   </a>
  </li>
  <li class="toctree-l1">
@@ -382,20 +385,7 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">oggm</span>
-<span class="kn">from</span> <span class="nn">oggm</span> <span class="kn">import</span> <span class="n">cfg</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">RectangularBedFlowline</span><span class="p">,</span> <span class="n">FluxBasedModel</span>
-<span class="kn">from</span> <span class="nn">oggm.core.massbalance</span> <span class="kn">import</span> <span class="n">LinearMassBalance</span>
-
-<span class="c1"># Plotting libraries and plot style</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierBed</span>
 </pre></div>
 </div>
 </div>
@@ -454,7 +444,7 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 </ul>
 <p>This nice graphic from <a class="reference external" href="http://www.antarcticglaciers.org/">antarcticglaciers.org</a> summarizes the different accumulation and ablation processes:</p>
 <br>
-<img src="http://cdn.antarcticglaciers.org/wp-content/uploads/2018/11/glaciers-as-a-system.png" width="60%"></div>
+<img src="https://www.antarcticglaciers.org/wp-content/uploads/2018/11/glaciers-as-a-system.png" width="60%"></div>
 <div class="section" id="mass-balance">
 <h2>Mass balance<a class="headerlink" href="#mass-balance" title="Permalink to this headline">¶</a></h2>
 <p>The rates of accumulation and ablation processes, summed over the glacier and over time, determine the <em>glacier mass balance</em>: <span class="math notranslate nohighlight">\(\dot{m}\)</span>, the change in total mass of snow and ice,</p>
@@ -468,66 +458,20 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 </div>
 <div class="section" id="accumulation-ablation-and-ice-flow-with-oggm">
 <h2>Accumulation, ablation and ice flow with OGGM<a class="headerlink" href="#accumulation-ablation-and-ice-flow-with-oggm" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfg</span><span class="o">.</span><span class="n">initialize_minimal</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-21 08:19:57: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2021-10-21 08:19:57: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2021-10-21 08:19:57: oggm.cfg: Multiprocessing: using all available processors (N=2)
-</pre></div>
-</div>
-</div>
-</div>
 <p>In this example, we will essentially illustrate the <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">OGGM-Edu glacier graphics</a> series of images using OGGM.</p>
 <div class="section" id="set-the-scene">
 <h3>Set the scene<a class="headerlink" href="#set-the-scene" title="Permalink to this headline">¶</a></h3>
 <p>In the introduction on the OGGM-Edu <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">website</a>, a cross section of a typical mountain glacier is shown:</p>
-<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_01.png" width="60%"><p>Such a glacier can be reconstructed in OGGM, as done in the <a class="reference internal" href="flowline_model.html"><span class="doc std std-doc">flowline model notebook</span></a>. First, we define a linear bedrock profile:</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_01.png" width="60%"><p>Such a glacier can be reconstructed in OGGM, as done in the <a class="reference internal" href="edu_intro.html"><span class="doc std std-doc">intro notebook</span></a>. First, we define a linear bedrock profile with a wider accumulation area, typical for mountain glaciers. The accumulation area is determined by the width at the top of the glacier, the width at the <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/#attachment_3396">equilibrium line altitude</a> and the vertical extent downglacier.</p>
+<p>We want to create a glacier bed that is 1500 meters wide at the top and 500 meters wide from the ELA and down. We also want the accumulation area to make up 1/3 of the total vertial extent of the glacier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define horizontal resolution of the model:</span>
-<span class="c1"># nx: number of grid points</span>
-<span class="c1"># map_dx: grid point spacing in meters</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">map_dx</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="c1"># define glacier top and bottom altitudes in meters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We define a bed with a cone shape accumulation zone and a</span>
+<span class="c1"># square ablation zone.</span>
 <span class="n">top</span> <span class="o">=</span> <span class="mi">3400</span>
 <span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># create a linear bedrock profile from top to bottom</span>
-<span class="n">bed_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-
-<span class="c1"># calculate the distance from the top to the bottom of the glacier in km</span>
-<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">*</span> <span class="n">map_dx</span> <span class="o">*</span> <span class="mf">1e-3</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>To initialize the glacier, we need to specify how wide the glacier is. Here, we will use a wider accumulation area and a narrow ablation area, typical for mountain glaciers. The accumulation area is determined by the following thresholds of its width at the top of the glacier, the width at the <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/#attachment_3396">equilibrium line altitude</a> and the vertical extent downglacier:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># glacier width at the top of the accumulation area: m</span>
-<span class="n">ACCW</span> <span class="o">=</span> <span class="mi">1500</span>
-
-<span class="c1"># glacier width at the equilibrium line altitude: m</span>
-<span class="n">ELAW</span> <span class="o">=</span> <span class="mi">500</span>
-
-<span class="c1"># fraction of vertical grid points occupied by accumulation area</span>
-<span class="n">NZ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
-
-<span class="c1"># accumulation area occupies a fraction NZ of the total glacier extent</span>
-<span class="n">acc_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ACCW</span><span class="p">,</span> <span class="n">ELAW</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nx</span> <span class="o">*</span> <span class="n">NZ</span><span class="p">))</span>
-
-<span class="c1"># ablation area occupies a fraction 1 - NZ of the total glacier extent</span>
-<span class="n">abl_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">ELAW</span><span class="p">,</span> <span class="n">nx</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">acc_width</span><span class="p">))</span>
-
-<span class="c1"># glacier widths profile</span>
-<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">acc_width</span><span class="p">,</span> <span class="n">abl_width</span><span class="p">])</span>
+<span class="n">wide_narrow_bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">altitudes</span><span class="o">=</span><span class="p">[</span><span class="n">top</span><span class="p">,</span> <span class="p">(</span><span class="n">top</span><span class="o">-</span><span class="n">bottom</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">bottom</span><span class="p">],</span>
+                             <span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -535,87 +479,46 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <p>Let’s plot the geometry of the glacier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot glacier geometry</span>
-<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
-                               <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
-                               <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># Plot the bed.</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
-<span class="c1"># Plot the width to the distance along glacier.</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="o">-</span><span class="n">widths</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">widths</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Glacier width across glacier (m)&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier  (km)&#39;</span><span class="p">);</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Slope and width-elevation profile of the bedrock&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wide_narrow_bed</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/accumulation_and_ablation_34_0.png" src="../_images/accumulation_and_ablation_34_0.png" />
+<img alt="../_images/accumulation_and_ablation_31_0.png" src="../_images/accumulation_and_ablation_31_0.png" />
 </div>
 </div>
-<p>The upper part of the glacier linearly decreases in width and the lower part of the glacier has constant width. For the model run, the widths have to be converted to grid point space.</p>
+<p>Then we will need a mass balance. In our case this will be a simple linear mass balance, defined by the equilibrium line altitude (ELA) and a linear mass balance gradient with respect to elevation (in [mm m<span class="math notranslate nohighlight">\(^{-1}\)</span>]). The equilibrium line altitude is located at the transition between the accumulation and ablation zone. We can use the same expression as we used to create the transition for the bed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model widths</span>
-<span class="n">mwidths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">widths</span> <span class="o">/</span> <span class="n">map_dx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since we have full control over the altitude and width we easily</span>
+<span class="c1"># specify the ELA to match a certain transition.</span>
+<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="p">(</span><span class="n">top</span><span class="o">-</span><span class="n">bottom</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now, we need to define a glacier bedrock shape - here, we use a <a class="reference external" href="https://docs.oggm.org/en/latest/ice-dynamics.html#rectangular">rectangular bed</a>:</p>
+<p>Now that we have all the ingredients to initialise the glacier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the glacier bed</span>
-<span class="n">initial_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
-                                          <span class="n">widths</span><span class="o">=</span><span class="n">mwidths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span> <span class="o">=</span> <span class="n">Glacier</span><span class="p">(</span><span class="n">bed</span><span class="o">=</span><span class="n">wide_narrow_bed</span><span class="p">,</span> <span class="n">mass_balance</span><span class="o">=</span><span class="n">mass_balance</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Then we will need a mass balance model. In our case this will be a simple linear mass balance, defined by the equilibrium line altitude (ELA) and a linear mass balance gradient with respect to elevation (in [mm m<span class="math notranslate nohighlight">\(^{-1}\)</span>]). The equilibrium line altitude is located at the transition between the accumulation and ablation zone:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># equilibrium line altitude: height where the glacier width first hits ELAW</span>
-<span class="n">ela</span> <span class="o">=</span> <span class="n">bed_h</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">widths</span><span class="o">==</span><span class="n">ELAW</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ELA: </span><span class="si">{:.2f}</span><span class="s1"> m&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ela</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELA: 2289.45 m
-</pre></div>
+<img alt="../_images/accumulation_and_ablation_36_0.png" src="../_images/accumulation_and_ablation_36_0.png" />
 </div>
 </div>
-</div>
+<p>Let’s progress the glacier to equilibrium</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mass balance gradient with respect to elevation in mm w.e. m^-1 yr^-1</span>
-<span class="n">mb_grad</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">mb_grad</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now that we have all the ingredients to run the model, we just have to initialise it:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The model requires the initial glacier bed, a mass balance model, and an</span>
-<span class="c1"># initial time (the year y0)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FluxBasedModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span>
-                       <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">min_dt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cfl_number</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s run the model until our test glacier is in equilibrium.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -623,129 +526,20 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <p>And lets plot it</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the initial glacier.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
-<span class="c1"># Plot the glacier surface at equilibrium</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier state after </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years&#39;</span><span class="p">)</span>
-<span class="c1"># Add the equilibrium line altitude</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mb_model</span><span class="o">.</span><span class="n">ela_h</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="c1"># Plot the bedrock.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-
-<span class="c1"># Labels etc.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/accumulation_and_ablation_47_0.png" src="../_images/accumulation_and_ablation_47_0.png" />
+<img alt="../_images/accumulation_and_ablation_40_0.png" src="../_images/accumulation_and_ablation_40_0.png" />
 </div>
 </div>
-<p>The glacier surface along the defined flowline is:</p>
-<div class="cell docutils container">
+<div class="alert alert-success"> <b>Exercise</b>: Try to change the glacier geometry parameters: top width, width at the ELA, bottom ELA, or adding more geometry to the bed. Do you think a wider/narrower glacier will reach equilibrium faster/slower?
+</div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">current_height</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your input</span>
 </pre></div>
 </div>
-</div>
-</div>
-<p><strong>Exercise</strong>: try to change the glacier geometry parameters <code class="docutils literal notranslate"><span class="pre">ACCW</span></code>, <code class="docutils literal notranslate"><span class="pre">ELAW</span></code> and <code class="docutils literal notranslate"><span class="pre">NZ</span></code>. Do you think a wider/narrower glacier will reach equilibrium faster/slower? Analogously to the <a class="reference internal" href="mass_balance_gradients.html"><span class="doc std std-doc">mass balance gradient notebook</span></a>, check the influence of the mass balance altitude gradient <code class="docutils literal notranslate"><span class="pre">mb_grad</span></code> on the time it takes the glacier to reach equilibrium.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change values in this cell.</span>
-<span class="c1"># glacier width at the top of the accumulation area: m</span>
-<span class="n">ACCW</span> <span class="o">=</span> <span class="mi">800</span>
-
-<span class="c1"># glacier width at the equilibrium line altitude: m</span>
-<span class="n">ELAW</span> <span class="o">=</span> <span class="mi">500</span>
-
-<span class="c1"># fraction of vertical grid points occupied by accumulation area</span>
-<span class="n">NZ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Plot the new glacier setting</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># accumulation area occupies a fraction NZ of the total glacier extent</span>
-<span class="n">acc_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ACCW</span><span class="p">,</span> <span class="n">ELAW</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nx</span> <span class="o">*</span> <span class="n">NZ</span><span class="p">))</span>
-
-<span class="c1"># ablation area occupies a fraction 1 - NZ of the total glacier extent</span>
-<span class="n">abl_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">ELAW</span><span class="p">,</span> <span class="n">nx</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">acc_width</span><span class="p">))</span>
-
-<span class="c1"># glacier widths profile</span>
-<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">acc_width</span><span class="p">,</span> <span class="n">abl_width</span><span class="p">])</span>
-
-<span class="c1"># Plot glacier geometry</span>
-<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
-                               <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
-                               <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># Plot the bed.</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4000</span><span class="p">)</span>
-<span class="c1"># Plot the width to the distance along glacier.</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="o">-</span><span class="n">widths</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">widths</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Glacier width across glacier (m)&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier  (km)&#39;</span><span class="p">);</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Slope and width-elevation profile of the bedrock&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/accumulation_and_ablation_53_0.png" src="../_images/accumulation_and_ablation_53_0.png" />
-</div>
-</div>
-<p>Run this cell to simulate the new glacier and plot it</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model widths</span>
-<span class="n">mwidths_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="n">widths</span> <span class="o">/</span> <span class="n">map_dx</span>
-
-<span class="c1"># define the glacier bed</span>
-<span class="n">initial_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
-                                          <span class="n">widths</span><span class="o">=</span><span class="n">mwidths_new</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
-
-<span class="c1"># mass balance gradient with respect to elevation in mm w.e. m^-1 yr^-1</span>
-<span class="n">mb_grad</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">ela</span> <span class="o">=</span> <span class="n">bed_h</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">widths</span><span class="o">==</span><span class="n">ELAW</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
-<span class="n">mb_model_new</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="n">ela</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="n">mb_grad</span><span class="p">)</span>
-
-<span class="c1"># The model requires the initial glacier bed, a mass balance model, and an</span>
-<span class="c1"># initial time (the year y0)</span>
-<span class="n">model_new</span> <span class="o">=</span> <span class="n">FluxBasedModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model_new</span><span class="p">,</span>
-                           <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">min_dt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cfl_number</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-
-<span class="n">model_new</span><span class="o">.</span><span class="n">run_until_equilibrium</span><span class="p">()</span>
-
-<span class="c1"># Plot the initial glacier.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">initial_flowline</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial glacier&#39;</span><span class="p">)</span>
-<span class="c1"># Plot the glacier surface at equilibrium</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">model_new</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Glacier state after </span><span class="si">{</span><span class="n">model_new</span><span class="o">.</span><span class="n">yr</span><span class="si">}</span><span class="s1"> years&#39;</span><span class="p">)</span>
-<span class="c1"># Add the equilibrium line altitude</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mb_model_new</span><span class="o">.</span><span class="n">ela_h</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="c1"># Plot the bedrock.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-
-<span class="c1"># Labels etc.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/accumulation_and_ablation_55_0.png" src="../_images/accumulation_and_ablation_55_0.png" />
 </div>
 </div>
 </div>
@@ -754,24 +548,12 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <p>For a glacier to be in equilibrium, we require the specific mass balance (accumulation + ablation) to be zero averaged over a year on the glacier. To check this requirement, we can use the mass balance model to compute the annual mass balance and compute a width weighted average over all altitudes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># annual mass balance: m s^-1 (meters of ice per second)</span>
-<span class="n">annual_mb</span> <span class="o">=</span> <span class="n">mb_model</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">current_height</span><span class="p">)</span>
-<span class="c1"># mass balance at each altitude at the particular year of the equilibrium</span>
-<span class="c1"># surface: m yr^-1 converted to mm w.e. yr^-1</span>
-<span class="n">annual_mb_we</span> <span class="o">=</span> <span class="n">annual_mb</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">SEC_IN_YEAR</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;ice_density&#39;</span><span class="p">]</span>
-<span class="c1"># widths to compute specific glacier mass balance</span>
-<span class="n">weights</span> <span class="o">=</span> <span class="n">mwidths</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="c1"># We are only interested at the MB where there is a glacier: give zero weight</span>
-<span class="c1"># elsewhere</span>
-<span class="n">weights</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">thick</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c1"># Compute and print</span>
-<span class="n">weighted_mb_we</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">annual_mb_we</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Glacier specific mass balance (approx): </span><span class="si">{:.1f}</span><span class="s1"> m w.e. yr^-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weighted_mb_we</span> <span class="o">/</span> <span class="mf">1000.</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">specific_mass_balance</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glacier specific mass balance (approx): 0.0 m w.e. yr^-1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.48756623584850356
 </pre></div>
 </div>
 </div>
@@ -784,30 +566,50 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <div class="math notranslate nohighlight">
 \[\dot{m} = \nabla \vec{q}.\]</div>
 <p>This means that glacier mass balance solely determines ice flux if the glacier is in steady-state. Hence, the ice flux can be computed by vertically integrating the mass balance - in the one-dimensional case, the ice flux is the sum of the mass balance above a certain reference height <span class="math notranslate nohighlight">\(z\)</span>.</p>
-<p>The ice flux can then by computed by discrete integration of the mass balance:</p>
+<p>The ice flux can then by computed by discrete integration of the mass balance.
+For this example we are going to go outside the built in capabilities of <code class="docutils literal notranslate"><span class="pre">oggm_edu.Glacier</span></code>.
+This also shows how you can access properties of the <code class="docutils literal notranslate"><span class="pre">Glacier</span></code> and create your own plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ice flux along the defined flowline: m3 s^-1</span>
-<span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">annual_mb</span> <span class="o">*</span> <span class="n">widths</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dx_meter</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import matplotlib</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">annual_mb</span><span class="o">**</span><span class="mi">2</span><span class="p">)],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">),</span>
-          <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">annual_mb</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;Equilibrium line altitude&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We compute the ice flux from the mass balance, widths and the resolution.</span>
+<span class="c1"># We take the cumulative sum.</span>
+<span class="n">mb</span> <span class="o">=</span> <span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">get_annual_mb</span><span class="p">(</span><span class="n">glacier</span><span class="o">.</span><span class="n">current_state</span><span class="o">.</span><span class="n">surface_h</span><span class="p">)</span>
+<span class="c1"># Multiply by the widths (converted to meters) and resolution to get</span>
+<span class="c1"># the grid point mass balance</span>
+<span class="n">mb</span> <span class="o">=</span> <span class="n">mb</span> <span class="o">*</span> <span class="n">glacier</span><span class="o">.</span><span class="n">bed</span><span class="o">.</span><span class="n">widths</span> <span class="o">*</span> <span class="n">glacier</span><span class="o">.</span><span class="n">bed</span><span class="o">.</span><span class="n">map_dx</span> <span class="o">*</span>\
+        <span class="n">glacier</span><span class="o">.</span><span class="n">current_state</span><span class="o">.</span><span class="n">dx_meter</span>
+<span class="c1"># Integration</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">mb</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">glacier</span><span class="o">.</span><span class="n">bed</span><span class="o">.</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">q</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># Add a vertical line indicating the ELA x location.</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mb</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">glacier</span><span class="o">.</span><span class="n">bed</span><span class="o">.</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">glacier</span><span class="o">.</span><span class="n">bed</span><span class="o">.</span><span class="n">distance_along_glacier</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ELA&#39;</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ice flux $q$ (m$^3$ s$^{-1}$)&#39;</span><span class="p">);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along flowline (km)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/accumulation_and_ablation_67_0.png" src="../_images/accumulation_and_ablation_67_0.png" />
+<img alt="../_images/accumulation_and_ablation_55_0.png" src="../_images/accumulation_and_ablation_55_0.png" />
 </div>
 </div>
 <p>By construction, the ice flux is maximal at the equilibrium line altitude and zero at the glacier terminus.</p>

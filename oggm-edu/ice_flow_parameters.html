@@ -37,11 +37,16 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -52,7 +57,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Mass balance gradients (MBG) and their influence on glacier flow" href="mass_balance_gradients.html" />
-    <link rel="prev" title="Getting started with flowline models: idealised glaciers" href="flowline_model.html" />
+    <link rel="prev" title="Getting started with OGGM Edu: idealised glaciers" href="edu_intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -125,8 +130,8 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="flowline_model.html">
-   Getting started with flowline models: idealised glaciers
+  <a class="reference internal" href="edu_intro.html">
+   Getting started with OGGM Edu: idealised glaciers
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -342,172 +347,224 @@
 <h1>Influence of ice flow parameters on glacier size<a class="headerlink" href="#influence-of-ice-flow-parameters-on-glacier-size" title="Permalink to this headline">¶</a></h1>
 <p>Goals of this notebook:</p>
 <ul class="simple">
-<li><p>The student will be able to run OGGM with changed Glen’s creep parameter and basal sliding parameters.</p></li>
+<li><p>The student will be able to create a glacier and change Glen’s creep parameter and basal sliding parameter.</p></li>
 <li><p>The student will be able to explain the influences of the two parameters on glacier shape.</p></li>
 </ul>
 <p>The motion of glaciers is determined by two main processes: One is internal deformation of ice due to gravity and the other is basal sliding. These processes can be described by parameters. In this notebook we will examine their influence on glaciers.</p>
-<p>First, we have to import all needed modules:</p>
+<p>First, we have to import the relevant classes from OGGM Edu</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting libraries and plot style</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
-
-<span class="c1"># Scientific packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1"># Constants</span>
-<span class="kn">from</span> <span class="nn">oggm</span> <span class="kn">import</span> <span class="n">cfg</span>
-<span class="n">cfg</span><span class="o">.</span><span class="n">initialize_minimal</span><span class="p">()</span>
-
-<span class="c1"># Mass-balance model</span>
-<span class="kn">from</span> <span class="nn">oggm.core.massbalance</span> <span class="kn">import</span> <span class="n">LinearMassBalance</span>
-<span class="c1"># Glacier shape</span>
-<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">RectangularBedFlowline</span>
-<span class="kn">from</span> <span class="nn">oggm.core.flowline</span> <span class="kn">import</span> <span class="n">FluxBasedModel</span> <span class="k">as</span> <span class="n">FlowlineModel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">GlacierCollection</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-21 08:22:37: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2021-10-21 08:22:37: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2021-10-21 08:22:37: oggm.cfg: Multiprocessing: using all available processors (N=2)
+</div>
+<p>Let’s create a glacier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bed</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">3400</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="c1"># Mass balance</span>
+<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Glaicer</span>
+<span class="n">glacier</span> <span class="o">=</span> <span class="n">Glacier</span><span class="p">(</span><span class="n">bed</span><span class="o">=</span><span class="n">bed</span><span class="p">,</span> <span class="n">mass_balance</span><span class="o">=</span><span class="n">mass_balance</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="glen-s-creep-parameter">
 <h2>Glen’s creep parameter<a class="headerlink" href="#glen-s-creep-parameter" title="Permalink to this headline">¶</a></h2>
-<p>We start with the internal deformation which results in creeping of a glacier. To describe it we use  Glens’s creep parameter. The default in OGGM is to set Glen’s creep parameter <code class="docutils literal notranslate"><span class="pre">A</span></code> to the “standard value” defined by Cuffey and Paterson <a class="reference external" href="https://booksite.elsevier.com/samplechapters/9780123694614/01~Front_Matter.pdf">(Cuffey, 2010)</a>:</p>
+<p>We start with looking at the internal deformation of the ice, which results in creeping.
+To describe it we use  Glens’s creep parameter.
+Our glacier, and OGGM, defaults to set Glen’s creep parameter <code class="docutils literal notranslate"><span class="pre">A</span></code> to the “standard value” defined by <a class="reference external" href="https://booksite.elsevier.com/samplechapters/9780123694614/01~Front_Matter.pdf">Cuffey and Paterson, (2010)</a>: <span class="math notranslate nohighlight">\(2.4\cdot 10^{-24}\)</span>.
+We can check this by accessing the <code class="docutils literal notranslate"><span class="pre">.creep</span></code> attribute</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default in OGGM</span>
-<span class="n">glen_a</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;glen_a&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">glen_a</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">creep</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4e-24
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4e-24
 </pre></div>
 </div>
 </div>
 </div>
-<p>The parameter relates shear stress to the rate of deformation and is assumed to be constant. It depends on crystal size, fabric, concentration and type of impurities, as well as on ice temperature <a class="reference external" href="https://link.springer.com/article/10.1007%2Fs11629-015-3445-6">(Oerlemans, 2001)</a>
-(you can find a more detailed description of it <a class="reference external" href="http://www.antarcticglaciers.org/modern-glaciers/glacier-flow-2/glacier-flow-ii-stress-and-strain/">here</a>). In the following we will change it and see what happens.</p>
-<p>Therefore we have to define the bedrock and a grid (see <a class="reference internal" href="flowline_model.html"><span class="doc std std-doc">getting started with flowline models</span></a>) to generate a set-up for our experiment.</p>
+<p>The parameter relates shear stress to the rate of deformation and is assumed to be constant.
+It depends on crystal size, fabric, concentration and type of impurities, as well as on ice temperature <a class="reference external" href="https://link.springer.com/article/10.1007%2Fs11629-015-3445-6">(Oerlemans, 2001)</a>
+(you can find a more detailed description of it <a class="reference external" href="http://www.antarcticglaciers.org/modern-glaciers/glacier-flow-2/glacier-flow-ii-stress-and-strain/">here</a>).</p>
+<p>Next we will change the creep parameter and see what happens.
+An easy way to do this is to create a <code class="docutils literal notranslate"><span class="pre">GlacierCollection</span></code> and change the creep parameter for some of the glaciers in the collection.
+Here we will also introduce the <code class="docutils literal notranslate"><span class="pre">.fill()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">GlacierCollection</span></code>, which is useful to quickly create a collection with multiple glaciers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the bed rock, linearily decreasing from 3400 m altitude to</span>
-<span class="c1"># 1400 m, in 200 steps</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">bed_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3400</span><span class="p">,</span> <span class="mi">1400</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="n">GlacierCollection</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This fills the collection with 3 copies of the initial glacier.</span>
+<span class="c1"># Note that .fill copy the initial glacier as well, hence it will</span>
+<span class="c1"># remain unchanged.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">glacier</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">collection</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="c1"># At the beginning, there is no glacier so our glacier surface is at</span>
-<span class="c1"># the bed altitude</span>
-<span class="n">surface_h</span> <span class="o">=</span> <span class="n">bed_h</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="c1"># Let&#39;s set the model grid spacing to 100 m </span>
-<span class="n">map_dx</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="c1"># Calculate the corresponding distance along the glacier (from the top)</span>
-<span class="n">distance_along_glacier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>  <span class="c1"># in km </span>
-
-<span class="c1"># The units of widths is in &quot;grid points&quot;, i.e. 3 grid points = 300 m</span>
-<span class="c1"># in our case</span>
-<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
-
-<span class="c1"># Define our bed</span>
-<span class="n">initial_flowline</span> <span class="o">=</span> <span class="n">RectangularBedFlowline</span><span class="p">(</span><span class="n">surface_h</span><span class="o">=</span><span class="n">surface_h</span><span class="p">,</span> <span class="n">bed_h</span><span class="o">=</span><span class="n">bed_h</span><span class="p">,</span>
-                                          <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">,</span> <span class="n">map_dx</span><span class="o">=</span><span class="n">map_dx</span><span class="p">)</span>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Response time [yrs]</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+      <th>Hemisphere</th>
+      <th>Ice density [kg/m3]</th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>300</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>4</td>
+      <td>nh</td>
+      <td>900.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>300</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>4</td>
+      <td>nh</td>
+      <td>900.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>300</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>4</td>
+      <td>nh</td>
+      <td>900.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can then change the creep parameter of the glaciers within the collection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply and divide by 10.</span>
+<span class="c1"># Note that running this cell multiple times will continue to change</span>
+<span class="c1"># the value.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">/</span> <span class="mi">10</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Define the mass balance model, we set the ELA to 3000 m a.s.l. and the gradient to 4 mm/m.</p>
+<p>And progress the glaciers within the collection to year 500:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ELA at 3000m a.s.l., gradient 4 mm m$^{-1}$</span>
-<span class="n">mb_model</span> <span class="o">=</span> <span class="n">LinearMassBalance</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="n">grad</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now we can calculate the evolution of the glacier with the default parameter:</p>
+<p>And plot the collection</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define for how long we want to simulate the glacier.</span>
-<span class="c1"># (you can change the number of years if you want)</span>
-<span class="n">year</span> <span class="o">=</span> <span class="mi">600</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the model.</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-<span class="c1"># Simulate the glacier until</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ice_flow_parameters_18_0.png" src="../_images/ice_flow_parameters_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the outline of the glacier as simple_glacier_h</span>
-<span class="n">simple_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s make Glen’s parameter 10 times smaller and 10 times larger:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Glen&#39;s parameter A</span>
-<span class="n">glen_a_small</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;glen_a&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">10</span>
-<span class="n">glen_a_large</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;glen_a&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reinitialise the model with the new parameter and save the</span>
-<span class="c1"># output as stiffer_glacier_h</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
-                      <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a_small</span><span class="p">)</span>
-<span class="c1"># Run the model.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-<span class="n">stiffer_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
-
-<span class="c1"># And again reinitialise the model, this time with the larger glen_a</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
-                      <span class="n">glen_a</span><span class="o">=</span><span class="n">glen_a_large</span><span class="p">)</span>
-<span class="c1"># Run the model.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-<span class="c1"># And save the state.</span>
-<span class="n">softer_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Default A&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">stiffer_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A / 10&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">softer_glacier_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A * 10&#39;</span><span class="p">)</span>
-<span class="c1"># Add the bedrock and labels</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier [km]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude [m]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -518,69 +575,74 @@
 </div>
 <div class="section" id="sliding-parameter">
 <h2>Sliding  parameter<a class="headerlink" href="#sliding-parameter" title="Permalink to this headline">¶</a></h2>
-<p>Basal sliding occurs when there is a water film between the ice and the ground. In his <a class="reference external" href="https://www.igsoc.org/annals/24/igs_annals_vol24_year1997_pg382-389.pdf">seminal paper</a>, Hans Oerlemans uses a so-called “sliding parameter” (here: fs), representing basal sliding. In OGGM this parameter is set to 0 per default, but it can be modified:</p>
+<p>Basal sliding occurs when there is a water film between the ice and the ground. In his <a class="reference external" href="https://www.igsoc.org/annals/24/igs_annals_vol24_year1997_pg382-389.pdf">seminal paper</a>, Hans Oerlemans uses a so-called “sliding parameter” representing basal sliding.
+For our glacier this parameter is available under the <code class="docutils literal notranslate"><span class="pre">.basal_sliding</span></code> attribute.
+By default it is set to 0, but it can be modified</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sliding parameter</span>
-<span class="n">fs</span> <span class="o">=</span> <span class="mf">5.7e-20</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For how long do we want to simulate the glacier</span>
-<span class="n">year</span> <span class="o">=</span> <span class="mi">1500</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialise the model with the new parameter and save the</span>
-<span class="c1"># output as sliding_glacier_h</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
-                      <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
-<span class="c1"># Simulate the glacier</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-<span class="c1"># Save the glacier state</span>
-<span class="n">sliding_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We simulate the simple glacier again</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FlowlineModel</span><span class="p">(</span><span class="n">initial_flowline</span><span class="p">,</span> <span class="n">mb_model</span><span class="o">=</span><span class="n">mb_model</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
-<span class="c1"># Simulate the glacier</span>
-<span class="n">model</span><span class="o">.</span><span class="n">run_until</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
-<span class="n">simple_glacier_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">surface_h</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot final result</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">simple_glacier_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Default: Deforming glacier&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">sliding_glacier_h</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sliding glacier&#39;</span><span class="p">)</span>
-<span class="c1"># Add the bedrock</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_along_glacier</span><span class="p">,</span> <span class="n">bed_h</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bedrock&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Distance along glacier (km)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Altitude (m)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">basal_sliding</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ice_flow_parameters_26_0.png" src="../_images/ice_flow_parameters_26_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create another collection</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">GlacierCollection</span><span class="p">()</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">glacier</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Change the basal sliding parameter of one of the glaciers in the collection to <span class="math notranslate nohighlight">\(5.7 \cdot 10^{-20}\)</span> and progress the collection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we demostrate another to change attributes of glaciers</span>
+<span class="c1"># in the collection quickly.</span>
+<span class="c1"># The dictionary can contain multiple key-value pairs.</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">change_attributes</span><span class="p">(</span><span class="n">attributes_to_change</span><span class="o">=</span>
+                             <span class="p">{</span><span class="s1">&#39;basal_sliding&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.7e-20</span><span class="p">]}</span>
+                            <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take a look at the glaciers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ice_flow_parameters_28_0.png" src="../_images/ice_flow_parameters_28_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ice_flow_parameters_29_0.png" src="../_images/ice_flow_parameters_29_0.png" />
+</div>
+</div>
+<p>Initially the glacier with higher basal sliding is advancing down the bed quicker compared to the glacier without basal sliding.
+However, at a certain point in time the larger volume of Glacier 0 lead to a stronger ice flow, and the glacier can extend further down.</p>
 <p>If you want to learn more about the processes of glacier flow, we recommend to go through these two pages:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/glacier-flow-2/glacier-flow/">Deformation and sliding</a></p></li>
@@ -624,11 +686,11 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="flowline_model.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="edu_intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Getting started with flowline models: idealised glaciers</p>
+            <p class="prev-next-title">Getting started with OGGM Edu: idealised glaciers</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="mass_balance_gradients.html" title="next page">
