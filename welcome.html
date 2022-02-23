@@ -45,12 +45,11 @@
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -323,7 +322,7 @@
 </ul>
 <p><strong>Flowline modeling with simplified glacier geometry:</strong></p>
 <ul class="simple">
-<li><p><span class="xref myst">Getting started with flowline models: idealized experiments</span></p></li>
+<li><p><a class="reference internal" href="oggm-edu/edu_intro.html"><span class="doc std std-doc">Getting started with OGGM Edu: idealised glaciers</span></a></p></li>
 <li><p><a class="reference internal" href="oggm-edu/ice_flow_parameters.html"><span class="doc std std-doc">Influence of ice flow parameters on glacier size</span></a></p></li>
 <li><p><a class="reference internal" href="oggm-edu/mass_balance_gradients.html"><span class="doc std std-doc">Mass balance gradients and their influence on glacier flow</span></a></p></li>
 <li><p><a class="reference internal" href="oggm-edu/surging_experiment.html"><span class="doc std std-doc">Glacier surging experiments</span></a></p></li>
