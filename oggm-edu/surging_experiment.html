@@ -446,11 +446,15 @@ These can easily be changed by the user after initialisation.</p>
       <th></th>
     </tr>
     <tr>
-      <th>SurgingGlacier</th>
+      <th>Attribute</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>Type</th>
+      <td>SurgingGlacier</td>
+    </tr>
     <tr>
       <th>Age</th>
       <td>0</td>
@@ -465,6 +469,10 @@ These can easily be changed by the user after initialisation.</p>
     </tr>
     <tr>
       <th>Volume [km3]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Max ice thickness [m]</th>
       <td>0.0</td>
     </tr>
     <tr>
@@ -562,7 +570,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:858: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:875: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
   warnings.warn(
 </pre></div>
 </div>
@@ -613,10 +621,12 @@ For this we will again employ the glacier collection.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Type</th>
       <th>Age</th>
       <th>Length [m]</th>
       <th>Area [km2]</th>
       <th>Volume [km3]</th>
+      <th>Max ice thickness [m]</th>
       <th>Surging periodicity (off/on)</th>
       <th>Surging now?</th>
       <th>Bed type</th>
@@ -652,15 +662,19 @@ For this we will again employ the glacier collection.</p>
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>SurgingGlacier</td>
       <td>400</td>
       <td>15400.0</td>
       <td>5.515</td>
       <td>0.771139</td>
+      <td>163.641438</td>
       <td>[50, 5]</td>
       <td>False</td>
       <td>Linear bed with a variable width</td>
@@ -678,10 +692,12 @@ For this we will again employ the glacier collection.</p>
     </tr>
     <tr>
       <th>1</th>
+      <td>Glacier</td>
       <td>400</td>
       <td>16300.0</td>
       <td>5.785</td>
       <td>1.248455</td>
+      <td>240.354300</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>Linear bed with a variable width</td>
@@ -732,9 +748,9 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:858: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:875: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
   warnings.warn(
-/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:314: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
+/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:316: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
   warnings.warn(
 </pre></div>
 </div>
@@ -765,10 +781,12 @@ For this we will again employ the glacier collection.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Type</th>
       <th>Age</th>
       <th>Length [m]</th>
       <th>Area [km2]</th>
       <th>Volume [km3]</th>
+      <th>Max ice thickness [m]</th>
       <th>Surging periodicity (off/on)</th>
       <th>Surging now?</th>
       <th>Bed type</th>
@@ -804,15 +822,19 @@ For this we will again employ the glacier collection.</p>
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>SurgingGlacier</td>
       <td>400</td>
       <td>15400.0</td>
       <td>5.515</td>
       <td>0.771139</td>
+      <td>163.641438</td>
       <td>[50, 5]</td>
       <td>False</td>
       <td>Linear bed with a variable width</td>
@@ -830,10 +852,12 @@ For this we will again employ the glacier collection.</p>
     </tr>
     <tr>
       <th>1</th>
+      <td>Glacier</td>
       <td>400</td>
       <td>16300.0</td>
       <td>5.785</td>
       <td>1.248455</td>
+      <td>240.354300</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>Linear bed with a variable width</td>
@@ -851,10 +875,12 @@ For this we will again employ the glacier collection.</p>
     </tr>
     <tr>
       <th>2</th>
+      <td>SurgingGlacier</td>
       <td>400</td>
       <td>14900.0</td>
       <td>5.365</td>
       <td>0.470618</td>
+      <td>103.016946</td>
       <td>[50, 5]</td>
       <td>False</td>
       <td>Linear bed with a variable width</td>
