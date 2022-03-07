@@ -373,9 +373,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="glen-s-creep-parameter">
 <h2>Glen’s creep parameter<a class="headerlink" href="#glen-s-creep-parameter" title="Permalink to this headline">¶</a></h2>
-<p>We start with looking at the internal deformation of the ice, which results in creeping.
+<p>We start with looking at the internal deformation of the ice, which results in so called creeping.
 To describe it we use  Glens’s creep parameter.
-Our glacier, and OGGM, defaults to set Glen’s creep parameter <code class="docutils literal notranslate"><span class="pre">A</span></code> to the “standard value” defined by <a class="reference external" href="https://booksite.elsevier.com/samplechapters/9780123694614/01~Front_Matter.pdf">Cuffey and Paterson, (2010)</a>: <span class="math notranslate nohighlight">\(2.4\cdot 10^{-24}\)</span>.
+Our glacier, and OGGM, defaults to set Glen’s creep parameter to the “standard value” defined by <a class="reference external" href="https://booksite.elsevier.com/samplechapters/9780123694614/01~Front_Matter.pdf">Cuffey and Paterson, (2010)</a>: <span class="math notranslate nohighlight">\(2.4\cdot 10^{-24}\)</span>.
 We can check this by accessing the <code class="docutils literal notranslate"><span class="pre">.creep</span></code> attribute</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -544,10 +544,11 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply and divide by 10.</span>
+<span class="c1"># We pass partial expressions to change the initial value. </span>
+<span class="c1"># Passing an empty string leaves the value un-affected</span>
 <span class="c1"># Note that running this cell multiple times will continue to change</span>
 <span class="c1"># the value.</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">*</span> <span class="mi">10</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">creep</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">change_attributes</span><span class="p">({</span><span class="s2">&quot;creep&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;* 10&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;/ 10&quot;</span><span class="p">]})</span>
 </pre></div>
 </div>
 </div>
