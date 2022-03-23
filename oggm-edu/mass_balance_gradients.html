@@ -779,6 +779,73 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [18],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># We can then progress the glacier to equilibrium again</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:478,</span> in <span class="ni">Glacier.progress_to_equilibrium</span><span class="nt">(self, years, t_rate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="c1"># Do we have a temp scenario which isn&#39;t passed yet?</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">_temp_bias_final_year</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span>         <span class="c1"># If so, progress normally.</span>
+<span class="ne">--&gt; </span><span class="mi">478</span>         <span class="bp">self</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">_temp_bias_final_year</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span>     <span class="c1"># Then we can find the eq. state.</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="c1"># Initialise the model</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:389,</span> in <span class="ni">Glacier.progress_to_year</span><span class="nt">(self, year)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="k">return</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span> <span class="c1"># Update attributes.</span>
+<span class="ne">--&gt; </span><span class="mi">389</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_history</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:267,</span> in <span class="ni">Glacier.history</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="n">obj</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> <span class="c1"># Append the history.</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span>     <span class="c1"># We slice the new series because we dont need the first year.</span>
+<span class="ne">--&gt; </span><span class="mi">267</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">combine_by_coords</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span>         <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">obj</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span>         <span class="n">combine_attrs</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/xarray/core/combine.py:975,</span> in <span class="ni">combine_by_coords</span><span class="nt">(data_objects, compat, data_vars, coords, fill_value, join, combine_attrs, datasets)</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="n">concatenated_grouped_by_data_vars</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>     <span class="k">for</span> <span class="nb">vars</span><span class="p">,</span> <span class="n">datasets_with_same_vars</span> <span class="ow">in</span> <span class="n">grouped_by_vars</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">975</span>         <span class="n">concatenated</span> <span class="o">=</span> <span class="n">_combine_single_variable_hypercube</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span>             <span class="nb">list</span><span class="p">(</span><span class="n">datasets_with_same_vars</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">977</span>             <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">978</span>             <span class="n">data_vars</span><span class="o">=</span><span class="n">data_vars</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span>             <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">980</span>             <span class="n">compat</span><span class="o">=</span><span class="n">compat</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">981</span>             <span class="n">join</span><span class="o">=</span><span class="n">join</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span>             <span class="n">combine_attrs</span><span class="o">=</span><span class="n">combine_attrs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">984</span>         <span class="n">concatenated_grouped_by_data_vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">concatenated</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">986</span> <span class="k">return</span> <span class="n">merge</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">987</span>     <span class="n">concatenated_grouped_by_data_vars</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">988</span>     <span class="n">compat</span><span class="o">=</span><span class="n">compat</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span>     <span class="n">combine_attrs</span><span class="o">=</span><span class="n">combine_attrs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span> <span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/xarray/core/combine.py:652,</span> in <span class="ni">_combine_single_variable_hypercube</span><span class="nt">(datasets, fill_value, data_vars, coords, compat, join, combine_attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">650</span>     <span class="n">indexes</span> <span class="o">=</span> <span class="n">concatenated</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">651</span>     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">is_monotonic_increasing</span> <span class="ow">or</span> <span class="n">indexes</span><span class="o">.</span><span class="n">is_monotonic_decreasing</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">652</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span>             <span class="s2">&quot;Resulting object does not have monotonic&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span>             <span class="s2">&quot; global indexes along dimension </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span> <span class="k">return</span> <span class="n">concatenated</span>
+
+<span class="ne">ValueError</span>: Resulting object does not have monotonic global indexes along dimension time
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,18 +853,10 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_35_0.png" src="../_images/mass_balance_gradients_35_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">eq_states</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{515: 3000, 771: 3150.0}
 </pre></div>
 </div>
 </div>
@@ -816,11 +875,6 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>68.0
-</pre></div>
-</div>
-</div>
 </div>
 <p>or just look at the representation</p>
 <div class="cell docutils container">
@@ -829,64 +883,6 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>Attribute</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Type</th>
-      <td>Glacier</td>
-    </tr>
-    <tr>
-      <th>Age</th>
-      <td>771</td>
-    </tr>
-    <tr>
-      <th>Length [m]</th>
-      <td>8900.0</td>
-    </tr>
-    <tr>
-      <th>Area [km2]</th>
-      <td>3.56</td>
-    </tr>
-    <tr>
-      <th>Volume [km3]</th>
-      <td>0.587687</td>
-    </tr>
-    <tr>
-      <th>Max ice thickness [m]</th>
-      <td>187.183503</td>
-    </tr>
-    <tr>
-      <th>Response time [yrs]</th>
-      <td>68.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Now that we have introduced the concept of response time we can apply it and see how the different mass balance gradients affect the response time.
 For this we need a new collection.</p>
@@ -926,133 +922,6 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Response time [yrs]</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>Bottom [m]</th>
-      <th>Width(s) [m]</th>
-      <th>Length [km]</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Glacier</td>
-      <td>1397</td>
-      <td>11100.0</td>
-      <td>4.44</td>
-      <td>0.617579</td>
-      <td>156.657761</td>
-      <td>NaN</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>1</td>
-      <td>nh</td>
-      <td>900.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Glacier</td>
-      <td>515</td>
-      <td>12300.0</td>
-      <td>4.92</td>
-      <td>0.931013</td>
-      <td>211.953447</td>
-      <td>NaN</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Glacier</td>
-      <td>188</td>
-      <td>13600.0</td>
-      <td>5.44</td>
-      <td>1.380161</td>
-      <td>283.343538</td>
-      <td>NaN</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>15</td>
-      <td>nh</td>
-      <td>900.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>We then have to set up a climate change scenario for the glaciers in the collection</p>
 <div class="cell docutils container">
@@ -1079,142 +948,12 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Response time [yrs]</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>Bottom [m]</th>
-      <th>Width(s) [m]</th>
-      <th>Length [km]</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Glacier</td>
-      <td>2035</td>
-      <td>8000.0</td>
-      <td>3.20</td>
-      <td>0.378812</td>
-      <td>134.826943</td>
-      <td>228.0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3150.0</td>
-      <td>3000</td>
-      <td>1.0</td>
-      <td>1</td>
-      <td>nh</td>
-      <td>900.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Glacier</td>
-      <td>771</td>
-      <td>8900.0</td>
-      <td>3.56</td>
-      <td>0.587687</td>
-      <td>187.183503</td>
-      <td>68.0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3150.0</td>
-      <td>3000</td>
-      <td>1.0</td>
-      <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Glacier</td>
-      <td>289</td>
-      <td>10000.0</td>
-      <td>4.00</td>
-      <td>0.885816</td>
-      <td>247.787963</td>
-      <td>25.0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3150.0</td>
-      <td>3000</td>
-      <td>1.0</td>
-      <td>15</td>
-      <td>nh</td>
-      <td>900.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_50_0.png" src="../_images/mass_balance_gradients_50_0.png" />
 </div>
 </div>
 <p>We can also look at the state history for one of the glaciers</p>
@@ -1224,9 +963,6 @@ For this we need a new collection.</p>
 <span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/mass_balance_gradients_52_0.png" src="../_images/mass_balance_gradients_52_0.png" />
 </div>
 </div>
 <p>The glacier with weakest MBG need the longest time to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a around two decades to adjust its shape to the new climate (A real world example: Franz Josef glacier in New Zealand<a class="reference external" href="#References">⁶</a>)<a class="reference external" href="#References">⁷</a>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years.</p>
