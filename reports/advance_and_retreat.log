@@ -25,32 +25,32 @@ my_glacier.progress_to_equilibrium()
 Input [0;32mIn [11][0m, in [0;36m<cell line: 1>[0;34m()[0m
 [0;32m----> 1[0m [43mmy_glacier[49m[38;5;241;43m.[39;49m[43mprogress_to_equilibrium[49m[43m([49m[43m)[49m
 
-File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:478[0m, in [0;36mGlacier.progress_to_equilibrium[0;34m(self, years, t_rate)[0m
-[1;32m    474[0m [38;5;28;01melse[39;00m:
-[1;32m    475[0m     [38;5;66;03m# Do we have a temp scenario which isn't passed yet?[39;00m
-[1;32m    476[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mage [38;5;241m<[39m [38;5;28mself[39m[38;5;241m.[39mmass_balance[38;5;241m.[39m_temp_bias_final_year:
-[1;32m    477[0m         [38;5;66;03m# If so, progress normally.[39;00m
-[0;32m--> 478[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mprogress_to_year[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmass_balance[49m[38;5;241;43m.[39;49m[43m_temp_bias_final_year[49m[43m)[49m
-[1;32m    479[0m     [38;5;66;03m# Then we can find the eq. state.[39;00m
-[1;32m    480[0m     [38;5;66;03m# Initialise the model[39;00m
-[1;32m    481[0m     state [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mstate()
+File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:527[0m, in [0;36mGlacier.progress_to_equilibrium[0;34m(self, years, t_rate)[0m
+[1;32m    523[0m [38;5;28;01melse[39;00m:
+[1;32m    524[0m     [38;5;66;03m# Do we have a temp scenario which isn't passed yet?[39;00m
+[1;32m    525[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mage [38;5;241m<[39m [38;5;28mself[39m[38;5;241m.[39mmass_balance[38;5;241m.[39m_temp_bias_final_year:
+[1;32m    526[0m         [38;5;66;03m# If so, progress normally.[39;00m
+[0;32m--> 527[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mprogress_to_year[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmass_balance[49m[38;5;241;43m.[39;49m[43m_temp_bias_final_year[49m[43m)[49m
+[1;32m    528[0m     [38;5;66;03m# Then we can find the eq. state.[39;00m
+[1;32m    529[0m     [38;5;66;03m# Initialise the model[39;00m
+[1;32m    530[0m     state [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_state()
 
-File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:389[0m, in [0;36mGlacier.progress_to_year[0;34m(self, year)[0m
-[1;32m    386[0m         [38;5;28;01mreturn[39;00m
-[1;32m    388[0m [38;5;66;03m# Update attributes.[39;00m
-[0;32m--> 389[0m [38;5;28mself[39m[38;5;241m.[39mhistory [38;5;241m=[39m out[[38;5;241m0[39m]
-[1;32m    390[0m [38;5;28mself[39m[38;5;241m.[39mstate_history [38;5;241m=[39m out[[38;5;241m1[39m][[38;5;241m0[39m]
-[1;32m    391[0m [38;5;28mself[39m[38;5;241m.[39mcurrent_state [38;5;241m=[39m model[38;5;241m.[39mfls[[38;5;241m0[39m]
+File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:438[0m, in [0;36mGlacier.progress_to_year[0;34m(self, year)[0m
+[1;32m    435[0m         [38;5;28;01mreturn[39;00m
+[1;32m    437[0m [38;5;66;03m# Update attributes.[39;00m
+[0;32m--> 438[0m [38;5;28mself[39m[38;5;241m.[39mhistory [38;5;241m=[39m out[[38;5;241m0[39m]
+[1;32m    439[0m [38;5;28mself[39m[38;5;241m.[39mstate_history [38;5;241m=[39m out[[38;5;241m1[39m][[38;5;241m0[39m]
+[1;32m    440[0m [38;5;28mself[39m[38;5;241m.[39m_current_state [38;5;241m=[39m model[38;5;241m.[39mfls[[38;5;241m0[39m]
 
-File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:267[0m, in [0;36mGlacier.history[0;34m(self, obj)[0m
-[1;32m    263[0m     [38;5;28mself[39m[38;5;241m.[39m_history [38;5;241m=[39m obj
-[1;32m    264[0m [38;5;66;03m# Append the history.[39;00m
-[1;32m    265[0m [38;5;28;01melse[39;00m:
-[1;32m    266[0m     [38;5;66;03m# We slice the new series because we dont need the first year.[39;00m
-[0;32m--> 267[0m     [38;5;28mself[39m[38;5;241m.[39m_history [38;5;241m=[39m [43mxr[49m[38;5;241;43m.[39;49m[43mcombine_by_coords[49m[43m([49m
-[1;32m    268[0m [43m        [49m[43m[[49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhistory[49m[38;5;241;43m.[39;49m[43misel[49m[43m([49m[43mtime[49m[38;5;241;43m=[39;49m[38;5;28;43mslice[39;49m[43m([49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[38;5;241;43m-[39;49m[38;5;241;43m1[39;49m[43m)[49m[43m)[49m[43m,[49m[43m [49m[43mobj[49m[43m][49m[43m,[49m
-[1;32m    269[0m [43m        [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43moverride[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m    270[0m [43m    [49m[43m)[49m
+File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:312[0m, in [0;36mGlacier.history[0;34m(self, obj)[0m
+[1;32m    308[0m     [38;5;28mself[39m[38;5;241m.[39m_history [38;5;241m=[39m obj
+[1;32m    309[0m [38;5;66;03m# Append the history.[39;00m
+[1;32m    310[0m [38;5;28;01melse[39;00m:
+[1;32m    311[0m     [38;5;66;03m# We slice the new series because we dont need the first year.[39;00m
+[0;32m--> 312[0m     [38;5;28mself[39m[38;5;241m.[39m_history [38;5;241m=[39m [43mxr[49m[38;5;241;43m.[39;49m[43mcombine_by_coords[49m[43m([49m
+[1;32m    313[0m [43m        [49m[43m[[49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhistory[49m[38;5;241;43m.[39;49m[43misel[49m[43m([49m[43mtime[49m[38;5;241;43m=[39;49m[38;5;28;43mslice[39;49m[43m([49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[38;5;241;43m-[39;49m[38;5;241;43m1[39;49m[43m)[49m[43m)[49m[43m,[49m[43m [49m[43mobj[49m[43m][49m[43m,[49m
+[1;32m    314[0m [43m        [49m[43mcombine_attrs[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43moverride[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m    315[0m [43m    [49m[43m)[49m
 
 File [0;32m/usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/xarray/core/combine.py:975[0m, in [0;36mcombine_by_coords[0;34m(data_objects, compat, data_vars, coords, fill_value, join, combine_attrs, datasets)[0m
 [1;32m    973[0m     concatenated_grouped_by_data_vars [38;5;241m=[39m []
