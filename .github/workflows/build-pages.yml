@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Fix Git-Protection
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install Dependencies
         run: |
           ${PIP} install --upgrade pip setuptools wheel
