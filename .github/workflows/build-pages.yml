@@ -15,7 +15,7 @@ jobs:
     container: oggm/oggm:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Dependencies
         run: |
           ${PIP} install --upgrade pip setuptools wheel
@@ -25,7 +25,7 @@ jobs:
         run: |
           jupyter-book build .
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-output
           path: _build/
