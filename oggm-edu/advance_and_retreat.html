@@ -596,72 +596,6 @@ Our scenario implies a temperature decrease of -1.5<span class="math notranslate
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">my_glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:527,</span> in <span class="ni">Glacier.progress_to_equilibrium</span><span class="nt">(self, years, t_rate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="c1"># Do we have a temp scenario which isn&#39;t passed yet?</span>
-<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">_temp_bias_final_year</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">526</span>         <span class="c1"># If so, progress normally.</span>
-<span class="ne">--&gt; </span><span class="mi">527</span>         <span class="bp">self</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">_temp_bias_final_year</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">528</span>     <span class="c1"># Then we can find the eq. state.</span>
-<span class="g g-Whitespace">    </span><span class="mi">529</span>     <span class="c1"># Initialise the model</span>
-<span class="g g-Whitespace">    </span><span class="mi">530</span>     <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:438,</span> in <span class="ni">Glacier.progress_to_year</span><span class="nt">(self, year)</span>
-<span class="g g-Whitespace">    </span><span class="mi">435</span>         <span class="k">return</span>
-<span class="g g-Whitespace">    </span><span class="mi">437</span> <span class="c1"># Update attributes.</span>
-<span class="ne">--&gt; </span><span class="mi">438</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_history</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/oggm_edu/glacier.py:312,</span> in <span class="ni">Glacier.history</span><span class="nt">(self, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="n">obj</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="c1"># Append the history.</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>     <span class="c1"># We slice the new series because we dont need the first year.</span>
-<span class="ne">--&gt; </span><span class="mi">312</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">combine_by_coords</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">obj</span><span class="p">],</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">combine_attrs</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>     <span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/xarray/core/combine.py:975,</span> in <span class="ni">combine_by_coords</span><span class="nt">(data_objects, compat, data_vars, coords, fill_value, join, combine_attrs, datasets)</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="n">concatenated_grouped_by_data_vars</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span>     <span class="k">for</span> <span class="nb">vars</span><span class="p">,</span> <span class="n">datasets_with_same_vars</span> <span class="ow">in</span> <span class="n">grouped_by_vars</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">975</span>         <span class="n">concatenated</span> <span class="o">=</span> <span class="n">_combine_single_variable_hypercube</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>             <span class="nb">list</span><span class="p">(</span><span class="n">datasets_with_same_vars</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span>             <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span>             <span class="n">data_vars</span><span class="o">=</span><span class="n">data_vars</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">979</span>             <span class="n">coords</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span>             <span class="n">compat</span><span class="o">=</span><span class="n">compat</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span>             <span class="n">join</span><span class="o">=</span><span class="n">join</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">982</span>             <span class="n">combine_attrs</span><span class="o">=</span><span class="n">combine_attrs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">983</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">984</span>         <span class="n">concatenated_grouped_by_data_vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">concatenated</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">986</span> <span class="k">return</span> <span class="n">merge</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">987</span>     <span class="n">concatenated_grouped_by_data_vars</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">988</span>     <span class="n">compat</span><span class="o">=</span><span class="n">compat</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">991</span>     <span class="n">combine_attrs</span><span class="o">=</span><span class="n">combine_attrs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">992</span> <span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.9.8/lib/python3.9/site-packages/xarray/core/combine.py:652,</span> in <span class="ni">_combine_single_variable_hypercube</span><span class="nt">(datasets, fill_value, data_vars, coords, compat, join, combine_attrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">650</span>     <span class="n">indexes</span> <span class="o">=</span> <span class="n">concatenated</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span>     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">is_monotonic_increasing</span> <span class="ow">or</span> <span class="n">indexes</span><span class="o">.</span><span class="n">is_monotonic_decreasing</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">652</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">653</span>             <span class="s2">&quot;Resulting object does not have monotonic&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">654</span>             <span class="s2">&quot; global indexes along dimension </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">655</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">657</span> <span class="k">return</span> <span class="n">concatenated</span>
-
-<span class="ne">ValueError</span>: Resulting object does not have monotonic global indexes along dimension time
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -669,6 +603,60 @@ Our scenario implies a temperature decrease of -1.5<span class="math notranslate
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>MassBalance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ELA [m]</th>
+      <td>3108.333333</td>
+    </tr>
+    <tr>
+      <th>Original ELA [m]</th>
+      <td>3333.333333</td>
+    </tr>
+    <tr>
+      <th>Temperature bias [C]</th>
+      <td>-1.5</td>
+    </tr>
+    <tr>
+      <th>Gradient [mm/m/yr]</th>
+      <td>[7]</td>
+    </tr>
+    <tr>
+      <th>Hemisphere</th>
+      <td>nh</td>
+    </tr>
+    <tr>
+      <th>Ice density [kg/m3]</th>
+      <td>900.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>As we can see in the representation above, the current ELA sits around 3108 m a.s.l. while the original ELA was at 3333 m a.s.l.</p>
 <p>Let’s take a look at the new equilibrium state after the we decreased the temperature</p>
@@ -677,6 +665,9 @@ Our scenario implies a temperature decrease of -1.5<span class="math notranslate
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_39_0.png" src="../_images/advance_and_retreat_39_0.png" />
 </div>
 </div>
 <p>Decreasing the ELA results in an increased accumulation area and thus higher accumulation. More mass at the top of the glacier will increase the ice flow <span class="math notranslate nohighlight">\(\vec{q}\)</span> down the glacier, leading to an advance of the glacier terminus and thus expanding the ablation area.
@@ -688,6 +679,9 @@ This is also illustrated in the plot below.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="s1">&#39;09&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_41_0.png" src="../_images/advance_and_retreat_41_0.png" />
 </div>
 </div>
 </div>
@@ -728,6 +722,60 @@ We will set up our initial glacier again, but this time increase the temperature
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>MassBalance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ELA [m]</th>
+      <td>3783.333333</td>
+    </tr>
+    <tr>
+      <th>Original ELA [m]</th>
+      <td>3333.333333</td>
+    </tr>
+    <tr>
+      <th>Temperature bias [C]</th>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>Gradient [mm/m/yr]</th>
+      <td>[7]</td>
+    </tr>
+    <tr>
+      <th>Hemisphere</th>
+      <td>nh</td>
+    </tr>
+    <tr>
+      <th>Ice density [kg/m3]</th>
+      <td>900.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Here we ended up raising the ELA from 3333 m. a.s.l. to 3783 m. a.s.l.</p>
 <p>Plot the new equilibrium state</p>
@@ -736,6 +784,9 @@ We will set up our initial glacier again, but this time increase the temperature
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_51_0.png" src="../_images/advance_and_retreat_51_0.png" />
 </div>
 </div>
 <p>Comparing the outlines of the two equilibrium states we can see that the glacier has retreated: The shorted orange outline is older compared to the blue outline.
@@ -746,6 +797,9 @@ Similar to what we see in the figure below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_53_0.png" src="../_images/advance_and_retreat_53_0.png" />
+</div>
 </div>
 <p>We can further explore the glacier response during retreat by looking at the history of our glacier.</p>
 <div class="cell docutils container">
@@ -753,6 +807,9 @@ Similar to what we see in the figure below.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/advance_and_retreat_55_0.png" src="../_images/advance_and_retreat_55_0.png" />
 </div>
 </div>
 <p>Raising the temperature will grow the ablation area which correspond to increasing the ELA.
