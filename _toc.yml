@@ -20,6 +20,7 @@ parts:
     - file: oggm-edu/temperature_index_model
     - file: oggm-edu/accumulation_and_ablation
     - file: oggm-edu/advance_and_retreat
+    - file: oggm-edu/low_pass_climate
     
   - caption: Glaciers as water resources
     chapters:
