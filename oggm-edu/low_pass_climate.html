@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glaciers as a low-pass filter of climate variations &#8212; OGGM-Edu notebooks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glaciers as water resources: part 1 (idealized climate)" href="glacier_water_resources.html" />
+    <link rel="prev" title="Glacier advance and retreat" href="advance_and_retreat.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-106829797-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">OGGM-Edu notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../welcome.html">
+   Welcome to the OGGM Edu Notebooks!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Beginners
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_with_notebooks.html">
+   Getting started with the Jupyter Notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Flowline modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="edu_intro.html">
+   Getting started with OGGM Edu: idealised glaciers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ice_flow_parameters.html">
+   Influence of ice flow parameters on glacier size
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mass_balance_gradients.html">
+   Mass balance gradients (MBG) and their influence on glacier flow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="surging_experiment.html">
+   Glacier surging experiments
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Glacier mass balance
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="temperature_index_model.html">
+   Temperature index models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="accumulation_and_ablation.html">
+   Accumulation, ablation, mass Balance and the resulting ice flow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advance_and_retreat.html">
+   Glacier advance and retreat
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Glaciers as a low-pass filter of climate variations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Glaciers as water resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="glacier_water_resources.html">
+   Glaciers as water resources: part 1 (idealized climate)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glacier_water_resources_projections.html">
+   Glaciers as water resources: part 2 (projections)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Graphics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../graphics/ela_changes_response_time.html">
+   ELA changes and response time
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/oggm-edu/low_pass_climate.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/OGGM/oggm-edu-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/low_pass_climate.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/low_pass_climate.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull%3Frepo=https://github.com/OGGM/oggm-edu-notebooks%26urlpath%3Dlab%252Ftree%252Foggm-edu-notebooks/./oggm-edu/low_pass_climate.ipynb%26branch%3Dmaster"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https://github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/low_pass_climate.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-a-random-climate">
+   Adding a random climate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-look-at-the-history">
+   A look at the history
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-custom-climate">
+   Creating a custom climate
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-noise-to-clean-data">
+     Adding noise to clean data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-next">
+   What’s next?
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="glaciers-as-a-low-pass-filter-of-climate-variations">
+<h1>Glaciers as a low-pass filter of climate variations<a class="headerlink" href="#glaciers-as-a-low-pass-filter-of-climate-variations" title="Permalink to this headline">¶</a></h1>
+<p>In a previous notebook we have talked about the response time of a glacier and how it takes some time for the glacier to respond to changes in its climate.
+In this notebook we are going to investigate this delayed response further by looking at how glaciers acts as a smoothing filter (low-pass) on variations in the climate forcing.</p>
+<p>We will do this by introducing some, for you, new functionality of the OGGM-Edu classes which enables you to assign random, and custom, future temperature biases to the mass balance of your glacier.</p>
+<p>First we have to import the minimal set of classes for working with OGGM-Edu glaciers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">Glacier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we create a bed. For these examples we can use a fairly simply bed with a single slope.
+However, feel free to change this as you like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets create a relatively simple bed.</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">],</span> <span class="n">altitudes</span><span class="o">=</span><span class="p">[</span><span class="mi">4200</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
+                 <span class="n">slopes</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_5_0.png" src="../_images/low_pass_climate_5_0.png" />
+</div>
+</div>
+<p>Next step is the mass balance.
+We create a slightly more realistic mass balance profile with a few different gradients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A mass balance with the ela at 3600 m. and 4 gradients.</span>
+<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+                           <span class="n">breakpoints</span><span class="o">=</span><span class="p">[</span><span class="mi">3800</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="mi">2500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to create the glacier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span> <span class="o">=</span> <span class="n">Glacier</span><span class="p">(</span><span class="n">bed</span><span class="o">=</span><span class="n">bed</span><span class="p">,</span> <span class="n">mass_balance</span><span class="o">=</span><span class="n">mass_balance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at the mass balance profile.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_mass_balance</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_11_0.png" src="../_images/low_pass_climate_11_0.png" />
+</div>
+</div>
+<div class="section" id="adding-a-random-climate">
+<h2>Adding a random climate<a class="headerlink" href="#adding-a-random-climate" title="Permalink to this headline">¶</a></h2>
+<p>Before we start progressing the glacier assign a random climate to the future of the glacier.
+Random in this case means that the temperature bias of our glacier will vary randomly from year to year between values specified by us.
+Internally this has the effect that the ELA of our glacier changes up and down.</p>
+<p>We assign a random climate through<code class="docutils literal notranslate"><span class="pre">.add_random_climate(duration,</span> <span class="pre">temperature_range)</span></code>, a method of the <code class="docutils literal notranslate"><span class="pre">Glacier</span></code> object.
+<code class="docutils literal notranslate"><span class="pre">duration</span></code> specifies how long the random climate should last, while <code class="docutils literal notranslate"><span class="pre">temperature_range</span></code> lets the user specify between what temperatures the climate should vary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets add a random climate for a 1000 years, varying between -2 and 2 degrees.</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">add_random_climate</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">temperature_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can take a look at the random climate through the <code class="docutils literal notranslate"><span class="pre">temperature_bias_series</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">MassBalance</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a pandas dataframe.</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias_series</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>bias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>-1.908819</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.0</td>
+      <td>1.297433</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>-0.587838</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.0</td>
+      <td>0.073365</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>996</th>
+      <td>996.0</td>
+      <td>-1.687439</td>
+    </tr>
+    <tr>
+      <th>997</th>
+      <td>997.0</td>
+      <td>1.473496</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>998.0</td>
+      <td>-1.730507</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>999.0</td>
+      <td>1.761196</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>1000.0</td>
+      <td>1.501049</td>
+    </tr>
+  </tbody>
+</table>
+<p>1001 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>And also quickly plot it.
+This will be pretty messy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias_series</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_18_0.png" src="../_images/low_pass_climate_18_0.png" />
+</div>
+</div>
+<div class="alert alert-info">
+    <b>
+        Note that if this is series is pre-populated, like in this case, it will act as the climate for the glacier during the progression.
+        When empty, the current, constant, bias will be written to the corresponding year during the progression, creating a history of the temperature bias.
+    </b>
+</div><p>Now we can progress the glacier as usual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Progress the glacier to year 1000.</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_22_0.png" src="../_images/low_pass_climate_22_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="a-look-at-the-history">
+<h2>A look at the history<a class="headerlink" href="#a-look-at-the-history" title="Permalink to this headline">¶</a></h2>
+<p>We plot the history of the glacier length, volume and area with the <code class="docutils literal notranslate"><span class="pre">.plot_history()</span></code> method.
+We can also plot the temperature bias history by passing <code class="docutils literal notranslate"><span class="pre">True</span></code> to the <code class="docutils literal notranslate"><span class="pre">show_bias</span></code> argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_25_0.png" src="../_images/low_pass_climate_25_0.png" />
+</div>
+</div>
+<p>Since the random climate is just random, it is difficult to distinguish any similarities between the noisy bias and the glacier history.
+However, we can smooth the bias by providing a window size to the <code class="docutils literal notranslate"><span class="pre">window</span></code> argument.
+This will perform a rolling mean on the temperature bias series before plotting it.</p>
+<p>Here we also specify a time frame to plot in order to get a closer look at the data.
+By doing this we shrink the range of the y-axis, enhancing the fluctuations in the glacier history.</p>
+<div class="alert alert-success">
+    <details>
+    <summary>
+    <b>Try executing the cell below with different window sizes and try to find the size which represent the smoothing that the glacier have on the climate.</b> <it>[Click for a hint]</i>
+    </summary>
+        With a window size around 30-40 years, the bias begins to exhibit patterns similar to the glacier history.
+    </details>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Smooth the bias so that it resembles the history of the glacier attributes.</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                     <span class="n">time_range</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_27_0.png" src="../_images/low_pass_climate_27_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-custom-climate">
+<h2>Creating a custom climate<a class="headerlink" href="#creating-a-custom-climate" title="Permalink to this headline">¶</a></h2>
+<div class="alert alert-info">
+    <b>Warning:</b> The following section requires more experience with Python than most of the previous work you've done with OGGM-Edu.
+</div>
+<p>It is possible to create a completely custom climate for the glacier.
+This is done by creating an array of bias values and assigning it to the <code class="docutils literal notranslate"><span class="pre">.temp_bias_series</span></code> attribute.</p>
+<p>The easiest way to do this is by using one, or a combination, of the numpy-methods generating arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For this exercise we will create a sinusoidal bias, not because it is very realistic but to show one example of how one can use convenient functions to generate the values.
+You can essentially use any function returning an array of floats, or do it manually, to create the bias series of your imagination.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How many cycles and years do we want?</span>
+<span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># 1000 years, we add 1 since last number is not included.</span>
+<span class="n">n_years</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="c1"># Radians.</span>
+<span class="n">rads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_cycles</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_years</span><span class="p">)</span>
+<span class="c1"># Create the sinus waves.</span>
+<span class="n">bias_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rads</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We reset the glacier before adding the new climate, to start fresh.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can assign the <code class="docutils literal notranslate"><span class="pre">bias_data</span></code> to the <code class="docutils literal notranslate"><span class="pre">.temp_bias_series</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias_series</span> <span class="o">=</span> <span class="n">bias_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Progress the glacier as usual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take a look at the history of the glacier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_40_0.png" src="../_images/low_pass_climate_40_0.png" />
+</div>
+</div>
+<p>It is also possible to add a future climate to a glacier that already has some history.</p>
+<p>To start over, we first reset the glacier, then we add a linear trend and progress to the end of the climate data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">add_temperature_bias</span><span class="p">(</span><span class="n">bias</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_45_0.png" src="../_images/low_pass_climate_45_0.png" />
+</div>
+</div>
+<p>We can then assign more data to  the future climate, just as easy as before.
+we now want a sinus-wave that oscillates around the current temperature bias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How many cycles and years do we want?</span>
+<span class="n">n_cycles</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># 1000 years, we add 1 since last number is not included.</span>
+<span class="n">n_years</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="c1"># Radians.</span>
+<span class="n">rads</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_cycles</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_years</span><span class="p">)</span>
+<span class="c1"># Create the sinus wave and add the current temperature bias.</span>
+<span class="n">bias_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rads</span><span class="p">)</span> <span class="o">+</span> <span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assign it to the <code class="docutils literal notranslate"><span class="pre">.temp_bias_series</span></code>.
+Internally this will append it to the series that already exists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias_series</span> <span class="o">=</span> <span class="n">bias_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We progress to year 1154, the current age + 1000.</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">1200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_51_0.png" src="../_images/low_pass_climate_51_0.png" />
+</div>
+</div>
+<div class="section" id="adding-noise-to-clean-data">
+<h3>Adding noise to clean data<a class="headerlink" href="#adding-noise-to-clean-data" title="Permalink to this headline">¶</a></h3>
+<p>Until now, we have either created a completely random climate or very clean and predictable trends.
+The next step is, of course, to combine the methods to create trends that also have some random variability to them.</p>
+<p>We will demonstrate this by manually creating a linear trend and then adding some noise to it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a linear trend, from 0 to 2 degrees in 200 years</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="c1"># And some noise. Interannual variability of +- 2 degrees </span>
+<span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="c1"># Add the noise to the trend</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first add only some noise to get a noisy “spin up” of the glacier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias_series</span> <span class="o">=</span> <span class="n">noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then lets add the trend, remember that this will append to the future of the climate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">mass_balance</span><span class="o">.</span><span class="n">temp_bias_series</span> <span class="o">=</span> <span class="n">bias</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Progress to the end of the climate data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">700</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+    <b>Again, try running the cell below with different values for the window size.</b>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_63_0.png" src="../_images/low_pass_climate_63_0.png" />
+</div>
+</div>
+<p>Conveniently, the <code class="docutils literal notranslate"><span class="pre">.add_temperature_bias</span></code> has an argument which adds noise to the trend.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">add_temperature_bias</span><span class="p">(</span><span class="n">bias</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/low_pass_climate_68_0.png" src="../_images/low_pass_climate_68_0.png" />
+</div>
+</div>
+<p>Now you should have the tools to create your own climates for OGGM-Edu glaciers and see how they filter the climate.</p>
+</div>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./oggm-edu"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="advance_and_retreat.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Glacier advance and retreat</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="glacier_water_resources.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Glaciers as water resources: part 1 (idealized climate)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By OGGM e.V. and OGGM Contributors<br/>
+        
+          <div class="extra_footer">
+            <p>
+These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/blob/master/LICENSE.txt" target="_blank">BSD-3-Clause license</a>.
+<br>
+&copy; Copyright 2014-2021.
+</p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

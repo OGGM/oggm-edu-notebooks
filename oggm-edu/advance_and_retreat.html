@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Glaciers as water resources: part 1 (idealized climate)" href="glacier_water_resources.html" />
+    <link rel="next" title="Glaciers as a low-pass filter of climate variations" href="low_pass_climate.html" />
     <link rel="prev" title="Accumulation, ablation, mass Balance and the resulting ice flow" href="accumulation_and_ablation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -168,6 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Glacier advance and retreat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="low_pass_climate.html">
+   Glaciers as a low-pass filter of climate variations
   </a>
  </li>
 </ul>
@@ -386,7 +391,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="exploring-glacier-advance-and-retreat-with-oggm-edu">
 <h2>Exploring glacier advance and retreat with OGGM-Edu<a class="headerlink" href="#exploring-glacier-advance-and-retreat-with-oggm-edu" title="Permalink to this headline">¶</a></h2>
-<p>We start by defining a idealised glacier, then we let the glacier grow until it reaches its equilibrium state. Then we can simulate glacier advance and retreat. We represent the different steps illustrated in the <a class="reference external" href="https://edu.oggm.org/en/latest/glacier_basics.html">open glacier graphics from the OGGM-EDU website</a> (made by Anne Maussion, <a class="reference external" href="http://atelierlesgrosyeux.com/">Atelier les Gros yeux</a>).</p>
+<p>We start by defining an idealised glacier, then we let the glacier grow until it reaches its equilibrium state. Then we can simulate glacier advance and retreat. We represent the different steps illustrated in the <a class="reference external" href="https://edu.oggm.org/en/latest/glacier_basics.html">open glacier graphics from the OGGM-EDU website</a> (made by Anne Maussion, <a class="reference external" href="http://atelierlesgrosyeux.com/">Atelier les Gros yeux</a>).</p>
 <div class="section" id="initialisation-let-s-define-our-glacier">
 <h3>Initialisation: Let’s define our glacier<a class="headerlink" href="#initialisation-let-s-define-our-glacier" title="Permalink to this headline">¶</a></h3>
 <p>First, as always, we define a linear bedrock profile:</p>
@@ -526,6 +531,10 @@ const thebe_selector_output = ".output, .cell_output"
     <tr>
       <th>Max ice thickness [m]</th>
       <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Max ice velocity [m/yr]</th>
+      <td>None</td>
     </tr>
     <tr>
       <th>Response time [yrs]</th>
@@ -877,10 +886,10 @@ Eventually the glacier has retreated far enough for the annual ablation to once 
             <p class="prev-next-title">Accumulation, ablation, mass Balance and the resulting ice flow</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="glacier_water_resources.html" title="next page">
+    <a class='right-next' id="next-link" href="low_pass_climate.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Glaciers as water resources: part 1 (idealized climate)</p>
+        <p class="prev-next-title">Glaciers as a low-pass filter of climate variations</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
