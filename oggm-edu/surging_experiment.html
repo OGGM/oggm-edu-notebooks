@@ -576,7 +576,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.4/lib/python3.10/site-packages/oggm_edu/glacier.py:1053: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.5/lib/python3.10/site-packages/oggm_edu/glacier.py:1127: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
   warnings.warn(
 </pre></div>
 </div>
@@ -638,7 +638,6 @@ For this we will again employ the glacier collection.</p>
       <th>Bed type</th>
       <th>Top [m]</th>
       <th>...</th>
-      <th>Width(s) [m]</th>
       <th>Length [km]</th>
       <th>ELA [m]</th>
       <th>Original ELA [m]</th>
@@ -647,6 +646,7 @@ For this we will again employ the glacier collection.</p>
       <th>Hemisphere</th>
       <th>Ice density [kg/m3]</th>
       <th>Max ice velocity [m/yr]</th>
+      <th>AAR [%]</th>
       <th>Response time [yrs]</th>
     </tr>
     <tr>
@@ -688,7 +688,6 @@ For this we will again employ the glacier collection.</p>
       <td>Linear bed with a variable width</td>
       <td>3400</td>
       <td>...</td>
-      <td>[500, 400, 300, 300]</td>
       <td>20.0</td>
       <td>2900</td>
       <td>2900</td>
@@ -696,6 +695,7 @@ For this we will again employ the glacier collection.</p>
       <td>4</td>
       <td>nh</td>
       <td>900.0</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -712,7 +712,6 @@ For this we will again employ the glacier collection.</p>
       <td>Linear bed with a variable width</td>
       <td>3400</td>
       <td>...</td>
-      <td>[500, 400, 300, 300]</td>
       <td>20.0</td>
       <td>2900</td>
       <td>2900</td>
@@ -721,11 +720,12 @@ For this we will again employ the glacier collection.</p>
       <td>nh</td>
       <td>900.0</td>
       <td>140.985408</td>
+      <td>55.468386</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>2 rows × 21 columns</p>
+<p>2 rows × 22 columns</p>
 </div></div></div>
 </div>
 <div class="alert alert-success">
@@ -759,9 +759,9 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.4/lib/python3.10/site-packages/oggm_edu/glacier.py:1053: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.5/lib/python3.10/site-packages/oggm_edu/glacier.py:1127: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
   warnings.warn(
-/usr/local/pyenv/versions/3.10.4/lib/python3.10/site-packages/oggm_edu/glacier.py:418: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
+/usr/local/pyenv/versions/3.10.5/lib/python3.10/site-packages/oggm_edu/glacier.py:492: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain.
   warnings.warn(
 </pre></div>
 </div>
@@ -803,7 +803,6 @@ For this we will again employ the glacier collection.</p>
       <th>Bed type</th>
       <th>Top [m]</th>
       <th>...</th>
-      <th>Width(s) [m]</th>
       <th>Length [km]</th>
       <th>ELA [m]</th>
       <th>Original ELA [m]</th>
@@ -812,6 +811,7 @@ For this we will again employ the glacier collection.</p>
       <th>Hemisphere</th>
       <th>Ice density [kg/m3]</th>
       <th>Max ice velocity [m/yr]</th>
+      <th>AAR [%]</th>
       <th>Response time [yrs]</th>
     </tr>
     <tr>
@@ -853,7 +853,6 @@ For this we will again employ the glacier collection.</p>
       <td>Linear bed with a variable width</td>
       <td>3400</td>
       <td>...</td>
-      <td>[500, 400, 300, 300]</td>
       <td>20.0</td>
       <td>2900</td>
       <td>2900</td>
@@ -861,6 +860,7 @@ For this we will again employ the glacier collection.</p>
       <td>4</td>
       <td>nh</td>
       <td>900.0</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -877,7 +877,6 @@ For this we will again employ the glacier collection.</p>
       <td>Linear bed with a variable width</td>
       <td>3400</td>
       <td>...</td>
-      <td>[500, 400, 300, 300]</td>
       <td>20.0</td>
       <td>2900</td>
       <td>2900</td>
@@ -886,6 +885,7 @@ For this we will again employ the glacier collection.</p>
       <td>nh</td>
       <td>900.0</td>
       <td>140.985408</td>
+      <td>55.468386</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -901,7 +901,6 @@ For this we will again employ the glacier collection.</p>
       <td>Linear bed with a variable width</td>
       <td>3400</td>
       <td>...</td>
-      <td>[500, 400, 300, 300]</td>
       <td>20.0</td>
       <td>2900</td>
       <td>2900</td>
@@ -911,10 +910,11 @@ For this we will again employ the glacier collection.</p>
       <td>900.0</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>3 rows × 21 columns</p>
+<p>3 rows × 22 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">

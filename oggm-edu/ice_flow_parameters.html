@@ -443,6 +443,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <th>Volume [km3]</th>
       <th>Max ice thickness [m]</th>
       <th>Max ice velocity [m/yr]</th>
+      <th>AAR [%]</th>
       <th>Response time [yrs]</th>
       <th>Bed type</th>
       <th>Top [m]</th>
@@ -477,6 +478,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -489,6 +491,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>0.0</td>
       <td>0.0</td>
       <td>None</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -512,6 +515,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>0.0</td>
       <td>None</td>
       <td>NaN</td>
+      <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -533,6 +537,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>0.0</td>
       <td>0.0</td>
       <td>None</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -559,6 +564,13 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
 <span class="c1"># Note that running this cell multiple times will continue to change</span>
 <span class="c1"># the value.</span>
 <span class="n">collection</span><span class="o">.</span><span class="n">change_attributes</span><span class="p">({</span><span class="s2">&quot;creep&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;* 10&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;/ 10&quot;</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value interpreted as a creep factor.
+Value interpreted as a creep factor.
+Value interpreted as a creep factor.
 </pre></div>
 </div>
 </div>
@@ -629,6 +641,12 @@ By default it is set to 0, but it can be modified</p>
 <span class="n">collection</span><span class="o">.</span><span class="n">change_attributes</span><span class="p">(</span><span class="n">attributes_to_change</span><span class="o">=</span>
                              <span class="p">{</span><span class="s1">&#39;basal_sliding&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.7e-20</span><span class="p">]}</span>
                             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.5/lib/python3.10/site-packages/oggm_edu/glacier.py:322: UserWarning: Basal sliding is very low.
+  warnings.warn(&quot;Basal sliding is very low.&quot;)
 </pre></div>
 </div>
 </div>
