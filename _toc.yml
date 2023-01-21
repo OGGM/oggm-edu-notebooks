@@ -31,3 +31,7 @@ parts:
   - caption: Graphics
     chapters:
     - file: graphics/ela_changes_response_time
+    
+  - caption: Technical details
+    chapters:
+    - file: img/build_info
