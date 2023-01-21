@@ -210,6 +210,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Technical details
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../img/build_info.html">
+   Build information &amp; package versions
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -599,9 +611,9 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>2500</td>
       <td>8700.0</td>
       <td>3.48</td>
-      <td>0.376764</td>
-      <td>119.836207</td>
-      <td>6.25951</td>
+      <td>0.376760</td>
+      <td>119.836080</td>
+      <td>6.248931</td>
       <td>63.218391</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
@@ -619,13 +631,13 @@ If the climate remains constant for a long enough time, glaciers will reach an e
     <tr>
       <th>2</th>
       <td>Glacier</td>
-      <td>531</td>
+      <td>515</td>
       <td>12300.0</td>
       <td>4.92</td>
-      <td>0.935159</td>
-      <td>214.228472</td>
-      <td>64.34719</td>
-      <td>52.845528</td>
+      <td>0.931013</td>
+      <td>211.953447</td>
+      <td>70.680529</td>
+      <td>52.032520</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -642,13 +654,13 @@ If the climate remains constant for a long enough time, glaciers will reach an e
     <tr>
       <th>3</th>
       <td>Glacier</td>
-      <td>208</td>
-      <td>13800.0</td>
-      <td>5.52</td>
-      <td>1.418343</td>
-      <td>291.286530</td>
-      <td>215.60993</td>
-      <td>52.173913</td>
+      <td>188</td>
+      <td>13600.0</td>
+      <td>5.44</td>
+      <td>1.380161</td>
+      <td>283.343538</td>
+      <td>314.143062</td>
+      <td>52.941176</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -776,7 +788,7 @@ This will be the first step to getting the response time of a glacier.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{531: 3000}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{515: 3000}
 </pre></div>
 </div>
 </div>
@@ -825,7 +837,7 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{531: 3000, 790: 3150.0}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{515: 3000, 907: 3150.0}
 </pre></div>
 </div>
 </div>
@@ -845,7 +857,7 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>72.0
 </pre></div>
 </div>
 </div>
@@ -890,35 +902,35 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
     </tr>
     <tr>
       <th>Age</th>
-      <td>790</td>
+      <td>907</td>
     </tr>
     <tr>
       <th>Length [m]</th>
-      <td>8900.0</td>
+      <td>8700.0</td>
     </tr>
     <tr>
       <th>Area [km2]</th>
-      <td>3.56</td>
+      <td>3.48</td>
     </tr>
     <tr>
       <th>Volume [km3]</th>
-      <td>0.58815</td>
+      <td>0.569833</td>
     </tr>
     <tr>
       <th>Max ice thickness [m]</th>
-      <td>187.240744</td>
+      <td>185.550893</td>
     </tr>
     <tr>
       <th>Max ice velocity [m/yr]</th>
-      <td>64.34719029759582</td>
+      <td>70.68052947778854</td>
     </tr>
     <tr>
       <th>AAR [%]</th>
-      <td>51.685393</td>
+      <td>52.873563</td>
     </tr>
     <tr>
       <th>Response time [yrs]</th>
-      <td>69.0</td>
+      <td>72.0</td>
     </tr>
   </tbody>
 </table>
@@ -1030,12 +1042,12 @@ For this we need a new collection.</p>
     <tr>
       <th>1</th>
       <td>Glacier</td>
-      <td>1396</td>
+      <td>1397</td>
       <td>11100.0</td>
       <td>4.44</td>
-      <td>0.617531</td>
-      <td>156.657721</td>
-      <td>18.163011</td>
+      <td>0.617579</td>
+      <td>156.657761</td>
+      <td>18.082266</td>
       <td>53.153153</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
@@ -1053,13 +1065,13 @@ For this we need a new collection.</p>
     <tr>
       <th>2</th>
       <td>Glacier</td>
-      <td>531</td>
+      <td>515</td>
       <td>12300.0</td>
       <td>4.92</td>
-      <td>0.935159</td>
-      <td>214.228472</td>
-      <td>64.347190</td>
-      <td>52.845528</td>
+      <td>0.931013</td>
+      <td>211.953447</td>
+      <td>70.680529</td>
+      <td>52.032520</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1076,13 +1088,13 @@ For this we need a new collection.</p>
     <tr>
       <th>3</th>
       <td>Glacier</td>
-      <td>208</td>
-      <td>13800.0</td>
-      <td>5.52</td>
-      <td>1.418343</td>
-      <td>291.286530</td>
-      <td>215.609930</td>
-      <td>52.173913</td>
+      <td>188</td>
+      <td>13600.0</td>
+      <td>5.44</td>
+      <td>1.380161</td>
+      <td>283.343538</td>
+      <td>314.143062</td>
+      <td>52.941176</td>
       <td>NaN</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1193,12 +1205,12 @@ For this we need a new collection.</p>
     <tr>
       <th>1</th>
       <td>Glacier</td>
-      <td>2033</td>
+      <td>2034</td>
       <td>8000.0</td>
       <td>3.20</td>
-      <td>0.378810</td>
-      <td>134.826892</td>
-      <td>18.163011</td>
+      <td>0.378811</td>
+      <td>134.826943</td>
+      <td>18.082266</td>
       <td>51.250000</td>
       <td>227.0</td>
       <td>Linear bed with a constant width</td>
@@ -1216,14 +1228,14 @@ For this we need a new collection.</p>
     <tr>
       <th>2</th>
       <td>Glacier</td>
-      <td>790</td>
-      <td>8900.0</td>
-      <td>3.56</td>
-      <td>0.588150</td>
-      <td>187.240744</td>
-      <td>64.347190</td>
-      <td>51.685393</td>
-      <td>69.0</td>
+      <td>907</td>
+      <td>8700.0</td>
+      <td>3.48</td>
+      <td>0.569833</td>
+      <td>185.550893</td>
+      <td>70.680529</td>
+      <td>52.873563</td>
+      <td>72.0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1239,13 +1251,13 @@ For this we need a new collection.</p>
     <tr>
       <th>3</th>
       <td>Glacier</td>
-      <td>319</td>
-      <td>10100.0</td>
-      <td>4.04</td>
-      <td>0.913352</td>
-      <td>256.795193</td>
-      <td>215.609930</td>
-      <td>52.475248</td>
+      <td>284</td>
+      <td>10000.0</td>
+      <td>4.00</td>
+      <td>0.885730</td>
+      <td>248.803817</td>
+      <td>314.143062</td>
+      <td>52.000000</td>
       <td>24.0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
