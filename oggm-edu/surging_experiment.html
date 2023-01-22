@@ -593,7 +593,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.9/lib/python3.10/site-packages/oggm_edu/glacier.py:1139: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.9/lib/python3.10/site-packages/oggm_edu/glacier.py:1165: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
   warnings.warn(msg)
 </pre></div>
 </div>
@@ -660,11 +660,11 @@ For this we will again employ the glacier collection.</p>
       <th>Original ELA [m]</th>
       <th>Temperature bias [C]</th>
       <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
+      <th>Creep (Glen A)</th>
+      <th>Basal sliding</th>
     </tr>
     <tr>
       <th>Glacier</th>
@@ -710,8 +710,8 @@ For this we will again employ the glacier collection.</p>
       <td>2900</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -734,11 +734,11 @@ For this we will again employ the glacier collection.</p>
       <td>2900</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
       <td>140.985408</td>
       <td>55.468386</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -776,9 +776,9 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.9/lib/python3.10/site-packages/oggm_edu/glacier.py:1139: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.9/lib/python3.10/site-packages/oggm_edu/glacier.py:1165: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
   warnings.warn(msg)
-/usr/local/pyenv/versions/3.10.9/lib/python3.10/site-packages/oggm_edu/glacier.py:496: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
+/usr/local/pyenv/versions/3.10.9/lib/python3.10/site-packages/oggm_edu/glacier.py:522: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
   warnings.warn(msg)
 </pre></div>
 </div>
@@ -825,11 +825,11 @@ For this we will again employ the glacier collection.</p>
       <th>Original ELA [m]</th>
       <th>Temperature bias [C]</th>
       <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
+      <th>Creep (Glen A)</th>
+      <th>Basal sliding</th>
     </tr>
     <tr>
       <th>Glacier</th>
@@ -875,8 +875,8 @@ For this we will again employ the glacier collection.</p>
       <td>2900</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -899,11 +899,11 @@ For this we will again employ the glacier collection.</p>
       <td>2900</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
       <td>140.985408</td>
       <td>55.468386</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -923,8 +923,8 @@ For this we will again employ the glacier collection.</p>
       <td>2900</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>

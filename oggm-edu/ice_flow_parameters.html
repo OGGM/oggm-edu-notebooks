@@ -462,6 +462,8 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
+      <th>Creep (Glen A)</th>
+      <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
       <th>Bottom [m]</th>
@@ -471,8 +473,6 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <th>Original ELA [m]</th>
       <th>Temperature bias [C]</th>
       <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
     </tr>
     <tr>
       <th>Glacier</th>
@@ -510,6 +510,8 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>None</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -519,8 +521,6 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>3000</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -533,6 +533,8 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>None</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -542,8 +544,6 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>3000</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -556,6 +556,8 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>None</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -565,8 +567,6 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>3000</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
   </tbody>
 </table>
@@ -592,10 +592,10 @@ Value interpreted as a creep factor.
 </div>
 </div>
 </div>
-<p>And progress the glaciers within the collection to year 500:</p>
+<p>And progress the glaciers within the collection to year 800:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -655,16 +655,14 @@ By default it is set to 0, but it can be modified</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we demonstrate another way to change attributes of glaciers</span>
 <span class="c1"># in the collection quickly.</span>
 <span class="c1"># The dictionary can contain multiple key-value pairs.</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">change_attributes</span><span class="p">(</span><span class="n">attributes_to_change</span><span class="o">=</span>
-                             <span class="p">{</span><span class="s1">&#39;basal_sliding&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.7e-20</span><span class="p">]}</span>
-                            <span class="p">)</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">change_attributes</span><span class="p">({</span><span class="s1">&#39;basal_sliding&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5.7e-20</span><span class="p">]})</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

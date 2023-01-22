@@ -568,6 +568,8 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
+      <th>Creep (Glen A)</th>
+      <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
       <th>Bottom [m]</th>
@@ -577,8 +579,6 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <th>Original ELA [m]</th>
       <th>Temperature bias [C]</th>
       <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
     </tr>
     <tr>
       <th>Glacier</th>
@@ -616,6 +616,8 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>6.248931</td>
       <td>63.218391</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -625,8 +627,6 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>3000</td>
       <td>0</td>
       <td>0.3</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -639,6 +639,8 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>70.680529</td>
       <td>52.032520</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -648,8 +650,6 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>3000</td>
       <td>0</td>
       <td>4.0</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -662,6 +662,8 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>314.143062</td>
       <td>52.941176</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -671,8 +673,6 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>3000</td>
       <td>0</td>
       <td>15.0</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
   </tbody>
 </table>
@@ -757,6 +757,14 @@ This will be the first step to getting the response time of a glacier.</p>
     <tr>
       <th>Response time [yrs]</th>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Creep (Glen A)</th>
+      <td>2.4e-24</td>
+    </tr>
+    <tr>
+      <th>Basal sliding</th>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -932,6 +940,14 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
       <th>Response time [yrs]</th>
       <td>72.0</td>
     </tr>
+    <tr>
+      <th>Creep (Glen A)</th>
+      <td>2.4e-24</td>
+    </tr>
+    <tr>
+      <th>Basal sliding</th>
+      <td>0</td>
+    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -1002,6 +1018,8 @@ For this we need a new collection.</p>
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
+      <th>Creep (Glen A)</th>
+      <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
       <th>Bottom [m]</th>
@@ -1011,8 +1029,6 @@ For this we need a new collection.</p>
       <th>Original ELA [m]</th>
       <th>Temperature bias [C]</th>
       <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
     </tr>
     <tr>
       <th>Glacier</th>
@@ -1050,6 +1066,8 @@ For this we need a new collection.</p>
       <td>18.082266</td>
       <td>53.153153</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1059,8 +1077,6 @@ For this we need a new collection.</p>
       <td>3000</td>
       <td>0</td>
       <td>1</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1073,6 +1089,8 @@ For this we need a new collection.</p>
       <td>70.680529</td>
       <td>52.032520</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1082,8 +1100,6 @@ For this we need a new collection.</p>
       <td>3000</td>
       <td>0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1096,6 +1112,8 @@ For this we need a new collection.</p>
       <td>314.143062</td>
       <td>52.941176</td>
       <td>NaN</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1105,8 +1123,6 @@ For this we need a new collection.</p>
       <td>3000</td>
       <td>0</td>
       <td>15</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
   </tbody>
 </table>
@@ -1165,6 +1181,8 @@ For this we need a new collection.</p>
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
+      <th>Creep (Glen A)</th>
+      <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
       <th>Bottom [m]</th>
@@ -1174,8 +1192,6 @@ For this we need a new collection.</p>
       <th>Original ELA [m]</th>
       <th>Temperature bias [C]</th>
       <th>Gradient [mm/m/yr]</th>
-      <th>Hemisphere</th>
-      <th>Ice density [kg/m3]</th>
     </tr>
     <tr>
       <th>Glacier</th>
@@ -1213,6 +1229,8 @@ For this we need a new collection.</p>
       <td>18.082266</td>
       <td>51.250000</td>
       <td>227.0</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1222,8 +1240,6 @@ For this we need a new collection.</p>
       <td>3000</td>
       <td>1.0</td>
       <td>1</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1236,6 +1252,8 @@ For this we need a new collection.</p>
       <td>70.680529</td>
       <td>52.873563</td>
       <td>72.0</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1245,8 +1263,6 @@ For this we need a new collection.</p>
       <td>3000</td>
       <td>1.0</td>
       <td>4</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1259,6 +1275,8 @@ For this we need a new collection.</p>
       <td>314.143062</td>
       <td>52.000000</td>
       <td>24.0</td>
+      <td>2.4e-24</td>
+      <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
       <td>1500</td>
@@ -1268,8 +1286,6 @@ For this we need a new collection.</p>
       <td>3000</td>
       <td>1.0</td>
       <td>15</td>
-      <td>nh</td>
-      <td>900.0</td>
     </tr>
   </tbody>
 </table>

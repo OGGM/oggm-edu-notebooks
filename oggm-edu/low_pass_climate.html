@@ -387,7 +387,8 @@ However, feel free to change this as you like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets create a relatively simple bed.</span>
-<span class="n">bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">],</span> <span class="n">altitudes</span><span class="o">=</span><span class="p">[</span><span class="mi">4200</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">GlacierBed</span><span class="p">(</span><span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">],</span> 
+                 <span class="n">altitudes</span><span class="o">=</span><span class="p">[</span><span class="mi">4200</span><span class="p">,</span> <span class="mi">3400</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
                  <span class="n">slopes</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -408,7 +409,8 @@ We create a slightly more realistic mass balance profile with a few different gr
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A mass balance with the ela at 3600 m. and 4 gradients.</span>
-<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">gradient</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+<span class="n">mass_balance</span> <span class="o">=</span> <span class="n">MassBalance</span><span class="p">(</span><span class="n">ela</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> 
+                           <span class="n">gradient</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
                            <span class="n">breakpoints</span><span class="o">=</span><span class="p">[</span><span class="mi">3800</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="mi">2500</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -488,22 +490,22 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>1</th>
       <td>1.0</td>
-      <td>-1.389277</td>
+      <td>-1.925787</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2.0</td>
-      <td>1.069000</td>
+      <td>-1.822853</td>
     </tr>
     <tr>
       <th>3</th>
       <td>3.0</td>
-      <td>-0.706151</td>
+      <td>-1.270065</td>
     </tr>
     <tr>
       <th>4</th>
       <td>4.0</td>
-      <td>-0.487015</td>
+      <td>1.666199</td>
     </tr>
     <tr>
       <th>...</th>
@@ -513,27 +515,27 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>996</th>
       <td>996.0</td>
-      <td>-0.515603</td>
+      <td>1.713925</td>
     </tr>
     <tr>
       <th>997</th>
       <td>997.0</td>
-      <td>-1.476461</td>
+      <td>-1.477500</td>
     </tr>
     <tr>
       <th>998</th>
       <td>998.0</td>
-      <td>1.659540</td>
+      <td>1.623756</td>
     </tr>
     <tr>
       <th>999</th>
       <td>999.0</td>
-      <td>1.304950</td>
+      <td>0.267475</td>
     </tr>
     <tr>
       <th>1000</th>
       <td>1000.0</td>
-      <td>-0.817963</td>
+      <td>-1.536503</td>
     </tr>
   </tbody>
 </table>
