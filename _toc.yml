@@ -18,15 +18,21 @@ parts:
     
   - caption: Glacier mass balance
     chapters:
-    - file: oggm-edu/temperature_index_model
     - file: oggm-edu/accumulation_and_ablation
     - file: oggm-edu/advance_and_retreat
     - file: oggm-edu/low_pass_climate
+    - file: oggm-edu/temperature_index_model
     
   - caption: Glaciers as water resources
     chapters:
-    - file: oggm-edu/glacier_water_resources
-    - file: oggm-edu/glacier_water_resources_projections
+    - file: oggm-edu/glacier_water_resources_index
+      sections:
+        - file: oggm-edu/glacier_water_resources_pre16
+        - file: oggm-edu/glacier_water_resources
+    - file: oggm-edu/glacier_water_resources_projections_index
+      sections:
+        - file: oggm-edu/glacier_water_resources_projections_pre16
+        - file: oggm-edu/glacier_water_resources_projections
     
   - caption: Graphics
     chapters:
