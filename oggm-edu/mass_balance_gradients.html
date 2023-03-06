@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Mass balance gradients (MBG) and their influence on glacier flow &#8212; OGGM-Edu notebooks</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -74,7 +73,21 @@ const thebe_selector_output = ".output, .cell_output"
                     </script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -83,9 +96,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -103,14 +117,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../welcome.html">
-   Welcome to the OGGM Edu Notebooks!
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Welcome to the OGGM Edu Notebooks!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Beginners
  </span>
@@ -161,11 +176,6 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="temperature_index_model.html">
-   Temperature index models
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="accumulation_and_ablation.html">
    Accumulation, ablation, mass Balance and the resulting ice flow
   </a>
@@ -180,6 +190,11 @@ const thebe_selector_output = ".output, .cell_output"
    Glaciers as a low-pass filter of climate variations
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="temperature_index_model.html">
+   Temperature index models
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -187,15 +202,49 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="glacier_water_resources.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="glacier_water_resources_index.html">
    Glaciers as water resources: part 1 (idealized climate)
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="glacier_water_resources_pre16.html">
+     Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="glacier_water_resources.html">
+     Glaciers as water resources: part 1 (idealized climate)
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="glacier_water_resources_projections.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="glacier_water_resources_projections_index.html">
    Glaciers as water resources: part 2 (projections)
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="glacier_water_resources_projections_pre16.html">
+     Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="glacier_water_resources_projections.html">
+     Glaciers as water resources: part 2 (projections)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -224,115 +273,244 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/oggm-edu/mass_balance_gradients.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/OGGM/oggm-edu-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/mass_balance_gradients.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/mass_balance_gradients.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull%3Frepo=https://github.com/OGGM/oggm-edu-notebooks%26urlpath%3Dlab%252Ftree%252Foggm-edu-notebooks/./oggm-edu/mass_balance_gradients.ipynb%26branch%3Dmaster"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https://github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/mass_balance_gradients.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull%3Frepo=https://github.com/OGGM/oggm-edu-notebooks%26urlpath%3Dlab%252Ftree%252Foggm-edu-notebooks/./oggm-edu/mass_balance_gradients.ipynb%26branch%3Dmaster"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/mass_balance_gradients.ipynb&branch=master"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/OGGM/oggm-edu-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/mass_balance_gradients.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/mass_balance_gradients.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/oggm-edu/mass_balance_gradients.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#initialising-the-glacier">
    Initialising the glacier
@@ -372,17 +550,72 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Mass balance gradients (MBG) and their influence on glacier flow</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialising-the-glacier">
+   Initialising the glacier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-the-mass-balance-gradient-mbg">
+   Changing the mass balance gradient (MBG)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-complex-mass-balance-profile">
+     Creating a complex mass balance profile
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equilibrium-state">
+   Equilibrium state
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#response-time">
+   Response time
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-next">
+   What’s next?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="mass-balance-gradients-mbg-and-their-influence-on-glacier-flow">
-<h1>Mass balance gradients (MBG) and their influence on glacier flow<a class="headerlink" href="#mass-balance-gradients-mbg-and-their-influence-on-glacier-flow" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mass-balance-gradients-mbg-and-their-influence-on-glacier-flow">
+<h1>Mass balance gradients (MBG) and their influence on glacier flow<a class="headerlink" href="#mass-balance-gradients-mbg-and-their-influence-on-glacier-flow" title="Permalink to this headline">#</a></h1>
 <p>In the intro notebook we touched briefly on the mass balance gradient of a glacier. This is what we are going to take a closer look at now.
 If the concept of mass balance is completely new to you, have a short read about it <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/">here</a>, up to the paragraph “<em>So what is Glacier Mass Balance?</em>”.
 In this notebook we will set up a few simple glaciers to further explore what characteristics of glaciers change with different mass balance gradients. We will also take a look at the topics of volume and response time.</p>
@@ -404,8 +637,8 @@ In this notebook we will set up a few simple glaciers to further explore what ch
 </div>
 </div>
 </div>
-<div class="section" id="initialising-the-glacier">
-<h2>Initialising the glacier<a class="headerlink" href="#initialising-the-glacier" title="Permalink to this headline">¶</a></h2>
+<section id="initialising-the-glacier">
+<h2>Initialising the glacier<a class="headerlink" href="#initialising-the-glacier" title="Permalink to this headline">#</a></h2>
 <p>We start by setting up a simple glacier with a linear bedrock (see <a class="reference internal" href="edu_intro.html"><span class="doc std std-doc">Getting started with OGGM Edu </span></a>) to generate a starting point for our experiment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -419,9 +652,9 @@ In this notebook we will set up a few simple glaciers to further explore what ch
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="changing-the-mass-balance-gradient-mbg">
-<h2>Changing the mass balance gradient (MBG)<a class="headerlink" href="#changing-the-mass-balance-gradient-mbg" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="changing-the-mass-balance-gradient-mbg">
+<h2>Changing the mass balance gradient (MBG)<a class="headerlink" href="#changing-the-mass-balance-gradient-mbg" title="Permalink to this headline">#</a></h2>
 <p>The MBG is defined as the change of the mass balance with altitude <a class="reference external" href="#References">¹</a>. It depends strongly on the climate at the glacier <a class="reference external" href="#References">²</a>.</p>
 <p>Let’s take a look at the effects of the MBG by creating a few glaciers with different gradients. In the intro notebook our glacier had a gradient of 4 mm/m so lets add a glacier with a weaker gradient and one with a stronger gradient.</p>
 <p>We will again make use of the <code class="docutils literal notranslate"><span class="pre">GlacierCollection</span></code> to quickly progress and visualise the glaciers.</p>
@@ -436,8 +669,8 @@ In this notebook we will set up a few simple glaciers to further explore what ch
 </div>
 </div>
 </div>
-<div class="section" id="creating-a-complex-mass-balance-profile">
-<h3>Creating a complex mass balance profile<a class="headerlink" href="#creating-a-complex-mass-balance-profile" title="Permalink to this headline">¶</a></h3>
+<section id="creating-a-complex-mass-balance-profile">
+<h3>Creating a complex mass balance profile<a class="headerlink" href="#creating-a-complex-mass-balance-profile" title="Permalink to this headline">#</a></h3>
 <p>It is also possible to create a more complex mass balance profile.
 This is achieved by passing a list of gradients, and another list with the altitude of the breakpoints between them.</p>
 <div class="cell docutils container">
@@ -495,10 +728,10 @@ This is why the glacier with the strongest gradient exhibits the largest growth 
 <div class="alert alert-success">
     <details><summary><b>What do you think: where do we find glaciers with high MBGs?</b> <i>Click for details</i></summary>
 <p>You will find a short explanation in this <a class="reference external" href="http://www.antarcticglaciers.org/modern-glaciers/introduction-glacier-mass-balance/#SECTION_3">paragraph</a> on <a class="reference external" href="http://AntarcticGlaciers.org">AntarcticGlaciers.org</a>.</p>
-</div></div>
-</div>
-<div class="section" id="equilibrium-state">
-<h2>Equilibrium state<a class="headerlink" href="#equilibrium-state" title="Permalink to this headline">¶</a></h2>
+</div></section>
+</section>
+<section id="equilibrium-state">
+<h2>Equilibrium state<a class="headerlink" href="#equilibrium-state" title="Permalink to this headline">#</a></h2>
 <p>Glaciers change their geometry as a way to adapt to the climate<a class="reference external" href="#References">³</a>. If the accumulation increases, the glacier will grow further down below the ELA to increase the ablation. Similarly, if the temperature rises and the ablation increases, the glacier length will decrease.
 If the climate remains constant for a long enough time, glaciers will reach an equilibrium state with its climate, where the accumulation = ablation <a class="reference external" href="#References">⁴</a>.</p>
 <p>With this in mind, we will take a look at how fast our glaciers, with different gradients, reach this state and compare their shapes:</p>
@@ -679,9 +912,9 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </div></div></div>
 </div>
 <p>The glacier with the strongest gradient reaches the equilibrium state first. This is also the largest and longest glacier.</p>
-</div>
-<div class="section" id="response-time">
-<h2>Response time<a class="headerlink" href="#response-time" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="response-time">
+<h2>Response time<a class="headerlink" href="#response-time" title="Permalink to this headline">#</a></h2>
 <p>The glacier response time is the period of time a glacier needs to adjust its geometry to changes in mass balance caused by climate change and reach a new equilibrium state.
 There are a some different definitions for its calculation, OGGM-Edu use the definition from Oerlemans (see formula below) <a class="reference external" href="#References">⁵</a>.</p>
 <p>A OGGM-Edu glacier has an attribute <code class="docutils literal notranslate"><span class="pre">.response_time</span></code> which is calculated based on difference between the last two equilibrium states in the glacier history.
@@ -1319,9 +1552,9 @@ For this we need a new collection.</p>
 The MBG affects the how fast the glacier will flow and in turn how fast the shape and size of the glacier can change. In general, we have to consider that the response time also depends on other features like the glacier-type, size, bed slope and average surface elevation. 
     </details>
 </div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>¹ Rasmussen, L. A., &amp; Andreassen, L. M. (2005). Seasonal mass-balance gradients in Norway. <em>Journal of Glaciology</em>, 51(175), 601-606.</p>
 <p>² Oerlemans, J., &amp; Fortuin, J. P. F. (1992). Sensitivity of glaciers and small ice caps to greenhouse warming. <em>Science, 258(5079)</em>, 115-117.</p>
 <p>³ Oerlemans, J. (2001). <em>Glaciers and climate change</em>. CRC Press.</p>
@@ -1329,12 +1562,12 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
 <p>⁵ Oerlemans, J. (1997). Climate sensitivity of Franz Josef Glacier, New Zealand, as revealed by numerical modeling. <em>Arctic and Alpine Research</em>, 29(2), 233-239.</p>
 <p>⁶ Anderson, B., Lawson, W., &amp; Owens, I. (2008). Response of Franz Josef Glacier Ka Roimata o Hine Hukatere to climate change. Global and Planetary Change, 63(1), 23-30.</p>
 <p>⁷ Cuffey, K.M. &amp; Paterson, W.S.B. <em>The Physics of Glaciers, 4th edition</em>, 704 (Academic Press, 2010).</p>
-</div>
-<div class="section" id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">#</a></h2>
 <p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1348,7 +1581,7 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./oggm-edu"
         },
         predefinedOutput: true
@@ -1358,9 +1591,11 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="ice_flow_parameters.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1376,33 +1611,35 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OGGM e.V. and OGGM Contributors<br/>
+  
+    <div class="extra_footer">
       <p>
-        
-          By OGGM e.V. and OGGM Contributors<br/>
-        
-          <div class="extra_footer">
-            <p>
 These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/blob/master/LICENSE.txt" target="_blank">BSD-3-Clause license</a>.
 <br>
 &copy; Copyright 2014-2021.
 </p>
 
-          </div>
-      </p>
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
