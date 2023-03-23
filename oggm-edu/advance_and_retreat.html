@@ -1,49 +1,67 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Glacier advance and retreat &#8212; OGGM-Edu notebooks</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-106829797-2');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -52,71 +70,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/advance_and_retreat';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Glaciers as a low-pass filter of climate variations" href="low_pass_climate.html" />
     <link rel="prev" title="Accumulation, ablation, mass Balance and the resulting ice flow" href="accumulation_and_ablation.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-106829797-2', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">OGGM-Edu notebooks</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -125,515 +165,329 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Beginners
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginners</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_with_notebooks.html">
-   Getting started with the Jupyter Notebook
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_notebooks.html">Getting started with the Jupyter Notebook</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Flowline modeling
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Flowline modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="edu_intro.html">
-   Getting started with OGGM Edu: idealised glaciers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ice_on_incline.html">
-   Ice on an incline
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ice_flow_parameters.html">
-   Influence of ice flow parameters on glacier size
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mass_balance_gradients.html">
-   Mass balance gradients (MBG) and their influence on glacier flow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="surging_experiment.html">
-   Glacier surging experiments
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="edu_intro.html">Getting started with OGGM Edu: idealised glaciers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice_on_incline.html">Ice on an incline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice_flow_parameters.html">Influence of ice flow parameters on glacier size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mass_balance_gradients.html">Mass balance gradients (MBG) and their influence on glacier flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surging_experiment.html">Glacier surging experiments</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Glacier mass balance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glacier mass balance</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="accumulation_and_ablation.html">
-   Accumulation, ablation, mass Balance and the resulting ice flow
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Glacier advance and retreat
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="low_pass_climate.html">
-   Glaciers as a low-pass filter of climate variations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="temperature_index_model.html">
-   Temperature index models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="accumulation_and_ablation.html">Accumulation, ablation, mass Balance and the resulting ice flow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Glacier advance and retreat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_pass_climate.html">Glaciers as a low-pass filter of climate variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temperature_index_model.html">Temperature index models</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Glaciers as water resources
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glaciers as water resources</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="glacier_water_resources_index.html">
-   Glaciers as water resources: part 1 (idealized climate)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources_pre16.html">
-     Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources.html">
-     Glaciers as water resources: part 1 (idealized climate)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="glacier_water_resources_projections_index.html">
-   Glaciers as water resources: part 2 (projections)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources_projections_pre16.html">
-     Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources_projections.html">
-     Glaciers as water resources: part 2 (projections)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_index.html">Glaciers as water resources: part 1 (idealized climate)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_pre16.html">Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Graphics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../graphics/ela_changes_response_time.html">
-   ELA changes and response time
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_projections_index.html">Glaciers as water resources: part 2 (projections)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections_pre16.html">Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Technical details
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../img/build_info.html">
-   Build information &amp; package versions
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/ela_changes_response_time.html">ELA changes and response time</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Technical details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../img/build_info.html">Build information &amp; package versions</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull%3Frepo=https://github.com/OGGM/oggm-edu-notebooks%26urlpath%3Dlab%252Ftree%252Foggm-edu-notebooks/./oggm-edu/advance_and_retreat.ipynb%26branch%3Dmaster"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/advance_and_retreat.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/advance_and_retreat.ipynb&branch=master"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on JupyterHub"
+      
+      
+      
+      <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/advance_and_retreat.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="headerbtn__text-container">JupyterHub</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OGGM/oggm-edu-notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/advance_and_retreat.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/advance_and_retreat.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/oggm-edu/advance_and_retreat.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/OGGM/oggm-edu-notebooks"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/advance_and_retreat.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/advance_and_retreat.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/oggm-edu/advance_and_retreat.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exploring-glacier-advance-and-retreat-with-oggm-edu">
-   Exploring glacier advance and retreat with OGGM-Edu
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialisation-let-s-define-our-glacier">
-     Initialisation: Let’s define our glacier
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mass-balance-and-the-equilibrium-line-altitude">
-       <strong>
-        Mass balance and the equilibrium line altitude
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#glacier-in-equilibrium">
-     Glacier in Equilibrium
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advancing-glacier">
-   Advancing Glacier
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#retreating-glacier">
-   Retreating glacier
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#take-home-points">
-   Take home points
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-s-next">
-   What’s next?
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Glacier advance and retreat</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exploring-glacier-advance-and-retreat-with-oggm-edu">
-   Exploring glacier advance and retreat with OGGM-Edu
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialisation-let-s-define-our-glacier">
-     Initialisation: Let’s define our glacier
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mass-balance-and-the-equilibrium-line-altitude">
-       <strong>
-        Mass balance and the equilibrium line altitude
-       </strong>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#glacier-in-equilibrium">
-     Glacier in Equilibrium
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advancing-glacier">
-   Advancing Glacier
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#retreating-glacier">
-   Retreating glacier
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#take-home-points">
-   Take home points
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-s-next">
-   What’s next?
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Glacier advance and retreat</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-glacier-advance-and-retreat-with-oggm-edu">Exploring glacier advance and retreat with OGGM-Edu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialisation-let-s-define-our-glacier">Initialisation: Let’s define our glacier</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-balance-and-the-equilibrium-line-altitude"><strong>Mass balance and the equilibrium line altitude</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glacier-in-equilibrium">Glacier in Equilibrium</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advancing-glacier">Advancing Glacier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retreating-glacier">Retreating glacier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#take-home-points">Take home points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s next?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="glacier-advance-and-retreat">
-<h1>Glacier advance and retreat<a class="headerlink" href="#glacier-advance-and-retreat" title="Permalink to this headline">#</a></h1>
+<h1>Glacier advance and retreat<a class="headerlink" href="#glacier-advance-and-retreat" title="Permalink to this heading">#</a></h1>
 <p>Goals of this notebook:</p>
 <ul class="simple">
 <li><p>Understand the concept of the equilibrium line altitude (ELA)</p></li>
@@ -649,10 +503,10 @@ title="Print to PDF"
 </div>
 </div>
 <section id="exploring-glacier-advance-and-retreat-with-oggm-edu">
-<h2>Exploring glacier advance and retreat with OGGM-Edu<a class="headerlink" href="#exploring-glacier-advance-and-retreat-with-oggm-edu" title="Permalink to this headline">#</a></h2>
+<h2>Exploring glacier advance and retreat with OGGM-Edu<a class="headerlink" href="#exploring-glacier-advance-and-retreat-with-oggm-edu" title="Permalink to this heading">#</a></h2>
 <p>We start by defining an idealised glacier, then we let the glacier grow until it reaches its equilibrium state. Then we can simulate glacier advance and retreat. We represent the different steps illustrated in the <a class="reference external" href="https://edu.oggm.org/en/latest/glacier_basics.html">open glacier graphics from the OGGM-EDU website</a> (made by Anne Maussion, <a class="reference external" href="http://atelierlesgrosyeux.com/">Atelier les Gros yeux</a>).</p>
 <section id="initialisation-let-s-define-our-glacier">
-<h3>Initialisation: Let’s define our glacier<a class="headerlink" href="#initialisation-let-s-define-our-glacier" title="Permalink to this headline">#</a></h3>
+<h3>Initialisation: Let’s define our glacier<a class="headerlink" href="#initialisation-let-s-define-our-glacier" title="Permalink to this heading">#</a></h3>
 <p>First, as always, we define a linear bedrock profile:</p>
 <p>Often glaciers are wider in the accumulation area, so we construct our glacier such that it is wider above the ELA.</p>
 <div class="cell docutils container">
@@ -686,12 +540,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_8_0.png" src="../_images/advance_and_retreat_8_0.png" />
+<img alt="../_images/dfa476f1bc86a958de1f3d7de4671f03f13ffa1c963cc30132b7ebf812d6112f.png" src="../_images/dfa476f1bc86a958de1f3d7de4671f03f13ffa1c963cc30132b7ebf812d6112f.png" />
 </div>
 </div>
 <p>Now we need to define the mass balance distribution over the glacier, after which the glacier can grow to its initial equilibrium state.</p>
 <section id="mass-balance-and-the-equilibrium-line-altitude">
-<h4><strong>Mass balance and the equilibrium line altitude</strong><a class="headerlink" href="#mass-balance-and-the-equilibrium-line-altitude" title="Permalink to this headline">#</a></h4>
+<h4><strong>Mass balance and the equilibrium line altitude</strong><a class="headerlink" href="#mass-balance-and-the-equilibrium-line-altitude" title="Permalink to this heading">#</a></h4>
 <p>The <strong>mass balance</strong> is the result of several processes that either add mass to the glacier (<strong>accumulation</strong>) or remove mass from the glacier (<strong>ablation</strong>). You can find more details in the <a class="reference internal" href="accumulation_and_ablation.html"><span class="doc std std-doc">accumulation and ablation notebook</span></a>. As a summary the following glacier graphics illustrate this relationship:</p>
 <ul class="simple">
 <li><p>The left graphic represents a theoretical mass accumulation over the whole glacier depicted by the blue ice volume on top of the grey glacier body.</p></li>
@@ -822,13 +676,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_24_0.png" src="../_images/advance_and_retreat_24_0.png" />
+<img alt="../_images/886510689735bd5fa2c2d014bc1c5bc42c0c5e65b84551ee925003182afbc7a3.png" src="../_images/886510689735bd5fa2c2d014bc1c5bc42c0c5e65b84551ee925003182afbc7a3.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="glacier-in-equilibrium">
-<h3>Glacier in Equilibrium<a class="headerlink" href="#glacier-in-equilibrium" title="Permalink to this headline">#</a></h3>
+<h3>Glacier in Equilibrium<a class="headerlink" href="#glacier-in-equilibrium" title="Permalink to this heading">#</a></h3>
 <p>For a glacier to be in equilibrium, we require the specific mass balance (accumulation + ablation) to be zero averaged over a year on the glacier. A glacier is in equilibrium if the glacier will neither retreat nor advance from one year to the next year if the climate stays constant.</p>
 <p>Let’s progress the glacier until it reaches equilibrium</p>
 <div class="cell docutils container">
@@ -846,7 +700,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_30_0.png" src="../_images/advance_and_retreat_30_0.png" />
+<img alt="../_images/464ba33e503d31c9c08e374c53e40467aa485169bb128048cc5f52279db273aa.png" src="../_images/464ba33e503d31c9c08e374c53e40467aa485169bb128048cc5f52279db273aa.png" />
 </div>
 </div>
 <p>Although our initial glacier is in equilibrium, it doesn’t mean that the mass balance is zero everywhere.
@@ -857,7 +711,7 @@ The net positive mass balance at the top (more accumulation, less ablation) bala
 </section>
 </section>
 <section id="advancing-glacier">
-<h2>Advancing Glacier<a class="headerlink" href="#advancing-glacier" title="Permalink to this headline">#</a></h2>
+<h2>Advancing Glacier<a class="headerlink" href="#advancing-glacier" title="Permalink to this heading">#</a></h2>
 <p>To induce a glacier advance we will use the same glacier as before, but decrease the temperature.
 This moves the ELA down the glacier.</p>
 <p>To achieve this we set up a climate change scenario with the <code class="docutils literal notranslate"><span class="pre">.add_temperature_bias</span></code> method.
@@ -939,7 +793,7 @@ Our scenario implies a temperature decrease of -1.5<span class="math notranslate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_39_0.png" src="../_images/advance_and_retreat_39_0.png" />
+<img alt="../_images/cf5d581e438364253ecac64ac5b2d2c7e5cbf32b8f52493e533712e7d6de37e2.png" src="../_images/cf5d581e438364253ecac64ac5b2d2c7e5cbf32b8f52493e533712e7d6de37e2.png" />
 </div>
 </div>
 <p>Decreasing the ELA results in an increased accumulation area and thus higher accumulation. More mass at the top of the glacier will increase the ice flow <span class="math notranslate nohighlight">\(\vec{q}\)</span> down the glacier, leading to an advance of the glacier terminus and thus expanding the ablation area.
@@ -953,12 +807,12 @@ This is also illustrated in the plot below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_41_0.png" src="../_images/advance_and_retreat_41_0.png" />
+<img alt="../_images/8eb17ba063709ac5b6f707bb8bb5e47cee1cb8205e9b52893757f8416da8eb6d.png" src="../_images/8eb17ba063709ac5b6f707bb8bb5e47cee1cb8205e9b52893757f8416da8eb6d.png" />
 </div>
 </div>
 </section>
 <section id="retreating-glacier">
-<h2>Retreating glacier<a class="headerlink" href="#retreating-glacier" title="Permalink to this headline">#</a></h2>
+<h2>Retreating glacier<a class="headerlink" href="#retreating-glacier" title="Permalink to this heading">#</a></h2>
 <p>Similarly, we can cause the glacier retreat.
 We will set up our initial glacier again, but this time increase the temperature and thus move the ELA up the glacier.</p>
 <p>For this we set up a another climate change scenario, but this time with a positive temperature change.</p>
@@ -1050,7 +904,7 @@ We will set up our initial glacier again, but this time increase the temperature
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_51_0.png" src="../_images/advance_and_retreat_51_0.png" />
+<img alt="../_images/d794054090c390cb0a2d6755f4febcfdd690ba2f0a665be4ad737fda62154c52.png" src="../_images/d794054090c390cb0a2d6755f4febcfdd690ba2f0a665be4ad737fda62154c52.png" />
 </div>
 </div>
 <p>Comparing the outlines of the two equilibrium states we can see that the glacier has retreated: The shorted orange outline is older compared to the blue outline.
@@ -1062,7 +916,7 @@ Similar to what we see in the figure below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_53_0.png" src="../_images/advance_and_retreat_53_0.png" />
+<img alt="../_images/18c8bd4299164fb61e1a5225743e8f634f37ae9b2ab95b8608c9706199fa64a1.png" src="../_images/18c8bd4299164fb61e1a5225743e8f634f37ae9b2ab95b8608c9706199fa64a1.png" />
 </div>
 </div>
 <p>We can further explore the glacier response during retreat by looking at the history of our glacier.</p>
@@ -1073,7 +927,7 @@ Similar to what we see in the figure below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/advance_and_retreat_55_0.png" src="../_images/advance_and_retreat_55_0.png" />
+<img alt="../_images/018177759b643c5aac97b0fd51866ae0b3fe98b1016f316d88b731db72757461.png" src="../_images/018177759b643c5aac97b0fd51866ae0b3fe98b1016f316d88b731db72757461.png" />
 </div>
 </div>
 <p>Raising the temperature will grow the ablation area which correspond to increasing the ELA.
@@ -1082,11 +936,11 @@ Since the accumulation is no longer able to keep up with the increased mass loss
 Eventually the glacier has retreated far enough for the annual ablation to once again be balanced by the annual accumulation <span class="math notranslate nohighlight">\(\rightarrow\)</span> At this point the glacier has reached a new state of equilibrium.</p>
 </section>
 <section id="take-home-points">
-<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this headline">#</a></h2>
+<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The equilibrium line altitude (ELA) is the altitude on a glacier where accumulation and ablation are in balance, <span class="math notranslate nohighlight">\(\dot{m}(z) = 0\)</span> at <span class="math notranslate nohighlight">\(z=\)</span> ELA</p></li>
 <li><p>A decrease in the ELA leads to:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Increased accumulation</p></li>
 <li><p>An initial decrease of the ablation area</p></li>
 <li><p>A net mass gain resulting in an increased ice flux down the glacier</p></li>
@@ -1094,7 +948,7 @@ Eventually the glacier has retreated far enough for the annual ablation to once 
 </ol>
 </li>
 <li><p>An increase in the ELA leads to:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>A decreased accumulation area</p></li>
 <li><p>An increased ablation area</p></li>
 <li><p>A net mass loss resulting in a decreased ice flux down the glacier</p></li>
@@ -1104,7 +958,7 @@ Eventually the glacier has retreated far enough for the annual ablation to once 
 </ul>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">#</a></h2>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
@@ -1129,57 +983,111 @@ Eventually the glacier has retreated far enough for the annual ablation to once 
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="accumulation_and_ablation.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Accumulation, ablation, mass Balance and the resulting ice flow</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="accumulation_and_ablation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Accumulation, ablation, mass Balance and the resulting ice flow</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="low_pass_climate.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="low_pass_climate.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Glaciers as a low-pass filter of climate variations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-glacier-advance-and-retreat-with-oggm-edu">Exploring glacier advance and retreat with OGGM-Edu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialisation-let-s-define-our-glacier">Initialisation: Let’s define our glacier</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-balance-and-the-equilibrium-line-altitude"><strong>Mass balance and the equilibrium line altitude</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glacier-in-equilibrium">Glacier in Equilibrium</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advancing-glacier">Advancing Glacier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retreating-glacier">Retreating glacier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#take-home-points">Take home points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s next?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By OGGM e.V. and OGGM Contributors<br/>
+  <div class="footer-item">
+    
+<p class="component-author">
+By OGGM e.V. and OGGM Contributors
+</p>
+
+  </div>
   
-    <div class="extra_footer">
-      <p>
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
 These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/blob/master/LICENSE.txt" target="_blank">BSD-3-Clause license</a>.
 <br>
 &copy; Copyright 2014-2021.
 </p>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
 </div>
+  </div>
+  
+</div></div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

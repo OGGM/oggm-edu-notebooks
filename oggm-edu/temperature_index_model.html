@@ -1,49 +1,67 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Temperature index models &#8212; OGGM-Edu notebooks</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-106829797-2');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -52,71 +70,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/temperature_index_model';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Glaciers as water resources: part 1 (idealized climate)" href="glacier_water_resources_index.html" />
     <link rel="prev" title="Glaciers as a low-pass filter of climate variations" href="low_pass_climate.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-106829797-2', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">OGGM-Edu notebooks</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -125,531 +165,331 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Beginners
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginners</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_with_notebooks.html">
-   Getting started with the Jupyter Notebook
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_notebooks.html">Getting started with the Jupyter Notebook</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Flowline modeling
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Flowline modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="edu_intro.html">
-   Getting started with OGGM Edu: idealised glaciers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ice_on_incline.html">
-   Ice on an incline
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ice_flow_parameters.html">
-   Influence of ice flow parameters on glacier size
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mass_balance_gradients.html">
-   Mass balance gradients (MBG) and their influence on glacier flow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="surging_experiment.html">
-   Glacier surging experiments
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="edu_intro.html">Getting started with OGGM Edu: idealised glaciers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice_on_incline.html">Ice on an incline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice_flow_parameters.html">Influence of ice flow parameters on glacier size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mass_balance_gradients.html">Mass balance gradients (MBG) and their influence on glacier flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surging_experiment.html">Glacier surging experiments</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Glacier mass balance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glacier mass balance</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="accumulation_and_ablation.html">
-   Accumulation, ablation, mass Balance and the resulting ice flow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="advance_and_retreat.html">
-   Glacier advance and retreat
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="low_pass_climate.html">
-   Glaciers as a low-pass filter of climate variations
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Temperature index models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="accumulation_and_ablation.html">Accumulation, ablation, mass Balance and the resulting ice flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance_and_retreat.html">Glacier advance and retreat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_pass_climate.html">Glaciers as a low-pass filter of climate variations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Temperature index models</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Glaciers as water resources
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Glaciers as water resources</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="glacier_water_resources_index.html">
-   Glaciers as water resources: part 1 (idealized climate)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources_pre16.html">
-     Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources.html">
-     Glaciers as water resources: part 1 (idealized climate)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="glacier_water_resources_projections_index.html">
-   Glaciers as water resources: part 2 (projections)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources_projections_pre16.html">
-     Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_water_resources_projections.html">
-     Glaciers as water resources: part 2 (projections)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_index.html">Glaciers as water resources: part 1 (idealized climate)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_pre16.html">Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Graphics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../graphics/ela_changes_response_time.html">
-   ELA changes and response time
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_projections_index.html">Glaciers as water resources: part 2 (projections)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections_pre16.html">Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Technical details
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../img/build_info.html">
-   Build information &amp; package versions
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/ela_changes_response_time.html">ELA changes and response time</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Technical details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../img/build_info.html">Build information &amp; package versions</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/OGGM/binder/stable?urlpath=git-pull%3Frepo=https://github.com/OGGM/oggm-edu-notebooks%26urlpath%3Dlab%252Ftree%252Foggm-edu-notebooks/./oggm-edu/temperature_index_model.ipynb%26branch%3Dmaster"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/temperature_index_model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</li>
       
-      <li>
-        <a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/temperature_index_model.ipynb&branch=master"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on JupyterHub"
+      
+      
+      
+      <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/temperature_index_model.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="headerbtn__text-container">JupyterHub</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OGGM/oggm-edu-notebooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/temperature_index_model.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/temperature_index_model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/oggm-edu/temperature_index_model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/OGGM/oggm-edu-notebooks"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/OGGM/oggm-edu-notebooks/issues/new?title=Issue%20on%20page%20%2Foggm-edu/temperature_index_model.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/OGGM/oggm-edu-notebooks/edit/master/./oggm-edu/temperature_index_model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/oggm-edu/temperature_index_model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background">
-   Background
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-setup">
-   Model setup
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#degrees-of-freedom">
-     Degrees of freedom
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementation-in-oggm">
-   Implementation in OGGM
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#climate-data">
-     Climate data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reference-mass-balance-data">
-     Reference mass balance data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#predict-mass-balance">
-     Predict mass balance!
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#take-home-points">
-   Take home points
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-s-next">
-   What’s next?
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Temperature index models</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background">
-   Background
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-setup">
-   Model setup
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#degrees-of-freedom">
-     Degrees of freedom
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementation-in-oggm">
-   Implementation in OGGM
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#climate-data">
-     Climate data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reference-mass-balance-data">
-     Reference mass balance data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#predict-mass-balance">
-     Predict mass balance!
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#take-home-points">
-   Take home points
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-s-next">
-   What’s next?
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Temperature index models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degrees-of-freedom">Degrees of freedom</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-in-oggm">Implementation in OGGM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-data">Climate data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-mass-balance-data">Reference mass balance data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-mass-balance">Predict mass balance!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#take-home-points">Take home points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s next?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="temperature-index-models">
-<h1>Temperature index models<a class="headerlink" href="#temperature-index-models" title="Permalink to this headline">#</a></h1>
+<h1>Temperature index models<a class="headerlink" href="#temperature-index-models" title="Permalink to this heading">#</a></h1>
 <p>Goals of this notebook:</p>
 <ul class="simple">
 <li><p>Gain a basic understanding of temperature index models</p></li>
@@ -657,7 +497,7 @@ title="Print to PDF"
 </ul>
 <div class="alert alert-info">
     <b>
-        This version of the notebook works for OGGM versions before 1.6. We will keep this notebook here for a while longer (e.g.: for classroom.oggm.org), and we will replace it with an updated notebook at a later stage. If you are running OGGM 1.6, you can ignore this notebook.
+        This version of the notebook works for OGGM versions before 1.6. We will keep this notebook here for a while longer (e.g.: for classroom.oggm.org), and we will replace it with an updated notebook at a later stage. If you are running OGGM 1.6, you should ignore this notebook.
     </b>
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,9 +522,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-10 09:59:53: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2023-03-10 09:59:53: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2023-03-10 09:59:53: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-23 13:37:53: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+2023-03-23 13:37:53: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+2023-03-23 13:37:53: oggm.cfg: Multiprocessing: using all available processors (N=2)
 </pre></div>
 </div>
 </div>
@@ -704,13 +544,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-10 09:59:53: oggm.cfg: PARAMS[&#39;border&#39;] changed from `40` to `10`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-23 13:37:53: oggm.cfg: PARAMS[&#39;border&#39;] changed from `80` to `10`.
 </pre></div>
 </div>
 </div>
 </div>
 <section id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h2>
 <p>Glacier melt significantly influences catchment hydrology. Hence, it is useful to have accurate predictions of runoff from glacierized areas. Generally, there are two classes of melt models:</p>
 <ul class="simple">
 <li><p>energy balance models</p></li>
@@ -720,7 +560,7 @@ title="Print to PDF"
 <p>Temperature index models assume an empirical relationship between air temperatures and melt rates and are a simplification of the energy balance models. The reasoning is that melt is predominantly influenced by the longwave atmospheric radiation and the sensible heat flux - energy balance components that are highly influenced by air temperature <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022169403002579">(Hock, 2003)</a>. The main reason(s) why temperature index models are commonly used are the wide availability of air temperature measurements and computational efficiency.</p>
 </section>
 <section id="model-setup">
-<h2>Model setup<a class="headerlink" href="#model-setup" title="Permalink to this headline">#</a></h2>
+<h2>Model setup<a class="headerlink" href="#model-setup" title="Permalink to this heading">#</a></h2>
 <p>The simplest temperature index model relates the amount of ice or snow melt <span class="math notranslate nohighlight">\(M\)</span> (mm) to the sum of positive air temperatures <span class="math notranslate nohighlight">\(T^+\)</span> (<span class="math notranslate nohighlight">\(^\circ\)</span>C) by a proportionality factor <span class="math notranslate nohighlight">\(DDF\)</span>, the <em>degree-day factor</em>, for each <span class="math notranslate nohighlight">\(n\)</span> time intervals <span class="math notranslate nohighlight">\(\Delta t\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\sum_i^{n} M = DDF \sum_i^{n} T^+ \Delta t\]</div>
@@ -730,7 +570,7 @@ title="Print to PDF"
 \[B_i(z) = P_i^{solid}(z) - \mu^* \text{max}(T_i(z) - T_{melt}, 0) - \epsilon\]</div>
 <p>where <span class="math notranslate nohighlight">\(P_i^{Solid}\)</span> is the monthly solid precipitation, <span class="math notranslate nohighlight">\(T_i\)</span> the monthly average temperature, <span class="math notranslate nohighlight">\(T_{Melt}\)</span> the monthly average temperature above which ice melt is assumed and <span class="math notranslate nohighlight">\(\epsilon\)</span> the residual. <span class="math notranslate nohighlight">\(\epsilon\)</span> is assumed to be a random error taking account for uncertainties associated with unresolved physical processes. <span class="math notranslate nohighlight">\(\mu^*\)</span> is the temperature sensitivity of the glacier and it depends on many parameters, mostly glacier specific (e.g., avalanches, topographical shading, cloudiness, …).</p>
 <section id="degrees-of-freedom">
-<h3>Degrees of freedom<a class="headerlink" href="#degrees-of-freedom" title="Permalink to this headline">#</a></h3>
+<h3>Degrees of freedom<a class="headerlink" href="#degrees-of-freedom" title="Permalink to this heading">#</a></h3>
 <p>Among others, the temperature sensitivity <span class="math notranslate nohighlight">\(\mu^*\)</span>, the threshold for melt <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and the implicit threshold for solid precipitation <span class="math notranslate nohighlight">\(T_{Solid}\)</span> are important degrees of freedom of the model - <span class="math notranslate nohighlight">\(T_{Solid}\)</span> is the monthly average temperature below which precipitation is assumed to be solid.</p>
 <p>Generally, <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and <span class="math notranslate nohighlight">\(T_{Solid}\)</span> can vary both spatially and temporally on a specific glacier. However, commonly the two thresholds <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and <span class="math notranslate nohighlight">\(T_{Solid}\)</span> are assumed to be constant. <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and <span class="math notranslate nohighlight">\(T_{Solid}\)</span> significantly influence the predicted mass balance <span class="math notranslate nohighlight">\(B\)</span> by determining the months which are taken into account in the calculation.</p>
 <p>Both <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and <span class="math notranslate nohighlight">\(T_{Solid}\)</span> can be determined by a physical reasoning: we know that both snow melts and precipitation becomes solid at around 0<span class="math notranslate nohighlight">\(^{\circ}\)</span>C. Hence, the two thresholds <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and <span class="math notranslate nohighlight">\(T_{Solid}\)</span> are within a natural range that depends on the climatological conditions at a specific glacier site.</p>
@@ -767,7 +607,7 @@ T_melt = -1.0°C
 </section>
 </section>
 <section id="implementation-in-oggm">
-<h2>Implementation in OGGM<a class="headerlink" href="#implementation-in-oggm" title="Permalink to this headline">#</a></h2>
+<h2>Implementation in OGGM<a class="headerlink" href="#implementation-in-oggm" title="Permalink to this heading">#</a></h2>
 <p>First, we need to define a glacier directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,10 +617,33 @@ T_melt = -1.0°C
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-10 09:59:53: oggm.workflow: init_glacier_directories from prepro level 3 on 1 glaciers.
-2023-03-10 09:59:53: oggm.workflow: Execute entity tasks [gdir_from_prepro] on 1 glaciers
-2023-03-10 09:59:53: oggm.utils: Downloading https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.4/L3-L5_files/CRU/centerlines/qc3/pcp2.5/no_match/RGI62/b_010/L3/RGI60-11/RGI60-11.00.tar to /github/home/OGGM/download_cache/cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.4/L3-L5_files/CRU/centerlines/qc3/pcp2.5/no_match/RGI62/b_010/L3/RGI60-11/RGI60-11.00.tar...
-2023-03-10 09:59:57: oggm.utils: /github/home/OGGM/download_cache/cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.4/L3-L5_files/CRU/centerlines/qc3/pcp2.5/no_match/RGI62/b_010/L3/RGI60-11/RGI60-11.00.tar verified successfully.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">InvalidParamsError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># this may take a while</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">gdir</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">init_glacier_directories</span><span class="p">([</span><span class="n">utils</span><span class="o">.</span><span class="n">demo_glacier_id</span><span class="p">(</span><span class="s1">&#39;hef&#39;</span><span class="p">)],</span> <span class="n">from_prepro_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.10.10/lib/python3.10/site-packages/oggm/workflow.py:364,</span> in <span class="ni">init_glacier_directories</span><span class="nt">(rgidf, reset, force, from_prepro_level, prepro_border, prepro_rgi_version, prepro_base_url, from_tar, delete_tar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="n">reset</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">query_yes_no</span><span class="p">(</span><span class="s1">&#39;Delete all glacier directories?&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="k">if</span> <span class="n">from_prepro_level</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">364</span>     <span class="n">url</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_prepro_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">prepro_base_url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>                                     <span class="n">border</span><span class="o">=</span><span class="n">prepro_border</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span>                                     <span class="n">prepro_level</span><span class="o">=</span><span class="n">from_prepro_level</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span>                                     <span class="n">rgi_version</span><span class="o">=</span><span class="n">prepro_rgi_version</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span>     <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s1">&#39;has_internet&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">url_exists</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>         <span class="k">raise</span> <span class="n">InvalidParamsError</span><span class="p">(</span><span class="s2">&quot;base url seems unreachable with these &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>                                  <span class="s2">&quot;parameters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.10.10/lib/python3.10/site-packages/oggm/utils/_downloads.py:1278,</span> in <span class="ni">get_prepro_base_url</span><span class="nt">(base_url, rgi_version, border, prepro_level)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Extended base url where to find the desired gdirs.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1277</span> <span class="k">if</span> <span class="n">base_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1278</span>     <span class="k">raise</span> <span class="n">InvalidParamsError</span><span class="p">(</span><span class="s1">&#39;Starting with v1.6, users now have to &#39;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span>                              <span class="s1">&#39;explicitly indicate the url they want &#39;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1280</span>                              <span class="s1">&#39;to start from.&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1282</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">base_url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1283</span>     <span class="n">base_url</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span>
+
+<span class="ne">InvalidParamsError</span>: Starting with v1.6, users now have to explicitly indicate the url they want to start from.
 </pre></div>
 </div>
 </div>
@@ -816,21 +679,11 @@ T_melt = -1.0°C
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the glacier selected is Hintereisferner,
-</pre></div>
-</div>
-</div>
 </div>
 <p>and its calibrated temperature sensitivity <span class="math notranslate nohighlight">\(\mu^*\)</span> is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mu_star = </span><span class="si">{:2f}</span><span class="s1"> mm K^-1 yr^-1.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mb_cal</span><span class="o">.</span><span class="n">mu_star</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mu_star = 221.283784 mm K^-1 yr^-1.
 </pre></div>
 </div>
 </div>
@@ -842,14 +695,9 @@ T_melt = -1.0°C
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epsilon = 4.685993 mm.
-</pre></div>
-</div>
-</div>
 </div>
 <section id="climate-data">
-<h3>Climate data<a class="headerlink" href="#climate-data" title="Permalink to this headline">#</a></h3>
+<h3>Climate data<a class="headerlink" href="#climate-data" title="Permalink to this heading">#</a></h3>
 <p>Per default, the temperature index model is driven by the <span class="math notranslate nohighlight">\(0.5^{\circ} \times 0.5^{\circ}\)</span> gridded global <a class="reference external" href="https://crudata.uea.ac.uk/cru/data/hrg/">CRU TS</a> climate dataset. These climate data are then downscaled to a higher resolution grid to allow for an elevation-dependent dataset. The climate data at the reference height used to drive the temperature index model and to determine the calibrated <span class="math notranslate nohighlight">\(\mu^*\)</span> of the selected glacier can be accessed via the glacier directory:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -861,11 +709,6 @@ T_melt = -1.0°C
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/OGGM/ti_model/per_glacier/RGI60-11/RGI60-11.00/RGI60-11.00897/climate_historical.nc
 </pre></div>
 </div>
 </div>
@@ -885,397 +728,6 @@ T_melt = -1.0°C
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
-<defs>
-<symbol id="icon-database" viewBox="0 0 32 32">
-<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
-<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-</symbol>
-<symbol id="icon-file-text2" viewBox="0 0 32 32">
-<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
-<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-</symbol>
-</defs>
-</svg>
-<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
- *
- */
-
-:root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
-}
-
-html[theme=dark],
-body[data-theme=dark],
-body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
-}
-
-.xr-wrap {
-  display: block !important;
-  min-width: 300px;
-  max-width: 700px;
-}
-
-.xr-text-repr-fallback {
-  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
-  display: none;
-}
-
-.xr-header {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  margin-bottom: 4px;
-  border-bottom: solid 1px var(--xr-border-color);
-}
-
-.xr-header > div,
-.xr-header > ul {
-  display: inline;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.xr-obj-type,
-.xr-array-name {
-  margin-left: 2px;
-  margin-right: 10px;
-}
-
-.xr-obj-type {
-  color: var(--xr-font-color2);
-}
-
-.xr-sections {
-  padding-left: 0 !important;
-  display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
-}
-
-.xr-section-item {
-  display: contents;
-}
-
-.xr-section-item input {
-  display: none;
-}
-
-.xr-section-item input + label {
-  color: var(--xr-disabled-color);
-}
-
-.xr-section-item input:enabled + label {
-  cursor: pointer;
-  color: var(--xr-font-color2);
-}
-
-.xr-section-item input:enabled + label:hover {
-  color: var(--xr-font-color0);
-}
-
-.xr-section-summary {
-  grid-column: 1;
-  color: var(--xr-font-color2);
-  font-weight: 500;
-}
-
-.xr-section-summary > span {
-  display: inline-block;
-  padding-left: 0.5em;
-}
-
-.xr-section-summary-in:disabled + label {
-  color: var(--xr-font-color2);
-}
-
-.xr-section-summary-in + label:before {
-  display: inline-block;
-  content: '►';
-  font-size: 11px;
-  width: 15px;
-  text-align: center;
-}
-
-.xr-section-summary-in:disabled + label:before {
-  color: var(--xr-disabled-color);
-}
-
-.xr-section-summary-in:checked + label:before {
-  content: '▼';
-}
-
-.xr-section-summary-in:checked + label > span {
-  display: none;
-}
-
-.xr-section-summary,
-.xr-section-inline-details {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.xr-section-inline-details {
-  grid-column: 2 / -1;
-}
-
-.xr-section-details {
-  display: none;
-  grid-column: 1 / -1;
-  margin-bottom: 5px;
-}
-
-.xr-section-summary-in:checked ~ .xr-section-details {
-  display: contents;
-}
-
-.xr-array-wrap {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 20px auto;
-}
-
-.xr-array-wrap > label {
-  grid-column: 1;
-  vertical-align: top;
-}
-
-.xr-preview {
-  color: var(--xr-font-color3);
-}
-
-.xr-array-preview,
-.xr-array-data {
-  padding: 0 5px !important;
-  grid-column: 2;
-}
-
-.xr-array-data,
-.xr-array-in:checked ~ .xr-array-preview {
-  display: none;
-}
-
-.xr-array-in:checked ~ .xr-array-data,
-.xr-array-preview {
-  display: inline-block;
-}
-
-.xr-dim-list {
-  display: inline-block !important;
-  list-style: none;
-  padding: 0 !important;
-  margin: 0;
-}
-
-.xr-dim-list li {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-}
-
-.xr-dim-list:before {
-  content: '(';
-}
-
-.xr-dim-list:after {
-  content: ')';
-}
-
-.xr-dim-list li:not(:last-child):after {
-  content: ',';
-  padding-right: 5px;
-}
-
-.xr-has-index {
-  font-weight: bold;
-}
-
-.xr-var-list,
-.xr-var-item {
-  display: contents;
-}
-
-.xr-var-item > div,
-.xr-var-item label,
-.xr-var-item > .xr-var-name span {
-  background-color: var(--xr-background-color-row-even);
-  margin-bottom: 0;
-}
-
-.xr-var-item > .xr-var-name:hover span {
-  padding-right: 5px;
-}
-
-.xr-var-list > li:nth-child(odd) > div,
-.xr-var-list > li:nth-child(odd) > label,
-.xr-var-list > li:nth-child(odd) > .xr-var-name span {
-  background-color: var(--xr-background-color-row-odd);
-}
-
-.xr-var-name {
-  grid-column: 1;
-}
-
-.xr-var-dims {
-  grid-column: 2;
-}
-
-.xr-var-dtype {
-  grid-column: 3;
-  text-align: right;
-  color: var(--xr-font-color2);
-}
-
-.xr-var-preview {
-  grid-column: 4;
-}
-
-.xr-index-preview {
-  grid-column: 2 / 5;
-  color: var(--xr-font-color2);
-}
-
-.xr-var-name,
-.xr-var-dims,
-.xr-var-dtype,
-.xr-preview,
-.xr-attrs dt {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 10px;
-}
-
-.xr-var-name:hover,
-.xr-var-dims:hover,
-.xr-var-dtype:hover,
-.xr-attrs dt:hover {
-  overflow: visible;
-  width: auto;
-  z-index: 1;
-}
-
-.xr-var-attrs,
-.xr-var-data,
-.xr-index-data {
-  display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
-}
-
-.xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data,
-.xr-index-data-in:checked ~ .xr-index-data {
-  display: block;
-}
-
-.xr-var-data > table {
-  float: right;
-}
-
-.xr-var-name span,
-.xr-var-data,
-.xr-index-name div,
-.xr-index-data,
-.xr-attrs {
-  padding-left: 25px !important;
-}
-
-.xr-attrs,
-.xr-var-attrs,
-.xr-var-data,
-.xr-index-data {
-  grid-column: 1 / -1;
-}
-
-dl.xr-attrs {
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 125px auto;
-}
-
-.xr-attrs dt,
-.xr-attrs dd {
-  padding: 0;
-  margin: 0;
-  float: left;
-  padding-right: 10px;
-  width: auto;
-}
-
-.xr-attrs dt {
-  font-weight: normal;
-  grid-column: 1;
-}
-
-.xr-attrs dt:hover span {
-  display: inline-block;
-  background: var(--xr-background-color);
-  padding-right: 10px;
-}
-
-.xr-attrs dd {
-  grid-column: 2;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-.xr-icon-database,
-.xr-icon-file-text2,
-.xr-no-icon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1.5em !important;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-}
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
-Dimensions:  (time: 1416)
-Coordinates:
-  * time     (time) datetime64[ns] 1901-10-01 1901-11-01 ... 2019-09-01
-Data variables:
-    prcp     (time) float32 ...
-    temp     (time) float32 ...
-Attributes:
-    ref_hgt:         2700.0
-    ref_pix_lon:     10.75
-    ref_pix_lat:     46.750000000000014
-    ref_pix_dis:     5629.5667533869655
-    climate_source:  CRU TS4.04
-    hydro_yr_0:      1902
-    hydro_yr_1:      2019
-    author:          OGGM
-    author_info:     Open Global Glacier Model</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3278ec6f-61df-463e-b83e-706fe0c537ae' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3278ec6f-61df-463e-b83e-706fe0c537ae' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 1416</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-75060990-95e6-44cf-a26a-017935bb877f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-75060990-95e6-44cf-a26a-017935bb877f' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1901-10-01 ... 2019-09-01</div><input id='attrs-3601b9b9-e5d9-4710-965a-8e6d5b04efdf' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3601b9b9-e5d9-4710-965a-8e6d5b04efdf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ccb91e37-0f5c-4a70-9f19-b62eda903794' class='xr-var-data-in' type='checkbox'><label for='data-ccb91e37-0f5c-4a70-9f19-b62eda903794' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;1901-10-01T00:00:00.000000000&#x27;, &#x27;1901-11-01T00:00:00.000000000&#x27;,
-       &#x27;1901-12-01T00:00:00.000000000&#x27;, ..., &#x27;2019-07-01T00:00:00.000000000&#x27;,
-       &#x27;2019-08-01T00:00:00.000000000&#x27;, &#x27;2019-09-01T00:00:00.000000000&#x27;],
-      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-02e817a4-7661-462a-80e3-910cfd2ad297' class='xr-section-summary-in' type='checkbox'  checked><label for='section-02e817a4-7661-462a-80e3-910cfd2ad297' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>prcp</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a4a80df1-46b2-4a1a-a750-9012903c0fe2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a4a80df1-46b2-4a1a-a750-9012903c0fe2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c8485f60-3a35-4e03-ac55-dcbd99d9f92c' class='xr-var-data-in' type='checkbox'><label for='data-c8485f60-3a35-4e03-ac55-dcbd99d9f92c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg m-2</dd><dt><span>long_name :</span></dt><dd>total monthly precipitation amount</dd></dl></div><div class='xr-var-data'><pre>[1416 values with dtype=float32]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>temp</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-7a91592f-c882-4800-aefd-eb342078b361' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7a91592f-c882-4800-aefd-eb342078b361' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dee86256-2575-49d8-8a1c-0f8f06320297' class='xr-var-data-in' type='checkbox'><label for='data-dee86256-2575-49d8-8a1c-0f8f06320297' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degC</dd><dt><span>long_name :</span></dt><dd>2m temperature at height ref_hgt</dd></dl></div><div class='xr-var-data'><pre>[1416 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f1b647ec-8cc7-4962-bf35-68f3f937bdf9' class='xr-section-summary-in' type='checkbox'  ><label for='section-f1b647ec-8cc7-4962-bf35-68f3f937bdf9' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-bd99af7e-e034-4a30-bf83-4d504c17e633' class='xr-index-data-in' type='checkbox'/><label for='index-bd99af7e-e034-4a30-bf83-4d504c17e633' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;1901-10-01&#x27;, &#x27;1901-11-01&#x27;, &#x27;1901-12-01&#x27;, &#x27;1902-01-01&#x27;,
-               &#x27;1902-02-01&#x27;, &#x27;1902-03-01&#x27;, &#x27;1902-04-01&#x27;, &#x27;1902-05-01&#x27;,
-               &#x27;1902-06-01&#x27;, &#x27;1902-07-01&#x27;,
-               ...
-               &#x27;2018-12-01&#x27;, &#x27;2019-01-01&#x27;, &#x27;2019-02-01&#x27;, &#x27;2019-03-01&#x27;,
-               &#x27;2019-04-01&#x27;, &#x27;2019-05-01&#x27;, &#x27;2019-06-01&#x27;, &#x27;2019-07-01&#x27;,
-               &#x27;2019-08-01&#x27;, &#x27;2019-09-01&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=1416, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6498e602-16dc-4fee-a78b-42416c70fc8f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6498e602-16dc-4fee-a78b-42416c70fc8f' class='xr-section-summary' >Attributes: <span>(9)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>ref_hgt :</span></dt><dd>2700.0</dd><dt><span>ref_pix_lon :</span></dt><dd>10.75</dd><dt><span>ref_pix_lat :</span></dt><dd>46.750000000000014</dd><dt><span>ref_pix_dis :</span></dt><dd>5629.5667533869655</dd><dt><span>climate_source :</span></dt><dd>CRU TS4.04</dd><dt><span>hydro_yr_0 :</span></dt><dd>1902</dd><dt><span>hydro_yr_1 :</span></dt><dd>2019</dd><dt><span>author :</span></dt><dd>OGGM</dd><dt><span>author_info :</span></dt><dd>Open Global Glacier Model</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>The climate dataset has two variables, the monthly total precipitation <code class="docutils literal notranslate"><span class="pre">prcp</span></code> and the monthly average temperature <code class="docutils literal notranslate"><span class="pre">temp</span></code>. Let’s calculate the mean annual cycle of average temperature and total precipitation,</p>
 <div class="cell docutils container">
@@ -1304,13 +756,10 @@ Attributes:
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/temperature_index_model_53_0.png" src="../_images/temperature_index_model_53_0.png" />
-</div>
 </div>
 </section>
 <section id="reference-mass-balance-data">
-<h3>Reference mass balance data<a class="headerlink" href="#reference-mass-balance-data" title="Permalink to this headline">#</a></h3>
+<h3>Reference mass balance data<a class="headerlink" href="#reference-mass-balance-data" title="Permalink to this heading">#</a></h3>
 <p>OGGM uses in-situ mass balance data from the World Glacier Monitoring Service Fluctuations of Glaciers Database <a class="reference external" href="https://wgms.ch/data_databaseversions/">(WGMS FoGD)</a>. The Fluctuations of Glaciers (FoG) database contains annual mass-balance records for several hundreds of glaciers worldwide. Currently, 254 mass balance time series are available.</p>
 <p>These data are shipped automatically with OGGM and can be accessed via the glacier directory:</p>
 <div class="cell docutils container">
@@ -1327,23 +776,14 @@ Attributes:
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/temperature_index_model_58_0.png" src="../_images/temperature_index_model_58_0.png" />
-</div>
 </div>
 </section>
 <section id="predict-mass-balance">
-<h3>Predict mass balance!<a class="headerlink" href="#predict-mass-balance" title="Permalink to this headline">#</a></h3>
+<h3>Predict mass balance!<a class="headerlink" href="#predict-mass-balance" title="Permalink to this heading">#</a></h3>
 <p>Now, we are set to calculate glacier mass balance using the temperature index model - we have the model parameters <span class="math notranslate nohighlight">\(\mu^*\)</span> and <span class="math notranslate nohighlight">\(\epsilon\)</span>, the thresholds for melt and solid precipitation <span class="math notranslate nohighlight">\(T_{Melt}\)</span> and <span class="math notranslate nohighlight">\(T_{Solid}\)</span> and the climate dataset. The last thing we need to define are the heights at which we want to calculate the mass balance. Here, we use glacier flowlines along which the mass balance is computed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fls</span> <span class="o">=</span> <span class="n">gdir</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;inversion_flowlines&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.10/lib/python3.10/site-packages/oggm/utils/_workflow.py:2939: UserWarning: Unpickling a shapely &lt;2.0 geometry object. Please save the pickle again; shapely 2.1 will not have this compatibility.
-  out = pickle.load(f)
 </pre></div>
 </div>
 </div>
@@ -1352,15 +792,6 @@ Attributes:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ref_mb</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 1963 1964 1965 1966
- 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980
- 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994
- 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008
- 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019]
 </pre></div>
 </div>
 </div>
@@ -1380,11 +811,6 @@ Attributes:
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rho_ice = 900.0 kg m^-3.
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now, we can compare the actual in-situ mass balance with the modelled mass balance:</p>
 <div class="cell docutils container">
@@ -1396,9 +822,6 @@ Attributes:
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/temperature_index_model_69_0.png" src="../_images/temperature_index_model_69_0.png" />
 </div>
 </div>
 <p>Does not look too bad, does it? To assess model performance, it is helpful to plot the data in a scatter plot:</p>
@@ -1413,9 +836,6 @@ Attributes:
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;OGGM (calib)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/temperature_index_model_71_0.png" src="../_images/temperature_index_model_71_0.png" />
 </div>
 </div>
 <p>If the points were aligned along the red line, the model would perfectly predict mass balance. Generally, the model overestimates mass balance in magnitude - the scatter plot shows a steeper slope than the 1 to 1 red line. This is due to specific mass balance beeing dependent not only on the climate but also on the glacier surface area.</p>
@@ -1434,15 +854,12 @@ Attributes:
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/temperature_index_model_75_0.png" src="../_images/temperature_index_model_75_0.png" />
-</div>
 </div>
 <p>The bias is positive at the beginning of the in-situ measurements and shows a negative trend. When keeping the glacier area constant, a positive (negative) bias means, that the calibrated temperature sensitivity <span class="math notranslate nohighlight">\(\mu^*\)</span> of the glacier is too low (high) during time periods of colder (warmer) climates. You can find a simple experiment about the sensitivity of the specific mass balance on climate change and glacier surface area in this <a class="reference external" href="https://oggm.org/2017/10/01/specmb-ela/">blog post</a>.</p>
 </section>
 </section>
 <section id="take-home-points">
-<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this headline">#</a></h2>
+<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>There are two different types of melt models: the energy balance model and the temperature index model</p></li>
 <li><p>The temperature index model is the computationally efficient simplification of the energy balance model</p></li>
@@ -1454,14 +871,14 @@ Attributes:
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Hock R., (2003). Temperature index melt modelling in mountain areas. <em>Journal of Hydrology</em>, 281, 104-115. <a class="reference external" href="https://doi.org/10.1016/S0022-1694(03)00257-9">https://doi.org/10.1016/S0022-1694(03)00257-9</a></p></li>
 <li><p>Marzeion B., Jarosch A. H. &amp; Hofer M. (2012). Past and future sea-level change from the surface mass balance of glaciers. <em>The Cryosphere</em>, 6, 1295-1322. <a class="reference external" href="https://doi.org/10.5194/tc-6-1295-2012">https://doi.org/10.5194/tc-6-1295-2012</a></p></li>
 </ul>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">#</a></h2>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
@@ -1486,57 +903,113 @@ Attributes:
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="low_pass_climate.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Glaciers as a low-pass filter of climate variations</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="low_pass_climate.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Glaciers as a low-pass filter of climate variations</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="glacier_water_resources_index.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="glacier_water_resources_index.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Glaciers as water resources: part 1 (idealized climate)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degrees-of-freedom">Degrees of freedom</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-in-oggm">Implementation in OGGM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-data">Climate data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-mass-balance-data">Reference mass balance data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-mass-balance">Predict mass balance!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#take-home-points">Take home points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-next">What’s next?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By OGGM e.V. and OGGM Contributors<br/>
+  <div class="footer-item">
+    
+<p class="component-author">
+By OGGM e.V. and OGGM Contributors
+</p>
+
+  </div>
   
-    <div class="extra_footer">
-      <p>
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
 These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/blob/master/LICENSE.txt" target="_blank">BSD-3-Clause license</a>.
 <br>
 &copy; Copyright 2014-2021.
 </p>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
 </div>
+  </div>
+  
+</div></div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
