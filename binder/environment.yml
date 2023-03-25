@@ -29,6 +29,7 @@ dependencies:
   - seaborn
   - holoviews
   - geoviews
+  - hvplot
   - pip
   - pip:
     - joblib
