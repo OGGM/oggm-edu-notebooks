@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -522,9 +522,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-25 10:38:42: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2023-03-25 10:38:42: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2023-03-25 10:38:42: oggm.cfg: Multiprocessing: using all available processors (N=2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-05-22 07:47:41: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+2023-05-22 07:47:41: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+2023-05-22 07:47:41: oggm.cfg: Multiprocessing: using all available processors (N=2)
 </pre></div>
 </div>
 </div>
@@ -544,7 +544,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-25 10:38:42: oggm.cfg: PARAMS[&#39;border&#39;] changed from `80` to `10`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-05-22 07:47:42: oggm.cfg: PARAMS[&#39;border&#39;] changed from `80` to `10`.
 </pre></div>
 </div>
 </div>
@@ -623,7 +623,7 @@ T_melt = -1.0°C
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># this may take a while</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">gdir</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">init_glacier_directories</span><span class="p">([</span><span class="n">utils</span><span class="o">.</span><span class="n">demo_glacier_id</span><span class="p">(</span><span class="s1">&#39;hef&#39;</span><span class="p">)],</span> <span class="n">from_prepro_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nn">File /usr/local/pyenv/versions/3.10.10/lib/python3.10/site-packages/oggm/workflow.py:364,</span> in <span class="ni">init_glacier_directories</span><span class="nt">(rgidf, reset, force, from_prepro_level, prepro_border, prepro_rgi_version, prepro_base_url, from_tar, delete_tar)</span>
+<span class="nn">File /usr/local/pyenv/versions/3.10.11/lib/python3.10/site-packages/oggm/workflow.py:364,</span> in <span class="ni">init_glacier_directories</span><span class="nt">(rgidf, reset, force, from_prepro_level, prepro_border, prepro_rgi_version, prepro_base_url, from_tar, delete_tar)</span>
 <span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="n">reset</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">query_yes_no</span><span class="p">(</span><span class="s1">&#39;Delete all glacier directories?&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="k">if</span> <span class="n">from_prepro_level</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">364</span>     <span class="n">url</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_prepro_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">prepro_base_url</span><span class="p">,</span>
@@ -634,7 +634,7 @@ T_melt = -1.0°C
 <span class="g g-Whitespace">    </span><span class="mi">369</span>         <span class="k">raise</span> <span class="n">InvalidParamsError</span><span class="p">(</span><span class="s2">&quot;base url seems unreachable with these &quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">370</span>                                  <span class="s2">&quot;parameters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
 
-<span class="nn">File /usr/local/pyenv/versions/3.10.10/lib/python3.10/site-packages/oggm/utils/_downloads.py:1278,</span> in <span class="ni">get_prepro_base_url</span><span class="nt">(base_url, rgi_version, border, prepro_level)</span>
+<span class="nn">File /usr/local/pyenv/versions/3.10.11/lib/python3.10/site-packages/oggm/utils/_downloads.py:1278,</span> in <span class="ni">get_prepro_base_url</span><span class="nt">(base_url, rgi_version, border, prepro_level)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1275</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Extended base url where to find the desired gdirs.&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">1277</span> <span class="k">if</span> <span class="n">base_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">1278</span>     <span class="k">raise</span> <span class="n">InvalidParamsError</span><span class="p">(</span><span class="s1">&#39;Starting with v1.6, users now have to &#39;</span>
@@ -909,7 +909,10 @@ T_melt = -1.0°C
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="low_pass_climate.html"
@@ -929,7 +932,10 @@ T_melt = -1.0°C
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -966,7 +972,7 @@ T_melt = -1.0°C
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -997,7 +1003,7 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
 </div>
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1006,8 +1012,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

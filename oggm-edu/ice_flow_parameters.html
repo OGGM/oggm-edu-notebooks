@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -526,7 +526,7 @@ We can check this by accessing the <code class="docutils literal notranslate"><s
 </div>
 </div>
 <p>The parameter relates shear stress to the rate of deformation and is assumed to be constant.
-It depends on crystal size, fabric, concentration and type of impurities, as well as on ice temperature <a class="reference external" href="https://link.springer.com/article/10.1007%2Fs11629-015-3445-6">(Oerlemans, 2001)</a>
+It depends on crystal size, fabric, concentration and type of impurities, as well as on ice temperature <a class="reference external" href="https://doi.org/10.3189/172756502781831557">(Oerlemans, 2001)</a>
 (you can find a more detailed description of it <a class="reference external" href="http://www.antarcticglaciers.org/modern-glaciers/glacier-flow-2/glacier-flow-ii-stress-and-strain/">here</a>).</p>
 <p>Next we will change the creep parameter and see what happens.
 An easy way to do this is to create a <code class="docutils literal notranslate"><span class="pre">GlacierCollection</span></code> and change the creep parameter for some of the glaciers in the collection.
@@ -738,7 +738,7 @@ Value interpreted as a creep factor.
 </section>
 <section id="sliding-parameter">
 <h2>Sliding  parameter<a class="headerlink" href="#sliding-parameter" title="Permalink to this heading">#</a></h2>
-<p>Basal sliding occurs when there is a water film between the ice and the ground. In his <a class="reference external" href="https://www.igsoc.org/annals/24/igs_annals_vol24_year1997_pg382-389.pdf">seminal paper</a>, Hans Oerlemans uses a so-called “sliding parameter” representing basal sliding.
+<p>Basal sliding occurs when there is a water film between the ice and the ground. In his <a class="reference external" href="https://doi.org/10.3189/S0260305500012489">seminal paper</a>, Hans Oerlemans uses a so-called “sliding parameter” representing basal sliding.
 For our glacier this parameter is available under the <code class="docutils literal notranslate"><span class="pre">.basal_sliding</span></code> attribute.
 By default it is set to 0, but it can be modified</p>
 <div class="cell docutils container">
@@ -848,7 +848,10 @@ However, at a certain point in time the larger volume of Glacier 0 lead to a str
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="ice_on_incline.html"
@@ -868,7 +871,10 @@ However, at a certain point in time the larger volume of Glacier 0 lead to a str
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -895,7 +901,7 @@ However, at a certain point in time the larger volume of Glacier 0 lead to a str
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -926,7 +932,7 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
 </div>
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -935,8 +941,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
