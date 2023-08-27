@@ -71,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/low_pass_climate';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Temperature index models" href="temperature_index_model.html" />
+    <link rel="next" title="Glaciers as water resources: part 1 (idealized climate)" href="glacier_water_resources.html" />
     <link rel="prev" title="Glacier advance and retreat" href="advance_and_retreat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,20 +180,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="accumulation_and_ablation.html">Accumulation, ablation, mass Balance and the resulting ice flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advance_and_retreat.html">Glacier advance and retreat</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Glaciers as a low-pass filter of climate variations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperature_index_model.html">Temperature index models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Glaciers as water resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_index.html">Glaciers as water resources: part 1 (idealized climate)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_pre16.html">Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_projections_index.html">Glaciers as water resources: part 2 (projections)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections_pre16.html">Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphics</span></p>
 <ul class="nav bd-sidenav">
@@ -511,7 +502,7 @@ However, feel free to change this as you like.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/318b4d1d8b68745344c4a30d7adbe062fef7b63f0b2ddf1d7230d068acda0f99.png" src="../_images/318b4d1d8b68745344c4a30d7adbe062fef7b63f0b2ddf1d7230d068acda0f99.png" />
+<img alt="../_images/f0b889ab08c46e50eff874c567cd1365bf3b6f403a3943b255c291a0ede34d1c.png" src="../_images/f0b889ab08c46e50eff874c567cd1365bf3b6f403a3943b255c291a0ede34d1c.png" />
 </div>
 </div>
 <p>Next step is the mass balance.
@@ -542,7 +533,7 @@ We create a slightly more realistic mass balance profile with a few different gr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f5c7811bf711593e1d995429418e4394b5065e4b4cab9b1a555ba7a55399aebb.png" src="../_images/f5c7811bf711593e1d995429418e4394b5065e4b4cab9b1a555ba7a55399aebb.png" />
+<img alt="../_images/a2ad49d8899c6f81f78717a9d2ab9e798d5c66f5bac50a83d95e07cad4dff02f.png" src="../_images/a2ad49d8899c6f81f78717a9d2ab9e798d5c66f5bac50a83d95e07cad4dff02f.png" />
 </div>
 </div>
 <section id="adding-a-random-climate">
@@ -600,22 +591,22 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>1</th>
       <td>1.0</td>
-      <td>-1.771351</td>
+      <td>-1.184740</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2.0</td>
-      <td>-0.471023</td>
+      <td>-0.385436</td>
     </tr>
     <tr>
       <th>3</th>
       <td>3.0</td>
-      <td>-1.551069</td>
+      <td>0.136106</td>
     </tr>
     <tr>
       <th>4</th>
       <td>4.0</td>
-      <td>-1.913866</td>
+      <td>-0.735251</td>
     </tr>
     <tr>
       <th>...</th>
@@ -625,27 +616,27 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>996</th>
       <td>996.0</td>
-      <td>1.499158</td>
+      <td>-0.949218</td>
     </tr>
     <tr>
       <th>997</th>
       <td>997.0</td>
-      <td>0.433497</td>
+      <td>-1.841776</td>
     </tr>
     <tr>
       <th>998</th>
       <td>998.0</td>
-      <td>-1.832591</td>
+      <td>1.187378</td>
     </tr>
     <tr>
       <th>999</th>
       <td>999.0</td>
-      <td>-1.159607</td>
+      <td>1.375924</td>
     </tr>
     <tr>
       <th>1000</th>
       <td>1000.0</td>
-      <td>0.562108</td>
+      <td>-0.917359</td>
     </tr>
   </tbody>
 </table>
@@ -661,7 +652,7 @@ This will be pretty messy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b8b0b49dae41e071a2fe694ce046b2d1f174fec94921dacf051c63d7772035be.png" src="../_images/b8b0b49dae41e071a2fe694ce046b2d1f174fec94921dacf051c63d7772035be.png" />
+<img alt="../_images/5b3141e0d84ab4f98ea26197458d9dd3297fdc39642bf8d7c8f6715aea2df1df.png" src="../_images/5b3141e0d84ab4f98ea26197458d9dd3297fdc39642bf8d7c8f6715aea2df1df.png" />
 </div>
 </div>
 <div class="alert alert-info">
@@ -685,7 +676,7 @@ This will be pretty messy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3f5982497a9289f32ce2a6842d999e950c5fc74bf62099cbde47b2970982f73f.png" src="../_images/3f5982497a9289f32ce2a6842d999e950c5fc74bf62099cbde47b2970982f73f.png" />
+<img alt="../_images/ebcefb7c5d921e0588574f3c5c909417b027a6d863d91c0127c1327ecb3b2334.png" src="../_images/ebcefb7c5d921e0588574f3c5c909417b027a6d863d91c0127c1327ecb3b2334.png" />
 </div>
 </div>
 </section>
@@ -700,7 +691,7 @@ We can also plot the temperature bias history by passing <code class="docutils l
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17a9816339935e861456fea2364ea2b3cd26be585516956240180dff506505ff.png" src="../_images/17a9816339935e861456fea2364ea2b3cd26be585516956240180dff506505ff.png" />
+<img alt="../_images/6d726d96925d33f97a2b9317c6807e3f3a633be674f0a92f95480c53faf5d748.png" src="../_images/6d726d96925d33f97a2b9317c6807e3f3a633be674f0a92f95480c53faf5d748.png" />
 </div>
 </div>
 <p>Since the random climate is just random, it is difficult to distinguish any similarities between the noisy bias and the glacier history.
@@ -724,7 +715,7 @@ By doing this we shrink the range of the y-axis, enhancing the fluctuations in t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1849f1c7465592943a084a0f5a0fed013cecea959873c38a122907693b6ae073.png" src="../_images/1849f1c7465592943a084a0f5a0fed013cecea959873c38a122907693b6ae073.png" />
+<img alt="../_images/2fe91eddf80ae591cece40b5f6298b6b50c99caa81bc41f2f4fe6d4caad6ba81.png" src="../_images/2fe91eddf80ae591cece40b5f6298b6b50c99caa81bc41f2f4fe6d4caad6ba81.png" />
 </div>
 </div>
 </section>
@@ -791,7 +782,7 @@ You can essentially use any function returning an array of floats, or do it manu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0bf8d7313066fd041328bfe0887c619d1060e85caa80d4abaeedda4c5162d11c.png" src="../_images/0bf8d7313066fd041328bfe0887c619d1060e85caa80d4abaeedda4c5162d11c.png" />
+<img alt="../_images/8662e8ef4684268ca3603beedd1faea363f94bc5a096ee668c002abf30f34282.png" src="../_images/8662e8ef4684268ca3603beedd1faea363f94bc5a096ee668c002abf30f34282.png" />
 </div>
 </div>
 <p>It is also possible to add a future climate to a glacier that already has some history.</p>
@@ -824,7 +815,7 @@ You can essentially use any function returning an array of floats, or do it manu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/919ee56f5360b2402956261a8c72688c63abe454e6b373a361fc83f256f1df84.png" src="../_images/919ee56f5360b2402956261a8c72688c63abe454e6b373a361fc83f256f1df84.png" />
+<img alt="../_images/f2a432c116cc872dcf60fad3ab04198e0024b165f10213ad404906e1d92072dc.png" src="../_images/f2a432c116cc872dcf60fad3ab04198e0024b165f10213ad404906e1d92072dc.png" />
 </div>
 </div>
 <p>We can then assign more data to  the future climate, just as easy as before.
@@ -867,7 +858,7 @@ Internally this will append it to the series that already exists.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fb310f8836c0d2d16c36bb2078e219b327dc2f8195f99bc45a95ff0e5bb92a9e.png" src="../_images/fb310f8836c0d2d16c36bb2078e219b327dc2f8195f99bc45a95ff0e5bb92a9e.png" />
+<img alt="../_images/c0d580af5378caea5510b26ee4d8efe97dadf7f3e86914cadebc49373dd556fe.png" src="../_images/c0d580af5378caea5510b26ee4d8efe97dadf7f3e86914cadebc49373dd556fe.png" />
 </div>
 </div>
 <section id="adding-noise-to-clean-data">
@@ -928,7 +919,7 @@ The next step is, of course, to combine the methods to create trends that also h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7e868b068358c742e0e828db9c93ecd5baf61bb6d9a404df3bf6a5fabbdc00d8.png" src="../_images/7e868b068358c742e0e828db9c93ecd5baf61bb6d9a404df3bf6a5fabbdc00d8.png" />
+<img alt="../_images/2ac52228f8d6e39b07f8b2d6e1a187110e320b216e24a854bd5dea2daa1e4fd1.png" src="../_images/2ac52228f8d6e39b07f8b2d6e1a187110e320b216e24a854bd5dea2daa1e4fd1.png" />
 </div>
 </div>
 <p>Conveniently, the <code class="docutils literal notranslate"><span class="pre">.add_temperature_bias</span></code> has an argument which adds noise to the trend.</p>
@@ -960,7 +951,7 @@ The next step is, of course, to combine the methods to create trends that also h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6201cd98d5c06599edfa9f851fc60e7e3705f4273468dee27b8dac93a920059f.png" src="../_images/6201cd98d5c06599edfa9f851fc60e7e3705f4273468dee27b8dac93a920059f.png" />
+<img alt="../_images/41dcdf11ed30e8b422168bb6ed0769a5905b92df9c9d3b8c8972e7ded4cc5e3c.png" src="../_images/41dcdf11ed30e8b422168bb6ed0769a5905b92df9c9d3b8c8972e7ded4cc5e3c.png" />
 </div>
 </div>
 <p>Now you should have the tools to create your own climates for OGGM-Edu glaciers and see how they filter the climate.</p>
@@ -1013,11 +1004,11 @@ The next step is, of course, to combine the methods to create trends that also h
       </div>
     </a>
     <a class="right-next"
-       href="temperature_index_model.html"
+       href="glacier_water_resources.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Temperature index models</p>
+        <p class="prev-next-title">Glaciers as water resources: part 1 (idealized climate)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

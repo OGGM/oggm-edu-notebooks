@@ -180,20 +180,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../oggm-edu/accumulation_and_ablation.html">Accumulation, ablation, mass Balance and the resulting ice flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../oggm-edu/advance_and_retreat.html">Glacier advance and retreat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../oggm-edu/low_pass_climate.html">Glaciers as a low-pass filter of climate variations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../oggm-edu/temperature_index_model.html">Temperature index models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Glaciers as water resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../oggm-edu/glacier_water_resources_index.html">Glaciers as water resources: part 1 (idealized climate)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../oggm-edu/glacier_water_resources_pre16.html">Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../oggm-edu/glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../oggm-edu/glacier_water_resources_projections_index.html">Glaciers as water resources: part 2 (projections)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../oggm-edu/glacier_water_resources_projections_pre16.html">Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../oggm-edu/glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../oggm-edu/glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oggm-edu/glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphics</span></p>
 <ul class="current nav bd-sidenav">
@@ -506,15 +497,14 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading salem-sample-data...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-05-22 07:40:57: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
-2023-05-22 07:40:57: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
-2023-05-22 07:40:57: oggm.cfg: Multiprocessing: using all available processors (N=2)
-2023-05-22 07:40:57: oggm.utils: Downloading https://github.com/OGGM/oggm-sample-data/archive/398729eef5f8baeb01d466a2d3038ee7ccd2724d.zip to /github/home/OGGM/download_cache/github.com/OGGM/oggm-sample-data/archive/398729eef5f8baeb01d466a2d3038ee7ccd2724d.zip...
-2023-05-22 07:40:59: oggm.utils: Checking the download verification file checksum...
-2023-05-22 07:41:00: oggm.utils: Downloading https://cluster.klima.uni-bremen.de/data/downloads.sha256.hdf to /github/home/.oggm/downloads.sha256.hdf...
-2023-05-22 07:41:03: oggm.utils: Done downloading.
-2023-05-22 07:41:03: oggm.utils: Checking the download verification file checksum...
-2023-05-22 07:41:05: oggm.utils: No known hash for github.com/OGGM/oggm-sample-data/archive/398729eef5f8baeb01d466a2d3038ee7ccd2724d.zip
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-08-27 22:00:21: oggm.cfg: Reading default parameters from the OGGM `params.cfg` configuration file.
+2023-08-27 22:00:21: oggm.cfg: Multiprocessing switched OFF according to the parameter file.
+2023-08-27 22:00:21: oggm.cfg: Multiprocessing: using all available processors (N=2)
+2023-08-27 22:00:21: oggm.utils: Downloading https://github.com/OGGM/oggm-sample-data/archive/2ad86c93f9235e40edea506f13f6f489adeee805.zip to /github/home/OGGM/download_cache/github.com/OGGM/oggm-sample-data/archive/2ad86c93f9235e40edea506f13f6f489adeee805.zip...
+2023-08-27 22:00:24: oggm.utils: Checking the download verification file checksum...
+2023-08-27 22:00:25: oggm.utils: Downloading https://cluster.klima.uni-bremen.de/data/downloads.sha256.hdf to /github/home/.oggm/downloads.sha256.hdf...
+2023-08-27 22:00:28: oggm.utils: Done downloading.
+2023-08-27 22:00:28: oggm.utils: Checking the download verification file checksum...
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;./edu_plots/&#39;
@@ -568,7 +558,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f619fc0b65828daf6344084f6c7b5c6e07d348189e0a6e677bc216da41a926dd.png" src="../_images/f619fc0b65828daf6344084f6c7b5c6e07d348189e0a6e677bc216da41a926dd.png" />
+<img alt="../_images/dc412c3ccbed9f946ef1197fd4b400a7e6d8db52e1874d5d2f1a3ad7780535c9.png" src="../_images/dc412c3ccbed9f946ef1197fd4b400a7e6d8db52e1874d5d2f1a3ad7780535c9.png" />
 </div>
 </div>
 </section>
@@ -664,7 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7d3b40c30309825b9e024b9d2caf32b4264979598ed1b2ecf8fbc053deb756ab.png" src="../_images/7d3b40c30309825b9e024b9d2caf32b4264979598ed1b2ecf8fbc053deb756ab.png" />
+<img alt="../_images/d53b0b39ec44155f62e8627b41323e80ed31bd9aed37db58d1cc7794b0aa2c4e.png" src="../_images/d53b0b39ec44155f62e8627b41323e80ed31bd9aed37db58d1cc7794b0aa2c4e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -706,7 +696,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f502b278552506bae4c6b349f4fe86a72f1057a63f1de0301cd5c323b8e7c9e9.png" src="../_images/f502b278552506bae4c6b349f4fe86a72f1057a63f1de0301cd5c323b8e7c9e9.png" />
+<img alt="../_images/8bec151224c030579c7f62a5d3f40cccd6d6d71bdb8246b43acaf5bf9604684f.png" src="../_images/8bec151224c030579c7f62a5d3f40cccd6d6d71bdb8246b43acaf5bf9604684f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -749,7 +739,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a55447ef2443f7e1a75cfc209f76c2e7d4cd29ae7d02e19b4731175cc14eff3c.png" src="../_images/a55447ef2443f7e1a75cfc209f76c2e7d4cd29ae7d02e19b4731175cc14eff3c.png" />
+<img alt="../_images/a6b3d348ad9fd3fc2c4f8100d2f240e927d4654cd475c52f64f39b6e3f9637ec.png" src="../_images/a6b3d348ad9fd3fc2c4f8100d2f240e927d4654cd475c52f64f39b6e3f9637ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -810,7 +800,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6933e847106b05f232ec357b92014d9324ca7deb347b7ddf61a71ebb8edb78f1.png" src="../_images/6933e847106b05f232ec357b92014d9324ca7deb347b7ddf61a71ebb8edb78f1.png" />
+<img alt="../_images/540c7e627f189349e480d1569b329cdd36fe97886d356c4bdcd058e22ef9bd5a.png" src="../_images/540c7e627f189349e480d1569b329cdd36fe97886d356c4bdcd058e22ef9bd5a.png" />
 </div>
 </div>
 </section>

@@ -182,20 +182,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="accumulation_and_ablation.html">Accumulation, ablation, mass Balance and the resulting ice flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advance_and_retreat.html">Glacier advance and retreat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="low_pass_climate.html">Glaciers as a low-pass filter of climate variations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperature_index_model.html">Temperature index models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Glaciers as water resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_index.html">Glaciers as water resources: part 1 (idealized climate)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_pre16.html">Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_projections_index.html">Glaciers as water resources: part 2 (projections)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections_pre16.html">Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphics</span></p>
 <ul class="nav bd-sidenav">
@@ -575,7 +566,7 @@ This is achieved by passing a list of gradients, and another list with the altit
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5eb6cad170197b3e0dd7c29d88eec9ef6d383b84b587aefad08ff39805380b98.png" src="../_images/5eb6cad170197b3e0dd7c29d88eec9ef6d383b84b587aefad08ff39805380b98.png" />
+<img alt="../_images/6e7685e3f7ddec1f32db54e1f9bfadaf81a153782bb292bfbb3bad9b11b616f2.png" src="../_images/6e7685e3f7ddec1f32db54e1f9bfadaf81a153782bb292bfbb3bad9b11b616f2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -585,7 +576,7 @@ This is achieved by passing a list of gradients, and another list with the altit
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/745c2894d4ffa41e889200aa4f89c8f2778872ef0f14f24467aa96b2a88dac41.png" src="../_images/745c2894d4ffa41e889200aa4f89c8f2778872ef0f14f24467aa96b2a88dac41.png" />
+<img alt="../_images/9ac4fc2fbe43c6249bf317dcee05dda5f34b6597f9f9193aa7e43a9d68288462.png" src="../_images/9ac4fc2fbe43c6249bf317dcee05dda5f34b6597f9f9193aa7e43a9d68288462.png" />
 </div>
 </div>
 <p>A stronger mass balance gradient (flatter line in plot above) implies a larger change of the mass balance with altitude.
@@ -632,7 +623,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/69e8877afaf1d2d1605d1bf9d0f30f357dc9b15ea736c58697ee4b0af89be79c.png" src="../_images/69e8877afaf1d2d1605d1bf9d0f30f357dc9b15ea736c58697ee4b0af89be79c.png" />
+<img alt="../_images/b06c01d4cbbd797b0d3cfcc49460d4e9923b99eb40eb31d490add4cd8db47a8e.png" src="../_images/b06c01d4cbbd797b0d3cfcc49460d4e9923b99eb40eb31d490add4cd8db47a8e.png" />
 </div>
 </div>
 <p>The different glaciers reach their equilibrium state after a different number of years. What does the figure show us? Which glacier is the thickest and longest? Let’s look at specific numbers:</p>
@@ -661,6 +652,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Id</th>
       <th>Type</th>
       <th>Age</th>
       <th>Length [m]</th>
@@ -670,7 +662,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
-      <th>Creep (Glen A)</th>
+      <th>...</th>
       <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
@@ -704,11 +696,13 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
+      <td>6</td>
       <td>Glacier</td>
       <td>2500</td>
       <td>8700.0</td>
@@ -718,7 +712,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>6.25951</td>
       <td>63.218391</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -732,6 +726,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
     </tr>
     <tr>
       <th>2</th>
+      <td>7</td>
       <td>Glacier</td>
       <td>531</td>
       <td>12300.0</td>
@@ -741,7 +736,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>64.34719</td>
       <td>52.845528</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -755,6 +750,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
     </tr>
     <tr>
       <th>3</th>
+      <td>8</td>
       <td>Glacier</td>
       <td>208</td>
       <td>13800.0</td>
@@ -764,7 +760,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
       <td>215.60993</td>
       <td>52.173913</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -778,6 +774,7 @@ If the climate remains constant for a long enough time, glaciers will reach an e
     </tr>
   </tbody>
 </table>
+<p>3 rows × 21 columns</p>
 </div></div></div>
 </div>
 <p>The glacier with the strongest gradient reaches the equilibrium state first. This is also the largest and longest glacier.</p>
@@ -824,6 +821,10 @@ This will be the first step to getting the response time of a glacier.</p>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>Id</th>
+      <td>1</td>
+    </tr>
     <tr>
       <th>Type</th>
       <td>Glacier</td>
@@ -887,7 +888,7 @@ This will be the first step to getting the response time of a glacier.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a290a57768f1799d43186176f92911da745c6a93aa2f46c51cfe327a283c3986.png" src="../_images/a290a57768f1799d43186176f92911da745c6a93aa2f46c51cfe327a283c3986.png" />
+<img alt="../_images/f9df3ec476c1cd92b46f8186f5a75ba2af8eef1e19b7b40b185fac3075c92dc9.png" src="../_images/f9df3ec476c1cd92b46f8186f5a75ba2af8eef1e19b7b40b185fac3075c92dc9.png" />
 </div>
 </div>
 <p>We can access the stored equilibrium states of a glacier</p>
@@ -937,7 +938,7 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c5e5bb5c80cf48d928077a5b7e49e2f5ab8095cf1f9c53d2de51d16527bcf032.png" src="../_images/c5e5bb5c80cf48d928077a5b7e49e2f5ab8095cf1f9c53d2de51d16527bcf032.png" />
+<img alt="../_images/cc8bdbd899197242a73dd483291f8481419f1f145f60941377f98d0292a6e38c.png" src="../_images/cc8bdbd899197242a73dd483291f8481419f1f145f60941377f98d0292a6e38c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1007,6 +1008,10 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
   </thead>
   <tbody>
     <tr>
+      <th>Id</th>
+      <td>1</td>
+    </tr>
+    <tr>
       <th>Type</th>
       <td>Glacier</td>
     </tr>
@@ -1032,7 +1037,7 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
     </tr>
     <tr>
       <th>Max ice velocity [m/yr]</th>
-      <td>64.34719029759582</td>
+      <td>64.34719029759603</td>
     </tr>
     <tr>
       <th>AAR [%]</th>
@@ -1111,6 +1116,7 @@ For this we need a new collection.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Id</th>
       <th>Type</th>
       <th>Age</th>
       <th>Length [m]</th>
@@ -1120,7 +1126,7 @@ For this we need a new collection.</p>
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
-      <th>Creep (Glen A)</th>
+      <th>...</th>
       <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
@@ -1154,11 +1160,13 @@ For this we need a new collection.</p>
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
+      <td>10</td>
       <td>Glacier</td>
       <td>1396</td>
       <td>11100.0</td>
@@ -1168,7 +1176,7 @@ For this we need a new collection.</p>
       <td>18.163011</td>
       <td>53.153153</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1182,6 +1190,7 @@ For this we need a new collection.</p>
     </tr>
     <tr>
       <th>2</th>
+      <td>11</td>
       <td>Glacier</td>
       <td>531</td>
       <td>12300.0</td>
@@ -1191,7 +1200,7 @@ For this we need a new collection.</p>
       <td>64.347190</td>
       <td>52.845528</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1205,6 +1214,7 @@ For this we need a new collection.</p>
     </tr>
     <tr>
       <th>3</th>
+      <td>12</td>
       <td>Glacier</td>
       <td>208</td>
       <td>13800.0</td>
@@ -1214,7 +1224,7 @@ For this we need a new collection.</p>
       <td>215.609930</td>
       <td>52.173913</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1228,6 +1238,7 @@ For this we need a new collection.</p>
     </tr>
   </tbody>
 </table>
+<p>3 rows × 21 columns</p>
 </div></div></div>
 </div>
 <p>We then have to set up a climate change scenario for the glaciers in the collection</p>
@@ -1274,6 +1285,7 @@ For this we need a new collection.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Id</th>
       <th>Type</th>
       <th>Age</th>
       <th>Length [m]</th>
@@ -1283,7 +1295,7 @@ For this we need a new collection.</p>
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
-      <th>Creep (Glen A)</th>
+      <th>...</th>
       <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
@@ -1317,11 +1329,13 @@ For this we need a new collection.</p>
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
+      <td>10</td>
       <td>Glacier</td>
       <td>2033</td>
       <td>8000.0</td>
@@ -1331,7 +1345,7 @@ For this we need a new collection.</p>
       <td>18.163011</td>
       <td>51.250000</td>
       <td>227.0</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1345,6 +1359,7 @@ For this we need a new collection.</p>
     </tr>
     <tr>
       <th>2</th>
+      <td>11</td>
       <td>Glacier</td>
       <td>790</td>
       <td>8900.0</td>
@@ -1354,7 +1369,7 @@ For this we need a new collection.</p>
       <td>64.347190</td>
       <td>51.685393</td>
       <td>69.0</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1368,6 +1383,7 @@ For this we need a new collection.</p>
     </tr>
     <tr>
       <th>3</th>
+      <td>12</td>
       <td>Glacier</td>
       <td>319</td>
       <td>10100.0</td>
@@ -1377,7 +1393,7 @@ For this we need a new collection.</p>
       <td>215.609930</td>
       <td>52.475248</td>
       <td>24.0</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -1391,6 +1407,7 @@ For this we need a new collection.</p>
     </tr>
   </tbody>
 </table>
+<p>3 rows × 21 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1400,7 +1417,7 @@ For this we need a new collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/862ebd28b1a8573d8fb0765cb7537268c72e80814819cdf53dfefffa73a8d584.png" src="../_images/862ebd28b1a8573d8fb0765cb7537268c72e80814819cdf53dfefffa73a8d584.png" />
+<img alt="../_images/1b4795cc3423388dea6b747d2b36817e5a42315c540d876f2d41348ae0e4e668.png" src="../_images/1b4795cc3423388dea6b747d2b36817e5a42315c540d876f2d41348ae0e4e668.png" />
 </div>
 </div>
 <p>We can also look at the state history for one of the glaciers</p>
@@ -1412,7 +1429,7 @@ For this we need a new collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8aae05f1f44f799aa2779847342688af4ffd486080a010ef1f77b96c064eab46.png" src="../_images/8aae05f1f44f799aa2779847342688af4ffd486080a010ef1f77b96c064eab46.png" />
+<img alt="../_images/92f825595b7110c97fa25031041015d4aa9bae9e909a2a9db2ccb7fd164c302a.png" src="../_images/92f825595b7110c97fa25031041015d4aa9bae9e909a2a9db2ccb7fd164c302a.png" />
 </div>
 </div>
 <p>The glacier with weakest MBG need the longest time to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a around two decades to adjust its shape to the new climate (A real world example: Franz Josef glacier in New Zealand<span class="xref myst">⁶</span>)<span class="xref myst">⁷</span>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years.</p>

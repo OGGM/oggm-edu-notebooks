@@ -182,20 +182,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="accumulation_and_ablation.html">Accumulation, ablation, mass Balance and the resulting ice flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advance_and_retreat.html">Glacier advance and retreat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="low_pass_climate.html">Glaciers as a low-pass filter of climate variations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="temperature_index_model.html">Temperature index models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Glaciers as water resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_index.html">Glaciers as water resources: part 1 (idealized climate)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_pre16.html">Glaciers as water resources: part 1 (idealized climate) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="glacier_water_resources_projections_index.html">Glaciers as water resources: part 2 (projections)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections_pre16.html">Glaciers as water resources: part 2 (projections) - OGGM versions pre 1.6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="glacier_water_resources.html">Glaciers as water resources: part 1 (idealized climate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glacier_water_resources_projections.html">Glaciers as water resources: part 2 (projections)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphics</span></p>
 <ul class="nav bd-sidenav">
@@ -567,6 +558,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Id</th>
       <th>Type</th>
       <th>Age</th>
       <th>Length [m]</th>
@@ -576,7 +568,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <th>Max ice velocity [m/yr]</th>
       <th>AAR [%]</th>
       <th>Response time [yrs]</th>
-      <th>Creep (Glen A)</th>
+      <th>...</th>
       <th>Basal sliding</th>
       <th>Bed type</th>
       <th>Top [m]</th>
@@ -610,11 +602,13 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
+      <td>2</td>
       <td>Glacier</td>
       <td>0</td>
       <td>0.0</td>
@@ -624,7 +618,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>None</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -638,6 +632,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
     </tr>
     <tr>
       <th>2</th>
+      <td>3</td>
       <td>Glacier</td>
       <td>0</td>
       <td>0.0</td>
@@ -647,7 +642,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>None</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -661,6 +656,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
     </tr>
     <tr>
       <th>3</th>
+      <td>4</td>
       <td>Glacier</td>
       <td>0</td>
       <td>0.0</td>
@@ -670,7 +666,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
       <td>None</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>2.4e-24</td>
+      <td>...</td>
       <td>0</td>
       <td>Linear bed with a constant width</td>
       <td>3400</td>
@@ -684,6 +680,7 @@ Here we will also introduce the <code class="docutils literal notranslate"><span
     </tr>
   </tbody>
 </table>
+<p>3 rows × 21 columns</p>
 </div></div></div>
 </div>
 <p>We can then change the creep parameter of the glaciers within the collection</p>
@@ -722,7 +719,7 @@ Value interpreted as a creep factor.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/73766201825b09131315c5f5e2cb319871be38daa0a372fc7b07504a131bd1bf.png" src="../_images/73766201825b09131315c5f5e2cb319871be38daa0a372fc7b07504a131bd1bf.png" />
+<img alt="../_images/9ac12ba0186eea7c3dcf6331c16f61eb28de63c167b99df146b10c700307bf82.png" src="../_images/9ac12ba0186eea7c3dcf6331c16f61eb28de63c167b99df146b10c700307bf82.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -732,7 +729,7 @@ Value interpreted as a creep factor.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7c8ed3137329534c92b165f00960b744dc8bb0a2929460a8ffc7347b2807ce5e.png" src="../_images/7c8ed3137329534c92b165f00960b744dc8bb0a2929460a8ffc7347b2807ce5e.png" />
+<img alt="../_images/1fad0b8a203855b465a7729cc5c7b116435ce2e2241e9d3efcfc35915551edbc.png" src="../_images/1fad0b8a203855b465a7729cc5c7b116435ce2e2241e9d3efcfc35915551edbc.png" />
 </div>
 </div>
 </section>
@@ -789,7 +786,7 @@ By default it is set to 0, but it can be modified</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a4d7263a45a24b1add52a491a41243bc6bd0944010be93f0a7f4ce7c56b2f80f.png" src="../_images/a4d7263a45a24b1add52a491a41243bc6bd0944010be93f0a7f4ce7c56b2f80f.png" />
+<img alt="../_images/460ab0d91060aaad91eb0661fd38d5df301af0405018a7b91ad68c78a0df3e49.png" src="../_images/460ab0d91060aaad91eb0661fd38d5df301af0405018a7b91ad68c78a0df3e49.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -799,7 +796,7 @@ By default it is set to 0, but it can be modified</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/188c43996f092ff2baa33976e563f6f30e5cf4cd5160ad6c093c295a10c0b8c0.png" src="../_images/188c43996f092ff2baa33976e563f6f30e5cf4cd5160ad6c093c295a10c0b8c0.png" />
+<img alt="../_images/dc1237e410b9d861a62e88970429c991fe37953ffaabc902c7002de2531884c1.png" src="../_images/dc1237e410b9d861a62e88970429c991fe37953ffaabc902c7002de2531884c1.png" />
 </div>
 </div>
 <p>Initially the glacier with higher basal sliding is advancing down the bed quicker compared to the glacier without basal sliding.

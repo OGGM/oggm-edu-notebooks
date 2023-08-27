@@ -1,0 +1,121 @@
+Traceback (most recent call last):
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# file identifier where the model output is saved
+file_id = '_spinup'
+
+# We are using the task run_with_hydro to store hydrological outputs along with the usual glaciological outputs
+tasks.run_with_hydro(gdir,  # Run on the selected glacier
+                     temp_bias_ts=temp_bias_ts,  # the temperature bias to apply to the average climate
+                     run_task=run_constant_climate_with_bias,  # which climate scenario? See following notebook for other examples
+                     y0=2009, halfsize=10,  # Period which we will average and constantly repeat
+                     store_monthly_hydro=True,  # Monthly ouptuts provide additional information
+                     output_filesuffix=file_id);  # an identifier for the output file, to read it later
+------------------
+
+----- stderr -----
+2023-08-27 22:05:29: oggm_edu.legacy: TypeError occurred during task run_constant_climate_with_bias_spinup on RGI60-11.00897: MonthlyTIModel.__init__() got an unexpected keyword argument 'mu_star'
+----- stderr -----
+2023-08-27 22:05:29: oggm.core.flowline: TypeError occurred during task run_with_hydro_spinup on RGI60-11.00897: MonthlyTIModel.__init__() got an unexpected keyword argument 'mu_star'
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[11], line 5[0m
+[1;32m      2[0m file_id [38;5;241m=[39m [38;5;124m'[39m[38;5;124m_spinup[39m[38;5;124m'[39m
+[1;32m      4[0m [38;5;66;03m# We are using the task run_with_hydro to store hydrological outputs along with the usual glaciological outputs[39;00m
+[0;32m----> 5[0m [43mtasks[49m[38;5;241;43m.[39;49m[43mrun_with_hydro[49m[43m([49m[43mgdir[49m[43m,[49m[43m  [49m[38;5;66;43;03m# Run on the selected glacier[39;49;00m
+[1;32m      6[0m [43m                     [49m[43mtemp_bias_ts[49m[38;5;241;43m=[39;49m[43mtemp_bias_ts[49m[43m,[49m[43m  [49m[38;5;66;43;03m# the temperature bias to apply to the average climate[39;49;00m
+[1;32m      7[0m [43m                     [49m[43mrun_task[49m[38;5;241;43m=[39;49m[43mrun_constant_climate_with_bias[49m[43m,[49m[43m  [49m[38;5;66;43;03m# which climate scenario? See following notebook for other examples[39;49;00m
+[1;32m      8[0m [43m                     [49m[43my0[49m[38;5;241;43m=[39;49m[38;5;241;43m2009[39;49m[43m,[49m[43m [49m[43mhalfsize[49m[38;5;241;43m=[39;49m[38;5;241;43m10[39;49m[43m,[49m[43m  [49m[38;5;66;43;03m# Period which we will average and constantly repeat[39;49;00m
+[1;32m      9[0m [43m                     [49m[43mstore_monthly_hydro[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m  [49m[38;5;66;43;03m# Monthly ouptuts provide additional information[39;49;00m
+[1;32m     10[0m [43m                     [49m[43moutput_filesuffix[49m[38;5;241;43m=[39;49m[43mfile_id[49m[43m)[49m;  [38;5;66;03m# an identifier for the output file, to read it later[39;00m
+
+File [0;32m/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm/utils/_workflow.py:492[0m, in [0;36mentity_task.__call__.<locals>._entity_task[0;34m(gdir, reset, print_log, return_value, continue_on_error, add_to_log_file, **kwargs)[0m
+[1;32m    490[0m     signal[38;5;241m.[39malarm(cfg[38;5;241m.[39mPARAMS[[38;5;124m'[39m[38;5;124mtask_timeout[39m[38;5;124m'[39m])
+[1;32m    491[0m ex_t [38;5;241m=[39m time[38;5;241m.[39mtime()
+[0;32m--> 492[0m out [38;5;241m=[39m [43mtask_func[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    493[0m ex_t [38;5;241m=[39m time[38;5;241m.[39mtime() [38;5;241m-[39m ex_t
+[1;32m    494[0m [38;5;28;01mif[39;00m cfg[38;5;241m.[39mPARAMS[[38;5;124m'[39m[38;5;124mtask_timeout[39m[38;5;124m'[39m] [38;5;241m>[39m [38;5;241m0[39m:
+
+File [0;32m/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm/core/flowline.py:3759[0m, in [0;36mrun_with_hydro[0;34m(gdir, run_task, store_monthly_hydro, fixed_geometry_spinup_yr, ref_area_from_y0, ref_area_yr, ref_geometry_filesuffix, **kwargs)[0m
+[1;32m   3756[0m [38;5;28;01mif[39;00m fixed_geometry_spinup_yr [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m   3757[0m     kwargs[[38;5;124m'[39m[38;5;124mfixed_geometry_spinup_yr[39m[38;5;124m'[39m] [38;5;241m=[39m fixed_geometry_spinup_yr
+[0;32m-> 3759[0m out [38;5;241m=[39m [43mrun_task[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   3761[0m [38;5;28;01mif[39;00m out [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m   3762[0m     [38;5;28;01mraise[39;00m InvalidWorkflowError([38;5;124m'[39m[38;5;124mThe run task ([39m[38;5;132;01m{}[39;00m[38;5;124m) did not run [39m[38;5;124m'[39m
+[1;32m   3763[0m                                [38;5;124m'[39m[38;5;124msuccessfully.[39m[38;5;124m'[39m[38;5;241m.[39mformat(run_task[38;5;241m.[39m[38;5;18m__name__[39m))
+
+File [0;32m/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm/utils/_workflow.py:492[0m, in [0;36mentity_task.__call__.<locals>._entity_task[0;34m(gdir, reset, print_log, return_value, continue_on_error, add_to_log_file, **kwargs)[0m
+[1;32m    490[0m     signal[38;5;241m.[39malarm(cfg[38;5;241m.[39mPARAMS[[38;5;124m'[39m[38;5;124mtask_timeout[39m[38;5;124m'[39m])
+[1;32m    491[0m ex_t [38;5;241m=[39m time[38;5;241m.[39mtime()
+[0;32m--> 492[0m out [38;5;241m=[39m [43mtask_func[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    493[0m ex_t [38;5;241m=[39m time[38;5;241m.[39mtime() [38;5;241m-[39m ex_t
+[1;32m    494[0m [38;5;28;01mif[39;00m cfg[38;5;241m.[39mPARAMS[[38;5;124m'[39m[38;5;124mtask_timeout[39m[38;5;124m'[39m] [38;5;241m>[39m [38;5;241m0[39m:
+
+File [0;32m/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm_edu/legacy.py:1091[0m, in [0;36mrun_constant_climate_with_bias[0;34m(gdir, temp_bias_ts, prcp_fac_ts, ys, ye, y0, halfsize, climate_filename, climate_input_filesuffix, output_filesuffix, init_model_fls, init_model_filesuffix, init_model_yr, bias, **kwargs)[0m
+[1;32m   1088[0m     init_model_fls [38;5;241m=[39m fmod[38;5;241m.[39mfls
+[1;32m   1090[0m [38;5;66;03m# Final crop[39;00m
+[0;32m-> 1091[0m mb [38;5;241m=[39m [43mBiasedConstantMassBalance[49m[43m([49m
+[1;32m   1092[0m [43m    [49m[43mgdir[49m[43m,[49m
+[1;32m   1093[0m [43m    [49m[43mtemp_bias_ts[49m[38;5;241;43m=[39;49m[43mtemp_bias_ts[49m[43m,[49m
+[1;32m   1094[0m [43m    [49m[43mprcp_fac_ts[49m[38;5;241;43m=[39;49m[43mprcp_fac_ts[49m[43m,[49m
+[1;32m   1095[0m [43m    [49m[43my0[49m[38;5;241;43m=[39;49m[43my0[49m[43m,[49m
+[1;32m   1096[0m [43m    [49m[43mbias[49m[38;5;241;43m=[39;49m[43mbias[49m[43m,[49m
+[1;32m   1097[0m [43m    [49m[43mhalfsize[49m[38;5;241;43m=[39;49m[43mhalfsize[49m[43m,[49m
+[1;32m   1098[0m [43m    [49m[43mfilename[49m[38;5;241;43m=[39;49m[43mclimate_filename[49m[43m,[49m
+[1;32m   1099[0m [43m    [49m[43minput_filesuffix[49m[38;5;241;43m=[39;49m[43mclimate_input_filesuffix[49m[43m,[49m
+[1;32m   1100[0m [43m[49m[43m)[49m
+[1;32m   1102[0m [38;5;66;03m# Decide from climate[39;00m
+[1;32m   1103[0m [38;5;28;01mif[39;00m ye [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm_edu/legacy.py:953[0m, in [0;36mBiasedConstantMassBalance.__init__[0;34m(self, gdir, temp_bias_ts, prcp_fac_ts, mu_star, bias, y0, halfsize, filename, input_filesuffix, **kwargs)[0m
+[1;32m    923[0m [38;5;250m[39m[38;5;124;03m"""Initialize[39;00m
+[1;32m    924[0m 
+[1;32m    925[0m [38;5;124;03mParameters[39;00m
+[0;32m   (...)[0m
+[1;32m    948[0m [38;5;124;03m    the file suffix of the input climate file[39;00m
+[1;32m    949[0m [38;5;124;03m"""[39;00m
+[1;32m    951[0m [38;5;28msuper[39m(BiasedConstantMassBalance, [38;5;28mself[39m)[38;5;241m.[39m[38;5;21m__init__[39m()
+[0;32m--> 953[0m [38;5;28mself[39m[38;5;241m.[39mmbmod [38;5;241m=[39m [43mConstantMassBalance[49m[43m([49m
+[1;32m    954[0m [43m    [49m[43mgdir[49m[43m,[49m
+[1;32m    955[0m [43m    [49m[43mmu_star[49m[38;5;241;43m=[39;49m[43mmu_star[49m[43m,[49m
+[1;32m    956[0m [43m    [49m[43mbias[49m[38;5;241;43m=[39;49m[43mbias[49m[43m,[49m
+[1;32m    957[0m [43m    [49m[43my0[49m[38;5;241;43m=[39;49m[43my0[49m[43m,[49m
+[1;32m    958[0m [43m    [49m[43mhalfsize[49m[38;5;241;43m=[39;49m[43mhalfsize[49m[43m,[49m
+[1;32m    959[0m [43m    [49m[43mfilename[49m[38;5;241;43m=[39;49m[43mfilename[49m[43m,[49m
+[1;32m    960[0m [43m    [49m[43minput_filesuffix[49m[38;5;241;43m=[39;49m[43minput_filesuffix[49m[43m,[49m
+[1;32m    961[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m
+[1;32m    962[0m [43m[49m[43m)[49m
+[1;32m    964[0m [38;5;28mself[39m[38;5;241m.[39mvalid_bounds [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mmbmod[38;5;241m.[39mvalid_bounds
+[1;32m    965[0m [38;5;28mself[39m[38;5;241m.[39mhemisphere [38;5;241m=[39m gdir[38;5;241m.[39mhemisphere
+
+File [0;32m/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm/core/massbalance.py:712[0m, in [0;36mConstantMassBalance.__init__[0;34m(self, gdir, mb_model_class, y0, halfsize, **kwargs)[0m
+[1;32m    695[0m [38;5;250m[39m[38;5;124;03m"""Initialize[39;00m
+[1;32m    696[0m 
+[1;32m    697[0m [38;5;124;03mParameters[39;00m
+[0;32m   (...)[0m
+[1;32m    708[0m [38;5;124;03m    keyword arguments to pass to the mb_model_class[39;00m
+[1;32m    709[0m [38;5;124;03m"""[39;00m
+[1;32m    711[0m [38;5;28msuper[39m()[38;5;241m.[39m[38;5;21m__init__[39m()
+[0;32m--> 712[0m [38;5;28mself[39m[38;5;241m.[39mmbmod [38;5;241m=[39m [43mmb_model_class[49m[43m([49m[43mgdir[49m[43m,[49m
+[1;32m    713[0m [43m                            [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    715[0m [38;5;28;01mif[39;00m y0 [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    716[0m     [38;5;28;01mraise[39;00m InvalidParamsError([38;5;124m'[39m[38;5;124mPlease set `y0` explicitly[39m[38;5;124m'[39m)
+
+[0;31mTypeError[0m: MonthlyTIModel.__init__() got an unexpected keyword argument 'mu_star'
+
