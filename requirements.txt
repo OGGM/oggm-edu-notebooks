@@ -1,5 +1,5 @@
 jupyter-book
-oggm==1.6.0
+oggm==1.6.1
 bokeh
 panel
 holoviews
@@ -15,5 +15,5 @@ numpy
 scipy
 pyproj
 geopandas
-sklearn
+scikit-learn
 git+https://github.com/oggm/oggm-edu.git@master#egg=oggm_edu
