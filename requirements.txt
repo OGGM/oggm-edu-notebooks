@@ -1,5 +1,5 @@
 jupyter-book
-oggm==1.6.1
+oggm
 bokeh
 panel
 holoviews
