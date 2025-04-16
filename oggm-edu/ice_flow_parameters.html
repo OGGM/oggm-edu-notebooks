@@ -731,64 +731,6 @@ Value interpreted as a creep factor.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RemoteTraceback</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="ne">Remote</span>Traceback: 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Traceback (most recent call last):</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py&quot;, line 125, in worker</span>
-<span class="sd">    result = (True, func(*args, **kwds))</span>
-<span class="sd">                    ^^^^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py&quot;, line 48, in mapstar</span>
-<span class="sd">    return list(map(*args))</span>
-<span class="sd">           ^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier_collection.py&quot;, line 292, in _partial_progression</span>
-<span class="sd">    glacier.progress_to_year(year)</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py&quot;, line 575, in progress_to_year</span>
-<span class="sd">    out = model.run_until_and_store(year, fl_diag_path=None)</span>
-<span class="sd">          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py&quot;, line 1039, in run_until_and_store</span>
-<span class="sd">    sects = [(np.zeros((ny, fl.nx)) * np.NaN) for fl in self.fls]</span>
-<span class="sd">            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py&quot;, line 1039, in &lt;listcomp&gt;</span>
-<span class="sd">    sects = [(np.zeros((ny, fl.nx)) * np.NaN) for fl in self.fls]</span>
-<span class="sd">                                      ^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py&quot;, line 400, in __getattr__</span>
-<span class="sd">    raise AttributeError(</span>
-<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier_collection.py:315,</span> in <span class="ni">GlacierCollection.progress_to_year</span><span class="nt">(self, year)</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="c1"># Pool context manager.</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="k">with</span> <span class="n">Pool</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="c1"># We use pool.map to evaluate the partial function on all glaciers in the collection.</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="c1"># After this, &quot;update&quot; the collection with the resulting glaciers.</span>
-<span class="ne">--&gt; </span><span class="mi">315</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_glaciers</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">partial_progression</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_glaciers</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py:367,</span> in <span class="ni">Pool.map</span><span class="nt">(self, func, iterable, chunksize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span> <span class="k">def</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="w">     </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">364</span><span class="sd">     Apply `func` to each element in `iterable`, collecting the results</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="sd">     in a list that is returned.</span>
-<span class="g g-Whitespace">    </span><span class="mi">366</span><span class="sd">     &#39;&#39;&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">367</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_async</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">mapstar</span><span class="p">,</span> <span class="n">chunksize</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py:774,</span> in <span class="ni">ApplyResult.get</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">772</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
-<span class="g g-Whitespace">    </span><span class="mi">773</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">774</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
-
-<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
-</pre></div>
-</div>
-</div>
 </div>
 <p>And plot the collection</p>
 <div class="cell docutils container">
@@ -797,12 +739,18 @@ Value interpreted as a creep factor.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/89b47a2c7af32292ecca6dbdd3a0f4a5067b2ce2f5067fb54f36c4c067bdcef4.png" src="../_images/89b47a2c7af32292ecca6dbdd3a0f4a5067b2ce2f5067fb54f36c4c067bdcef4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6d76202a9c08298ec44da012e39c531dc169e3b4eb2443a73470b3f0b8a66b56.png" src="../_images/6d76202a9c08298ec44da012e39c531dc169e3b4eb2443a73470b3f0b8a66b56.png" />
 </div>
 </div>
 </section>
@@ -815,6 +763,11 @@ By default it is set to 0, but it can be modified</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sliding parameter</span>
 <span class="n">glacier</span><span class="o">.</span><span class="n">basal_sliding</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
 </pre></div>
 </div>
 </div>
@@ -853,12 +806,18 @@ By default it is set to 0, but it can be modified</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/bc71e0a93244c273622fbd81b0111d4ea9d10a5d27fe241714af29fad31ca584.png" src="../_images/bc71e0a93244c273622fbd81b0111d4ea9d10a5d27fe241714af29fad31ca584.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/17d8eb8afdb1acb305a5420817c4d1e76f5c07c5fbf0bd486fe48d8a3b9d5725.png" src="../_images/17d8eb8afdb1acb305a5420817c4d1e76f5c07c5fbf0bd486fe48d8a3b9d5725.png" />
 </div>
 </div>
 <p>Initially the glacier with higher basal sliding is advancing down the bed quicker compared to the glacier without basal sliding.

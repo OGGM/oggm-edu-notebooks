@@ -612,22 +612,22 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>1</th>
       <td>1.0</td>
-      <td>-0.131888</td>
+      <td>1.650942</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2.0</td>
-      <td>1.392388</td>
+      <td>1.556904</td>
     </tr>
     <tr>
       <th>3</th>
       <td>3.0</td>
-      <td>-1.810870</td>
+      <td>0.938257</td>
     </tr>
     <tr>
       <th>4</th>
       <td>4.0</td>
-      <td>-0.060041</td>
+      <td>0.532979</td>
     </tr>
     <tr>
       <th>...</th>
@@ -637,27 +637,27 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>996</th>
       <td>996.0</td>
-      <td>0.755549</td>
+      <td>0.067118</td>
     </tr>
     <tr>
       <th>997</th>
       <td>997.0</td>
-      <td>1.688809</td>
+      <td>0.386214</td>
     </tr>
     <tr>
       <th>998</th>
       <td>998.0</td>
-      <td>-1.865236</td>
+      <td>1.174668</td>
     </tr>
     <tr>
       <th>999</th>
       <td>999.0</td>
-      <td>0.536964</td>
+      <td>1.872407</td>
     </tr>
     <tr>
       <th>1000</th>
       <td>1000.0</td>
-      <td>-1.391889</td>
+      <td>0.768802</td>
     </tr>
   </tbody>
 </table>
@@ -673,7 +673,7 @@ This will be pretty messy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/79f302cb2fcd6265b3e04c21129bcf4c49da69ab28e9051d9259d7b2ad582ef1.png" src="../_images/79f302cb2fcd6265b3e04c21129bcf4c49da69ab28e9051d9259d7b2ad582ef1.png" />
+<img alt="../_images/d5ec7ac2d43d0dae175a50df7a832db1f9f130a0bd774cec5373b053582edcb7.png" src="../_images/d5ec7ac2d43d0dae175a50df7a832db1f9f130a0bd774cec5373b053582edcb7.png" />
 </div>
 </div>
 <div class="alert alert-info">
@@ -689,58 +689,15 @@ This will be pretty messy.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Progress the glacier to year 1000.</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:575,</span> in <span class="ni">Glacier.progress_to_year</span><span class="nt">(self, year)</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> <span class="c1"># Run the model. Store the history.</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">575</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_until_and_store</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">fl_diag_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="c1"># If it fails, see above.</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">FlowlineModel.run_until_and_store</span><span class="nt">(self, y1, diag_path, fl_diag_path, geom_path, store_monthly_step, stop_criterion, fixed_geometry_spinup_yr, dynamic_spinup_min_ice_thick)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py:400,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__expired_attributes__</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">400</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="sa">f</span><span class="s2">&quot;`np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` was removed in the NumPy 2.0 release. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__expired_attributes__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s2">&quot;chararray&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="s2">&quot;`np.chararray` is deprecated and will be removed from &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="s2">&quot;the main namespace in the future. Use an array with a string &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="s2">&quot;or bytes dtype instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/558811aaacfe7a2fb9c5211fe5aa08d807fd74d49bb12817d753dd7786e108f3.png" src="../_images/558811aaacfe7a2fb9c5211fe5aa08d807fd74d49bb12817d753dd7786e108f3.png" />
 </div>
 </div>
 </section>
@@ -753,6 +710,9 @@ We can also plot the temperature bias history by passing <code class="docutils l
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/62f2239e435cf6d9451e479f25efaba80a034be962c1350639ace02973ef7f84.png" src="../_images/62f2239e435cf6d9451e479f25efaba80a034be962c1350639ace02973ef7f84.png" />
 </div>
 </div>
 <p>Since the random climate is just random, it is difficult to distinguish any similarities between the noisy bias and the glacier history.
@@ -774,6 +734,9 @@ By doing this we shrink the range of the y-axis, enhancing the fluctuations in t
                      <span class="n">time_range</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/356221a01450cb2c84d22b622b6fd2f1e869e511947d6457fee4eac2edd56691.png" src="../_images/356221a01450cb2c84d22b622b6fd2f1e869e511947d6457fee4eac2edd56691.png" />
 </div>
 </div>
 </section>
@@ -839,6 +802,9 @@ You can essentially use any function returning an array of floats, or do it manu
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/79eb9a3dff249ca68e792cb7e44ef1747da6d758b97c0544bb3b5986c25e5765.png" src="../_images/79eb9a3dff249ca68e792cb7e44ef1747da6d758b97c0544bb3b5986c25e5765.png" />
+</div>
 </div>
 <p>It is also possible to add a future climate to a glacier that already has some history.</p>
 <p>To start over, we first reset the glacier, then we add a linear trend and progress to the end of the climate data.</p>
@@ -868,6 +834,9 @@ You can essentially use any function returning an array of floats, or do it manu
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bfa537fe87cc7494782ff4eec5f0cd712d22b6978d7649b6d64126aaf8062e25.png" src="../_images/bfa537fe87cc7494782ff4eec5f0cd712d22b6978d7649b6d64126aaf8062e25.png" />
 </div>
 </div>
 <p>We can then assign more data to  the future climate, just as easy as before.
@@ -908,6 +877,9 @@ Internally this will append it to the series that already exists.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/695765981614049fbd91ad00d4dadc4836e3462cb88859e359d135fd19dc6101.png" src="../_images/695765981614049fbd91ad00d4dadc4836e3462cb88859e359d135fd19dc6101.png" />
 </div>
 </div>
 <section id="adding-noise-to-clean-data">
@@ -967,6 +939,9 @@ The next step is, of course, to combine the methods to create trends that also h
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/a8bbdf5b83470b5c9665159c8d557ee9aa3b3d5a51ead4b9065a3db9b38349f0.png" src="../_images/a8bbdf5b83470b5c9665159c8d557ee9aa3b3d5a51ead4b9065a3db9b38349f0.png" />
+</div>
 </div>
 <p>Conveniently, the <code class="docutils literal notranslate"><span class="pre">.add_temperature_bias</span></code> has an argument which adds noise to the trend.</p>
 <div class="cell docutils container">
@@ -995,6 +970,9 @@ The next step is, of course, to combine the methods to create trends that also h
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e1e7d8ccd4894f8f580cd73652e2fde7641763260b8b91a4cd36017c1168031e.png" src="../_images/e1e7d8ccd4894f8f580cd73652e2fde7641763260b8b91a4cd36017c1168031e.png" />
 </div>
 </div>
 <p>Now you should have the tools to create your own climates for OGGM-Edu glaciers and see how they filter the climate.</p>

@@ -707,56 +707,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">my_glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:674,</span> in <span class="ni">Glacier.progress_to_equilibrium</span><span class="nt">(self, years, t_rate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="c1"># Run the model.</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="c1">#  Run with a stopping criteria.</span>
-<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_until_and_store</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="n">years</span><span class="p">,</span> <span class="n">fl_diag_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stop_criterion</span><span class="o">=</span><span class="n">stop_function</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="c1"># We chose to print and return instead of raising since the</span>
-<span class="g g-Whitespace">    </span><span class="mi">680</span>     <span class="c1"># collection will then be able to continue.</span>
-<span class="g g-Whitespace">    </span><span class="mi">681</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Glacier grew out of its domain before reaching an equilibrium state.&quot;</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">FlowlineModel.run_until_and_store</span><span class="nt">(self, y1, diag_path, fl_diag_path, geom_path, store_monthly_step, stop_criterion, fixed_geometry_spinup_yr, dynamic_spinup_min_ice_thick)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py:400,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__expired_attributes__</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">400</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="sa">f</span><span class="s2">&quot;`np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` was removed in the NumPy 2.0 release. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__expired_attributes__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s2">&quot;chararray&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="s2">&quot;`np.chararray` is deprecated and will be removed from &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="s2">&quot;the main namespace in the future. Use an array with a string &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="s2">&quot;or bytes dtype instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
-</pre></div>
-</div>
-</div>
 </div>
 <p>Take a look at the current glacier state</p>
 <div class="cell docutils container">
@@ -764,6 +714,9 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bcd25472f93075afe6fb3712310c2fe2cb874b844b14b8ced48abd8cb32347e1.png" src="../_images/bcd25472f93075afe6fb3712310c2fe2cb874b844b14b8ced48abd8cb32347e1.png" />
 </div>
 </div>
 <p>Although our initial glacier is in equilibrium, it doesn’t mean that the mass balance is zero everywhere.
@@ -800,6 +753,52 @@ Our scenario implies a temperature decrease of -1.5<span class="math notranslate
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>MassBalance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ELA [m]</th>
+      <td>3108.333333</td>
+    </tr>
+    <tr>
+      <th>Original ELA [m]</th>
+      <td>3333.333333</td>
+    </tr>
+    <tr>
+      <th>Temperature bias [C]</th>
+      <td>-1.5</td>
+    </tr>
+    <tr>
+      <th>Gradient [mm/m/yr]</th>
+      <td>[7]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>As we can see in the representation above, the current ELA sits around 3108 m a.s.l. while the original ELA was at 3333 m a.s.l.</p>
 <p>Let’s take a look at the new equilibrium state after the we decreased the temperature</p>
@@ -808,6 +807,9 @@ Our scenario implies a temperature decrease of -1.5<span class="math notranslate
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bf6f0f487bd606403a5cc8bf9643b145aaef46652f3397dcb46b095b99244b09.png" src="../_images/bf6f0f487bd606403a5cc8bf9643b145aaef46652f3397dcb46b095b99244b09.png" />
 </div>
 </div>
 <p>Decreasing the ELA results in an increased accumulation area and thus higher accumulation. More mass at the top of the glacier will increase the ice flow <span class="math notranslate nohighlight">\(\vec{q}\)</span> down the glacier, leading to an advance of the glacier terminus and thus expanding the ablation area.
@@ -819,6 +821,9 @@ This is also illustrated in the plot below.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_glacier_graphics</span><span class="p">(</span><span class="s1">&#39;09&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ad6c8fcdfc42c397beb902eefd0671e4277506ad237e5b534fbe5af8156b05fb.png" src="../_images/ad6c8fcdfc42c397beb902eefd0671e4277506ad237e5b534fbe5af8156b05fb.png" />
 </div>
 </div>
 </section>
@@ -859,6 +864,52 @@ We will set up our initial glacier again, but this time increase the temperature
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>MassBalance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ELA [m]</th>
+      <td>3783.333333</td>
+    </tr>
+    <tr>
+      <th>Original ELA [m]</th>
+      <td>3333.333333</td>
+    </tr>
+    <tr>
+      <th>Temperature bias [C]</th>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>Gradient [mm/m/yr]</th>
+      <td>[7]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Here we ended up raising the ELA from 3333 m. a.s.l. to 3783 m. a.s.l.</p>
 <p>Plot the new equilibrium state</p>
@@ -867,6 +918,9 @@ We will set up our initial glacier again, but this time increase the temperature
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12b7a71baae6b641f880778a3abca927e0ef90329c76cc26cb0128b0bfd92bac.png" src="../_images/12b7a71baae6b641f880778a3abca927e0ef90329c76cc26cb0128b0bfd92bac.png" />
 </div>
 </div>
 <p>Comparing the outlines of the two equilibrium states we can see that the glacier has retreated: The shorted orange outline is older compared to the blue outline.
@@ -877,6 +931,9 @@ Similar to what we see in the figure below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/15b76915897533786555f44df07baf1ded52b187c0bc3254c8aeaba1a7fb085e.png" src="../_images/15b76915897533786555f44df07baf1ded52b187c0bc3254c8aeaba1a7fb085e.png" />
+</div>
 </div>
 <p>We can further explore the glacier response during retreat by looking at the history of our glacier.</p>
 <div class="cell docutils container">
@@ -884,6 +941,9 @@ Similar to what we see in the figure below.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d7cb743ffcb68b18decdf80f0aee0e00b9138b077007b96b532b7e0584a0aa1f.png" src="../_images/d7cb743ffcb68b18decdf80f0aee0e00b9138b077007b96b532b7e0584a0aa1f.png" />
 </div>
 </div>
 <p>Raising the temperature will grow the ablation area which correspond to increasing the ELA.

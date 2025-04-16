@@ -579,65 +579,6 @@ This is achieved by passing a list of gradients, and another list with the altit
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RemoteTraceback</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="ne">Remote</span>Traceback: 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Traceback (most recent call last):</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py&quot;, line 125, in worker</span>
-<span class="sd">    result = (True, func(*args, **kwds))</span>
-<span class="sd">                    ^^^^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py&quot;, line 48, in mapstar</span>
-<span class="sd">    return list(map(*args))</span>
-<span class="sd">           ^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier_collection.py&quot;, line 292, in _partial_progression</span>
-<span class="sd">    glacier.progress_to_year(year)</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py&quot;, line 575, in progress_to_year</span>
-<span class="sd">    out = model.run_until_and_store(year, fl_diag_path=None)</span>
-<span class="sd">          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py&quot;, line 1039, in run_until_and_store</span>
-<span class="sd">    sects = [(np.zeros((ny, fl.nx)) * np.NaN) for fl in self.fls]</span>
-<span class="sd">            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py&quot;, line 1039, in &lt;listcomp&gt;</span>
-<span class="sd">    sects = [(np.zeros((ny, fl.nx)) * np.NaN) for fl in self.fls]</span>
-<span class="sd">                                      ^^^^^^</span>
-<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py&quot;, line 400, in __getattr__</span>
-<span class="sd">    raise AttributeError(</span>
-<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Progress collection to the same year.</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier_collection.py:315,</span> in <span class="ni">GlacierCollection.progress_to_year</span><span class="nt">(self, year)</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="c1"># Pool context manager.</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="k">with</span> <span class="n">Pool</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="c1"># We use pool.map to evaluate the partial function on all glaciers in the collection.</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="c1"># After this, &quot;update&quot; the collection with the resulting glaciers.</span>
-<span class="ne">--&gt; </span><span class="mi">315</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_glaciers</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">partial_progression</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_glaciers</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py:367,</span> in <span class="ni">Pool.map</span><span class="nt">(self, func, iterable, chunksize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span> <span class="k">def</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="w">     </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">364</span><span class="sd">     Apply `func` to each element in `iterable`, collecting the results</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="sd">     in a list that is returned.</span>
-<span class="g g-Whitespace">    </span><span class="mi">366</span><span class="sd">     &#39;&#39;&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">367</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_async</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">mapstar</span><span class="p">,</span> <span class="n">chunksize</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py:774,</span> in <span class="ni">ApplyResult.get</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">772</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
-<span class="g g-Whitespace">    </span><span class="mi">773</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">774</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
-
-<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -645,12 +586,18 @@ This is achieved by passing a list of gradients, and another list with the altit
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/2130e3ae7724d9c7d19e57b13cfb691d5863df6d88bd6df7446e5996fe27d58d.png" src="../_images/2130e3ae7724d9c7d19e57b13cfb691d5863df6d88bd6df7446e5996fe27d58d.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_mass_balance</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c9ed6a31911a4825cb287d6fb90b101ee013d1cfc86358bf05d30c785dcd792e.png" src="../_images/c9ed6a31911a4825cb287d6fb90b101ee013d1cfc86358bf05d30c785dcd792e.png" />
 </div>
 </div>
 <p>A stronger mass balance gradient (flatter line in plot above) implies a larger change of the mass balance with altitude.
@@ -696,6 +643,9 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cfd0bf8fc77b91f181245fd79273c18372a18ac63580752d3a57c0b92f39e05e.png" src="../_images/cfd0bf8fc77b91f181245fd79273c18372a18ac63580752d3a57c0b92f39e05e.png" />
+</div>
 </div>
 <p>The different glaciers reach their equilibrium state after a different number of years. What does the figure show us? Which glacier is the thickest and longest? Let’s look at specific numbers:</p>
 <div class="cell docutils container">
@@ -704,6 +654,149 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>Type</th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Max ice thickness [m]</th>
+      <th>Max ice velocity [m/yr]</th>
+      <th>AAR [%]</th>
+      <th>Response time [yrs]</th>
+      <th>...</th>
+      <th>Basal sliding</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>6</td>
+      <td>Glacier</td>
+      <td>2500</td>
+      <td>8700.0</td>
+      <td>3.48</td>
+      <td>0.376764</td>
+      <td>119.836207</td>
+      <td>6.25951</td>
+      <td>63.218391</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7</td>
+      <td>Glacier</td>
+      <td>531</td>
+      <td>12300.0</td>
+      <td>4.92</td>
+      <td>0.935159</td>
+      <td>214.228472</td>
+      <td>64.34719</td>
+      <td>52.845528</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8</td>
+      <td>Glacier</td>
+      <td>208</td>
+      <td>13800.0</td>
+      <td>5.52</td>
+      <td>1.418343</td>
+      <td>291.286530</td>
+      <td>215.60993</td>
+      <td>52.173913</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>15.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div></div></div>
 </div>
 <p>The glacier with the strongest gradient reaches the equilibrium state first. This is also the largest and longest glacier.</p>
 </section>
@@ -722,6 +815,84 @@ This will be the first step to getting the response time of a glacier.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Attribute</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Id</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>Glacier</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Length [m]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Area [km2]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Volume [km3]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Max ice thickness [m]</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Max ice velocity [m/yr]</th>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>AAR [%]</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Response time [yrs]</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Creep (Glen A)</th>
+      <td>2.4e-24</td>
+    </tr>
+    <tr>
+      <th>Basal sliding</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>First we progress the glacier to equilibrium</p>
 <div class="cell docutils container">
@@ -737,11 +908,19 @@ This will be the first step to getting the response time of a glacier.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/b774420a3927887daa23336f791182e2d4bdbe373379cffecf35b355d2d615bd.png" src="../_images/b774420a3927887daa23336f791182e2d4bdbe373379cffecf35b355d2d615bd.png" />
+</div>
 </div>
 <p>We can access the stored equilibrium states of a glacier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">eq_states</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{531: 3000}
 </pre></div>
 </div>
 </div>
@@ -779,10 +958,18 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/f5c63483a8aad7c9999b674ce5e67e339df1d0591556077f0aca209154863cb4.png" src="../_images/f5c63483a8aad7c9999b674ce5e67e339df1d0591556077f0aca209154863cb4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">eq_states</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{531: 3000, 790: np.float64(3150.0)}
 </pre></div>
 </div>
 </div>
@@ -801,6 +988,11 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69.0
+</pre></div>
+</div>
+</div>
 </div>
 <p>or just look at the representation</p>
 <div class="cell docutils container">
@@ -809,6 +1001,84 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Attribute</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Id</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>Glacier</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>790</td>
+    </tr>
+    <tr>
+      <th>Length [m]</th>
+      <td>8900.0</td>
+    </tr>
+    <tr>
+      <th>Area [km2]</th>
+      <td>3.56</td>
+    </tr>
+    <tr>
+      <th>Volume [km3]</th>
+      <td>0.58815</td>
+    </tr>
+    <tr>
+      <th>Max ice thickness [m]</th>
+      <td>187.240744</td>
+    </tr>
+    <tr>
+      <th>Max ice velocity [m/yr]</th>
+      <td>64.34719029759582</td>
+    </tr>
+    <tr>
+      <th>AAR [%]</th>
+      <td>51.685393</td>
+    </tr>
+    <tr>
+      <th>Response time [yrs]</th>
+      <td>69.0</td>
+    </tr>
+    <tr>
+      <th>Creep (Glen A)</th>
+      <td>2.4e-24</td>
+    </tr>
+    <tr>
+      <th>Basal sliding</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Now that we have introduced the concept of response time we can apply it and see how the different mass balance gradients affect the response time.
 For this we need a new collection.</p>
@@ -848,6 +1118,149 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>Type</th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Max ice thickness [m]</th>
+      <th>Max ice velocity [m/yr]</th>
+      <th>AAR [%]</th>
+      <th>Response time [yrs]</th>
+      <th>...</th>
+      <th>Basal sliding</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>10</td>
+      <td>Glacier</td>
+      <td>1396</td>
+      <td>11100.0</td>
+      <td>4.44</td>
+      <td>0.617531</td>
+      <td>156.657721</td>
+      <td>18.163011</td>
+      <td>53.153153</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>Glacier</td>
+      <td>531</td>
+      <td>12300.0</td>
+      <td>4.92</td>
+      <td>0.935159</td>
+      <td>214.228472</td>
+      <td>64.347190</td>
+      <td>52.845528</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12</td>
+      <td>Glacier</td>
+      <td>208</td>
+      <td>13800.0</td>
+      <td>5.52</td>
+      <td>1.418343</td>
+      <td>291.286530</td>
+      <td>215.609930</td>
+      <td>52.173913</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>0</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div></div></div>
 </div>
 <p>We then have to set up a climate change scenario for the glaciers in the collection</p>
 <div class="cell docutils container">
@@ -874,12 +1287,158 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>Type</th>
+      <th>Age</th>
+      <th>Length [m]</th>
+      <th>Area [km2]</th>
+      <th>Volume [km3]</th>
+      <th>Max ice thickness [m]</th>
+      <th>Max ice velocity [m/yr]</th>
+      <th>AAR [%]</th>
+      <th>Response time [yrs]</th>
+      <th>...</th>
+      <th>Basal sliding</th>
+      <th>Bed type</th>
+      <th>Top [m]</th>
+      <th>Bottom [m]</th>
+      <th>Width(s) [m]</th>
+      <th>Length [km]</th>
+      <th>ELA [m]</th>
+      <th>Original ELA [m]</th>
+      <th>Temperature bias [C]</th>
+      <th>Gradient [mm/m/yr]</th>
+    </tr>
+    <tr>
+      <th>Glacier</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>10</td>
+      <td>Glacier</td>
+      <td>2033</td>
+      <td>8000.0</td>
+      <td>3.20</td>
+      <td>0.378810</td>
+      <td>134.826892</td>
+      <td>18.163011</td>
+      <td>51.250000</td>
+      <td>227.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3150.0</td>
+      <td>3000</td>
+      <td>1.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>Glacier</td>
+      <td>790</td>
+      <td>8900.0</td>
+      <td>3.56</td>
+      <td>0.588150</td>
+      <td>187.240744</td>
+      <td>64.347190</td>
+      <td>51.685393</td>
+      <td>69.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3150.0</td>
+      <td>3000</td>
+      <td>1.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12</td>
+      <td>Glacier</td>
+      <td>319</td>
+      <td>10100.0</td>
+      <td>4.04</td>
+      <td>0.913352</td>
+      <td>256.795193</td>
+      <td>215.609930</td>
+      <td>52.475248</td>
+      <td>24.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Linear bed with a constant width</td>
+      <td>3400</td>
+      <td>1500</td>
+      <td>400</td>
+      <td>20.0</td>
+      <td>3150.0</td>
+      <td>3000</td>
+      <td>1.0</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7cdf5d6cd151e827f7a873a2e4fa96affcd622c53c5dc6c7fc4727a57a2c2df6.png" src="../_images/7cdf5d6cd151e827f7a873a2e4fa96affcd622c53c5dc6c7fc4727a57a2c2df6.png" />
 </div>
 </div>
 <p>We can also look at the state history for one of the glaciers</p>
@@ -889,6 +1448,9 @@ For this we need a new collection.</p>
 <span class="n">collection</span><span class="o">.</span><span class="n">glaciers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_state_history</span><span class="p">(</span><span class="n">eq_states</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9c3c8d36d522da3ff950af0e3a6808c715aadcd95702440ca39f2bf50865c7ce.png" src="../_images/9c3c8d36d522da3ff950af0e3a6808c715aadcd95702440ca39f2bf50865c7ce.png" />
 </div>
 </div>
 <p>The glacier with weakest MBG need the longest time to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a around two decades to adjust its shape to the new climate (A real world example: Franz Josef glacier in New Zealand<a class="reference internal" href="#references"><span class="std std-ref">⁶</span></a>)<a class="reference internal" href="#references"><span class="std std-ref">⁷</span></a>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years.</p>
