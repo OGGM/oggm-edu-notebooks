@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Glaciers as a low-pass filter of climate variations &#8212; OGGM-Edu notebooks</title>
   
@@ -15,66 +14,59 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'UA-106829797-2');
-            </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/low_pass_climate';</script>
+    <script data-domain="edu.oggm.org" defer="defer" src="https://plausible.oggm.org/js/script.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Glaciers as water resources: part 1 (idealized climate)" href="glacier_water_resources.html" />
     <link rel="prev" title="Glacier advance and retreat" href="advance_and_retreat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
   </head>
   
   
@@ -82,19 +74,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,12 +112,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -136,9 +140,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../welcome.html">
+  
   
   
   
@@ -148,12 +156,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="OGGM-Edu notebooks - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="OGGM-Edu notebooks - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -208,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -217,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -249,14 +268,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/low_pass_climate.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -267,14 +286,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/low_pass_climate.ipynb&branch=master" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -412,26 +431,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -468,17 +489,17 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="glaciers-as-a-low-pass-filter-of-climate-variations">
-<h1>Glaciers as a low-pass filter of climate variations<a class="headerlink" href="#glaciers-as-a-low-pass-filter-of-climate-variations" title="Permalink to this heading">#</a></h1>
+<h1>Glaciers as a low-pass filter of climate variations<a class="headerlink" href="#glaciers-as-a-low-pass-filter-of-climate-variations" title="Link to this heading">#</a></h1>
 <p>In a previous notebook we have talked about the response time of a glacier and how it takes some time for the glacier to respond to changes in its climate.
 In this notebook we are going to investigate this delayed response further by looking at how glaciers acts as a smoothing filter (low-pass) on variations in the climate forcing.</p>
 <p>We will do this by introducing some, for you, new functionality of the OGGM-Edu classes which enables you to assign random, and custom, future temperature biases to the mass balance of your glacier.</p>
 <p>First we have to import the minimal set of classes for working with OGGM-Edu glaciers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">Glacier</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">oggm_edu</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">Glacier</span>
 </pre></div>
 </div>
 </div>
@@ -502,7 +523,7 @@ However, feel free to change this as you like.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f0b889ab08c46e50eff874c567cd1365bf3b6f403a3943b255c291a0ede34d1c.png" src="../_images/f0b889ab08c46e50eff874c567cd1365bf3b6f403a3943b255c291a0ede34d1c.png" />
+<img alt="../_images/19472eaa486012ccabb97597ef9f13d195270c27303d4453eb12a087242ca355.png" src="../_images/19472eaa486012ccabb97597ef9f13d195270c27303d4453eb12a087242ca355.png" />
 </div>
 </div>
 <p>Next step is the mass balance.
@@ -533,11 +554,11 @@ We create a slightly more realistic mass balance profile with a few different gr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a2ad49d8899c6f81f78717a9d2ab9e798d5c66f5bac50a83d95e07cad4dff02f.png" src="../_images/a2ad49d8899c6f81f78717a9d2ab9e798d5c66f5bac50a83d95e07cad4dff02f.png" />
+<img alt="../_images/67fa4d7040d08e3515d27d2a878312bec576cc58ff5e9bebc67668c122b34423.png" src="../_images/67fa4d7040d08e3515d27d2a878312bec576cc58ff5e9bebc67668c122b34423.png" />
 </div>
 </div>
 <section id="adding-a-random-climate">
-<h2>Adding a random climate<a class="headerlink" href="#adding-a-random-climate" title="Permalink to this heading">#</a></h2>
+<h2>Adding a random climate<a class="headerlink" href="#adding-a-random-climate" title="Link to this heading">#</a></h2>
 <p>Before we start progressing the glacier assign a random climate to the future of the glacier.
 Random in this case means that the temperature bias of our glacier will vary randomly from year to year between values specified by us.
 Internally this has the effect that the ELA of our glacier changes up and down.</p>
@@ -591,22 +612,22 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>1</th>
       <td>1.0</td>
-      <td>-1.184740</td>
+      <td>-0.131888</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2.0</td>
-      <td>-0.385436</td>
+      <td>1.392388</td>
     </tr>
     <tr>
       <th>3</th>
       <td>3.0</td>
-      <td>0.136106</td>
+      <td>-1.810870</td>
     </tr>
     <tr>
       <th>4</th>
       <td>4.0</td>
-      <td>-0.735251</td>
+      <td>-0.060041</td>
     </tr>
     <tr>
       <th>...</th>
@@ -616,27 +637,27 @@ Internally this has the effect that the ELA of our glacier changes up and down.<
     <tr>
       <th>996</th>
       <td>996.0</td>
-      <td>-0.949218</td>
+      <td>0.755549</td>
     </tr>
     <tr>
       <th>997</th>
       <td>997.0</td>
-      <td>-1.841776</td>
+      <td>1.688809</td>
     </tr>
     <tr>
       <th>998</th>
       <td>998.0</td>
-      <td>1.187378</td>
+      <td>-1.865236</td>
     </tr>
     <tr>
       <th>999</th>
       <td>999.0</td>
-      <td>1.375924</td>
+      <td>0.536964</td>
     </tr>
     <tr>
       <th>1000</th>
       <td>1000.0</td>
-      <td>-0.917359</td>
+      <td>-1.391889</td>
     </tr>
   </tbody>
 </table>
@@ -652,7 +673,7 @@ This will be pretty messy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b3141e0d84ab4f98ea26197458d9dd3297fdc39642bf8d7c8f6715aea2df1df.png" src="../_images/5b3141e0d84ab4f98ea26197458d9dd3297fdc39642bf8d7c8f6715aea2df1df.png" />
+<img alt="../_images/79f302cb2fcd6265b3e04c21129bcf4c49da69ab28e9051d9259d7b2ad582ef1.png" src="../_images/79f302cb2fcd6265b3e04c21129bcf4c49da69ab28e9051d9259d7b2ad582ef1.png" />
 </div>
 </div>
 <div class="alert alert-info">
@@ -668,6 +689,52 @@ This will be pretty messy.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Progress the glacier to year 1000.</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:575,</span> in <span class="ni">Glacier.progress_to_year</span><span class="nt">(self, year)</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> <span class="c1"># Run the model. Store the history.</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">575</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_until_and_store</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">fl_diag_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="c1"># If it fails, see above.</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">FlowlineModel.run_until_and_store</span><span class="nt">(self, y1, diag_path, fl_diag_path, geom_path, store_monthly_step, stop_criterion, fixed_geometry_spinup_yr, dynamic_spinup_min_ice_thick)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py:400,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__expired_attributes__</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">400</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="sa">f</span><span class="s2">&quot;`np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` was removed in the NumPy 2.0 release. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__expired_attributes__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s2">&quot;chararray&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="s2">&quot;`np.chararray` is deprecated and will be removed from &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="s2">&quot;the main namespace in the future. Use an array with a string &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="s2">&quot;or bytes dtype instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -675,13 +742,10 @@ This will be pretty messy.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/ebcefb7c5d921e0588574f3c5c909417b027a6d863d91c0127c1327ecb3b2334.png" src="../_images/ebcefb7c5d921e0588574f3c5c909417b027a6d863d91c0127c1327ecb3b2334.png" />
-</div>
 </div>
 </section>
 <section id="a-look-at-the-history">
-<h2>A look at the history<a class="headerlink" href="#a-look-at-the-history" title="Permalink to this heading">#</a></h2>
+<h2>A look at the history<a class="headerlink" href="#a-look-at-the-history" title="Link to this heading">#</a></h2>
 <p>We plot the history of the glacier length, volume and area with the <code class="docutils literal notranslate"><span class="pre">.plot_history()</span></code> method.
 We can also plot the temperature bias history by passing <code class="docutils literal notranslate"><span class="pre">True</span></code> to the <code class="docutils literal notranslate"><span class="pre">show_bias</span></code> argument.</p>
 <div class="cell docutils container">
@@ -689,9 +753,6 @@ We can also plot the temperature bias history by passing <code class="docutils l
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/6d726d96925d33f97a2b9317c6807e3f3a633be674f0a92f95480c53faf5d748.png" src="../_images/6d726d96925d33f97a2b9317c6807e3f3a633be674f0a92f95480c53faf5d748.png" />
 </div>
 </div>
 <p>Since the random climate is just random, it is difficult to distinguish any similarities between the noisy bias and the glacier history.
@@ -714,13 +775,10 @@ By doing this we shrink the range of the y-axis, enhancing the fluctuations in t
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/2fe91eddf80ae591cece40b5f6298b6b50c99caa81bc41f2f4fe6d4caad6ba81.png" src="../_images/2fe91eddf80ae591cece40b5f6298b6b50c99caa81bc41f2f4fe6d4caad6ba81.png" />
-</div>
 </div>
 </section>
 <section id="creating-a-custom-climate">
-<h2>Creating a custom climate<a class="headerlink" href="#creating-a-custom-climate" title="Permalink to this heading">#</a></h2>
+<h2>Creating a custom climate<a class="headerlink" href="#creating-a-custom-climate" title="Link to this heading">#</a></h2>
 <div class="alert alert-info">
     <b>Warning:</b> The following section requires more experience with Python than most of the previous work you've done with OGGM-Edu.
 </div>
@@ -729,7 +787,7 @@ This is done by creating an array of bias values and assigning it to the <code c
 <p>The easiest way to do this is by using one, or a combination, of the numpy-methods generating arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -781,9 +839,6 @@ You can essentially use any function returning an array of floats, or do it manu
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/8662e8ef4684268ca3603beedd1faea363f94bc5a096ee668c002abf30f34282.png" src="../_images/8662e8ef4684268ca3603beedd1faea363f94bc5a096ee668c002abf30f34282.png" />
-</div>
 </div>
 <p>It is also possible to add a future climate to a glacier that already has some history.</p>
 <p>To start over, we first reset the glacier, then we add a linear trend and progress to the end of the climate data.</p>
@@ -813,9 +868,6 @@ You can essentially use any function returning an array of floats, or do it manu
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot_history</span><span class="p">(</span><span class="n">show_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/f2a432c116cc872dcf60fad3ab04198e0024b165f10213ad404906e1d92072dc.png" src="../_images/f2a432c116cc872dcf60fad3ab04198e0024b165f10213ad404906e1d92072dc.png" />
 </div>
 </div>
 <p>We can then assign more data to  the future climate, just as easy as before.
@@ -857,12 +909,9 @@ Internally this will append it to the series that already exists.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/c0d580af5378caea5510b26ee4d8efe97dadf7f3e86914cadebc49373dd556fe.png" src="../_images/c0d580af5378caea5510b26ee4d8efe97dadf7f3e86914cadebc49373dd556fe.png" />
-</div>
 </div>
 <section id="adding-noise-to-clean-data">
-<h3>Adding noise to clean data<a class="headerlink" href="#adding-noise-to-clean-data" title="Permalink to this heading">#</a></h3>
+<h3>Adding noise to clean data<a class="headerlink" href="#adding-noise-to-clean-data" title="Link to this heading">#</a></h3>
 <p>Until now, we have either created a completely random climate or very clean and predictable trends.
 The next step is, of course, to combine the methods to create trends that also have some random variability to them.</p>
 <p>We will demonstrate this by manually creating a linear trend and then adding some noise to it.</p>
@@ -918,9 +967,6 @@ The next step is, of course, to combine the methods to create trends that also h
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/2ac52228f8d6e39b07f8b2d6e1a187110e320b216e24a854bd5dea2daa1e4fd1.png" src="../_images/2ac52228f8d6e39b07f8b2d6e1a187110e320b216e24a854bd5dea2daa1e4fd1.png" />
-</div>
 </div>
 <p>Conveniently, the <code class="docutils literal notranslate"><span class="pre">.add_temperature_bias</span></code> has an argument which adds noise to the trend.</p>
 <div class="cell docutils container">
@@ -950,16 +996,13 @@ The next step is, of course, to combine the methods to create trends that also h
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/41dcdf11ed30e8b422168bb6ed0769a5905b92df9c9d3b8c8972e7ded4cc5e3c.png" src="../_images/41dcdf11ed30e8b422168bb6ed0769a5905b92df9c9d3b8c8972e7ded4cc5e3c.png" />
-</div>
 </div>
 <p>Now you should have the tools to create your own climates for OGGM-Edu glaciers and see how they filter the climate.</p>
 </section>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
-<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
 
@@ -988,11 +1031,10 @@ The next step is, of course, to combine the methods to create trends that also h
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="advance_and_retreat.html"
@@ -1012,10 +1054,7 @@ The next step is, of course, to combine the methods to create trends that also h
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1023,6 +1062,7 @@ The next step is, of course, to combine the methods to create trends that also h
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1058,10 +1098,14 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
-    
+    <p class="last-updated">
+  Last updated on Apr 16, 2025.
+  <br/>
+</p>
   </div>
   
   <div class="footer-item">
@@ -1085,8 +1129,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

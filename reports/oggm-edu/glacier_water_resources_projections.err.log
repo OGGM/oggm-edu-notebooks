@@ -1,0 +1,147 @@
+Traceback (most recent call last):
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# file identifier where the model output is saved
+file_id = '_ct'
+
+# We are using the task run_with_hydro to store hydrological outputs along with the usual glaciological outputs
+tasks.run_with_hydro(gdir,
+                     run_task=tasks.run_constant_climate,  # which climate? See below for other examples
+                     nyears=100,  # length of the simulation
+                     y0=2014, halfsize=5,  # For the constant climate, period over which the climate is taken from
+                     init_model_filesuffix='_spinup_historical',  # Start from the glacier in 2020 afer spinup
+                     store_monthly_hydro=True,  # Monthly ouptuts provide additional information
+                     output_filesuffix=file_id);  # an identifier for the output file to read it later
+------------------
+
+----- stderr -----
+2025-04-16 13:36:23: oggm.core.flowline: AttributeError occurred during task flowline_model_run_ct on RGI60-11.00897: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+----- stderr -----
+2025-04-16 13:36:23: oggm.core.flowline: AttributeError occurred during task run_constant_climate_ct on RGI60-11.00897: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+----- stderr -----
+2025-04-16 13:36:23: oggm.core.flowline: AttributeError occurred during task run_with_hydro_ct on RGI60-11.00897: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[11][39m[32m, line 5[39m
+[32m      2[39m file_id = [33m'[39m[33m_ct[39m[33m'[39m
+[32m      4[39m [38;5;66;03m# We are using the task run_with_hydro to store hydrological outputs along with the usual glaciological outputs[39;00m
+[32m----> [39m[32m5[39m [43mtasks[49m[43m.[49m[43mrun_with_hydro[49m[43m([49m[43mgdir[49m[43m,[49m
+[32m      6[39m [43m                     [49m[43mrun_task[49m[43m=[49m[43mtasks[49m[43m.[49m[43mrun_constant_climate[49m[43m,[49m[43m  [49m[38;5;66;43;03m# which climate? See below for other examples[39;49;00m
+[32m      7[39m [43m                     [49m[43mnyears[49m[43m=[49m[32;43m100[39;49m[43m,[49m[43m  [49m[38;5;66;43;03m# length of the simulation[39;49;00m
+[32m      8[39m [43m                     [49m[43my0[49m[43m=[49m[32;43m2014[39;49m[43m,[49m[43m [49m[43mhalfsize[49m[43m=[49m[32;43m5[39;49m[43m,[49m[43m  [49m[38;5;66;43;03m# For the constant climate, period over which the climate is taken from[39;49;00m
+[32m      9[39m [43m                     [49m[43minit_model_filesuffix[49m[43m=[49m[33;43m'[39;49m[33;43m_spinup_historical[39;49m[33;43m'[39;49m[43m,[49m[43m  [49m[38;5;66;43;03m# Start from the glacier in 2020 afer spinup[39;49;00m
+[32m     10[39m [43m                     [49m[43mstore_monthly_hydro[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m  [49m[38;5;66;43;03m# Monthly ouptuts provide additional information[39;49;00m
+[32m     11[39m [43m                     [49m[43moutput_filesuffix[49m[43m=[49m[43mfile_id[49m[43m)[49m;  [38;5;66;03m# an identifier for the output file to read it later[39;00m
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/utils/_workflow.py:492[39m, in [36mentity_task.__call__.<locals>._entity_task[39m[34m(gdir, reset, print_log, return_value, continue_on_error, add_to_log_file, **kwargs)[39m
+[32m    490[39m     signal.alarm(cfg.PARAMS[[33m'[39m[33mtask_timeout[39m[33m'[39m])
+[32m    491[39m ex_t = time.time()
+[32m--> [39m[32m492[39m out = [43mtask_func[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    493[39m ex_t = time.time() - ex_t
+[32m    494[39m [38;5;28;01mif[39;00m cfg.PARAMS[[33m'[39m[33mtask_timeout[39m[33m'[39m] > [32m0[39m:
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:3759[39m, in [36mrun_with_hydro[39m[34m(gdir, run_task, store_monthly_hydro, fixed_geometry_spinup_yr, ref_area_from_y0, ref_area_yr, ref_geometry_filesuffix, **kwargs)[39m
+[32m   3756[39m [38;5;28;01mif[39;00m fixed_geometry_spinup_yr [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   3757[39m     kwargs[[33m'[39m[33mfixed_geometry_spinup_yr[39m[33m'[39m] = fixed_geometry_spinup_yr
+[32m-> [39m[32m3759[39m out = [43mrun_task[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m   3761[39m [38;5;28;01mif[39;00m out [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m   3762[39m     [38;5;28;01mraise[39;00m InvalidWorkflowError([33m'[39m[33mThe run task ([39m[38;5;132;01m{}[39;00m[33m) did not run [39m[33m'[39m
+[32m   3763[39m                                [33m'[39m[33msuccessfully.[39m[33m'[39m.format(run_task.[34m__name__[39m))
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/utils/_workflow.py:492[39m, in [36mentity_task.__call__.<locals>._entity_task[39m[34m(gdir, reset, print_log, return_value, continue_on_error, add_to_log_file, **kwargs)[39m
+[32m    490[39m     signal.alarm(cfg.PARAMS[[33m'[39m[33mtask_timeout[39m[33m'[39m])
+[32m    491[39m ex_t = time.time()
+[32m--> [39m[32m492[39m out = [43mtask_func[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    493[39m ex_t = time.time() - ex_t
+[32m    494[39m [38;5;28;01mif[39;00m cfg.PARAMS[[33m'[39m[33mtask_timeout[39m[33m'[39m] > [32m0[39m:
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:3532[39m, in [36mrun_constant_climate[39m[34m(gdir, nyears, y0, halfsize, ys, ye, bias, temperature_bias, precipitation_factor, store_monthly_step, store_model_geometry, store_fl_diagnostics, init_model_filesuffix, init_model_yr, output_filesuffix, climate_filename, mb_model_class, climate_input_filesuffix, init_model_fls, zero_initial_glacier, **kwargs)[39m
+[32m   3529[39m [38;5;28;01mif[39;00m ye [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m   3530[39m     ye = ys + nyears
+[32m-> [39m[32m3532[39m [38;5;28;01mreturn[39;00m [43mflowline_model_run[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[43moutput_filesuffix[49m[43m=[49m[43moutput_filesuffix[49m[43m,[49m
+[32m   3533[39m [43m                          [49m[43mmb_model[49m[43m=[49m[43mmb_model[49m[43m,[49m[43m [49m[43mys[49m[43m=[49m[43mys[49m[43m,[49m[43m [49m[43mye[49m[43m=[49m[43mye[49m[43m,[49m
+[32m   3534[39m [43m                          [49m[43mstore_monthly_step[49m[43m=[49m[43mstore_monthly_step[49m[43m,[49m
+[32m   3535[39m [43m                          [49m[43mstore_model_geometry[49m[43m=[49m[43mstore_model_geometry[49m[43m,[49m
+[32m   3536[39m [43m                          [49m[43mstore_fl_diagnostics[49m[43m=[49m[43mstore_fl_diagnostics[49m[43m,[49m
+[32m   3537[39m [43m                          [49m[43minit_model_filesuffix[49m[43m=[49m[43minit_model_filesuffix[49m[43m,[49m
+[32m   3538[39m [43m                          [49m[43minit_model_yr[49m[43m=[49m[43minit_model_yr[49m[43m,[49m
+[32m   3539[39m [43m                          [49m[43minit_model_fls[49m[43m=[49m[43minit_model_fls[49m[43m,[49m
+[32m   3540[39m [43m                          [49m[43mzero_initial_glacier[49m[43m=[49m[43mzero_initial_glacier[49m[43m,[49m
+[32m   3541[39m [43m                          [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/utils/_workflow.py:492[39m, in [36mentity_task.__call__.<locals>._entity_task[39m[34m(gdir, reset, print_log, return_value, continue_on_error, add_to_log_file, **kwargs)[39m
+[32m    490[39m     signal.alarm(cfg.PARAMS[[33m'[39m[33mtask_timeout[39m[33m'[39m])
+[32m    491[39m ex_t = time.time()
+[32m--> [39m[32m492[39m out = [43mtask_func[49m[43m([49m[43mgdir[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    493[39m ex_t = time.time() - ex_t
+[32m    494[39m [38;5;28;01mif[39;00m cfg.PARAMS[[33m'[39m[33mtask_timeout[39m[33m'[39m] > [32m0[39m:
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:3206[39m, in [36mflowline_model_run[39m[34m(gdir, output_filesuffix, mb_model, ys, ye, zero_initial_glacier, init_model_fls, store_monthly_step, fixed_geometry_spinup_yr, store_model_geometry, store_fl_diagnostics, water_level, evolution_model, stop_criterion, init_model_filesuffix, init_model_yr, **kwargs)[39m
+[32m   3203[39m [38;5;28;01mif[39;00m init_model_filesuffix [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   3204[39m     fp = gdir.get_filepath([33m'[39m[33mmodel_geometry[39m[33m'[39m,
+[32m   3205[39m                            filesuffix=init_model_filesuffix)
+[32m-> [39m[32m3206[39m     fmod = [43mFileModel[49m[43m([49m[43mfp[49m[43m)[49m
+[32m   3207[39m     [38;5;28;01mif[39;00m init_model_yr [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m   3208[39m         init_model_yr = fmod.last_yr
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:2475[39m, in [36mFileModel.__init__[39m[34m(self, path)[39m
+[32m   2472[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__init__[39m([38;5;28mself[39m, path):
+[32m   2473[39m [38;5;250m    [39m[33;03m""" Instantiate."""[39;00m
+[32m-> [39m[32m2475[39m     [38;5;28mself[39m.fls = [43mglacier_from_netcdf[49m[43m([49m[43mpath[49m[43m)[49m
+[32m   2477[39m     fl_tss = []
+[32m   2478[39m     [38;5;28;01mfor[39;00m flid, fl [38;5;129;01min[39;00m [38;5;28menumerate[39m([38;5;28mself[39m.fls):
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:2973[39m, in [36mglacier_from_netcdf[39m[34m(path)[39m
+[32m   2971[39m [38;5;28;01mfor[39;00m flid [38;5;129;01min[39;00m ds[[33m'[39m[33mflowlines[39m[33m'[39m].values:
+[32m   2972[39m     [38;5;28;01mwith[39;00m xr.open_dataset(path, group=[33m'[39m[33mfl_[39m[38;5;132;01m{}[39;00m[33m'[39m.format(flid)) [38;5;28;01mas[39;00m _ds:
+[32m-> [39m[32m2973[39m         fls.append([43mflowline_from_dataset[49m[43m([49m[43m_ds[49m[43m)[49m)
+[32m   2975[39m [38;5;28;01mfor[39;00m i, fid [38;5;129;01min[39;00m [38;5;28menumerate[39m(ds[[33m'[39m[33mflows_to_id[39m[33m'[39m].values):
+[32m   2976[39m     [38;5;28;01mif[39;00m fid != -[32m1[39m:
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:2963[39m, in [36mflowline_from_dataset[39m[34m(ds)[39m
+[32m   2961[39m         data = data[[32m0[39m]
+[32m   2962[39m     args[k] = data
+[32m-> [39m[32m2963[39m [38;5;28;01mreturn[39;00m [43mcl[49m[43m([49m[43m*[49m[43m*[49m[43margs[49m[43m)[49m
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:486[39m, in [36mMixedBedFlowline.__init__[39m[34m(self, line, dx, map_dx, surface_h, bed_h, section, bed_shape, is_trapezoid, lambdas, widths_m, rgi_id, water_level, gdir)[39m
+[32m    483[39m [38;5;28mself[39m.is_rectangular = [38;5;28mself[39m.is_trapezoid & ([38;5;28mself[39m._lambdas == [32m0[39m)
+[32m    485[39m [38;5;66;03m# Sanity[39;00m
+[32m--> [39m[32m486[39m [38;5;28mself[39m.bed_shape[is_trapezoid] = [43mnp[49m[43m.[49m[43mNaN[49m
+[32m    487[39m [38;5;28mself[39m._lambdas[~is_trapezoid] = np.NaN
+[32m    489[39m [38;5;66;03m# Here we have to compute the widths out of section and lambda[39;00m
+
+[36mFile [39m[32m/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py:400[39m, in [36m__getattr__[39m[34m(attr)[39m
+[32m    397[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m(__former_attrs__[attr], name=[38;5;28;01mNone[39;00m)
+[32m    399[39m [38;5;28;01mif[39;00m attr [38;5;129;01min[39;00m __expired_attributes__:
+[32m--> [39m[32m400[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m(
+[32m    401[39m         [33mf[39m[33m"[39m[33m`np.[39m[38;5;132;01m{[39;00mattr[38;5;132;01m}[39;00m[33m` was removed in the NumPy 2.0 release. [39m[33m"[39m
+[32m    402[39m         [33mf[39m[33m"[39m[38;5;132;01m{[39;00m__expired_attributes__[attr][38;5;132;01m}[39;00m[33m"[39m,
+[32m    403[39m         name=[38;5;28;01mNone[39;00m
+[32m    404[39m     )
+[32m    406[39m [38;5;28;01mif[39;00m attr == [33m"[39m[33mchararray[39m[33m"[39m:
+[32m    407[39m     warnings.warn(
+[32m    408[39m         [33m"[39m[33m`np.chararray` is deprecated and will be removed from [39m[33m"[39m
+[32m    409[39m         [33m"[39m[33mthe main namespace in the future. Use an array with a string [39m[33m"[39m
+[32m    410[39m         [33m"[39m[33mor bytes dtype instead.[39m[33m"[39m, [38;5;167;01mDeprecationWarning[39;00m, stacklevel=[32m2[39m)
+
+[31mAttributeError[39m: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+

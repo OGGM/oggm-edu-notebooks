@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Getting started with the Jupyter Notebook &#8212; OGGM-Edu notebooks</title>
   
@@ -15,68 +14,61 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'UA-106829797-2');
-            </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/getting_started_with_notebooks';</script>
+    <script data-domain="edu.oggm.org" defer="defer" src="https://plausible.oggm.org/js/script.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Getting started with OGGM Edu: idealised glaciers" href="edu_intro.html" />
     <link rel="prev" title="Welcome to the OGGM Edu Notebooks!" href="../welcome.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
   </head>
   
   
@@ -84,19 +76,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -118,12 +114,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -138,9 +142,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../welcome.html">
+  
   
   
   
@@ -150,12 +158,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="OGGM-Edu notebooks - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="OGGM-Edu notebooks - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -210,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -219,14 +238,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -251,14 +270,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/getting_started_with_notebooks.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -269,14 +288,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/getting_started_with_notebooks.ipynb&branch=master" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -414,26 +433,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -477,15 +498,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-the-jupyter-notebook">
-<h1>Getting started with the Jupyter Notebook<a class="headerlink" href="#getting-started-with-the-jupyter-notebook" title="Permalink to this heading">#</a></h1>
+<h1>Getting started with the Jupyter Notebook<a class="headerlink" href="#getting-started-with-the-jupyter-notebook" title="Link to this heading">#</a></h1>
 <p>Welcome to this introduction to <a class="reference external" href="https://jupyter.org/">Jupyter Notebooks</a>! The advantage of notebooks is that they can include explanatory text, code, and plots in the same document.</p>
 <p><strong>This makes notebooks an ideal playground for explaining and learning new things without having to jump between several documents. Thanks to binder, you can run them in your web browser without requiring to install anything!</strong></p>
 <p>This document itself is a notebook. It is a simple text file with a <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file path ending. If you opened this notebook via an OGGM-Edu Binder link, it is opened in a platform which is called <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a>. “JupyterLab” is the development environment allowing you to navigate between notebooks (navigation bar on the left), (re-)start them, and much more. Here, we will focus on the notebooks themselves.</p>
 <section id="first-steps">
-<h2>First steps<a class="headerlink" href="#first-steps" title="Permalink to this heading">#</a></h2>
+<h2>First steps<a class="headerlink" href="#first-steps" title="Link to this heading">#</a></h2>
 <p>At first sight the notebook looks like a text editor. Below this line, you can see a <strong>cell</strong>. The default purpose of a cell is to write code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -507,7 +528,7 @@ document.write(`
 <p>You can <strong>delete</strong> a cell by clicking “Delete” in the “Edit” menu, or you can use the shortcut: <code class="docutils literal notranslate"><span class="pre">[Ctrl+m]</span></code> to enter in command mode then press <code class="docutils literal notranslate"><span class="pre">[d]</span></code> two times!</p>
 </section>
 <section id="more-cell-editing">
-<h2>More cell editing<a class="headerlink" href="#more-cell-editing" title="Permalink to this heading">#</a></h2>
+<h2>More cell editing<a class="headerlink" href="#more-cell-editing" title="Link to this heading">#</a></h2>
 <p>When you have a look into the “Edit” menu, you will see that there are more possibilities to edit cells, like:</p>
 <ul class="simple">
 <li><p><strong>copy</strong> / <strong>cut</strong> and <strong>paste</strong></p></li>
@@ -526,7 +547,7 @@ document.write(`
 <p>Another helpful command is “Undo delete cell’, which is sometimes needed when the key <code class="docutils literal notranslate"><span class="pre">[d]</span></code> was pressed too fast.</p>
 </section>
 <section id="writing-and-executing-code">
-<h2>Writing and executing code<a class="headerlink" href="#writing-and-executing-code" title="Permalink to this heading">#</a></h2>
+<h2>Writing and executing code<a class="headerlink" href="#writing-and-executing-code" title="Link to this heading">#</a></h2>
 <p>The variables created in one cell can be used (or overwritten) in subsequent cells:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -596,12 +617,12 @@ document.write(`
 <p>The numbers on the left of each cell show you your order of execution. When a calculation is running longer, you will see an asterisk in the place of the number. That leads us to the next topic:</p>
 </section>
 <section id="restart-or-interrupt-the-kernel">
-<h2>Restart or interrupt the kernel<a class="headerlink" href="#restart-or-interrupt-the-kernel" title="Permalink to this heading">#</a></h2>
+<h2>Restart or interrupt the kernel<a class="headerlink" href="#restart-or-interrupt-the-kernel" title="Link to this heading">#</a></h2>
 <p>Sometimes calculations last too long and you want to <strong>interrupt</strong> them. You can do this by clicking the “Stop button” in the toolbar.</p>
 <p>The “<strong>kernel</strong>” of a notebook is the actual python interpreter which runs your code. There is one kernel per opened notebook (i.e. the notebooks cannot share data or variables between each other). In certain situations (for example, if you got confused about the order of your cells and variables and want a fresh state), you might want to <strong>retart the kernel</strong>. You can do so (as well as other options such as <strong>clearing the output</strong> of a notebook) in the “Kernel” menu in the top jupyterlab bar.</p>
 </section>
 <section id="errors-in-a-cell">
-<h2>Errors in a cell<a class="headerlink" href="#errors-in-a-cell" title="Permalink to this heading">#</a></h2>
+<h2>Errors in a cell<a class="headerlink" href="#errors-in-a-cell" title="Link to this heading">#</a></h2>
 <p>Sometimes, a piece of code in a cell won’t run properly. This happens to everyone! Here is an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -627,7 +648,7 @@ document.write(`
 <p>When a cell ends with an error, don’t panic! Nothing we cannot recover from. First of all, the other cells will still run (unless they depend on the output of the failing cell): i.e., your kernel is still active. If you want to recover from the error, adress the problem (here a capsize issue) and re-run the cell.</p>
 </section>
 <section id="displaying-plots-with-matplotlib">
-<h2>Displaying plots with matplotlib<a class="headerlink" href="#displaying-plots-with-matplotlib" title="Permalink to this heading">#</a></h2>
+<h2>Displaying plots with matplotlib<a class="headerlink" href="#displaying-plots-with-matplotlib" title="Link to this heading">#</a></h2>
 <p>The most widely used plotting tool for Python is <a class="reference external" href="http://matplotlib.org/">Matplotlib</a>. Its syntax is inspired from Matlab and might be familiar to a few:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,10 +656,10 @@ document.write(`
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="c1"># Now, we import matplotlib:</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># We import also the package called numpy (that helps us to play with numbers).</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -657,21 +678,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ab8bc3c0e813971430b2b16bae5ba60ffbce23d3a6fc68989a9144702e215a9a.png" src="../_images/ab8bc3c0e813971430b2b16bae5ba60ffbce23d3a6fc68989a9144702e215a9a.png" />
+<img alt="../_images/43842eabc344085d960efa68a465362f311c3055e10741dc4a126c0287792859.png" src="../_images/43842eabc344085d960efa68a465362f311c3055e10741dc4a126c0287792859.png" />
 </div>
 </div>
 </section>
 <section id="interactive-plots-with-bokeh">
-<h2>Interactive plots with Bokeh<a class="headerlink" href="#interactive-plots-with-bokeh" title="Permalink to this heading">#</a></h2>
+<h2>Interactive plots with Bokeh<a class="headerlink" href="#interactive-plots-with-bokeh" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="http://bokeh.org">Bokeh</a> is a plottling library made for the web. It uses another syntax than matplotlib and can be used to display interactive plots. In OGGM-Edu, we sometimes prefer to use interactive plots as they allow to explore the data after plotting. Here is an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hvplot is a plotting library relying on bokeh</span>
 <span class="c1"># you&#39;ll need to install it alongside with pandas for this cell to work</span>
-<span class="kn">import</span> <span class="nn">hvplot.pandas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hvplot.pandas</span>
 
 <span class="c1"># pandas is a very useful data analysis library</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># This makes the plot</span>
 <span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
@@ -680,19 +701,33 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/javascript">(function(root) {
+<div class="output text_html"><script type="esms-options">{"shimMode": true}</script><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style></div><script type="application/javascript">(function(root) {
   function now() {
     return new Date();
   }
 
-  var force = true;
-  var py_version = '3.2.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
-  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
-  var reloading = false;
-  var Bokeh = root.Bokeh;
-  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+  const force = true;
+  const py_version = '3.7.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  const reloading = false;
+  const Bokeh = root.Bokeh;
 
-  if (typeof (root._bokeh_timeout) === "undefined" || force) {
+  // Set a timeout for this load but only if we are not already initializing
+  if (typeof (root._bokeh_timeout) === "undefined" || (force || !root._bokeh_is_initializing)) {
     root._bokeh_timeout = Date.now() + 5000;
     root._bokeh_failed_load = false;
   }
@@ -718,15 +753,13 @@ document.write(`
     root._bokeh_onload_callbacks.push(callback);
 
     if (root._bokeh_is_loading > 0) {
+      // Don't load bokeh if it is still initializing
       console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
       return null;
-    }
-    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+    } else if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      // There is nothing to load
       run_callbacks();
       return null;
-    }
-    if (!reloading) {
-      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
     }
 
     function on_load() {
@@ -738,60 +771,33 @@ document.write(`
     }
     window._bokeh_on_load = on_load
 
-    function on_error() {
-      console.error("failed to load " + url);
+    function on_error(e) {
+      const src_el = e.srcElement
+      console.error("failed to load " + (src_el.href || src_el.src));
     }
 
-    var skip = [];
+    const skip = [];
     if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
-      require(["jspanel"], function(jsPanel) {
-	window.jsPanel = jsPanel
-	on_load()
-      })
-      require(["jspanel-modal"], function() {
-	on_load()
-      })
-      require(["jspanel-tooltip"], function() {
-	on_load()
-      })
-      require(["jspanel-hint"], function() {
-	on_load()
-      })
-      require(["jspanel-layout"], function() {
-	on_load()
-      })
-      require(["jspanel-contextmenu"], function() {
-	on_load()
-      })
-      require(["jspanel-dock"], function() {
-	on_load()
-      })
-      require(["gridstack"], function(GridStack) {
-	window.GridStack = GridStack
-	on_load()
-      })
-      require(["notyf"], function() {
-	on_load()
-      })
-      root._bokeh_is_loading = css_urls.length + 9;
+      window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
+      root._bokeh_is_loading = css_urls.length + 0;
     } else {
       root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
     }
 
-    var existing_stylesheets = []
-    var links = document.getElementsByTagName('link')
-    for (var i = 0; i < links.length; i++) {
-      var link = links[i]
+    const existing_stylesheets = []
+    const links = document.getElementsByTagName('link')
+    for (let i = 0; i < links.length; i++) {
+      const link = links[i]
       if (link.href != null) {
-	existing_stylesheets.push(link.href)
+        existing_stylesheets.push(link.href)
       }
     }
-    for (var i = 0; i < css_urls.length; i++) {
-      var url = css_urls[i];
-      if (existing_stylesheets.indexOf(url) !== -1) {
-	on_load()
-	continue;
+    for (let i = 0; i < css_urls.length; i++) {
+      const url = css_urls[i];
+      const escaped = encodeURI(url)
+      if (existing_stylesheets.indexOf(escaped) !== -1) {
+        on_load()
+        continue;
       }
       const element = document.createElement("link");
       element.onload = on_load;
@@ -801,38 +807,24 @@ document.write(`
       element.href = url;
       console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
       document.body.appendChild(element);
-    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.1/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
-    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
-      var urls = ['https://cdn.holoviz.org/panel/1.2.1/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
-      for (var i = 0; i < urls.length; i++) {
-        skip.push(urls[i])
-      }
     }    var existing_scripts = []
-    var scripts = document.getElementsByTagName('script')
-    for (var i = 0; i < scripts.length; i++) {
+    const scripts = document.getElementsByTagName('script')
+    for (let i = 0; i < scripts.length; i++) {
       var script = scripts[i]
       if (script.src != null) {
-	existing_scripts.push(script.src)
+        existing_scripts.push(script.src)
       }
     }
-    for (var i = 0; i < js_urls.length; i++) {
-      var url = js_urls[i];
-      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
+    for (let i = 0; i < js_urls.length; i++) {
+      const url = js_urls[i];
+      const escaped = encodeURI(url)
+      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
+        if (!window.requirejs) {
+          on_load();
+        }
+        continue;
       }
-      var element = document.createElement('script');
+      const element = document.createElement('script');
       element.onload = on_load;
       element.onerror = on_error;
       element.async = false;
@@ -840,13 +832,14 @@ document.write(`
       console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
       document.head.appendChild(element);
     }
-    for (var i = 0; i < js_modules.length; i++) {
-      var url = js_modules[i];
-      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
+    for (let i = 0; i < js_modules.length; i++) {
+      const url = js_modules[i];
+      const escaped = encodeURI(url)
+      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
+        if (!window.requirejs) {
+          on_load();
+        }
+        continue;
       }
       var element = document.createElement('script');
       element.onload = on_load;
@@ -858,12 +851,13 @@ document.write(`
       document.head.appendChild(element);
     }
     for (const name in js_exports) {
-      var url = js_exports[name];
-      if (skip.indexOf(url) >= 0 || root[name] != null) {
-	if (!window.requirejs) {
-	  on_load();
-	}
-	continue;
+      const url = js_exports[name];
+      const escaped = encodeURI(url)
+      if (skip.indexOf(escaped) >= 0 || root[name] != null) {
+        if (!window.requirejs) {
+          on_load();
+        }
+        continue;
       }
       var element = document.createElement('script');
       element.onerror = on_error;
@@ -888,11 +882,11 @@ document.write(`
     document.body.appendChild(element);
   }
 
-  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.2.min.js", "https://cdn.holoviz.org/panel/1.2.1/dist/panel.min.js"];
-  var js_modules = [];
-  var js_exports = {};
-  var css_urls = [];
-  var inline_js = [    function(Bokeh) {
+  const js_urls = ["https://cdn.holoviz.org/panel/1.6.2/dist/bundled/reactiveesm/es-module-shims@^1.10.0/dist/es-module-shims.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-3.7.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.7.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.7.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.7.2.min.js", "https://cdn.holoviz.org/panel/1.6.2/dist/panel.min.js"];
+  const js_modules = [];
+  const js_exports = {};
+  const css_urls = [];
+  const inline_js = [    function(Bokeh) {
       Bokeh.set_log_level("info");
     },
 function(Bokeh) {} // ensure no trailing comma for IE
@@ -900,20 +894,27 @@ function(Bokeh) {} // ensure no trailing comma for IE
 
   function run_inline_js() {
     if ((root.Bokeh !== undefined) || (force === true)) {
-      for (var i = 0; i < inline_js.length; i++) {
-        inline_js[i].call(root, root.Bokeh);
+      for (let i = 0; i < inline_js.length; i++) {
+        try {
+          inline_js[i].call(root, root.Bokeh);
+        } catch(e) {
+          if (!reloading) {
+            throw e;
+          }
+        }
       }
       // Cache old bokeh versions
       if (Bokeh != undefined && !reloading) {
-	var NewBokeh = root.Bokeh;
-	if (Bokeh.versions === undefined) {
-	  Bokeh.versions = new Map();
-	}
-	if (NewBokeh.version !== Bokeh.version) {
-	  Bokeh.versions.set(NewBokeh.version, NewBokeh)
-	}
-	root.Bokeh = Bokeh;
-      }} else if (Date.now() < root._bokeh_timeout) {
+        var NewBokeh = root.Bokeh;
+        if (Bokeh.versions === undefined) {
+          Bokeh.versions = new Map();
+        }
+        if (NewBokeh.version !== Bokeh.version) {
+          Bokeh.versions.set(NewBokeh.version, NewBokeh)
+        }
+        root.Bokeh = Bokeh;
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
       setTimeout(run_inline_js, 100);
     } else if (!root._bokeh_failed_load) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
@@ -931,23 +932,29 @@ function(Bokeh) {} // ensure no trailing comma for IE
     // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
     // before older versions are fully initialized.
     if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      // If the timeout and bokeh was not successfully loaded we reset
+      // everything and try loading again
+      root._bokeh_timeout = Date.now() + 5000;
       root._bokeh_is_initializing = false;
       root._bokeh_onload_callbacks = undefined;
+      root._bokeh_is_loading = 0
       console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
       load_or_wait();
     } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
       setTimeout(load_or_wait, 100);
     } else {
-      Bokeh = root.Bokeh;
-      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
       root._bokeh_is_initializing = true
       root._bokeh_onload_callbacks = []
-      if (!reloading && (!bokeh_loaded || is_dev)) {
-	root.Bokeh = undefined;
+      const bokeh_loaded = root.Bokeh != null && (root.Bokeh.version === py_version || (root.Bokeh.versions !== undefined && root.Bokeh.versions.has(py_version)));
+      if (!reloading && !bokeh_loaded) {
+        if (root.Bokeh) {
+          root.Bokeh = undefined;
+        }
+        console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
       }
       load_libs(css_urls, js_urls, js_modules, js_exports, function() {
-	console.debug("Bokeh: BokehJS plotting callback run at", now());
-	run_inline_js();
+        console.debug("Bokeh: BokehJS plotting callback run at", now());
+        run_inline_js();
       });
     }
   }
@@ -1025,7 +1032,7 @@ if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
             }
             return messages.next().then(processIteratorResult);
           }
-        }) 
+        })
         var sendClosure = (data, metadata, buffers, disposeOnDone) => {
           return comm_promise.then((comm) => {
             comm.send(data, metadata, buffers, disposeOnDone);
@@ -1193,42 +1200,31 @@ if (window.Jupyter !== undefined) {
   } catch(err) {
   }
 }
-</script><div class="output text_html"><style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(
-    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-  ),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style></div><div class="output text_html"><div id='p1002'>
-  <div id="b76339e1-7fd1-4e94-966d-cc88004e1754" data-root-id="p1002" style="display: contents;"></div>
+</script><div class="output text_html"><div id='49d5166e-8da9-4793-8fa2-420b59641024'>
+  <div id="f3709f33-d5f5-47dc-ba2e-be9844d0ed17" data-root-id="49d5166e-8da9-4793-8fa2-420b59641024" style="display: contents;"></div>
 </div>
 <script type="application/javascript">(function(root) {
-  var docs_json = {"a9af017f-a8f5-49dd-8ee7-10fff404f729":{"version":"3.2.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"p1002","attributes":{"name":"Row00889","tags":["embedded"],"stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"p1005","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.1/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1057","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.1/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1003","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.1/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"p1004","attributes":{"url":"https://cdn.holoviz.org/panel/1.2.1/dist/bundled/theme/native.css"}}],"min_width":500,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"p1006","attributes":{"name":"HSpacer00900","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"p1005"},{"id":"p1003"},{"id":"p1004"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"p1014","attributes":{"width":500,"height":300,"margin":[5,10],"sizing_mode":"fixed","align":"start","x_range":{"type":"object","name":"Range1d","id":"p1007","attributes":{"tags":[[["index","index",null]],[]],"start":-1.0,"reset_start":-1.0,"reset_end":1.0}},"y_range":{"type":"object","name":"Range1d","id":"p1008","attributes":{"tags":[[["0","0",null]],{"type":"map","entries":[["invert_yaxis",false],["autorange",false]]}],"start":-0.0999791731748236,"end":1.0997709049230595,"reset_start":-0.0999791731748236,"reset_end":1.0997709049230595}},"x_scale":{"type":"object","name":"LinearScale","id":"p1024"},"y_scale":{"type":"object","name":"LinearScale","id":"p1025"},"title":{"type":"object","name":"Title","id":"p1017","attributes":{"text":"An interactive plot","text_color":"black","text_font_size":"12pt"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1050","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1041","attributes":{"selected":{"type":"object","name":"Selection","id":"p1042","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1043"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAA8L+sD431obHuv1kfGutDY+2/BS+n4OUU7L+yPjTWh8bqv15OwcspeOm/Cl5Owcsp6L+3bdu2bdvmv2R9aKwPjeW/EI31obE+5L+8nIKXU/Div2msD431oeG/FbycgpdT4L+El1Pwcgrev9y2bdu2bdu/NtaHxvrQ2L+O9aGxPjTWv+YUvJyCl9O/QDTWh8b60L8wp+DlFLzMv+TlFLycgse/lCRJkiRJwr+QxvrQWB+6v+CHxvrQWK+/QAUvp+DllL9ABS+n4OWUP8CHxvrQWK8/gMb60Fgfuj+QJEmSJEnCP+DlFLycgsc/KKfg5RS8zD88NNaHxvrQP+QUvJyCl9M/jPWhsT401j801ofG+tDYP9i2bdu2bds/gJdT8HIK3j8UvJyCl1PgP2isD431oeE/upyCl1Pw4j8OjfWhsT7kP2J9aKwPjeU/tm3btm3b5j8KXk7ByynoP1xOwcspeOk/sD401ofG6j8EL6fg5RTsP1gfGutDY+0/rA+N9aGx7j8AAAAAAADwPw=="},"shape":[50],"dtype":"float64","order":"little"}],["0",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAAAAAyTOs+IRnSPyba25efU9k/k4VSmdqv3j8RnGA6AobhP606IR94X+M/fdNLH7z65D9aAS+pNGXmP2cFDXSmp+c/kEQkoizI6D8ErVrcOcvpP1ugMhQotOo/Oj3So46F6z9WXV/AeEHsP6j61GeJ6ew/ppV07RN/7T+8mEc7LQPuP1ApsTu4du4/05sx8W7a7j+EW+c26S7vP5W9+c6hdO8/VcUbLvqr7z/TnBdQPdXvP62Cl8mh8O8/pW/VOkv+7z+lb9U6S/7vP62Cl8mh8O8/05wXUD3V7z9VxRsu+qvvP5W9+c6hdO8/hVvnNuku7z/TmzHxbtruP1EpsTu4du4/vJhHOy0D7j+mlXTtE3/tP6j61GeJ6ew/V11fwHhB7D86PdKjjoXrP1ygMhQotOo/Bq1a3DnL6T+RRCSiLMjoP2kFDXSmp+c/WgEvqTRl5j9900sfvPrkP686IR94X+M/FZxgOgKG4T+VhVKZ2q/ePyva25efU9k/MkzrPiEZ0j8AAAAAAAAAAA=="},"shape":[50],"dtype":"float64","order":"little"}],["A_0",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAAAAAyTOs+IRnSPyba25efU9k/k4VSmdqv3j8RnGA6AobhP606IR94X+M/fdNLH7z65D9aAS+pNGXmP2cFDXSmp+c/kEQkoizI6D8ErVrcOcvpP1ugMhQotOo/Oj3So46F6z9WXV/AeEHsP6j61GeJ6ew/ppV07RN/7T+8mEc7LQPuP1ApsTu4du4/05sx8W7a7j+EW+c26S7vP5W9+c6hdO8/VcUbLvqr7z/TnBdQPdXvP62Cl8mh8O8/pW/VOkv+7z+lb9U6S/7vP62Cl8mh8O8/05wXUD3V7z9VxRsu+qvvP5W9+c6hdO8/hVvnNuku7z/TmzHxbtruP1EpsTu4du4/vJhHOy0D7j+mlXTtE3/tP6j61GeJ6ew/V11fwHhB7D86PdKjjoXrP1ygMhQotOo/Bq1a3DnL6T+RRCSiLMjoP2kFDXSmp+c/WgEvqTRl5j9900sfvPrkP686IR94X+M/FZxgOgKG4T+VhVKZ2q/ePyva25efU9k/MkzrPiEZ0j8AAAAAAAAAAA=="},"shape":[50],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1051","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1052"}}},"glyph":{"type":"object","name":"Line","id":"p1047","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"selection_glyph":{"type":"object","name":"Line","id":"p1053","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1048","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.1,"line_width":2}},"muted_glyph":{"type":"object","name":"Line","id":"p1049","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.2,"line_width":2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1023","attributes":{"tools":[{"type":"object","name":"WheelZoomTool","id":"p1012","attributes":{"tags":["hv_created"],"zoom_together":"none"}},{"type":"object","name":"HoverTool","id":"p1013","attributes":{"tags":["hv_created"],"renderers":[{"id":"p1050"}],"tooltips":[["index","@{index}"],["0","@{A_0}"]]}},{"type":"object","name":"SaveTool","id":"p1036"},{"type":"object","name":"PanTool","id":"p1037"},{"type":"object","name":"BoxZoomTool","id":"p1038","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1039","attributes":{"syncable":false,"level":"overlay","visible":false,"left_units":"canvas","right_units":"canvas","bottom_units":"canvas","top_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"ResetTool","id":"p1040"}],"active_drag":{"id":"p1037"},"active_scroll":{"id":"p1012"}}},"left":[{"type":"object","name":"LinearAxis","id":"p1031","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1032","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1033"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"p1034"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1026","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1027","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1028"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"p1029"}}}],"center":[{"type":"object","name":"Grid","id":"p1030","attributes":{"axis":{"id":"p1026"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"p1035","attributes":{"dimension":1,"axis":{"id":"p1031"},"grid_line_color":null}}],"min_border_top":10,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"output_backend":"webgl"}},{"type":"object","name":"Spacer","id":"p1055","attributes":{"name":"HSpacer00903","stylesheets":["\n:host(.pn-loading.pn-arc):before, .pn-loading.pn-arc:before {\n  background-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJtYXJnaW46IGF1dG87IGJhY2tncm91bmQ6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyBzaGFwZS1yZW5kZXJpbmc6IGF1dG87IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzNjM2MzIiBzdHJva2Utd2lkdGg9IjEwIiByPSIzNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTY0LjkzMzYxNDMxMzQ2NDE1IDU2Ljk3Nzg3MTQzNzgyMTM4Ij4gICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiBrZXlUaW1lcz0iMDsxIj48L2FuaW1hdGVUcmFuc2Zvcm0+ICA8L2NpcmNsZT48L3N2Zz4=\");\n  background-size: auto calc(min(50%, 400px));\n}",{"id":"p1005"},{"id":"p1003"},{"id":"p1004"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}}]}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"mode","kind":"Any","default":"warn"},{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationAreaBase1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]}]}};
-  var render_items = [{"docid":"a9af017f-a8f5-49dd-8ee7-10fff404f729","roots":{"p1002":"b76339e1-7fd1-4e94-966d-cc88004e1754"},"root_ids":["p1002"]}];
+  var docs_json = {"ea8d58b7-5955-432f-be6b-89261e29b138":{"version":"3.7.2","title":"Bokeh Application","roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"49d5166e-8da9-4793-8fa2-420b59641024"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"0184f5b3-2e5b-4996-a99f-3bf27490955d","attributes":{"plot_id":"49d5166e-8da9-4793-8fa2-420b59641024","comm_id":"51c6f03009224d9cbace7cc115442fe4","client_comm_id":"9c1dcb5add7e4d24bbdab82effc84bb9"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"ea8d58b7-5955-432f-be6b-89261e29b138","roots":{"49d5166e-8da9-4793-8fa2-420b59641024":"f3709f33-d5f5-47dc-ba2e-be9844d0ed17"},"root_ids":["49d5166e-8da9-4793-8fa2-420b59641024"]}];
   var docs = Object.values(docs_json)
   if (!docs) {
     return
   }
   const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
-  const is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1
-  function embed_document(root) {
+  async function embed_document(root) {
     var Bokeh = get_bokeh(root)
-    Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
     for (const render_item of render_items) {
       for (const root_id of render_item.root_ids) {
 	const id_el = document.getElementById(root_id)
-	if (id_el.children.length && (id_el.children[0].className === 'bk-root')) {
+	if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
 	  const root_el = id_el.children[0]
 	  root_el.id = root_el.id + '-rendered'
+	  for (const child of root_el.children) {
+            // Ensure JupyterLab does not capture keyboard shortcuts
+            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
+	    child.setAttribute('data-lm-suppress-shortcuts', 'true')
+	  }
 	}
       }
     }
@@ -1236,7 +1232,76 @@ if (window.Jupyter !== undefined) {
   function get_bokeh(root) {
     if (root.Bokeh === undefined) {
       return null
-    } else if (root.Bokeh.version !== py_version && !is_dev) {
+    } else if (root.Bokeh.version !== py_version) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+	return null
+      }
+      return root.Bokeh.versions.get(py_version);
+    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+	  var Bokeh = get_bokeh(root)
+	  if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+	  } else {
+	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+	    embed_document(root)
+	  }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script></div><div class="output text_html"><div id='578c84ac-4d8d-46ed-848f-fefd4ef55c08'>
+  <div id="a9431815-be27-4f7b-824c-4cee8615b627" data-root-id="578c84ac-4d8d-46ed-848f-fefd4ef55c08" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"aa14eef1-00d7-4f95-b90f-97a2cdf197a4":{"version":"3.7.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"578c84ac-4d8d-46ed-848f-fefd4ef55c08","attributes":{"name":"Row00286","tags":["embedded"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"d83b62f7-3e40-4920-948c-68a941ef47fd","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"9e419abb-aee4-4e5e-8f73-aef6c18e5961","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"0ec6b789-58f9-4de0-826a-7e8305c90e2a","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"905ef7db-a3bf-40cc-a5f0-2755897be55f","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/bundled/theme/native.css"}}],"min_width":500,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"ac931273-e09a-4393-ab5d-1d91c6507a00","attributes":{"name":"HSpacer00290","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"id":"d83b62f7-3e40-4920-948c-68a941ef47fd"},{"id":"0ec6b789-58f9-4de0-826a-7e8305c90e2a"},{"id":"905ef7db-a3bf-40cc-a5f0-2755897be55f"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"97ce0a36-b136-440b-84c1-c943bfccfdc2","attributes":{"width":500,"height":300,"margin":[5,10],"sizing_mode":"fixed","align":"start","x_range":{"type":"object","name":"Range1d","id":"9b6a1e88-3068-4d48-81d4-c6dd38793ada","attributes":{"name":"index","tags":[[["index",null]],[]],"start":-1.0,"reset_start":-1.0,"reset_end":1.0}},"y_range":{"type":"object","name":"Range1d","id":"7503a9ce-6707-4cf7-8bca-58657b788d7f","attributes":{"name":"0","tags":[[["0",null]],{"type":"map","entries":[["invert_yaxis",false],["autorange",false]]}],"start":-0.0999791731748236,"end":1.0997709049230595,"reset_start":-0.0999791731748236,"reset_end":1.0997709049230595}},"x_scale":{"type":"object","name":"LinearScale","id":"d3e36316-6fac-4bd4-be7a-4205e43bd366"},"y_scale":{"type":"object","name":"LinearScale","id":"11ae09d0-49e5-46a7-acbf-ce1d1ecf4ddc"},"title":{"type":"object","name":"Title","id":"95753e8e-e428-45f3-8d21-1e589480a6b0","attributes":{"text":"An interactive plot","text_color":"black","text_font_size":"12pt"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"cb94aec9-5d36-41fb-93d1-96016e51a4ee","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"013e8d75-7269-48d2-a95d-ea4068ede2d8","attributes":{"selected":{"type":"object","name":"Selection","id":"ec6ccb28-0422-4191-b83a-69cdd435edaf","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"cad38368-fd9f-4e65-822e-56b503e2e09e"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAA8L+sD431obHuv1kfGutDY+2/BS+n4OUU7L+yPjTWh8bqv15OwcspeOm/Cl5Owcsp6L+3bdu2bdvmv2R9aKwPjeW/EI31obE+5L+8nIKXU/Div2msD431oeG/FbycgpdT4L+El1Pwcgrev9y2bdu2bdu/NtaHxvrQ2L+O9aGxPjTWv+YUvJyCl9O/QDTWh8b60L8wp+DlFLzMv+TlFLycgse/lCRJkiRJwr+QxvrQWB+6v+CHxvrQWK+/QAUvp+DllL9ABS+n4OWUP8CHxvrQWK8/gMb60Fgfuj+QJEmSJEnCP+DlFLycgsc/KKfg5RS8zD88NNaHxvrQP+QUvJyCl9M/jPWhsT401j801ofG+tDYP9i2bdu2bds/gJdT8HIK3j8UvJyCl1PgP2isD431oeE/upyCl1Pw4j8OjfWhsT7kP2J9aKwPjeU/tm3btm3b5j8KXk7ByynoP1xOwcspeOk/sD401ofG6j8EL6fg5RTsP1gfGutDY+0/rA+N9aGx7j8AAAAAAADwPw=="},"shape":[50],"dtype":"float64","order":"little"}],["0",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAAAAAyTOs+IRnSPyba25efU9k/k4VSmdqv3j8RnGA6AobhP606IR94X+M/fdNLH7z65D9aAS+pNGXmP2cFDXSmp+c/kEQkoizI6D8ErVrcOcvpP1ugMhQotOo/Oj3So46F6z9WXV/AeEHsP6j61GeJ6ew/ppV07RN/7T+8mEc7LQPuP1ApsTu4du4/05sx8W7a7j+EW+c26S7vP5W9+c6hdO8/VcUbLvqr7z/TnBdQPdXvP62Cl8mh8O8/pW/VOkv+7z+lb9U6S/7vP62Cl8mh8O8/05wXUD3V7z9VxRsu+qvvP5W9+c6hdO8/hVvnNuku7z/TmzHxbtruP1EpsTu4du4/vJhHOy0D7j+mlXTtE3/tP6j61GeJ6ew/V11fwHhB7D86PdKjjoXrP1ygMhQotOo/Bq1a3DnL6T+RRCSiLMjoP2kFDXSmp+c/WgEvqTRl5j9900sfvPrkP686IR94X+M/FZxgOgKG4T+VhVKZ2q/ePyva25efU9k/MkzrPiEZ0j8AAAAAAAAAAA=="},"shape":[50],"dtype":"float64","order":"little"}],["A_0",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAAAAAyTOs+IRnSPyba25efU9k/k4VSmdqv3j8RnGA6AobhP606IR94X+M/fdNLH7z65D9aAS+pNGXmP2cFDXSmp+c/kEQkoizI6D8ErVrcOcvpP1ugMhQotOo/Oj3So46F6z9WXV/AeEHsP6j61GeJ6ew/ppV07RN/7T+8mEc7LQPuP1ApsTu4du4/05sx8W7a7j+EW+c26S7vP5W9+c6hdO8/VcUbLvqr7z/TnBdQPdXvP62Cl8mh8O8/pW/VOkv+7z+lb9U6S/7vP62Cl8mh8O8/05wXUD3V7z9VxRsu+qvvP5W9+c6hdO8/hVvnNuku7z/TmzHxbtruP1EpsTu4du4/vJhHOy0D7j+mlXTtE3/tP6j61GeJ6ew/V11fwHhB7D86PdKjjoXrP1ygMhQotOo/Bq1a3DnL6T+RRCSiLMjoP2kFDXSmp+c/WgEvqTRl5j9900sfvPrkP686IR94X+M/FZxgOgKG4T+VhVKZ2q/ePyva25efU9k/MkzrPiEZ0j8AAAAAAAAAAA=="},"shape":[50],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"007f84c7-8a86-45fc-bb08-1b3a5dc5a673","attributes":{"filter":{"type":"object","name":"AllIndices","id":"0e7c539c-5b72-416c-b296-4bd130ee2b70"}}},"glyph":{"type":"object","name":"Line","id":"07062eda-0dd6-4ef3-b990-ac16164d9d3e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"selection_glyph":{"type":"object","name":"Line","id":"6dce0903-b90d-4397-9745-f11719182977","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"nonselection_glyph":{"type":"object","name":"Line","id":"cea4fbe3-a94a-4a9c-ba4a-ef9d9ae139c7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.1,"line_width":2}},"muted_glyph":{"type":"object","name":"Line","id":"29647a43-5903-4fb0-a9a2-e276327472da","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.2,"line_width":2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"f9ca8b01-3ebf-494f-ba92-5b0d33b56cde","attributes":{"tools":[{"type":"object","name":"WheelZoomTool","id":"372ebbee-1b60-4b57-aecc-18f0c9c5e803","attributes":{"tags":["hv_created"],"renderers":"auto","zoom_together":"none"}},{"type":"object","name":"HoverTool","id":"8b88f94b-4457-4bfc-a999-76ca826028b3","attributes":{"tags":["hv_created"],"renderers":[{"id":"cb94aec9-5d36-41fb-93d1-96016e51a4ee"}],"tooltips":[["index","@{index}"],["0","@{A_0}"]]}},{"type":"object","name":"SaveTool","id":"ce69a69e-a57d-466e-95e7-2df5ee35f3e6"},{"type":"object","name":"PanTool","id":"d44ef0ed-fabc-47f6-9816-3a79e02665a1"},{"type":"object","name":"BoxZoomTool","id":"894870ac-4c33-4701-b7e7-9ee14baf3c3f","attributes":{"dimensions":"both","overlay":{"type":"object","name":"BoxAnnotation","id":"b8b5d340-cadf-4a9d-a1fc-9728c8ac86a2","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"759a3fb6-d885-4216-96da-0ff9fe0773e8","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"32ab248f-52bd-49da-aca8-b5081001a667","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"ResetTool","id":"11e3fcaa-f35d-45e7-a8ad-0734f8e2a8ae"}],"active_drag":{"id":"d44ef0ed-fabc-47f6-9816-3a79e02665a1"},"active_scroll":{"id":"372ebbee-1b60-4b57-aecc-18f0c9c5e803"}}},"left":[{"type":"object","name":"LinearAxis","id":"a2ab247e-f859-404f-be11-e3646326e0bf","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"707b263f-1fdf-4513-84ee-bd650e3bbefb","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"1aa7f0fb-7ef4-4a5a-872e-b7c474683a0a"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"cb7bea92-8592-45f4-984e-3b050fe9b337"}}}],"below":[{"type":"object","name":"LinearAxis","id":"fddd73df-fd07-4336-b712-1f56c318c0c7","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"8c58b58d-d527-4111-8fb3-387444806cde","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"a7c22d6f-79e5-484f-9d16-c42181109104"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"683e8fbf-30f3-4a75-80a6-db3a5646966e"}}}],"center":[{"type":"object","name":"Grid","id":"b45d2fcf-f922-43d9-959e-4fceacbfdff5","attributes":{"axis":{"id":"fddd73df-fd07-4336-b712-1f56c318c0c7"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"9d10954c-6293-426b-b565-cc2aa9f88b2b","attributes":{"dimension":1,"axis":{"id":"a2ab247e-f859-404f-be11-e3646326e0bf"},"grid_line_color":null}}],"min_border_top":10,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"output_backend":"webgl"}},{"type":"object","name":"Spacer","id":"288457e0-1093-48cc-91b6-72fd6e553c55","attributes":{"name":"HSpacer00291","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"id":"d83b62f7-3e40-4920-948c-68a941ef47fd"},{"id":"0ec6b789-58f9-4de0-826a-7e8305c90e2a"},{"id":"905ef7db-a3bf-40cc-a5f0-2755897be55f"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}}]}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]}]}};
+  var render_items = [{"docid":"aa14eef1-00d7-4f95-b90f-97a2cdf197a4","roots":{"578c84ac-4d8d-46ed-848f-fefd4ef55c08":"a9431815-be27-4f7b-824c-4cee8615b627"},"root_ids":["578c84ac-4d8d-46ed-848f-fefd4ef55c08"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  async function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+	const id_el = document.getElementById(root_id)
+	if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
+	  const root_el = id_el.children[0]
+	  root_el.id = root_el.id + '-rendered'
+	  for (const child of root_el.children) {
+            // Ensure JupyterLab does not capture keyboard shortcuts
+            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
+	    child.setAttribute('data-lm-suppress-shortcuts', 'true')
+	  }
+	}
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== py_version) {
       if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
 	return null
       }
@@ -1277,7 +1342,7 @@ if (window.Jupyter !== undefined) {
 </div>
 </section>
 <section id="formatting-your-notebook-with-text-titles-and-formulas">
-<h2>Formatting your notebook with text, titles and formulas<a class="headerlink" href="#formatting-your-notebook-with-text-titles-and-formulas" title="Permalink to this heading">#</a></h2>
+<h2>Formatting your notebook with text, titles and formulas<a class="headerlink" href="#formatting-your-notebook-with-text-titles-and-formulas" title="Link to this heading">#</a></h2>
 <p>The default role of a cell is to run code, but you can tell the notebook to format a cell as “text” by clicking in the menu bar on “Cell”, choose “Cell Type” <span class="math notranslate nohighlight">\(\rightarrow\)</span> “Markdown”. The current cell will now be transformed to a normal text.
 Again, there is a keyboard shortcut for this: press <code class="docutils literal notranslate"><span class="pre">[Ctrl+m]</span></code> to enter in command mode and then <code class="docutils literal notranslate"><span class="pre">[m]</span></code> to convert the active cell to text. The opposite (converting a text cell to code) can be done with <code class="docutils literal notranslate"><span class="pre">[Ctrl+m]</span></code> to enter in command mode and then <code class="docutils literal notranslate"><span class="pre">[y]</span></code>.</p>
 <p>As we have seen, the notebook editor has two simple modes: the “command mode” to navigate between cells and activate them, and the “edit mode” to edit their content. To edit a cell you have two choices:</p>
@@ -1298,7 +1363,7 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
 </ol>
 <p>Titles with the <code class="docutils literal notranslate"><span class="pre">#</span></code> syntax (the number of <code class="docutils literal notranslate"><span class="pre">#</span></code> indicating the level of the title:</p>
 <section id="this-is-a-level-3-title-with-3-symbols">
-<h3>This is a level 3 title (with 3 <code class="docutils literal notranslate"><span class="pre">#</span></code> symbols)<a class="headerlink" href="#this-is-a-level-3-title-with-3-symbols" title="Permalink to this heading">#</a></h3>
+<h3>This is a level 3 title (with 3 <code class="docutils literal notranslate"><span class="pre">#</span></code> symbols)<a class="headerlink" href="#this-is-a-level-3-title-with-3-symbols" title="Link to this heading">#</a></h3>
 <p>Mathematical formulas can be written down with the familiar Latex notation:</p>
 <div class="math notranslate nohighlight">
 \[ E = m c^2\]</div>
@@ -1306,7 +1371,7 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
 </section>
 </section>
 <section id="download-a-notebook">
-<h2>Download a notebook<a class="headerlink" href="#download-a-notebook" title="Permalink to this heading">#</a></h2>
+<h2>Download a notebook<a class="headerlink" href="#download-a-notebook" title="Link to this heading">#</a></h2>
 <p>Jupyter notebooks can be downloaded in various formats:</p>
 <ul class="simple">
 <li><p>Standard notebook (<code class="docutils literal notranslate"><span class="pre">*.ipynb</span></code>): a text file only useful within the Jupyter framework</p></li>
@@ -1318,7 +1383,7 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
 <p><strong>For all other formats</strong>, go to the “File” menu, then “Export notebook as…”</p>
 </section>
 <section id="take-home-points">
-<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this heading">#</a></h2>
+<h2>Take home points<a class="headerlink" href="#take-home-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>jupyter notebooks consist of cells, which can be either code or text (not both)</p></li>
 <li><p>one can navigate between cells in “control mode” (<code class="docutils literal notranslate"><span class="pre">[ctrl+m]</span></code>) and edit them in “edit mode” (<code class="docutils literal notranslate"><span class="pre">[enter]</span></code> or double click)</p></li>
@@ -1330,8 +1395,8 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
 <p>But with the few commands you learned today, you are already well prepared for the OGGM-Edu experiments!</p>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
-<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
 
@@ -1360,11 +1425,10 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../welcome.html"
@@ -1384,10 +1448,7 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1395,6 +1456,7 @@ Again, there is a keyboard shortcut for this: press <code class="docutils litera
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1437,10 +1499,14 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
-    
+    <p class="last-updated">
+  Last updated on Apr 16, 2025.
+  <br/>
+</p>
   </div>
   
   <div class="footer-item">
@@ -1464,8 +1530,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

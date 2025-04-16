@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Mass balance gradients (MBG) and their influence on glacier flow &#8212; OGGM-Edu notebooks</title>
   
@@ -15,68 +14,61 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'UA-106829797-2');
-            </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/mass_balance_gradients';</script>
+    <script data-domain="edu.oggm.org" defer="defer" src="https://plausible.oggm.org/js/script.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Glacier surging experiments" href="surging_experiment.html" />
     <link rel="prev" title="Influence of ice flow parameters on glacier size" href="ice_flow_parameters.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
   </head>
   
   
@@ -84,19 +76,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -118,12 +114,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -138,9 +142,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../welcome.html">
+  
   
   
   
@@ -150,12 +158,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="OGGM-Edu notebooks - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="OGGM-Edu notebooks - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -210,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -219,14 +238,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -251,14 +270,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/mass_balance_gradients.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -269,14 +288,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/mass_balance_gradients.ipynb&branch=master" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -414,26 +433,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -472,10 +493,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mass-balance-gradients-mbg-and-their-influence-on-glacier-flow">
-<h1>Mass balance gradients (MBG) and their influence on glacier flow<a class="headerlink" href="#mass-balance-gradients-mbg-and-their-influence-on-glacier-flow" title="Permalink to this heading">#</a></h1>
+<h1>Mass balance gradients (MBG) and their influence on glacier flow<a class="headerlink" href="#mass-balance-gradients-mbg-and-their-influence-on-glacier-flow" title="Link to this heading">#</a></h1>
 <p>In the intro notebook we touched briefly on the mass balance gradient of a glacier. This is what we are going to take a closer look at now.
 If the concept of mass balance is completely new to you, have a short read about it <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/">here</a>, up to the paragraph “<em>So what is Glacier Mass Balance?</em>”.
 In this notebook we will set up a few simple glaciers to further explore what characteristics of glaciers change with different mass balance gradients. We will also take a look at the topics of volume and response time.</p>
@@ -492,14 +513,14 @@ In this notebook we will set up a few simple glaciers to further explore what ch
 <p>First, we have to import the relevant classes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">GlacierCollection</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">oggm_edu</span><span class="w"> </span><span class="kn">import</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">GlacierCollection</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="initialising-the-glacier">
-<h2>Initialising the glacier<a class="headerlink" href="#initialising-the-glacier" title="Permalink to this heading">#</a></h2>
-<p>We start by setting up a simple glacier with a linear bedrock (see <a class="reference internal" href="edu_intro.html"><span class="doc std std-doc">Getting started with OGGM Edu</span></a>) to generate a starting point for our experiment.</p>
+<h2>Initialising the glacier<a class="headerlink" href="#initialising-the-glacier" title="Link to this heading">#</a></h2>
+<p>We start by setting up a simple glacier with a linear bedrock (see <a class="reference internal" href="edu_intro.html"><span class="std std-doc">Getting started with OGGM Edu</span></a>) to generate a starting point for our experiment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bed</span>
@@ -514,8 +535,8 @@ In this notebook we will set up a few simple glaciers to further explore what ch
 </div>
 </section>
 <section id="changing-the-mass-balance-gradient-mbg">
-<h2>Changing the mass balance gradient (MBG)<a class="headerlink" href="#changing-the-mass-balance-gradient-mbg" title="Permalink to this heading">#</a></h2>
-<p>The MBG is defined as the change of the mass balance with altitude <span class="xref myst">¹</span>. It depends strongly on the climate at the glacier <span class="xref myst">²</span>.</p>
+<h2>Changing the mass balance gradient (MBG)<a class="headerlink" href="#changing-the-mass-balance-gradient-mbg" title="Link to this heading">#</a></h2>
+<p>The MBG is defined as the change of the mass balance with altitude <a class="reference internal" href="#references"><span class="std std-ref">¹</span></a>. It depends strongly on the climate at the glacier <a class="reference internal" href="#references"><span class="std std-ref">²</span></a>.</p>
 <p>Let’s take a look at the effects of the MBG by creating a few glaciers with different gradients. In the intro notebook our glacier had a gradient of 4 mm/m so lets add a glacier with a weaker gradient and one with a stronger gradient.</p>
 <p>We will again make use of the <code class="docutils literal notranslate"><span class="pre">GlacierCollection</span></code> to quickly progress and visualise the glaciers.</p>
 <div class="cell docutils container">
@@ -530,7 +551,7 @@ In this notebook we will set up a few simple glaciers to further explore what ch
 </div>
 </div>
 <section id="creating-a-complex-mass-balance-profile">
-<h3>Creating a complex mass balance profile<a class="headerlink" href="#creating-a-complex-mass-balance-profile" title="Permalink to this heading">#</a></h3>
+<h3>Creating a complex mass balance profile<a class="headerlink" href="#creating-a-complex-mass-balance-profile" title="Link to this heading">#</a></h3>
 <p>It is also possible to create a more complex mass balance profile.
 This is achieved by passing a list of gradients, and another list with the altitude of the breakpoints between them.</p>
 <div class="cell docutils container">
@@ -558,6 +579,65 @@ This is achieved by passing a list of gradients, and another list with the altit
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RemoteTraceback</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="ne">Remote</span>Traceback: 
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Traceback (most recent call last):</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py&quot;, line 125, in worker</span>
+<span class="sd">    result = (True, func(*args, **kwds))</span>
+<span class="sd">                    ^^^^^^^^^^^^^^^^^^^</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py&quot;, line 48, in mapstar</span>
+<span class="sd">    return list(map(*args))</span>
+<span class="sd">           ^^^^^^^^^^^^^^^^</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier_collection.py&quot;, line 292, in _partial_progression</span>
+<span class="sd">    glacier.progress_to_year(year)</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py&quot;, line 575, in progress_to_year</span>
+<span class="sd">    out = model.run_until_and_store(year, fl_diag_path=None)</span>
+<span class="sd">          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py&quot;, line 1039, in run_until_and_store</span>
+<span class="sd">    sects = [(np.zeros((ny, fl.nx)) * np.NaN) for fl in self.fls]</span>
+<span class="sd">            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py&quot;, line 1039, in &lt;listcomp&gt;</span>
+<span class="sd">    sects = [(np.zeros((ny, fl.nx)) * np.NaN) for fl in self.fls]</span>
+<span class="sd">                                      ^^^^^^</span>
+<span class="sd">  File &quot;/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py&quot;, line 400, in __getattr__</span>
+<span class="sd">    raise AttributeError(</span>
+<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Progress collection to the same year.</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">collection</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier_collection.py:315,</span> in <span class="ni">GlacierCollection.progress_to_year</span><span class="nt">(self, year)</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="c1"># Pool context manager.</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="k">with</span> <span class="n">Pool</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="c1"># We use pool.map to evaluate the partial function on all glaciers in the collection.</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="c1"># After this, &quot;update&quot; the collection with the resulting glaciers.</span>
+<span class="ne">--&gt; </span><span class="mi">315</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_glaciers</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">partial_progression</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_glaciers</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py:367,</span> in <span class="ni">Pool.map</span><span class="nt">(self, func, iterable, chunksize)</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span> <span class="k">def</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="w">     </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span><span class="sd">     Apply `func` to each element in `iterable`, collecting the results</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="sd">     in a list that is returned.</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span><span class="sd">     &#39;&#39;&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">367</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_async</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">mapstar</span><span class="p">,</span> <span class="n">chunksize</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/multiprocessing/pool.py:774,</span> in <span class="ni">ApplyResult.get</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">772</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+<span class="g g-Whitespace">    </span><span class="mi">773</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">774</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -565,18 +645,12 @@ This is achieved by passing a list of gradients, and another list with the altit
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/6e7685e3f7ddec1f32db54e1f9bfadaf81a153782bb292bfbb3bad9b11b616f2.png" src="../_images/6e7685e3f7ddec1f32db54e1f9bfadaf81a153782bb292bfbb3bad9b11b616f2.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_mass_balance</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/9ac4fc2fbe43c6249bf317dcee05dda5f34b6597f9f9193aa7e43a9d68288462.png" src="../_images/9ac4fc2fbe43c6249bf317dcee05dda5f34b6597f9f9193aa7e43a9d68288462.png" />
 </div>
 </div>
 <p>A stronger mass balance gradient (flatter line in plot above) implies a larger change of the mass balance with altitude.
@@ -591,9 +665,9 @@ This is why the glacier with the strongest gradient exhibits the largest growth 
 </div></section>
 </section>
 <section id="equilibrium-state">
-<h2>Equilibrium state<a class="headerlink" href="#equilibrium-state" title="Permalink to this heading">#</a></h2>
-<p>Glaciers change their geometry as a way to adapt to the climate<span class="xref myst">³</span>. If the accumulation increases, the glacier will grow further down below the ELA to increase the ablation. Similarly, if the temperature rises and the ablation increases, the glacier length will decrease.
-If the climate remains constant for a long enough time, glaciers will reach an equilibrium state with its climate, where the accumulation = ablation <span class="xref myst">⁴</span>.</p>
+<h2>Equilibrium state<a class="headerlink" href="#equilibrium-state" title="Link to this heading">#</a></h2>
+<p>Glaciers change their geometry as a way to adapt to the climate<a class="reference internal" href="#references"><span class="std std-ref">³</span></a>. If the accumulation increases, the glacier will grow further down below the ELA to increase the ablation. Similarly, if the temperature rises and the ablation increases, the glacier length will decrease.
+If the climate remains constant for a long enough time, glaciers will reach an equilibrium state with its climate, where the accumulation = ablation <a class="reference internal" href="#references"><span class="std std-ref">⁴</span></a>.</p>
 <p>With this in mind, we will take a look at how fast our glaciers, with different gradients, reach this state and compare their shapes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -622,9 +696,6 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/b06c01d4cbbd797b0d3cfcc49460d4e9923b99eb40eb31d490add4cd8db47a8e.png" src="../_images/b06c01d4cbbd797b0d3cfcc49460d4e9923b99eb40eb31d490add4cd8db47a8e.png" />
-</div>
 </div>
 <p>The different glaciers reach their equilibrium state after a different number of years. What does the figure show us? Which glacier is the thickest and longest? Let’s look at specific numbers:</p>
 <div class="cell docutils container">
@@ -633,156 +704,13 @@ If the climate remains constant for a long enough time, glaciers will reach an e
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Id</th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Max ice velocity [m/yr]</th>
-      <th>AAR [%]</th>
-      <th>Response time [yrs]</th>
-      <th>...</th>
-      <th>Basal sliding</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>Bottom [m]</th>
-      <th>Width(s) [m]</th>
-      <th>Length [km]</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>6</td>
-      <td>Glacier</td>
-      <td>2500</td>
-      <td>8700.0</td>
-      <td>3.48</td>
-      <td>0.376764</td>
-      <td>119.836207</td>
-      <td>6.25951</td>
-      <td>63.218391</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>0.3</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>7</td>
-      <td>Glacier</td>
-      <td>531</td>
-      <td>12300.0</td>
-      <td>4.92</td>
-      <td>0.935159</td>
-      <td>214.228472</td>
-      <td>64.34719</td>
-      <td>52.845528</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>8</td>
-      <td>Glacier</td>
-      <td>208</td>
-      <td>13800.0</td>
-      <td>5.52</td>
-      <td>1.418343</td>
-      <td>291.286530</td>
-      <td>215.60993</td>
-      <td>52.173913</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>15.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>3 rows × 21 columns</p>
-</div></div></div>
 </div>
 <p>The glacier with the strongest gradient reaches the equilibrium state first. This is also the largest and longest glacier.</p>
 </section>
 <section id="response-time">
-<h2>Response time<a class="headerlink" href="#response-time" title="Permalink to this heading">#</a></h2>
+<h2>Response time<a class="headerlink" href="#response-time" title="Link to this heading">#</a></h2>
 <p>The glacier response time is the period of time a glacier needs to adjust its geometry to changes in mass balance caused by climate change and reach a new equilibrium state.
-There are a some different definitions for its calculation, OGGM-Edu use the definition from Oerlemans (see formula below) <span class="xref myst">⁵</span>.</p>
+There are a some different definitions for its calculation, OGGM-Edu use the definition from Oerlemans (see formula below) <a class="reference internal" href="#references"><span class="std std-ref">⁵</span></a>.</p>
 <p>A OGGM-Edu glacier has an attribute <code class="docutils literal notranslate"><span class="pre">.response_time</span></code> which is calculated based on difference between the last two equilibrium states in the glacier history.
 So far we’ve only showed you how to progress a glacier to equilibrium, but not how to leave it and reach a second one.
 This will be the first step to getting the response time of a glacier.</p>
@@ -794,84 +722,6 @@ This will be the first step to getting the response time of a glacier.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>Attribute</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Id</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Type</th>
-      <td>Glacier</td>
-    </tr>
-    <tr>
-      <th>Age</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Length [m]</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Area [km2]</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Volume [km3]</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Max ice thickness [m]</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>Max ice velocity [m/yr]</th>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>AAR [%]</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Response time [yrs]</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Creep (Glen A)</th>
-      <td>2.4e-24</td>
-    </tr>
-    <tr>
-      <th>Basal sliding</th>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>First we progress the glacier to equilibrium</p>
 <div class="cell docutils container">
@@ -887,19 +737,11 @@ This will be the first step to getting the response time of a glacier.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/f9df3ec476c1cd92b46f8186f5a75ba2af8eef1e19b7b40b185fac3075c92dc9.png" src="../_images/f9df3ec476c1cd92b46f8186f5a75ba2af8eef1e19b7b40b185fac3075c92dc9.png" />
-</div>
 </div>
 <p>We can access the stored equilibrium states of a glacier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">eq_states</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{531: 3000}
 </pre></div>
 </div>
 </div>
@@ -937,9 +779,6 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/cc8bdbd899197242a73dd483291f8481419f1f145f60941377f98d0292a6e38c.png" src="../_images/cc8bdbd899197242a73dd483291f8481419f1f145f60941377f98d0292a6e38c.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -947,14 +786,9 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{531: 3000, 790: 3150.0}
-</pre></div>
-</div>
-</div>
 </div>
 <p>The next step is to calculate the response times for our glaciers. One could think that it is as simple as looking at the years above and do a simple subtraction. However this is not the case! In reality the rate at which a glacier changes is ever decreasing and  a complete equilibrium state is never really achieved. Because of this the response time is considered the time it has taken the glacier to complete most of the adjustment, more specifically all but a factor of <span class="math notranslate nohighlight">\(1/e\)</span>.</p>
-<p>For numerical models like our glaciers it is common to use the <a class="reference external" href="https://www.tandfonline.com/doi/pdf/10.1080/00040851.1997.12003238?needAccess=true">volume response time</a>, from Oerlemans <span class="xref myst">⁵</span>:</p>
+<p>For numerical models like our glaciers it is common to use the <a class="reference external" href="https://www.tandfonline.com/doi/pdf/10.1080/00040851.1997.12003238?needAccess=true">volume response time</a>, from Oerlemans <a class="reference internal" href="#references"><span class="std std-ref">⁵</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[
 \tau = t \left(V=V_2 - \frac{V_2 - V_1}{e}\right)
@@ -967,11 +801,6 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69.0
-</pre></div>
-</div>
-</div>
 </div>
 <p>or just look at the representation</p>
 <div class="cell docutils container">
@@ -980,84 +809,6 @@ For instance, if we set the bias to 1. and the duration to 50, it will take 50 y
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>Attribute</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Id</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Type</th>
-      <td>Glacier</td>
-    </tr>
-    <tr>
-      <th>Age</th>
-      <td>790</td>
-    </tr>
-    <tr>
-      <th>Length [m]</th>
-      <td>8900.0</td>
-    </tr>
-    <tr>
-      <th>Area [km2]</th>
-      <td>3.56</td>
-    </tr>
-    <tr>
-      <th>Volume [km3]</th>
-      <td>0.58815</td>
-    </tr>
-    <tr>
-      <th>Max ice thickness [m]</th>
-      <td>187.240744</td>
-    </tr>
-    <tr>
-      <th>Max ice velocity [m/yr]</th>
-      <td>64.34719029759603</td>
-    </tr>
-    <tr>
-      <th>AAR [%]</th>
-      <td>51.685393</td>
-    </tr>
-    <tr>
-      <th>Response time [yrs]</th>
-      <td>69.0</td>
-    </tr>
-    <tr>
-      <th>Creep (Glen A)</th>
-      <td>2.4e-24</td>
-    </tr>
-    <tr>
-      <th>Basal sliding</th>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Now that we have introduced the concept of response time we can apply it and see how the different mass balance gradients affect the response time.
 For this we need a new collection.</p>
@@ -1097,149 +848,6 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Id</th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Max ice velocity [m/yr]</th>
-      <th>AAR [%]</th>
-      <th>Response time [yrs]</th>
-      <th>...</th>
-      <th>Basal sliding</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>Bottom [m]</th>
-      <th>Width(s) [m]</th>
-      <th>Length [km]</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>10</td>
-      <td>Glacier</td>
-      <td>1396</td>
-      <td>11100.0</td>
-      <td>4.44</td>
-      <td>0.617531</td>
-      <td>156.657721</td>
-      <td>18.163011</td>
-      <td>53.153153</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>11</td>
-      <td>Glacier</td>
-      <td>531</td>
-      <td>12300.0</td>
-      <td>4.92</td>
-      <td>0.935159</td>
-      <td>214.228472</td>
-      <td>64.347190</td>
-      <td>52.845528</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>12</td>
-      <td>Glacier</td>
-      <td>208</td>
-      <td>13800.0</td>
-      <td>5.52</td>
-      <td>1.418343</td>
-      <td>291.286530</td>
-      <td>215.609930</td>
-      <td>52.173913</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>0</td>
-      <td>15</td>
-    </tr>
-  </tbody>
-</table>
-<p>3 rows × 21 columns</p>
-</div></div></div>
 </div>
 <p>We then have to set up a climate change scenario for the glaciers in the collection</p>
 <div class="cell docutils container">
@@ -1266,158 +874,12 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Id</th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Max ice velocity [m/yr]</th>
-      <th>AAR [%]</th>
-      <th>Response time [yrs]</th>
-      <th>...</th>
-      <th>Basal sliding</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>Bottom [m]</th>
-      <th>Width(s) [m]</th>
-      <th>Length [km]</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>10</td>
-      <td>Glacier</td>
-      <td>2033</td>
-      <td>8000.0</td>
-      <td>3.20</td>
-      <td>0.378810</td>
-      <td>134.826892</td>
-      <td>18.163011</td>
-      <td>51.250000</td>
-      <td>227.0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3150.0</td>
-      <td>3000</td>
-      <td>1.0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>11</td>
-      <td>Glacier</td>
-      <td>790</td>
-      <td>8900.0</td>
-      <td>3.56</td>
-      <td>0.588150</td>
-      <td>187.240744</td>
-      <td>64.347190</td>
-      <td>51.685393</td>
-      <td>69.0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3150.0</td>
-      <td>3000</td>
-      <td>1.0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>12</td>
-      <td>Glacier</td>
-      <td>319</td>
-      <td>10100.0</td>
-      <td>4.04</td>
-      <td>0.913352</td>
-      <td>256.795193</td>
-      <td>215.609930</td>
-      <td>52.475248</td>
-      <td>24.0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>Linear bed with a constant width</td>
-      <td>3400</td>
-      <td>1500</td>
-      <td>400</td>
-      <td>20.0</td>
-      <td>3150.0</td>
-      <td>3000</td>
-      <td>1.0</td>
-      <td>15</td>
-    </tr>
-  </tbody>
-</table>
-<p>3 rows × 21 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/1b4795cc3423388dea6b747d2b36817e5a42315c540d876f2d41348ae0e4e668.png" src="../_images/1b4795cc3423388dea6b747d2b36817e5a42315c540d876f2d41348ae0e4e668.png" />
 </div>
 </div>
 <p>We can also look at the state history for one of the glaciers</p>
@@ -1428,11 +890,8 @@ For this we need a new collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/92f825595b7110c97fa25031041015d4aa9bae9e909a2a9db2ccb7fd164c302a.png" src="../_images/92f825595b7110c97fa25031041015d4aa9bae9e909a2a9db2ccb7fd164c302a.png" />
 </div>
-</div>
-<p>The glacier with weakest MBG need the longest time to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a around two decades to adjust its shape to the new climate (A real world example: Franz Josef glacier in New Zealand<span class="xref myst">⁶</span>)<span class="xref myst">⁷</span>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years.</p>
+<p>The glacier with weakest MBG need the longest time to adjust to a changed climate compared to the other glaciers. On the other hand, the glacier with the strongest gradient only needs a around two decades to adjust its shape to the new climate (A real world example: Franz Josef glacier in New Zealand<a class="reference internal" href="#references"><span class="std std-ref">⁶</span></a>)<a class="reference internal" href="#references"><span class="std std-ref">⁷</span></a>. The response time of glaciers with weak gradients is in reality much longer than 200 years, actually closer to 2000 years.</p>
 <div class="alert alert-success">
     <details><summary><b>Why does the MBG change response time of a glacier? What other factors except for the MBG do you think affect the response time of a glacier?</b> <i>Click me for a hint</i></summary>
 The MBG affects the how fast the glacier will flow and in turn how fast the shape and size of the glacier can change. In general, we have to consider that the response time also depends on other features like the glacier-type, size, bed slope and average surface elevation. 
@@ -1440,7 +899,7 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
 </div>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<span id="id1"></span><h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>¹ Rasmussen, L. A., &amp; Andreassen, L. M. (2005). Seasonal mass-balance gradients in Norway. <em>Journal of Glaciology</em>, 51(175), 601-606.</p>
 <p>² Oerlemans, J., &amp; Fortuin, J. P. F. (1992). Sensitivity of glaciers and small ice caps to greenhouse warming. <em>Science, 258(5079)</em>, 115-117.</p>
 <p>³ Oerlemans, J. (2001). <em>Glaciers and climate change</em>. CRC Press.</p>
@@ -1450,8 +909,8 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
 <p>⁷ Cuffey, K.M. &amp; Paterson, W.S.B. <em>The Physics of Glaciers, 4th edition</em>, 704 (Academic Press, 2010).</p>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
-<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
 
@@ -1480,11 +939,10 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="ice_flow_parameters.html"
@@ -1504,10 +962,7 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1515,6 +970,7 @@ The MBG affects the how fast the glacier will flow and in turn how fast the shap
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1552,10 +1008,14 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
-    
+    <p class="last-updated">
+  Last updated on Apr 16, 2025.
+  <br/>
+</p>
   </div>
   
   <div class="footer-item">
@@ -1579,8 +1039,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

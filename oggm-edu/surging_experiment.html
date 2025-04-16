@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Glacier surging experiments &#8212; OGGM-Edu notebooks</title>
   
@@ -15,66 +14,59 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'UA-106829797-2');
-            </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/surging_experiment';</script>
+    <script data-domain="edu.oggm.org" defer="defer" src="https://plausible.oggm.org/js/script.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Accumulation, ablation, mass Balance and the resulting ice flow" href="accumulation_and_ablation.html" />
     <link rel="prev" title="Mass balance gradients (MBG) and their influence on glacier flow" href="mass_balance_gradients.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
   </head>
   
   
@@ -82,19 +74,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,12 +112,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -136,9 +140,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../welcome.html">
+  
   
   
   
@@ -148,12 +156,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="OGGM-Edu notebooks - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="OGGM-Edu notebooks - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -208,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -217,14 +236,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -249,14 +268,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/surging_experiment.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -267,14 +286,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/surging_experiment.ipynb&branch=master" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -412,26 +431,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -465,10 +486,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="glacier-surging-experiments">
-<h1>Glacier surging experiments<a class="headerlink" href="#glacier-surging-experiments" title="Permalink to this heading">#</a></h1>
+<h1>Glacier surging experiments<a class="headerlink" href="#glacier-surging-experiments" title="Link to this heading">#</a></h1>
 <p>Goals of this notebook:</p>
 <ul class="simple">
 <li><p>Learn how to set up a surging glacier using OGGM-Edu.</p></li>
@@ -480,14 +501,14 @@ document.write(`
 <p>We start with importing the necessary classes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">SurgingGlacier</span><span class="p">,</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierCollection</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">oggm_edu</span><span class="w"> </span><span class="kn">import</span> <span class="n">SurgingGlacier</span><span class="p">,</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">GlacierBed</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierCollection</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">#</a></h2>
-<p>We set up a glacier with a linear bedrock and variable width (see <a class="reference internal" href="edu_intro.html"><span class="doc std std-doc">Intro notebook</span></a>) as a setting for our experiment.</p>
+<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
+<p>We set up a glacier with a linear bedrock and variable width (see <a class="reference internal" href="edu_intro.html"><span class="std std-doc">Intro notebook</span></a>) as a setting for our experiment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bed and mass balance</span>
@@ -505,7 +526,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/016683d59b66a81c112f2deb08ab6ebd1175d89a6ba2b1b68f2d658f3415d937.png" src="../_images/016683d59b66a81c112f2deb08ab6ebd1175d89a6ba2b1b68f2d658f3415d937.png" />
+<img alt="../_images/b884ed513d29da730ea6317f69c5f162df3d4e8fa530f93ccd17bd0387093b6f.png" src="../_images/b884ed513d29da730ea6317f69c5f162df3d4e8fa530f93ccd17bd0387093b6f.png" />
 </div>
 </div>
 <p>We can then define a surging glacier using the <code class="docutils literal notranslate"><span class="pre">SurgingGlacier</span></code> class</p>
@@ -639,10 +660,55 @@ These can easily be changed by the user after initialisation.</p>
 </div>
 </div>
 <p>When we progress this glacier the basal sliding will be increased every 50 years resulting in an increased ice flow.</p>
-<p>To learn more about ice flow parameters, take a look at this <a class="reference internal" href="ice_flow_parameters.html"><span class="doc std std-doc">notebook</span></a>.</p>
+<p>To learn more about ice flow parameters, take a look at this <a class="reference internal" href="ice_flow_parameters.html"><span class="std std-doc">notebook</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surging_glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">surging_glacier</span><span class="o">.</span><span class="n">progress_to_year</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:1246,</span> in <span class="ni">SurgingGlacier.progress_to_year</span><span class="nt">(self, year)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1244</span> <span class="c1"># Run the model. Store the history.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1245</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1246</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_until_and_store</span><span class="p">(</span><span class="n">years_to_run</span><span class="p">,</span> <span class="n">fl_diag_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1247</span> <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1248</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Glacier outgrew its domain and had to stop.&quot;</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">FlowlineModel.run_until_and_store</span><span class="nt">(self, y1, diag_path, fl_diag_path, geom_path, store_monthly_step, stop_criterion, fixed_geometry_spinup_yr, dynamic_spinup_min_ice_thick)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py:400,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__expired_attributes__</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">400</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="sa">f</span><span class="s2">&quot;`np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` was removed in the NumPy 2.0 release. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__expired_attributes__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s2">&quot;chararray&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="s2">&quot;`np.chararray` is deprecated and will be removed from &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="s2">&quot;the main namespace in the future. Use an array with a string &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="s2">&quot;or bytes dtype instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
 </pre></div>
 </div>
 </div>
@@ -653,9 +719,6 @@ These can easily be changed by the user after initialisation.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/f162c8cb18716cd69df29104b75dd62232b3d379d6d698458fb01903aa7ee342.png" src="../_images/f162c8cb18716cd69df29104b75dd62232b3d379d6d698458fb01903aa7ee342.png" />
-</div>
 </div>
 <p>In the plot above we can distinguish the surging periods as a rapid expansion in both length and area (also marked in orange).</p>
 <div class="cell docutils container">
@@ -664,13 +727,10 @@ These can easily be changed by the user after initialisation.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/917faeac8153a8e8609ebdc1d54bde57e649b204cc60930575ebd83886f24aa7.png" src="../_images/917faeac8153a8e8609ebdc1d54bde57e649b204cc60930575ebd83886f24aa7.png" />
-</div>
 </div>
 </section>
 <section id="surging-glacier-experiment">
-<h2>Surging glacier experiment<a class="headerlink" href="#surging-glacier-experiment" title="Permalink to this heading">#</a></h2>
+<h2>Surging glacier experiment<a class="headerlink" href="#surging-glacier-experiment" title="Link to this heading">#</a></h2>
 <p>We can compare this to a non-surging glacier.
 For this we will again employ the glacier collection.</p>
 <div class="cell docutils container">
@@ -697,21 +757,12 @@ For this we will again employ the glacier collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm_edu/glacier.py:1202: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
-  warnings.warn(msg)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/425de02a2070adb6e5d35ab6803f2a772823f9bb8de7d4b08d7f30e5be506f96.png" src="../_images/425de02a2070adb6e5d35ab6803f2a772823f9bb8de7d4b08d7f30e5be506f96.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -720,9 +771,6 @@ For this we will again employ the glacier collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/df5644dfe407177a4fa6ad2134f5ebd96e54e653cc1f4c25cb219db5258e3d7b.png" src="../_images/df5644dfe407177a4fa6ad2134f5ebd96e54e653cc1f4c25cb219db5258e3d7b.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -730,125 +778,6 @@ For this we will again employ the glacier collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Surging periodicity (off/on)</th>
-      <th>Surging now?</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>...</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-      <th>Id</th>
-      <th>Max ice velocity [m/yr]</th>
-      <th>AAR [%]</th>
-      <th>Response time [yrs]</th>
-      <th>Creep (Glen A)</th>
-      <th>Basal sliding</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>SurgingGlacier</td>
-      <td>400</td>
-      <td>15400.0</td>
-      <td>5.515</td>
-      <td>0.781632</td>
-      <td>166.361144</td>
-      <td>[50, 5]</td>
-      <td>False</td>
-      <td>Linear bed with a variable width</td>
-      <td>3400</td>
-      <td>...</td>
-      <td>2900</td>
-      <td>2900</td>
-      <td>0</td>
-      <td>4</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Glacier</td>
-      <td>400</td>
-      <td>16400.0</td>
-      <td>5.815</td>
-      <td>1.265717</td>
-      <td>246.235740</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Linear bed with a variable width</td>
-      <td>3400</td>
-      <td>...</td>
-      <td>2900</td>
-      <td>2900</td>
-      <td>0</td>
-      <td>4</td>
-      <td>2</td>
-      <td>110.000054</td>
-      <td>55.751042</td>
-      <td>NaN</td>
-      <td>2.4e-24</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>2 rows × 23 columns</p>
-</div></div></div>
 </div>
 <div class="alert alert-success">
             <b>Compare the different glacier types. Can you explain the differences? </b>
@@ -880,14 +809,6 @@ For this we will again employ the glacier collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm_edu/glacier.py:1202: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
-  warnings.warn(msg)
-/usr/local/pyenv/versions/3.10.12/lib/python3.10/site-packages/oggm_edu/glacier.py:559: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
-  warnings.warn(msg)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -895,158 +816,12 @@ For this we will again employ the glacier collection.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Type</th>
-      <th>Age</th>
-      <th>Length [m]</th>
-      <th>Area [km2]</th>
-      <th>Volume [km3]</th>
-      <th>Max ice thickness [m]</th>
-      <th>Surging periodicity (off/on)</th>
-      <th>Surging now?</th>
-      <th>Bed type</th>
-      <th>Top [m]</th>
-      <th>...</th>
-      <th>ELA [m]</th>
-      <th>Original ELA [m]</th>
-      <th>Temperature bias [C]</th>
-      <th>Gradient [mm/m/yr]</th>
-      <th>Id</th>
-      <th>Max ice velocity [m/yr]</th>
-      <th>AAR [%]</th>
-      <th>Response time [yrs]</th>
-      <th>Creep (Glen A)</th>
-      <th>Basal sliding</th>
-    </tr>
-    <tr>
-      <th>Glacier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>SurgingGlacier</td>
-      <td>400</td>
-      <td>15400.0</td>
-      <td>5.515</td>
-      <td>0.781632</td>
-      <td>166.361144</td>
-      <td>[50, 5]</td>
-      <td>False</td>
-      <td>Linear bed with a variable width</td>
-      <td>3400</td>
-      <td>...</td>
-      <td>2900</td>
-      <td>2900</td>
-      <td>0</td>
-      <td>4</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Glacier</td>
-      <td>400</td>
-      <td>16400.0</td>
-      <td>5.815</td>
-      <td>1.265717</td>
-      <td>246.235740</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Linear bed with a variable width</td>
-      <td>3400</td>
-      <td>...</td>
-      <td>2900</td>
-      <td>2900</td>
-      <td>0</td>
-      <td>4</td>
-      <td>2</td>
-      <td>110.000054</td>
-      <td>55.751042</td>
-      <td>NaN</td>
-      <td>2.4e-24</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>SurgingGlacier</td>
-      <td>400</td>
-      <td>14900.0</td>
-      <td>5.365</td>
-      <td>0.472113</td>
-      <td>103.202973</td>
-      <td>[50, 5]</td>
-      <td>False</td>
-      <td>Linear bed with a variable width</td>
-      <td>3400</td>
-      <td>...</td>
-      <td>2900</td>
-      <td>2900</td>
-      <td>0</td>
-      <td>4</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>3 rows × 23 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span><span class="o">.</span><span class="n">plot_history</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/5c816be0b396d5c48439098a6f590298dc63b5c9c1b16270d21a2ca0e48117f1.png" src="../_images/5c816be0b396d5c48439098a6f590298dc63b5c9c1b16270d21a2ca0e48117f1.png" />
 </div>
 </div>
 <div class="alert alert-success">
@@ -1058,12 +833,12 @@ For this we will again employ the glacier collection.</p>
     </details>
 </div></section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>¹ Hester Jiskoot: Glacier Surging. In: Vijay P. Singh, Pratap Singh, Umesh K. Haritashya (Hrsg.): Encyclopedia of Snow, Ice and Glaciers. Springer, Dordrecht 2011, S. 415–428, ISBN 978-90-481-2641-5</p>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
-<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
 
@@ -1092,11 +867,10 @@ For this we will again employ the glacier collection.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="mass_balance_gradients.html"
@@ -1116,10 +890,7 @@ For this we will again employ the glacier collection.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1127,6 +898,7 @@ For this we will again employ the glacier collection.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1159,10 +931,14 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
-    
+    <p class="last-updated">
+  Last updated on Apr 16, 2025.
+  <br/>
+</p>
   </div>
   
   <div class="footer-item">
@@ -1186,8 +962,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

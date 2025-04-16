@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Accumulation, ablation, mass Balance and the resulting ice flow &#8212; OGGM-Edu notebooks</title>
   
@@ -15,68 +14,61 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106829797-2"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'UA-106829797-2');
-            </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'oggm-edu/accumulation_and_ablation';</script>
+    <script data-domain="edu.oggm.org" defer="defer" src="https://plausible.oggm.org/js/script.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Glacier advance and retreat" href="advance_and_retreat.html" />
     <link rel="prev" title="Glacier surging experiments" href="surging_experiment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
   </head>
   
   
@@ -84,19 +76,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -118,12 +114,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -138,9 +142,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../welcome.html">
+  
   
   
   
@@ -150,12 +158,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="OGGM-Edu notebooks - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="OGGM-Edu notebooks - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -210,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -219,14 +238,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -251,14 +270,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/OGGM/oggm-edu-notebooks/master?urlpath=lab/tree/./oggm-edu/accumulation_and_ablation.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -269,14 +288,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://classroom.oggm.org/hub/user-redirect/git-pull?repo=https%3A//github.com/OGGM/oggm-edu-notebooks&urlpath=lab/tree/oggm-edu-notebooks/./oggm-edu/accumulation_and_ablation.ipynb&branch=master" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -414,26 +433,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -475,10 +496,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="accumulation-ablation-mass-balance-and-the-resulting-ice-flow">
-<h1>Accumulation, ablation, mass Balance and the resulting ice flow<a class="headerlink" href="#accumulation-ablation-mass-balance-and-the-resulting-ice-flow" title="Permalink to this heading">#</a></h1>
+<h1>Accumulation, ablation, mass Balance and the resulting ice flow<a class="headerlink" href="#accumulation-ablation-mass-balance-and-the-resulting-ice-flow" title="Link to this heading">#</a></h1>
 <p>Goals of this notebook:</p>
 <ul class="simple">
 <li><p>Gain a basic understanding of accumulation, ablation and glacier mass balance</p></li>
@@ -487,7 +508,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oggm_edu</span> <span class="kn">import</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierBed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">oggm_edu</span><span class="w"> </span><span class="kn">import</span> <span class="n">Glacier</span><span class="p">,</span> <span class="n">MassBalance</span><span class="p">,</span> <span class="n">GlacierBed</span>
 </pre></div>
 </div>
 </div>
@@ -497,7 +518,7 @@ document.write(`
 <img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_03.png" width="33%" align="left">
 <img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_04.png" width="33%" align="left">
 <img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_05.png" width="33%" align="left"><section id="accumulation-processes">
-<h2>Accumulation processes<a class="headerlink" href="#accumulation-processes" title="Permalink to this heading">#</a></h2>
+<h2>Accumulation processes<a class="headerlink" href="#accumulation-processes" title="Link to this heading">#</a></h2>
 <p>Accumulation processes are all processes that add snow or ice to a glacier (surface). The most important accumulation processes are listed below in order of their relative importance:</p>
 <ul>
 <li><p><strong>Solid precipitation</strong> (snowfall)</p>
@@ -526,7 +547,7 @@ document.write(`
 </ul>
 </section>
 <section id="ablation-processes">
-<h2>Ablation processes<a class="headerlink" href="#ablation-processes" title="Permalink to this heading">#</a></h2>
+<h2>Ablation processes<a class="headerlink" href="#ablation-processes" title="Link to this heading">#</a></h2>
 <p>Ablation processes are all processes that remove snow or ice from a glacier. The most important ablation processes are listed below in order of their relative importance:</p>
 <ul>
 <li><p><strong>Melt and runoff</strong></p>
@@ -548,7 +569,7 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <br>
 <img src="https://www.antarcticglaciers.org/wp-content/uploads/2018/11/glaciers-as-a-system.png" width="60%"></section>
 <section id="mass-balance">
-<h2>Mass balance<a class="headerlink" href="#mass-balance" title="Permalink to this heading">#</a></h2>
+<h2>Mass balance<a class="headerlink" href="#mass-balance" title="Link to this heading">#</a></h2>
 <p>The rates of accumulation and ablation processes, summed over the glacier and over time, determine the <em>glacier mass balance</em>: <span class="math notranslate nohighlight">\(\dot{m}\)</span>, the change in total mass of snow and ice,</p>
 <div class="math notranslate nohighlight">
 \[\dot{m} = \text{accumulation} + \text{ablation}.\]</div>
@@ -559,12 +580,12 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <p>where <span class="math notranslate nohighlight">\(H\)</span> is the ice thickness, <span class="math notranslate nohighlight">\(\dot{m}\)</span> the mass balance and <span class="math notranslate nohighlight">\(\vec{q}\)</span> the ice flux.</p>
 </section>
 <section id="accumulation-ablation-and-ice-flow-with-oggm">
-<h2>Accumulation, ablation and ice flow with OGGM<a class="headerlink" href="#accumulation-ablation-and-ice-flow-with-oggm" title="Permalink to this heading">#</a></h2>
+<h2>Accumulation, ablation and ice flow with OGGM<a class="headerlink" href="#accumulation-ablation-and-ice-flow-with-oggm" title="Link to this heading">#</a></h2>
 <p>In this example, we will essentially illustrate the <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html#">OGGM-Edu glacier graphics</a> series of images using OGGM.</p>
 <section id="set-the-scene">
-<h3>Set the scene<a class="headerlink" href="#set-the-scene" title="Permalink to this heading">#</a></h3>
+<h3>Set the scene<a class="headerlink" href="#set-the-scene" title="Link to this heading">#</a></h3>
 <p>In the introduction on the OGGM-Edu <a class="reference external" href="http://edu.oggm.org/en/latest/glacier_basics.html">website</a>, a cross section of a typical mountain glacier is shown:</p>
-<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_01.png" width="60%"><p>Such a glacier can be reconstructed in OGGM, as done in the <a class="reference internal" href="edu_intro.html"><span class="doc std std-doc">intro notebook</span></a>. First, we define a linear bedrock profile with a wider accumulation area, typical for mountain glaciers. The accumulation area is determined by the width at the top of the glacier, the width at the <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/#attachment_3396">equilibrium line altitude</a> and the vertical extent downglacier.</p>
+<img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_01.png" width="60%"><p>Such a glacier can be reconstructed in OGGM, as done in the <a class="reference internal" href="edu_intro.html"><span class="std std-doc">intro notebook</span></a>. First, we define a linear bedrock profile with a wider accumulation area, typical for mountain glaciers. The accumulation area is determined by the width at the top of the glacier, the width at the <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/introduction-glacier-mass-balance/#attachment_3396">equilibrium line altitude</a> and the vertical extent downglacier.</p>
 <p>We want to create a glacier bed that is 1500 meters wide at the top and 500 meters wide from the ELA and down. We also want the accumulation area to make up 1/3 of the total vertial extent of the glacier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -586,7 +607,7 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62272480104d9159b11e9d342a77b667b9e5a6fadd30723592f18cdaadb638be.png" src="../_images/62272480104d9159b11e9d342a77b667b9e5a6fadd30723592f18cdaadb638be.png" />
+<img alt="../_images/94395b2e730b9fbef51377ae2cfae2e9bdb59a87dfc8065b5492646865d7c6a3.png" src="../_images/94395b2e730b9fbef51377ae2cfae2e9bdb59a87dfc8065b5492646865d7c6a3.png" />
 </div>
 </div>
 <p>Then we will need a mass balance. In our case this will be a simple linear mass balance, defined by the equilibrium line altitude (ELA) and a linear mass balance gradient with respect to elevation (in [mm m<span class="math notranslate nohighlight">\(^{-1}\)</span>]). The equilibrium line altitude is located at the transition between the accumulation and ablation zone. We can use the same expression as we used to create the transition for the bed:</p>
@@ -614,13 +635,63 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e143833cb214d6085130298471dd747f3382281933d06d72de88d2f932b1d467.png" src="../_images/e143833cb214d6085130298471dd747f3382281933d06d72de88d2f932b1d467.png" />
+<img alt="../_images/43942074169666a09cb784583a9483dc6362341c0fc0ce616dbf1c2c0c2f2881.png" src="../_images/43942074169666a09cb784583a9483dc6362341c0fc0ce616dbf1c2c0c2f2881.png" />
 </div>
 </div>
 <p>Let’s progress the glacier to equilibrium</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">glacier</span><span class="o">.</span><span class="n">progress_to_equilibrium</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:674,</span> in <span class="ni">Glacier.progress_to_equilibrium</span><span class="nt">(self, years, t_rate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="c1"># Run the model.</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="c1">#  Run with a stopping criteria.</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_until_and_store</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="n">years</span><span class="p">,</span> <span class="n">fl_diag_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stop_criterion</span><span class="o">=</span><span class="n">stop_function</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="c1"># We chose to print and return instead of raising since the</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>     <span class="c1"># collection will then be able to continue.</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Glacier grew out of its domain before reaching an equilibrium state.&quot;</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">FlowlineModel.run_until_and_store</span><span class="nt">(self, y1, diag_path, fl_diag_path, geom_path, store_monthly_step, stop_criterion, fixed_geometry_spinup_yr, dynamic_spinup_min_ice_thick)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm/core/flowline.py:1039,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span> <span class="n">nm</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_time</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="k">if</span> <span class="n">do_geom</span> <span class="ow">or</span> <span class="n">do_fl_diag</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>     <span class="n">sects</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="n">widths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">fl</span><span class="o">.</span><span class="n">nx</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fls</span><span class="p">]</span>
+
+<span class="nn">File /usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/numpy/__init__.py:400,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__expired_attributes__</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">400</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="sa">f</span><span class="s2">&quot;`np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` was removed in the NumPy 2.0 release. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">__expired_attributes__</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s2">&quot;chararray&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="s2">&quot;`np.chararray` is deprecated and will be removed from &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="s2">&quot;the main namespace in the future. Use an array with a string &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="s2">&quot;or bytes dtype instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: `np.NaN` was removed in the NumPy 2.0 release. Use `np.nan` instead.
 </pre></div>
 </div>
 </div>
@@ -631,9 +702,6 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glacier</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/e23e6deb60e0b5ad3e83e656ea45e0a77e80d593dd13ecd5a406b15d497eb28d.png" src="../_images/e23e6deb60e0b5ad3e83e656ea45e0a77e80d593dd13ecd5a406b15d497eb28d.png" />
 </div>
 </div>
 <div class="alert alert-success"> <b>Exercise</b>: Try to change the glacier geometry parameters: top width, width at the ELA, bottom ELA, or adding more geometry to the bed. Do you think a wider/narrower glacier will reach equilibrium faster/slower?
@@ -646,7 +714,7 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 </div>
 </section>
 <section id="mass-balance-of-a-glacier-in-equilibrium">
-<h3>Mass balance of a glacier in equilibrium<a class="headerlink" href="#mass-balance-of-a-glacier-in-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3>Mass balance of a glacier in equilibrium<a class="headerlink" href="#mass-balance-of-a-glacier-in-equilibrium" title="Link to this heading">#</a></h3>
 <p>For a glacier to be in equilibrium, we require the specific mass balance (accumulation + ablation) to be zero averaged over a year on the glacier. To check this requirement, we can use the mass balance model to compute the annual mass balance and compute a width weighted average over all altitudes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -654,16 +722,11 @@ Melt and sublimation can counteract each other: as sublimation consumes energy a
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.48756623584850356
-</pre></div>
-</div>
-</div>
 </div>
 <p>At the end of the year the total specific mass-balance is zero, but this doesn’t mean that the mass-balance is zero everywhere! A very classic situation looks like the image below: positive mass-balance at the top (more accumulation, less ablation) and negative at the tongue (less accumulation, more ablation).</p>
 <img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_05.png" width="60%" ></section>
 <section id="ice-flux-along-a-glacier-in-equilibrium">
-<h3>Ice flux along a glacier in equilibrium<a class="headerlink" href="#ice-flux-along-a-glacier-in-equilibrium" title="Permalink to this heading">#</a></h3>
+<h3>Ice flux along a glacier in equilibrium<a class="headerlink" href="#ice-flux-along-a-glacier-in-equilibrium" title="Link to this heading">#</a></h3>
 <img src="https://raw.githubusercontent.com/OGGM/glacier-graphics/master/glacier_intro/png/glacier_06.png" width="60%" ><p>In equilibrium, the ice thickness <span class="math notranslate nohighlight">\(H\)</span> does not change with time and the continuity equation reduces to,</p>
 <div class="math notranslate nohighlight">
 \[\dot{m} = \nabla \vec{q}.\]</div>
@@ -674,8 +737,8 @@ This also shows how you can access properties of the <code class="docutils liter
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import matplotlib</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -710,15 +773,12 @@ This also shows how you can access properties of the <code class="docutils liter
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/388057ba935c348352b0a7cf182074a75375da89601d6cf15744417e46b5cff9.png" src="../_images/388057ba935c348352b0a7cf182074a75375da89601d6cf15744417e46b5cff9.png" />
-</div>
 </div>
 <p>By construction, the ice flux is maximal at the equilibrium line altitude and zero at the glacier terminus.</p>
 </section>
 </section>
 <section id="take-home-points">
-<h2>Take home points<a class="headerlink" href="#take-home-points" title="Permalink to this heading">#</a></h2>
+<h2>Take home points<a class="headerlink" href="#take-home-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Accumulation processes include all the processes that add snow or ice to a glacier, e.g.</p>
 <ul>
@@ -741,15 +801,15 @@ This also shows how you can access properties of the <code class="docutils liter
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>K.M. Cuffey and W.S.B. Paterson, (2010), <a class="reference external" href="https://www.elsevier.com/books/the-physics-of-glaciers/cuffey/978-0-12-369461-4">The Physics of Glaciers</a></p></li>
 <li><p><a class="reference external" href="http://AntarcticGlaciers.org">AntarcticGlaciers.org</a>, <a class="reference external" href="http://www.antarcticglaciers.org/glacier-processes/mass-balance/">glacier mass-balance</a></p></li>
 </ul>
 </section>
 <section id="what-s-next">
-<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this heading">#</a></h2>
-<p><a class="reference internal" href="../welcome.html"><span class="doc std std-doc">Back to the table of contents</span></a></p>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../welcome.html"><span class="std std-doc">Back to the table of contents</span></a></p>
 </section>
 </section>
 
@@ -778,11 +838,10 @@ This also shows how you can access properties of the <code class="docutils liter
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="surging_experiment.html"
@@ -802,10 +861,7 @@ This also shows how you can access properties of the <code class="docutils liter
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -813,6 +869,7 @@ This also shows how you can access properties of the <code class="docutils liter
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -853,10 +910,14 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
-    
+    <p class="last-updated">
+  Last updated on Apr 16, 2025.
+  <br/>
+</p>
   </div>
   
   <div class="footer-item">
@@ -880,8 +941,8 @@ These notebooks are licensed under a <a href="https://github.com/OGGM/tutorials/
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
