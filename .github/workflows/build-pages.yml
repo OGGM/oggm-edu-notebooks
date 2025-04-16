@@ -26,6 +26,7 @@ jobs:
       - name: Build Book
         run: |
           jupyter-book build .
+          echo "edu-notebooks.oggm.org" > _build/html/CNAME
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
