@@ -30,9 +30,9 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
@@ -51,7 +51,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -68,7 +68,7 @@
     <link rel="prev" title="Welcome to the OGGM Edu Notebooks!" href="../welcome.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
+    <meta name="docbuild:last-update" content="Mar 01, 2026"/>
   </head>
   
   
@@ -678,7 +678,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/43842eabc344085d960efa68a465362f311c3055e10741dc4a126c0287792859.png" src="../_images/43842eabc344085d960efa68a465362f311c3055e10741dc4a126c0287792859.png" />
+<img alt="../_images/a453bdb0a2d44a64bf7451ebfdf57c38e0f3fb749de9bd209c5e9c12413ac314.png" src="../_images/a453bdb0a2d44a64bf7451ebfdf57c38e0f3fb749de9bd209c5e9c12413ac314.png" />
 </div>
 </div>
 </section>
@@ -711,8 +711,8 @@ document.write(`
 
 /* Override VSCode background color */
 .cell-output-ipywidget-background:has(
-    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-  ),
+  > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+),
 .cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
   background-color: transparent !important;
 }
@@ -722,9 +722,11 @@ document.write(`
   }
 
   const force = true;
-  const py_version = '3.7.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  const version = '3.8.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
   const reloading = false;
   const Bokeh = root.Bokeh;
+  const BK_RE = /^https:\/\/cdn\.bokeh\.org\/bokeh\/(release|dev)\/bokeh-/;
+  const PN_RE = /^https:\/\/cdn\.holoviz\.org\/panel\/[^/]+\/dist\/panel/i;
 
   // Set a timeout for this load but only if we are not already initializing
   if (typeof (root._bokeh_timeout) === "undefined" || (force || !root._bokeh_is_initializing)) {
@@ -744,7 +746,7 @@ document.write(`
     console.debug("Bokeh: all callbacks have finished");
   }
 
-  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
+  function load_libs(css_urls, js_urls, js_modules, js_exports, Bokeh, callback) {
     if (css_urls == null) css_urls = [];
     if (js_urls == null) js_urls = [];
     if (js_modules == null) js_modules = [];
@@ -818,7 +820,10 @@ document.write(`
     for (let i = 0; i < js_urls.length; i++) {
       const url = js_urls[i];
       const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
+      const shouldSkip = skip.includes(escaped) || existing_scripts.includes(escaped)
+      const isBokehOrPanel = BK_RE.test(escaped) || PN_RE.test(escaped)
+      const missingOrBroken = Bokeh == null || Bokeh.Panel == null || (Bokeh.version != version && !Bokeh.versions?.has(version)) || Bokeh.versions?.get(version)?.Panel == null;
+      if (shouldSkip && !(isBokehOrPanel && missingOrBroken)) {
         if (!window.requirejs) {
           on_load();
         }
@@ -882,7 +887,7 @@ document.write(`
     document.body.appendChild(element);
   }
 
-  const js_urls = ["https://cdn.holoviz.org/panel/1.6.2/dist/bundled/reactiveesm/es-module-shims@^1.10.0/dist/es-module-shims.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-3.7.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.7.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.7.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.7.2.min.js", "https://cdn.holoviz.org/panel/1.6.2/dist/panel.min.js"];
+  const js_urls = ["https://cdn.holoviz.org/panel/1.8.7/dist/bundled/reactiveesm/es-module-shims@^1.10.0/dist/es-module-shims.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-3.8.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.8.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.8.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.8.2.min.js", "https://cdn.holoviz.org/panel/1.8.7/dist/panel.min.js"];
   const js_modules = [];
   const js_exports = {};
   const css_urls = [];
@@ -903,24 +908,13 @@ function(Bokeh) {} // ensure no trailing comma for IE
           }
         }
       }
-      // Cache old bokeh versions
-      if (Bokeh != undefined && !reloading) {
-        var NewBokeh = root.Bokeh;
-        if (Bokeh.versions === undefined) {
-          Bokeh.versions = new Map();
-        }
-        if (NewBokeh.version !== Bokeh.version) {
-          Bokeh.versions.set(NewBokeh.version, NewBokeh)
-        }
-        root.Bokeh = Bokeh;
-      }
     } else if (Date.now() < root._bokeh_timeout) {
       setTimeout(run_inline_js, 100);
     } else if (!root._bokeh_failed_load) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     }
-    root._bokeh_is_initializing = false
+    root._bokeh_is_initializing = false;
   }
 
   function load_or_wait() {
@@ -937,24 +931,35 @@ function(Bokeh) {} // ensure no trailing comma for IE
       root._bokeh_timeout = Date.now() + 5000;
       root._bokeh_is_initializing = false;
       root._bokeh_onload_callbacks = undefined;
-      root._bokeh_is_loading = 0
+      root._bokeh_is_loading = 0;
       console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
       load_or_wait();
     } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
       setTimeout(load_or_wait, 100);
     } else {
-      root._bokeh_is_initializing = true
-      root._bokeh_onload_callbacks = []
-      const bokeh_loaded = root.Bokeh != null && (root.Bokeh.version === py_version || (root.Bokeh.versions !== undefined && root.Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true;
+      root._bokeh_onload_callbacks = [];
+      const bokeh_loaded = Bokeh != null && ((Bokeh.version === version && Bokeh.Panel) || (Bokeh.versions?.has(version) && Bokeh.versions.get(version)?.Panel));
       if (!reloading && !bokeh_loaded) {
         if (root.Bokeh) {
           root.Bokeh = undefined;
         }
         console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
       }
-      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+      load_libs(css_urls, js_urls, js_modules, js_exports, Bokeh, function() {
         console.debug("Bokeh: BokehJS plotting callback run at", now());
         run_inline_js();
+        if (Bokeh != undefined && !reloading) {
+          const NewBokeh = root.Bokeh;
+          if (Bokeh.versions === undefined) {
+            Bokeh.versions = new Map();
+          }
+          if (NewBokeh.version !== Bokeh.version) {
+            Bokeh[NewBokeh.version] = NewBokeh;
+            Bokeh.versions.set(NewBokeh.version, NewBokeh);
+          }
+          root.Bokeh = Bokeh;
+        }
       });
     }
   }
@@ -985,7 +990,6 @@ if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
           var messages = comm.messages[Symbol.asyncIterator]();
           function processIteratorResult(result) {
             var message = result.value;
-            console.log(message)
             var content = {data: message.data, comm_id};
             var buffers = []
             for (var buffer of message.buffers || []) {
@@ -1012,7 +1016,22 @@ if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
         }
       } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
         var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        comm.open();
+        let retries = 0;
+        const open = () => {
+          if (comm.active) {
+            comm.open();
+          } else if (retries > 3) {
+            console.warn('Comm target never activated')
+          } else {
+            retries += 1
+            setTimeout(open, 500)
+          }
+        }
+        if (comm.active) {
+          comm.open();
+        } else {
+          setTimeout(open, 500)
+        }
         if (msg_handler) {
           comm.onMsg = msg_handler;
         }
@@ -1200,17 +1219,17 @@ if (window.Jupyter !== undefined) {
   } catch(err) {
   }
 }
-</script><div class="output text_html"><div id='b6d168b2-651d-4657-8f61-d4a874f42d41'>
-  <div id="dae2934c-10c1-40bf-912f-16d13ef9a5c5" data-root-id="b6d168b2-651d-4657-8f61-d4a874f42d41" style="display: contents;"></div>
+</script><div class="output text_html"><div id='aa648743-3520-4819-bfc6-2e22204bfb11'>
+  <div id="c1078c86-67d3-483b-b438-abefe26d82a7" data-root-id="aa648743-3520-4819-bfc6-2e22204bfb11" style="display: contents;"></div>
 </div>
 <script type="application/javascript">(function(root) {
-  var docs_json = {"110db903-c1c4-471a-822a-a3e76893ab2d":{"version":"3.7.2","title":"Bokeh Application","roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"b6d168b2-651d-4657-8f61-d4a874f42d41"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"8fc052dd-26a2-4fcc-9f51-7799524aedf3","attributes":{"plot_id":"b6d168b2-651d-4657-8f61-d4a874f42d41","comm_id":"1d07a57f7ab54d98a3597278e6dbc535","client_comm_id":"beb6b4b01e784f00afd45cc8fd141eba"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]}]}};
-  var render_items = [{"docid":"110db903-c1c4-471a-822a-a3e76893ab2d","roots":{"b6d168b2-651d-4657-8f61-d4a874f42d41":"dae2934c-10c1-40bf-912f-16d13ef9a5c5"},"root_ids":["b6d168b2-651d-4657-8f61-d4a874f42d41"]}];
+  var docs_json = {"651bbeb3-b23c-4762-9ed9-b6d0b98e8bb0":{"version":"3.8.2","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"f4922b14-0641-40f1-b2a5-9d205796fc9e","attributes":{"notifications":{"type":"object","name":"Notifications","id":"5ef20236-9d54-4c7d-a1d5-18b93f20c72b"}}},"roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"aa648743-3520-4819-bfc6-2e22204bfb11"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"7362c293-fe52-42ab-b593-18537e1bb8d8","attributes":{"plot_id":"aa648743-3520-4819-bfc6-2e22204bfb11","comm_id":"b39087a06d254d5bbff60ad6bbb4f6b8","client_comm_id":"b1eab12d41004a85b6d1a9ecbe5244e7"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"holoviews.plotting.bokeh.raster.HoverModel","properties":[{"name":"xy","kind":"Any","default":null},{"name":"data","kind":"Any","default":null}]}]}};
+  var render_items = [{"docid":"651bbeb3-b23c-4762-9ed9-b6d0b98e8bb0","roots":{"aa648743-3520-4819-bfc6-2e22204bfb11":"c1078c86-67d3-483b-b438-abefe26d82a7"},"root_ids":["aa648743-3520-4819-bfc6-2e22204bfb11"]}];
   var docs = Object.values(docs_json)
   if (!docs) {
     return
   }
-  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
   async function embed_document(root) {
     var Bokeh = get_bokeh(root)
     await Bokeh.embed.embed_items_notebook(docs_json, render_items);
@@ -1232,12 +1251,12 @@ if (window.Jupyter !== undefined) {
   function get_bokeh(root) {
     if (root.Bokeh === undefined) {
       return null
-    } else if (root.Bokeh.version !== py_version) {
-      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+    } else if (root.Bokeh.version !== version) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(version)) {
 	return null
       }
-      return root.Bokeh.versions.get(py_version);
-    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh.versions.get(version);
+    } else if (root.Bokeh.version === version) {
       return root.Bokeh
     }
     return null
@@ -1269,17 +1288,17 @@ if (window.Jupyter !== undefined) {
       }
     }, 25, root)
   }
-})(window);</script></div><div class="output text_html"><div id='b7775225-c4fa-4ed2-a596-b789d7f25ac3'>
-  <div id="c5f48e19-c9ca-4c88-a2a1-96408cbb003f" data-root-id="b7775225-c4fa-4ed2-a596-b789d7f25ac3" style="display: contents;"></div>
+})(window);</script></div><div class="output text_html"><div id='0984c78a-d6e2-4172-a6f4-27c2f6328ca3'>
+  <div id="e83e58b9-6f97-4384-83c9-a4f709e228fc" data-root-id="0984c78a-d6e2-4172-a6f4-27c2f6328ca3" style="display: contents;"></div>
 </div>
 <script type="application/javascript">(function(root) {
-  var docs_json = {"91eb5a55-9567-41b1-b064-481e23840370":{"version":"3.7.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"b7775225-c4fa-4ed2-a596-b789d7f25ac3","attributes":{"name":"Row00286","tags":["embedded"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"2cddb586-75de-4517-b4d9-7f29f9557b21","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"d731f38c-e0c2-486b-9e88-2e3701ce48d0","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"158e99d3-d892-430d-98af-0f328cf22948","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"23656ec7-b6a3-40ec-8998-c153276ba546","attributes":{"url":"https://cdn.holoviz.org/panel/1.6.2/dist/bundled/theme/native.css"}}],"min_width":500,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"bbdfab3c-b0a3-4e7a-9e03-b9a1b4d191d6","attributes":{"name":"HSpacer00290","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"id":"2cddb586-75de-4517-b4d9-7f29f9557b21"},{"id":"158e99d3-d892-430d-98af-0f328cf22948"},{"id":"23656ec7-b6a3-40ec-8998-c153276ba546"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"48c6374d-76e2-453c-a533-eed53048c114","attributes":{"width":500,"height":300,"margin":[5,10],"sizing_mode":"fixed","align":"start","x_range":{"type":"object","name":"Range1d","id":"81925ae4-626d-41f9-a933-9cf50b7ab006","attributes":{"name":"index","tags":[[["index",null]],[]],"start":-1.0,"reset_start":-1.0,"reset_end":1.0}},"y_range":{"type":"object","name":"Range1d","id":"fb18eb5d-ac98-40b0-a9cb-28b4f0096ab7","attributes":{"name":"0","tags":[[["0",null]],{"type":"map","entries":[["invert_yaxis",false],["autorange",false]]}],"start":-0.0999791731748236,"end":1.0997709049230595,"reset_start":-0.0999791731748236,"reset_end":1.0997709049230595}},"x_scale":{"type":"object","name":"LinearScale","id":"f92e5338-dc5e-4b2f-a258-79cd1b75da09"},"y_scale":{"type":"object","name":"LinearScale","id":"9e07c61e-ddc5-4dff-90b6-da8672b7c19e"},"title":{"type":"object","name":"Title","id":"a3e0e8ee-58a0-451e-8f03-59b1167c1417","attributes":{"text":"An interactive plot","text_color":"black","text_font_size":"12pt"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"febd4747-5e95-44c0-b7f1-e852afb84af3","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"5e031058-e3d5-4451-ae53-56733e353361","attributes":{"selected":{"type":"object","name":"Selection","id":"59248bb6-565f-4e4d-98f7-df520a6af2ad","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"7c64b03c-4c95-454f-a9dc-6364865d94b0"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAA8L+sD431obHuv1kfGutDY+2/BS+n4OUU7L+yPjTWh8bqv15OwcspeOm/Cl5Owcsp6L+3bdu2bdvmv2R9aKwPjeW/EI31obE+5L+8nIKXU/Div2msD431oeG/FbycgpdT4L+El1Pwcgrev9y2bdu2bdu/NtaHxvrQ2L+O9aGxPjTWv+YUvJyCl9O/QDTWh8b60L8wp+DlFLzMv+TlFLycgse/lCRJkiRJwr+QxvrQWB+6v+CHxvrQWK+/QAUvp+DllL9ABS+n4OWUP8CHxvrQWK8/gMb60Fgfuj+QJEmSJEnCP+DlFLycgsc/KKfg5RS8zD88NNaHxvrQP+QUvJyCl9M/jPWhsT401j801ofG+tDYP9i2bdu2bds/gJdT8HIK3j8UvJyCl1PgP2isD431oeE/upyCl1Pw4j8OjfWhsT7kP2J9aKwPjeU/tm3btm3b5j8KXk7ByynoP1xOwcspeOk/sD401ofG6j8EL6fg5RTsP1gfGutDY+0/rA+N9aGx7j8AAAAAAADwPw=="},"shape":[50],"dtype":"float64","order":"little"}],["0",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAAAAAyTOs+IRnSPyba25efU9k/k4VSmdqv3j8RnGA6AobhP606IR94X+M/fdNLH7z65D9aAS+pNGXmP2cFDXSmp+c/kEQkoizI6D8ErVrcOcvpP1ugMhQotOo/Oj3So46F6z9WXV/AeEHsP6j61GeJ6ew/ppV07RN/7T+8mEc7LQPuP1ApsTu4du4/05sx8W7a7j+EW+c26S7vP5W9+c6hdO8/VcUbLvqr7z/TnBdQPdXvP62Cl8mh8O8/pW/VOkv+7z+lb9U6S/7vP62Cl8mh8O8/05wXUD3V7z9VxRsu+qvvP5W9+c6hdO8/hVvnNuku7z/TmzHxbtruP1EpsTu4du4/vJhHOy0D7j+mlXTtE3/tP6j61GeJ6ew/V11fwHhB7D86PdKjjoXrP1ygMhQotOo/Bq1a3DnL6T+RRCSiLMjoP2kFDXSmp+c/WgEvqTRl5j9900sfvPrkP686IR94X+M/FZxgOgKG4T+VhVKZ2q/ePyva25efU9k/MkzrPiEZ0j8AAAAAAAAAAA=="},"shape":[50],"dtype":"float64","order":"little"}],["A_0",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAAAAAyTOs+IRnSPyba25efU9k/k4VSmdqv3j8RnGA6AobhP606IR94X+M/fdNLH7z65D9aAS+pNGXmP2cFDXSmp+c/kEQkoizI6D8ErVrcOcvpP1ugMhQotOo/Oj3So46F6z9WXV/AeEHsP6j61GeJ6ew/ppV07RN/7T+8mEc7LQPuP1ApsTu4du4/05sx8W7a7j+EW+c26S7vP5W9+c6hdO8/VcUbLvqr7z/TnBdQPdXvP62Cl8mh8O8/pW/VOkv+7z+lb9U6S/7vP62Cl8mh8O8/05wXUD3V7z9VxRsu+qvvP5W9+c6hdO8/hVvnNuku7z/TmzHxbtruP1EpsTu4du4/vJhHOy0D7j+mlXTtE3/tP6j61GeJ6ew/V11fwHhB7D86PdKjjoXrP1ygMhQotOo/Bq1a3DnL6T+RRCSiLMjoP2kFDXSmp+c/WgEvqTRl5j9900sfvPrkP686IR94X+M/FZxgOgKG4T+VhVKZ2q/ePyva25efU9k/MkzrPiEZ0j8AAAAAAAAAAA=="},"shape":[50],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"fecab81e-ed60-4a33-83ab-0cb23a59fd36","attributes":{"filter":{"type":"object","name":"AllIndices","id":"6a3f14a9-1273-496f-b77e-84c065a02c83"}}},"glyph":{"type":"object","name":"Line","id":"0e8187c0-541f-4803-a46c-5b96206c98ad","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"selection_glyph":{"type":"object","name":"Line","id":"f1c57750-1866-4fd2-86b9-61efa8483d7c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"nonselection_glyph":{"type":"object","name":"Line","id":"06f3e612-f085-41a5-a9c9-7e40dc9ba235","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.1,"line_width":2}},"muted_glyph":{"type":"object","name":"Line","id":"c3727ffc-c2c2-4959-995e-b5f70f23984c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.2,"line_width":2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"05d451e5-77df-4b6b-bfe1-359ea075bd01","attributes":{"tools":[{"type":"object","name":"WheelZoomTool","id":"792a15d9-ae13-44dc-a05a-333a779fb485","attributes":{"tags":["hv_created"],"renderers":"auto","zoom_together":"none"}},{"type":"object","name":"HoverTool","id":"dfa8a21e-6003-439a-8759-27570641f4a0","attributes":{"tags":["hv_created"],"renderers":[{"id":"febd4747-5e95-44c0-b7f1-e852afb84af3"}],"tooltips":[["index","@{index}"],["0","@{A_0}"]]}},{"type":"object","name":"SaveTool","id":"ba521e71-71fe-400f-a1f0-2d8c5660eb6c"},{"type":"object","name":"PanTool","id":"c4783e4c-cb22-4abd-8358-b95c6ad16f53"},{"type":"object","name":"BoxZoomTool","id":"3e1d3c32-5fb2-485c-8663-f967b94440f2","attributes":{"dimensions":"both","overlay":{"type":"object","name":"BoxAnnotation","id":"0a6216ab-f7a7-4c31-9beb-0aa4c299d90e","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"cefdc70b-2822-40a0-8c68-7754ee5088c7","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"362bf2e5-e96f-42eb-8547-d2cf7337b64a","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"ResetTool","id":"5e91f828-1c0b-4555-b44d-697f785fee47"}],"active_drag":{"id":"c4783e4c-cb22-4abd-8358-b95c6ad16f53"},"active_scroll":{"id":"792a15d9-ae13-44dc-a05a-333a779fb485"}}},"left":[{"type":"object","name":"LinearAxis","id":"c578c373-76aa-46e6-9cc2-4594f5d97bc0","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"caae27b3-a749-4127-b41c-e77bfdcb7d93","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"e37c9ffa-6b25-43d8-821a-f28549647807"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"0df95179-aca7-45c7-9d98-a2c42d48913c"}}}],"below":[{"type":"object","name":"LinearAxis","id":"9333a45a-5ff2-42de-b2ea-7f6c51a91056","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"05e8d902-3866-43e8-bc02-3e431ab11e6d","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"122757ce-86a5-47d5-9653-1f951a74be8e"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"85977c27-d16c-4f85-953e-44c0567f13f7"}}}],"center":[{"type":"object","name":"Grid","id":"23af7730-cfb3-4fa7-84da-c4c1fc880e6c","attributes":{"axis":{"id":"9333a45a-5ff2-42de-b2ea-7f6c51a91056"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"67ca460d-c520-491e-b320-c8054fa5de7b","attributes":{"dimension":1,"axis":{"id":"c578c373-76aa-46e6-9cc2-4594f5d97bc0"},"grid_line_color":null}}],"min_border_top":10,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"output_backend":"webgl"}},{"type":"object","name":"Spacer","id":"4593f8c2-3ae3-423e-9c30-7ceb2bae3d1c","attributes":{"name":"HSpacer00291","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 400px));\n  -webkit-mask-size: auto calc(min(50%, 400px));\n}",{"id":"2cddb586-75de-4517-b4d9-7f29f9557b21"},{"id":"158e99d3-d892-430d-98af-0f328cf22948"},{"id":"23656ec7-b6a3-40ec-8998-c153276ba546"}],"margin":0,"sizing_mode":"stretch_width","align":"start"}}]}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]}]}};
-  var render_items = [{"docid":"91eb5a55-9567-41b1-b064-481e23840370","roots":{"b7775225-c4fa-4ed2-a596-b789d7f25ac3":"c5f48e19-c9ca-4c88-a2a1-96408cbb003f"},"root_ids":["b7775225-c4fa-4ed2-a596-b789d7f25ac3"]}];
+  var docs_json = {"54095bd7-bffd-4121-9d55-7cbea924537e":{"version":"3.8.2","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"dba07d20-5707-4364-88a8-7f7c25119342","attributes":{"notifications":{"type":"object","name":"Notifications","id":"5894a136-e755-439f-a2fc-b1f27c27b576"}}},"roots":[{"type":"object","name":"Row","id":"0984c78a-d6e2-4172-a6f4-27c2f6328ca3","attributes":{"name":"Row00289","tags":["embedded"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"092bc0d0-1dac-4132-843b-1c597fc034bd","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.7/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"1944e640-3c33-4dde-bc5c-7a44a899b89c","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.7/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"a660a1c3-7e88-4ca6-a157-4d3ab36eda74","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.7/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"f471bb2a-a2dc-4403-95a6-6670f276cf91","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.7/dist/bundled/theme/native.css"}}],"min_width":500,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"6a73a1b8-7ab8-4f9d-9eee-4c18dcba4e6f","attributes":{"name":"HSpacer00293","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"092bc0d0-1dac-4132-843b-1c597fc034bd"},{"id":"a660a1c3-7e88-4ca6-a157-4d3ab36eda74"},{"id":"f471bb2a-a2dc-4403-95a6-6670f276cf91"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"d1f86375-7e68-4ea5-9550-2f53430f0f82","attributes":{"width":500,"height":300,"margin":[5,10],"sizing_mode":"fixed","align":"start","x_range":{"type":"object","name":"Range1d","id":"8f62eb4b-4f8a-4df8-b6a4-38939ff8f2aa","attributes":{"name":"index","tags":[[["index",null]],[]],"start":-1.0,"reset_start":-1.0,"reset_end":1.0}},"y_range":{"type":"object","name":"Range1d","id":"70f4ffa2-c646-42c0-a51d-b795d98cbe47","attributes":{"name":"0","tags":[[["0",null]],{"type":"map","entries":[["invert_yaxis",false],["autorange",false]]}],"start":-0.0999791731748236,"end":1.0997709049230595,"reset_start":-0.0999791731748236,"reset_end":1.0997709049230595}},"x_scale":{"type":"object","name":"LinearScale","id":"4e08b056-92a2-4659-b686-702feb35b774"},"y_scale":{"type":"object","name":"LinearScale","id":"a8fa242a-0466-42fe-bee6-a36a968dd00b"},"title":{"type":"object","name":"Title","id":"88efea78-698b-4a5a-8586-5ba8bce24460","attributes":{"text":"An interactive plot","text_color":"black","text_font_size":"12pt"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"a5f86fff-21d5-4035-b56d-c214e5bf1f2a","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"9a68c3ee-8568-4163-bef5-513959b59cbb","attributes":{"selected":{"type":"object","name":"Selection","id":"b0ea181f-7b66-4c5a-a175-e56c906c3cbc","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"c992daa2-e7b9-4a8b-a00b-99cd5a906cc8"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAC/2NgAIEP+9fw935duPHd/kh5qdfOyW/3s+ovf/BU5M3+TXYm19qPvdof53fwtGbFy/1cYMaL/dtzb2/Lvf1sf0ptBlDr0/0CIO12T/bvmdM0PfjDo/2ZYAMf7hcFCzzY3wIULeK6t//ONrDG/WZAU39duLG/D6TN5Nr+ZyIghZf3O5iAJfYbgKzfc2b/k6cgieP7p6h4TlLxPLR/AlAyQn7X/gcgVRHr9zuAHToFRtsfgIjbN0DU2U+A6LN/ADHHXgNirr0NxB77JxB77Xsg7rCHCN+wvwFxp30DxN32IhB/2GdA/GW/C+JPez6Iv+2TIOFgD9H2zB4aTvYxkHCz3wAJR3sWSLjaR0DC2R4a7vYMkHiwBwANI2K1kAEAAA=="},"shape":[50],"dtype":"float64","order":"little"}],["0",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAC/2NggAAjn9d2ipKX7NVu3Z4+P/im/eTWoJm31t+zF5yTYMXU9tB+rZWifEX8Y/vay97ye349sY9i1F9pkvrMPp2Vt2TZ8uf2E1xUFumceGHPsjbqjuXpl/bRC4xENLa8sreyvbS4r/W1fVhs/IEKxzf2K35dSe98+cZ+2dSSt8L1b+33zHC31mV+Zx+gudF6R9k7+8uzDT/m3Xpn3xL93Oyl3nv7qXt/nltY8t4+9Ki03q/V7+0vzxEPsL363n5t0/STCz+8t1+af9XK+x+ChonD1MH0wcxphZoLsycQai/MHTB3wdwZDnU3zB8xUH+xQf05EervTGg4wMIFFk7roeEmCg3HqdBw1YaGMyzcodHAAAC9O7n2kAEAAA=="},"shape":[50],"dtype":"float64","order":"little"}],["A_0",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAC/2NggAAjn9d2ipKX7NVu3Z4+P/im/eTWoJm31t+zF5yTYMXU9tB+rZWifEX8Y/vay97ye349sY9i1F9pkvrMPp2Vt2TZ8uf2E1xUFumceGHPsjbqjuXpl/bRC4xENLa8sreyvbS4r/W1fVhs/IEKxzf2K35dSe98+cZ+2dSSt8L1b+33zHC31mV+Zx+gudF6R9k7+8uzDT/m3Xpn3xL93Oyl3nv7qXt/nltY8t4+9Ki03q/V7+0vzxEPsL363n5t0/STCz+8t1+af9XK+x+ChonD1MH0wcxphZoLsycQai/MHTB3wdwZDnU3zB8xUH+xQf05EervTGg4wMIFFk7roeEmCg3HqdBw1YaGMyzcodHAAAC9O7n2kAEAAA=="},"shape":[50],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"79d21d36-5d6a-48aa-a8f6-d351a5e4aab0","attributes":{"filter":{"type":"object","name":"AllIndices","id":"cce6abb4-1c34-4302-a8ad-242948980c6f"}}},"glyph":{"type":"object","name":"Line","id":"8ab2c4bd-be8c-4b12-b7f3-65ebc8606e51","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"selection_glyph":{"type":"object","name":"Line","id":"f1fe8220-faec-4b8a-a6a0-2ab80d78e5b5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_width":2}},"nonselection_glyph":{"type":"object","name":"Line","id":"8555530f-4c30-42b3-943d-9b0f664e43cd","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.1,"line_width":2}},"muted_glyph":{"type":"object","name":"Line","id":"5e7dbf0a-e43d-4197-a372-253d5c80ca45","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"index"},"y":{"type":"field","field":"0"},"line_color":"#30a2da","line_alpha":0.2,"line_width":2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"0b3f2cc1-714e-40b1-a046-434c7f55c1a9","attributes":{"tools":[{"type":"object","name":"WheelZoomTool","id":"d03dd348-ffb0-40c9-8c2f-5dbff7156a66","attributes":{"tags":["hv_created"],"renderers":"auto","zoom_together":"none"}},{"type":"object","name":"HoverTool","id":"2c14d6d3-f9de-4377-95c5-312da0df419e","attributes":{"tags":["hv_created"],"renderers":[{"id":"a5f86fff-21d5-4035-b56d-c214e5bf1f2a"}],"tooltips":[["index","@{index}"],["0","@{A_0}"]],"sort_by":null}},{"type":"object","name":"SaveTool","id":"963612dd-2b05-4461-a990-bdfb4c2e0daf"},{"type":"object","name":"PanTool","id":"07e3eb68-40fb-4e83-bdcd-e8e38c89db85"},{"type":"object","name":"BoxZoomTool","id":"7700bcae-9746-4b1a-8ea1-d6585f9a63af","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"4b740e3b-3300-443d-8ad9-4e59245146f6","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"edb121c2-1d7e-4b76-85d0-9a83298aa03e","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"dac72635-f6a6-4de3-b027-bc25543e4d22","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"ResetTool","id":"566bebdc-2b18-4948-b28d-043428d36a35"}],"active_drag":{"id":"07e3eb68-40fb-4e83-bdcd-e8e38c89db85"},"active_scroll":{"id":"d03dd348-ffb0-40c9-8c2f-5dbff7156a66"}}},"left":[{"type":"object","name":"LinearAxis","id":"301c9f30-74fe-4b68-b390-f3cd4b5b9cd6","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"ca25d09d-8fd1-4f35-9763-027926db8454","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"cd427e5b-2d96-4059-a861-0783ad0a9a36"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"f09cb9bb-bdfd-4550-8bc3-fb253bd75f03"}}}],"below":[{"type":"object","name":"LinearAxis","id":"f1e94b02-19cb-490a-9659-1daef9d55b19","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"02f32d32-3446-42dc-9aeb-4224be4c53ce","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"e939af68-e5b9-4c4c-9edc-a43195c68c19"},"axis_label":"","major_label_policy":{"type":"object","name":"AllLabels","id":"14947bb6-e6a0-4d20-a381-30cccf0d1071"}}}],"center":[{"type":"object","name":"Grid","id":"c035e8e2-e0ad-4060-be34-e565c1cf936d","attributes":{"axis":{"id":"f1e94b02-19cb-490a-9659-1daef9d55b19"},"grid_line_color":null}},{"type":"object","name":"Grid","id":"51bbc010-f659-4b91-850e-3fa94f57b85d","attributes":{"dimension":1,"axis":{"id":"301c9f30-74fe-4b68-b390-f3cd4b5b9cd6"},"grid_line_color":null}}],"min_border_top":10,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"output_backend":"webgl"}},{"type":"object","name":"Spacer","id":"e80a936b-1b43-4e5e-842e-cf3b571a3857","attributes":{"name":"HSpacer00294","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"092bc0d0-1dac-4132-843b-1c597fc034bd"},{"id":"a660a1c3-7e88-4ca6-a157-4d3ab36eda74"},{"id":"f471bb2a-a2dc-4403-95a6-6670f276cf91"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start"}}]}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"holoviews.plotting.bokeh.raster.HoverModel","properties":[{"name":"xy","kind":"Any","default":null},{"name":"data","kind":"Any","default":null}]}]}};
+  var render_items = [{"docid":"54095bd7-bffd-4121-9d55-7cbea924537e","roots":{"0984c78a-d6e2-4172-a6f4-27c2f6328ca3":"e83e58b9-6f97-4384-83c9-a4f709e228fc"},"root_ids":["0984c78a-d6e2-4172-a6f4-27c2f6328ca3"]}];
   var docs = Object.values(docs_json)
   if (!docs) {
     return
   }
-  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  const version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
   async function embed_document(root) {
     var Bokeh = get_bokeh(root)
     await Bokeh.embed.embed_items_notebook(docs_json, render_items);
@@ -1301,12 +1320,12 @@ if (window.Jupyter !== undefined) {
   function get_bokeh(root) {
     if (root.Bokeh === undefined) {
       return null
-    } else if (root.Bokeh.version !== py_version) {
-      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
+    } else if (root.Bokeh.version !== version) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(version)) {
 	return null
       }
-      return root.Bokeh.versions.get(py_version);
-    } else if (root.Bokeh.version === py_version) {
+      return root.Bokeh.versions.get(version);
+    } else if (root.Bokeh.version === version) {
       return root.Bokeh
     }
     return null
@@ -1504,7 +1523,7 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Apr 16, 2025.
+  Last updated on Mar 01, 2026.
   <br/>
 </p>
   </div>

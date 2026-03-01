@@ -30,9 +30,9 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f5a1e0fe" />
@@ -51,7 +51,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Mass balance gradients (MBG) and their influence on glacier flow" href="mass_balance_gradients.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Apr 16, 2025"/>
+    <meta name="docbuild:last-update" content="Mar 01, 2026"/>
   </head>
   
   
@@ -526,7 +526,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b884ed513d29da730ea6317f69c5f162df3d4e8fa530f93ccd17bd0387093b6f.png" src="../_images/b884ed513d29da730ea6317f69c5f162df3d4e8fa530f93ccd17bd0387093b6f.png" />
+<img alt="../_images/f66eb3f7ce53c549b0e14a816a7f19bf55c3a65a4d22b2e8d857aef94f71b1e4.png" src="../_images/f66eb3f7ce53c549b0e14a816a7f19bf55c3a65a4d22b2e8d857aef94f71b1e4.png" />
 </div>
 </div>
 <p>We can then define a surging glacier using the <code class="docutils literal notranslate"><span class="pre">SurgingGlacier</span></code> class</p>
@@ -667,6 +667,12 @@ These can easily be changed by the user after initialisation.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.13.12/lib/python3.13/site-packages/oggm_edu/glacier.py:335: FutureWarning: In a future version of xarray the default value for data_vars will change from data_vars=&#39;all&#39; to data_vars=None. This is likely to lead to different results when multiple datasets have matching variables with overlapping values. To opt in to new defaults and get rid of these warnings now use `set_options(use_new_combine_kwarg_defaults=True) or set data_vars explicitly.
+  self._state_history = xr.combine_by_coords(
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -675,7 +681,7 @@ These can easily be changed by the user after initialisation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1f51d8863a51e195e5b29901540008be8409e1b150081e92dd93983190cf0d17.png" src="../_images/1f51d8863a51e195e5b29901540008be8409e1b150081e92dd93983190cf0d17.png" />
+<img alt="../_images/249ca2729d1d56b58dced122cd74eb12f760e83bf1629a4ad191c4a3c19250bd.png" src="../_images/249ca2729d1d56b58dced122cd74eb12f760e83bf1629a4ad191c4a3c19250bd.png" />
 </div>
 </div>
 <p>In the plot above we can distinguish the surging periods as a rapid expansion in both length and area (also marked in orange).</p>
@@ -686,7 +692,7 @@ These can easily be changed by the user after initialisation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b608a30c8fda9ecf77eea9374689588b49dfa01c08b29f8539bacbf9d2df5a5.png" src="../_images/5b608a30c8fda9ecf77eea9374689588b49dfa01c08b29f8539bacbf9d2df5a5.png" />
+<img alt="../_images/22700d819e68cba7c43a933cda1c76cad45ba2a5119419dc0636048ce29bc065.png" src="../_images/22700d819e68cba7c43a933cda1c76cad45ba2a5119419dc0636048ce29bc065.png" />
 </div>
 </div>
 </section>
@@ -719,7 +725,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:1202: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.13.12/lib/python3.13/site-packages/oggm_edu/glacier.py:1202: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
   warnings.warn(msg)
 </pre></div>
 </div>
@@ -732,7 +738,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cf7d2ef52fdcbe7bc761c15c9bacdfe1703d809401f490f700b9c90e1ea7d7dd.png" src="../_images/cf7d2ef52fdcbe7bc761c15c9bacdfe1703d809401f490f700b9c90e1ea7d7dd.png" />
+<img alt="../_images/08febe2f1a8bc8893bc0fca97f40f59709e0f48c7bfc87ead07221a52707c526.png" src="../_images/08febe2f1a8bc8893bc0fca97f40f59709e0f48c7bfc87ead07221a52707c526.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -742,7 +748,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7025caa017115fddb437ec3a2f18a3dab669e04dddab13e509be27eb2fdff243.png" src="../_images/7025caa017115fddb437ec3a2f18a3dab669e04dddab13e509be27eb2fdff243.png" />
+<img alt="../_images/56eafa41e0939491e39a6b74b928f448b7483fb3578fb17352b49d6e953a047a.png" src="../_images/56eafa41e0939491e39a6b74b928f448b7483fb3578fb17352b49d6e953a047a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -902,10 +908,12 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:1202: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/pyenv/versions/3.13.12/lib/python3.13/site-packages/oggm_edu/glacier.py:1202: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
   warnings.warn(msg)
-/usr/local/pyenv/versions/3.11.11/lib/python3.11/site-packages/oggm_edu/glacier.py:559: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
+/usr/local/pyenv/versions/3.13.12/lib/python3.13/site-packages/oggm_edu/glacier.py:559: UserWarning: Year has to be above the current age of the glacier. It is not possible to de-age the glacier. Geometry will remain the same.
   warnings.warn(msg)
+/usr/local/pyenv/versions/3.13.12/lib/python3.13/site-packages/oggm_edu/glacier.py:335: FutureWarning: In a future version of xarray the default value for data_vars will change from data_vars=&#39;all&#39; to data_vars=None. This is likely to lead to different results when multiple datasets have matching variables with overlapping values. To opt in to new defaults and get rid of these warnings now use `set_options(use_new_combine_kwarg_defaults=True) or set data_vars explicitly.
+  self._state_history = xr.combine_by_coords(
 </pre></div>
 </div>
 </div>
@@ -1067,7 +1075,7 @@ For this we will again employ the glacier collection.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a58f2570b48e5364c9dc1efd13297e6ffb2c3d5f78076942a206ce7ba6c8a227.png" src="../_images/a58f2570b48e5364c9dc1efd13297e6ffb2c3d5f78076942a206ce7ba6c8a227.png" />
+<img alt="../_images/ece6daa2453d0a411f74d289a9717d0c1864e38920d2dcb4454dbd726c13556a.png" src="../_images/ece6daa2453d0a411f74d289a9717d0c1864e38920d2dcb4454dbd726c13556a.png" />
 </div>
 </div>
 <div class="alert alert-success">
@@ -1182,7 +1190,7 @@ By OGGM e.V. and OGGM Contributors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Apr 16, 2025.
+  Last updated on Mar 01, 2026.
   <br/>
 </p>
   </div>
